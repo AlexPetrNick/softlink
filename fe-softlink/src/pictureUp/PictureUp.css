@@ -1,0 +1,26 @@
+.picture__in__up {
+    display: grid;
+    background-color: black;
+
+    grid-template: 1fr/ 1fr 1200px 1fr;
+
+}
+
+.select__pict{
+    position: absolute;
+    font-size: 50px;
+
+    left: 45%;
+    top: 140px;
+}
+.select__pict ul a {
+    color: green;
+    display: inline;
+}
+.select__pict ul a:hover {
+    color: #c2c3c4;
+}
+
+.picture__in__up img{
+    width: 1200px;
+}

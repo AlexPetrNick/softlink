@@ -1,0 +1,107 @@
+.cabinet__wrapper {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+
+    display: grid;
+
+    grid-template: 150px 1200px / 1fr 2fr;
+}
+.info__user {
+    background-color:#808080;
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    display: grid;
+
+    grid-template: 1fr / 150px 1fr;
+}
+.user__computer {
+
+    display: grid;
+
+    grid-template: 300px 30px 1fr/ 1fr;
+}
+.user__bug {
+    text-align: center;
+    font-size: 20px;
+
+
+}
+.user__logo{
+}
+.user__logo img {
+    padding-top: 15px;
+    border-radius: 100px;
+    width: 120px;
+    height: 120px;
+}
+
+.user__data{
+    display: grid;
+    font-size: 25px;
+
+    grid-template: 70px 1fr/ 1fr 1fr;
+}
+.user__login{
+    background-color: #3e5243;
+    font-size: 30px;
+    padding-top: 20px;
+    text-align: center;
+    border-bottom: 1px solid green;
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+}
+.user__firstname{
+    padding-top: 20px;
+    text-align: center;
+}
+.user__second__name{
+    padding-top: 20px;
+    text-align: center;
+}
+.computer__schema{}
+.computer__schema img{
+    width: 350px;
+    height: 300px;
+}
+.computer__data{
+    display: grid;
+    text-align: center;
+    font-size: 20px;
+
+    grid-template: repeat(12, 40px)/1fr;
+
+}
+.computer__data__name{
+    background-color: #4f4f4f;
+}
+.computer__data__item{
+    background-color: #858585;
+}
+
+.bug__name{
+    border: 1px solid black;
+    background-color: #707070;
+}
+.bug__name span {
+    background-color: #404040;
+}
+
+.bug__item{
+    color: green;
+    height: 100px;
+    display: grid;
+
+    grid-template: 30px 70px / 95%;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+.bug__item__name{
+    background-color: #404040;
+}
+.bug__item__disc {
+    background-color: #c4c4c4;
+
+}

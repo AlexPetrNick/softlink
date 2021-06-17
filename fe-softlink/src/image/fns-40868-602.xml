@@ -1,0 +1,40 @@
+<documents xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.36">
+    <receive_order_notification action_id="602">
+        <subject_id>00000000102413</subject_id>
+        <shipper_id>00000000105949</shipper_id>
+        <operation_date>2021-06-08T14:35:06+03:00</operation_date>
+        <doc_num>TW1228test611</doc_num>
+        <doc_date>08.06.2021</doc_date>
+        <receive_type>1</receive_type>
+        <source>1</source>
+        <contract_type>1</contract_type>
+        <order_details>
+            <union>
+                <sscc_detail>
+                    <sscc>046024430800278336</sscc>
+                    <detail>
+                        <gtin>51754041283452</gtin>
+                        <series_number>TW1228test6</series_number>
+                        <cost>800</cost>
+                        <vat_value>80</vat_value>
+                    </detail>
+                </sscc_detail>
+                <cost>800</cost>
+                <vat_value>80</vat_value>
+            </union>
+            <union>
+                <sscc_detail>
+                    <sscc>046024430800278343</sscc>
+                    <detail>
+                        <gtin>51754041283452</gtin>
+                        <series_number>TW1228test6</series_number>
+                        <cost>800</cost>
+                        <vat_value>80</vat_value>
+                    </detail>
+                </sscc_detail>
+                <cost>800</cost>
+                <vat_value>80</vat_value>
+            </union>
+        </order_details>
+    </receive_order_notification>
+</documents>
