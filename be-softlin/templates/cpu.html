@@ -1,0 +1,110 @@
+{% include 'part/header.html' %}
+{% load static %}
+	<div class="content___list">
+		<div class="page_content">
+		{% for item in items %}
+			<div class="item__content">
+				<img class="picture__hard_item" src="../img/v.jpg" alt="">
+				<div class="title__hard__item">{{ item.brand }} {{ item.model }}</div>
+				<div class="description__hard__item">
+					<strong>Cерия:</strong>
+					{{ item.series }};
+					<strong>Сокет:</strong>
+					{{ item.socket }};
+					<strong>Частота:</strong>
+					{{ item.freq }};
+					{% if item.core_int %}
+					<strong>Ядро Intel:</strong>
+					{{ item.core_int }};
+					{% else %}
+					<strong>Ядро AMD:</strong>
+					{{ item.core_amd }};
+					{% endif %}
+					<strong>Кол-во ядер:</strong>
+					{{ item.num_core }};
+					<strong>Тех.процесс:</strong>
+					{{ item.tech_proc }};
+				</div>
+				<div class="menu__hard__item">
+					<div class="menu__hard__see">&raquo;</div>
+					<div class="menu__hard__add">+</div>
+					<div class="menu__hard__corr">&#9998;</div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+		<div class="page__number__list">
+			<div class="empty"></div>
+				<ul class="page__slot">
+					<li class="prev__page"><a href="">Пред.</a></li>
+					{% for page in pages %}
+					<li class="number__page"><a href="{% url 'cpu' %}?page={{ page }}">{{ page }}</a></li>
+					{% endfor %}
+					<li class="next__page"><a href="">След.</a></li>
+				</ul>
+			<div class="empty"></div>
+		</div>
+		</div>
+
+	<div class="filter__list">
+			<form id="filter" action="{% url 'cpu' %}" method="GET">
+				<div class="filter__body">
+					<div class="filter__item__title">Сокет</div>
+						{% for filt in socket %}
+						{% if filt != "No" %}
+						<div class="filter__item">
+							<input type="checkbox" name="socket" value="{{ filt.name }}">{{ filt.name }}
+						</div>
+						{% endif %}
+						{% endfor %}
+				</div>
+				<div class="filter__body">
+					<div class="filter__item__title">Ядро Intel</div>
+						{% for filt in core_int %}
+						{% if filt != 'No' %}
+						<div class="filter__item">
+							<input type="checkbox" name="core_int" value="{{ filt.name }}">{{ filt.name }}
+						</div>
+						{% endif %}
+						{% endfor %}
+				</div>
+				<div class="filter__body">
+					<div class="filter__item__title">Ядро AMD</div>
+						{% for filt in core_amd %}
+						{% if filt != 'No' %}
+						<div class="filter__item">
+							<input type="checkbox" name="core_amd" value="{{ filt.name }}">{{ filt.name }}
+						</div>
+						{% endif %}
+						{% endfor %}
+				</div>
+				<div class="filter__body">
+					<div class="filter__item__title">Тех. процесс</div>
+						{% for filt in tech_proc %}
+						{% if filt != 'No' %}
+						<div class="filter__item">
+							<input type="checkbox" name="tech_proc" value="{{ filt.tech_proc }}">{{ filt.tech_proc }}
+						</div>
+						{% endif %}
+						{% endfor %}
+				</div>
+				<div class="filter__body">
+					<div class="filter__item__title">Встроенный графический процессор</div>
+						{% for filt in has_graph %}
+						{% if filt != "No" %}
+						<div class="filter__item">
+							<input type="checkbox" name="has_graph" value="{{ filt.has_graph }}">{{ filt.has_graph }}
+						</div>
+						{% endif %}
+						{% endfor %}
+				</div>
+				<input type="submit">
+			</form>
+		</div>
+
+
+		<script type="text/javascript" src="{% static 'js/cpu.js' %}" ></script>
+
+
+
+{% include 'part/footer.html' %}

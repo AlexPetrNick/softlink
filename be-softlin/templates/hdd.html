@@ -1,0 +1,72 @@
+{% include 'part/header.html' %}
+{% load static %}
+	<div class="content___list">
+		<div class="page_content">
+		{{ req.user_permissions }}
+		{% for item in items %}
+			<div class="item__content">
+				<img class="picture__hard_item" src="../img/v.jpg" alt="">
+				<div class="title__hard__item">{{ item.brand }} {{ item.model }}</div>
+				<div class="description__hard__item">
+					<strong>Память:</strong>
+					{{ item.memory }};
+					<strong>Буфер:</strong>
+					{{ item.buffer }};
+					<strong>Частота:</strong>
+					{{ item.freq }};
+					<strong>Форм-фактор:</strong>
+					{{ item.form_factor }};
+					<strong>Интерфейс:</strong>
+					{{ item.interface }};
+					<strong>Пропускная способность:</strong>
+					{{ item.propusk_sposob }};
+				</div>
+				<div class="menu__hard__item">
+					<div class="menu__hard__see">&raquo;</div>
+					<div class="menu__hard__add">+</div>
+					<div class="menu__hard__corr">&#9998;</div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+		<div class="page__number__list">
+			<div class="empty"></div>
+				<ul class="page__slot">
+					<li class="prev__page"><a href="">Пред.</a></li>
+					{% for page in pages %}
+					<li class="number__page"><a href="{% url 'hdd' %}?page={{ page }}">{{ page }}</a></li>
+					{% endfor %}
+					<li class="next__page"><a href="">След.</a></li>
+				</ul>
+			<div class="empty"></div>
+		</div>
+		</div>
+
+		<div class="filter__list">
+			<form action="{% url 'hdd' %}" method="GET" id="filter__memory">
+				<div class="filter__body">
+					<div class="filter__item__title">Память</div>
+						{% for filt in filters_mem %}
+						<div class="filter__item">
+							<input id="check" type="checkbox" name="memory" value="{{ filt.memory }}">{{ filt.memory }}
+						</div>
+						{% endfor %}
+				</div>
+				<input type="submit">
+			</form>
+			<form action="{% url 'hdd' %}" method="GET" id="filter__formfactor">
+				<div class="filter__body">
+					<div class="filter__item__title">Память</div>
+						{% for filt in filters_ff %}
+						<div class="filter__item">
+							<input type="checkbox" name="form_factor" value="{{ filt.form_factor }}">{{ filt.form_factor }}
+						</div>
+						{% endfor %}
+				</div>
+				<input type="submit">
+			</form>
+		</div>
+
+		<script type="text/javascript" src="{% static 'js/main.js' %}" ></script>
+
+{% include 'part/footer.html' %}

@@ -1,0 +1,41 @@
+{% include './part/header.html' %}
+{% load static %}
+	<div class="news__page__content">
+		<div>
+			<form action="#" method="get" style="padding-top:50px;">
+				<button type="button" id="but1">+</button>
+				<button type="button" id="but2">-</button>
+				<button type="button" id="but3">A</button>
+				<input type="text" id="text" value="0"/>
+			</form>
+		</div>
+		<div class="news__item__content">
+			<div class="news__template">
+				<div class="news__title">Lorem ipsum dolor, sit amet consectetur, adipisicing elit.</div>
+				<div class="news__content">
+					{{ test }}<br />
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo mollitia explicabo eius eveniet rerum esse temporibus sequi? Earum eius ipsa corrupti culpa rerum consequuntur? Culpa, non omnis adipisci aspernatur tenetur illum dolores, soluta nihil ratione officia! Modi omnis laboriosam id obcaecati quod tempora aliquid, iusto earum tenetur, illum vero harum. Explicabo recusandae, accusamus praesentium deleniti dolorum harum perferendis alias ipsam iste laudantium. Tempore modi veniam, distinctio repellat, laboriosam aliquid error, eaque cumque ad repellendus hic explicabo, velit. Quae, totam. Libero ipsa modi, esse doloribus tempore odio aliquam, commodi quaerat accusantium optio, ducimus totam voluptates laboriosam ad rem id, accusamus et! Repellendus iure odit ullam magnam nostrum quia corporis ut quisquam nesciunt rem vero culpa, possimus nemo voluptate rerum laborum quam adipisci, debitis. Saepe fugit quasi impedit eaque pariatur, praesentium tenetur, cumque recusandae. Ab, consequatur quam dolorum expedita obcaecati numquam, odio harum! Mollitia, aliquam soluta cumque id delectus odio dolorem adipisci praesentium obcaecati vel, minus aliquid blanditiis a enim ea unde beatae ab excepturi deserunt laboriosam deleniti quos illo. Odit eligendi, qui alias exercitationem, a, eum et saepe obcaecati tempora facilis maxime reiciendis quas suscipit fugiat quos, dicta sunt veniam! Sequi fugiat vitae cupiditate beatae! Nesciunt culpa quis natus ullam dolorum!  <a href="news__single.html">Читать дальше...</a>
+				</div>
+				<div class="news__tags__list">
+					<ul class="news__tags__items">
+						<li class="news__tag">#Lorem, ipsum.</li>
+						<li class="news__tag">#Lorem</li>
+						<li class="news__tag">#Lorem ipsum, dolor.</li>
+					</ul>
+				</div></div>
+		</div>
+		<div class="news__pagenumber__list">
+			<div class="empty"></div>
+			<ul class="page__slot">
+				<li class="prev__page"><a href="">Пред.</a></li>
+				<li class="number__page"><a href="">1</a></li>
+				<li class="number__page"><a href="">2</a></li>
+				<li class="number__page"><a href="">3</a></li>
+				<li class="next__page"><a href="">След.</a></li>
+			</ul>
+			<div class="empty"></div></div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/test.js' %}" ></script>
+	<div class="filter__list"></div>
+
+{% include './part/footer.html' %}

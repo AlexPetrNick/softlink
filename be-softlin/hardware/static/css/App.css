@@ -1,0 +1,779 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  .wrapper {
+    width: 100%;
+    display: grid;
+  
+    grid-template: 50px 200px 60px 1fr 200px/ 100%;
+  }
+  
+  
+  .session___control{
+    min-width: 100%;
+    background-color: #0a0a0a;
+    box-shadow: 0 0 20px black;
+    z-index: 10;
+  
+    display: grid;
+    grid-template: 50px/1fr 550px 1fr;
+  }
+  
+  .login__part{
+    font-size: 14px;
+    height: 100%;
+    text-align: center;
+  
+    display: grid;
+    grid-template: 1fr/1fr 1fr 100px 1fr;
+  }
+  .asdf{
+    display: grid;
+    grid-template: 1fr 1fr/1fr 1fr;
+  }
+  .site__name__label {
+    width: 50px;
+    color: green;
+    text-shadow: 0px 2px 2px white;
+    font-size: 30px;
+    padding-top: 5px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    display: inline-block;
+    grid-row: 1 / 3;
+  }
+  .status__auth {
+    width: 50px;
+    padding-top: 8px;
+    color: #828282;
+    text-decoration: underline dotted;
+  
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  
+  .auth__first__name{}
+  .auth__second__name{}
+  
+  .income__auth {
+    padding-top: 18px;
+  }
+  .income__auth a {
+    color:green;
+    text-decoration: underline dotted;
+  }
+  .registration__menu {
+    padding-top: 15px;
+    color:white;
+  }
+  
+  .button__registraton {
+    width: 100%;
+    height: 70%;
+    padding-top: 10px;
+    border: 3px solid green;
+    margin-top: -10px;
+    border-radius: 30px;
+    background-color: #1f1f1f;
+  }
+  .button__registraton:hover {
+    border: 3px solid white;
+    text-shadow: 5px 5px 5px green;
+    box-shadow: 3px 5px 10px green inset; 
+  }
+  
+  
+  
+  
+  
+  
+  
+  .picture__in__up{
+    background-color: white;
+  }
+  
+  
+  
+  
+  
+  
+  .menu__wrapper{
+    background-color: #f0f0f0;
+    box-shadow: 0 0 20px black;
+    z-index: 10;
+  
+    display: grid;
+  
+    grid-template: 1fr / 1fr 750px 1fr ;
+  }
+  
+  .central__menu{
+    border:2px solid red;
+  
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding-left: 100px;
+  
+    grid-template: 1fr/ 1fr 1fr 1fr 1fr;
+  }
+  
+  .empty__menu{}
+  
+  .list__menu {
+    text-decoration: none;
+    list-style-type: none;
+  
+    display: grid;
+  
+    grid-template: 1fr/ 1fr 1fr 1fr 1fr;
+  }
+  .news__menu {}
+  
+  .hardware__menu {
+    position: relative;
+  }
+  
+  .hardware__menu:hover .list__menu__hardware{
+    display: block;
+  }
+  .hardware__menu:focus .list__menu__hardware{
+    display: block;
+  }
+  
+  .notebook__menu {}
+  .prog__menu {}
+  
+  .text__menu {
+    text-shadow: 1px 1px 2px black;
+    text-decoration: none;
+    color: #adacac;
+    font-size: 20px;
+  }
+  
+  .text__menu:hover {
+    text-shadow: 1px 1px 10px black;
+    color: green;
+  }
+  .text__menu:focus {
+    text-shadow: 1px 1px 3px black;
+    color: green;
+  }
+  
+   /*Вкладки меню Железо*/
+  
+  .sub-list__menu__hardware {
+    text-align: center;
+    position: absolute;
+    right: -480px;
+    list-style-type: none; 
+    text-decoration: none;
+    position: absolute;
+    min-height: 50px;
+    max-width: 60px;
+    min-width: 950px;
+    background-color: #212121;
+    border:4px solid white;
+    border-radius: 0 0 50px 50px;
+    z-index: 100;
+    margin-top: -10px;
+  
+    display: grid;
+  
+    grid-template: 1fr/ repeat(7, 1fr);
+    justify-items: center;
+  }
+  
+  .item__hardware{
+    align-self: center;
+    min-width: 90px;
+    max-width: 100px;
+    max-height: 40px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  /* Рисуем ссылки в хардменю */
+  .item__hardware a{
+    text-decoration: none;
+    color:green;
+  }
+  .item__hardware a:hover{
+    text-shadow: 0px 2px 2px black;
+  }
+  
+  .list__menu__hardware{
+    padding-top: 20px;
+    display: none;
+  }
+  
+  /*Контентная часть*/
+  .content__wrapper{
+    background-color: #adacac;
+    min-height: 100%;
+    height: auto;
+  
+    display: grid;
+  
+    grid-template: auto/1fr 1100px 1fr;
+  }
+  
+  .wrapper__hard {
+    display: grid;
+    grid-template: auto/800px 300px;
+  }
+  
+  /*Разделитель контента и пагинатора*/
+  .content___list{
+    display: grid;
+  
+    grid-template: auto 50px/ 1fr;
+  }
+  
+  /*Пагинатор Железа*/
+  
+  .page_content {
+  
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: #c2c2c2;
+  
+    display: grid;
+    grid-gap: 10px;
+    padding: 10px;
+    grid-template: auto    / repeat(3, minmax(250px, 250px));
+  }
+  
+  .page__number__list{
+    height: 50px;
+    width: 100%;
+  
+  
+    display: grid;
+  
+    grid-template: 50px / 1fr 500px 1fr;
+  }
+  
+  
+  .page__number__list ul li {
+    display: inline;
+  }
+  
+  .page__slot {
+    list-style: none;
+    grid-template: 1fr / 1fr 1fr;
+  
+    text-align: center;
+  }
+  
+  .page__slot a {
+    font-size: 20px;
+    margin-left: 10px;
+    text-decoration: none;
+    display: inline;
+  }
+  .prev__page {}
+  .number__page {}
+  .next__page {}
+  .all__page {}
+  
+  /*Содержимое страниц Железо Итемы*/
+  
+  .item__content{
+    width: 250px;
+    height: 320px;
+    background-color: #ebebeb;
+    box-shadow: 1px 1px 4px #282828;
+    position: relative;
+  
+    display: grid;
+    grid-gap: 3px;
+    grid-template: 175px 45px 1fr/ 1fr 70px;
+  }
+  
+  .item__content:hover {
+    box-shadow: 0 0 10px green;
+  }
+  
+  .title__hard__item {
+    padding-top: 2px;
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .picture__hard_item {
+    margin: 3px;
+    border: 3px solid #000;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-size: cover;
+  }
+  
+  .description__hard__item{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 0px 5px 5px 5px;
+    background-color: #c7c7c7;
+    text-align:left;
+    font-size: 15px;
+  }
+  .menu__hard__item {
+    position: absolute;
+    background-color: #ebebeb;
+    box-shadow: 1px 1px 4px #282828;
+    height: 90px;
+    width: 30px;
+    z-index: 9999;
+    right: -30px;
+    bottom: 0;
+    text-align: center;
+    visibility:hidden;
+  
+    display: grid;
+    grid-template: 1fr 1fr 1fr/ 1fr;
+  }
+  .item__content:hover .menu__hard__item {
+    box-shadow: 0 0 10px green;
+    border-left: 0px;
+    visibility:visible;
+  }
+  /*Меню в итемах харда*/
+  .menu__hard__see {
+    padding-top: 5px;
+  }
+  .menu__hard__see:hover {
+    padding-top: 5px;
+    border:1px solid #595959;
+  }
+  .menu__hard__add {
+    padding-top: 5px;
+  }
+  .menu__hard__add:hover {
+    padding-top: 5px;
+    border:1px solid #595959;
+  }
+  .menu__hard__corr {
+    padding-top: 5px;
+  }
+  .menu__hard__corr:hover {
+    padding-top: 5px;
+    border:1px solid #595959;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .auth__title {
+    font-size: 30px;
+    border-bottom:2px solid gray;
+    padding-bottom: ;
+  }
+  .auth__login__label{
+    padding-top: 5px;  
+  }
+  .auth__login__field{
+    position: relative;
+    left: 70px;
+    height: 20px;
+    width: 250px;
+  }
+  .auth__pass__label{
+    padding-top: 5px;  
+  }
+  .auth__pass__field{
+    position: relative;
+    left: 70px;
+    height: 20px;
+    width: 250px;
+  }
+  .button__submit {
+    position: relative;
+    left: 150px;
+    width: 100px;
+  
+  }
+  .added__menu {
+    font-size: 14px;
+    padding: 20px;
+  }
+  
+  .news__pagenumber__list ul li{
+    display: inline;
+  
+  }
+  
+  /*Разделитель контента и пагинатор*/
+  .news__page__content {
+    background-color: #c2c2c2;
+  
+    display: grid;
+    grid-template: 1fr 60px/1fr;
+    justify-items: center;
+  }
+  
+  /*Контентная часть новостей*/
+  .news__item__content {
+    justify-self: stretch;
+  }
+  
+  /*Пагинатор новости*/
+  .news__pagenumber__list{
+    height: 50px;
+    width: 760px;
+  
+    display: grid;
+    grid-template: 1fr/1fr 300px 1fr;
+  }
+  
+  /*Шаблон страницы новостей*/
+  .news__template {
+    box-shadow: 0 0 20px black;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    background-color: #e2e2e2;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 750px;
+    height: 480px;
+    padding: 10px;
+  
+    display: grid;
+    grid-gap: 10px;
+    grid-template: 70px 1fr 35px 1fr/1fr;
+  }
+  .news__title {
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 1px solid #53bf00;
+    border-top: 1px solid #53bf00;
+    border-radius: 10px;
+  }
+  .news__content {
+    border-top: 1px solid #53bf00;
+    border-radius: 10px;
+    height: 350px;
+  }
+  
+  /*Теги новостей*/
+  .news__tags__list {
+    margin-top: 10px;
+    background-color: #7e7e7e;
+    border-radius: 10px;
+  }
+  
+  .news__tags__list ul li{
+    display: inline;
+  }
+  
+  .news__tags__items {
+    text-decoration: none;
+    list-style: none;
+    display: inline;
+  }
+  .news__tag {
+    margin-left: 10px;
+  }
+  
+  .new__single__example {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    padding: 10px;
+    height: auto;
+    background-color: #c2c2c2;
+  
+    display: grid;
+    grid-gap: 10px;
+    grid-template: 60px 1fr auto/1fr;
+  }
+  .new__single__title {
+    margin-top: 10px;
+    font-size: 35px;
+    text-align: center;
+  }
+  .new__single__content {
+    background-color: #dadada;
+    padding: 10px;
+    min-height: 700px;
+  }
+  .new__single__manage {
+    border-top: 4px solid green;
+    padding: 10px;
+  
+    display: grid;
+    grid-gap: 10px;
+    grid-template: 160px 1fr/150px 1fr;
+  }
+  
+  /*Комментарии в новости(1)*/
+  
+  .user__comment__logo {}
+  .user__comment__content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  
+    display: grid;
+    grid-template: 110px 30px / 1fr;
+  }
+  .new__prev__comments {
+    background-color: #dadada;
+    height: 700px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+  /*Форма отправки сообщения*/
+  
+  .text__comment {
+    margin-left: 10px;
+    width: 95%;
+    height: 100%;
+  }
+  .comment__send__but {
+    height: 3l0px;
+    margin: 5px 0 0 10px;
+  }
+  
+  /*Временный аватар*/
+  .logo__tenmp {
+    margin: 16px auto 0 auto;
+    border-radius: 90px;
+    width: 120px;
+    height: 120px;
+    background-color: white;
+  }
+  
+  /*Регистрация*/
+  
+  .reg__wrapper {
+    display: grid;
+    grid-template: auto/ 1fr 400px 1fr;
+  
+  }
+  
+  .reg__wrapper__center {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  
+    height: 600px;
+    padding: 0px 50px 50px 50px;
+    font-size: 25px;
+    text-align: center;
+    margin: auto;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    display: grid;
+    grid-row-gap: 20px;
+  
+    grid-template: 70px repeat(6, 40px) 1fr/500px;
+  
+  }
+  
+  .register__label {
+    color: green;
+    margin-top: 10px;
+    font-size: 40px;
+  }
+  
+  .reg__label__user {
+    color: green;
+  }
+  .reg__field__user {
+  }
+  .reg__label__pass {
+    color: green;
+  }
+  .reg__field__pass {
+  }
+  .confirm__label__pass {
+    color: green;
+  }
+  .confirm__field__pass {
+  }
+  .button__reg__submit {
+    width: 300px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /*Фильтрация данных поле*/
+  
+    .filter__body {
+      padding-top: 20px;
+      margin: auto;
+      margin-top: 15px;
+      width: 250px;
+      height: auto;
+      background-color: #8c8c8c;
+      padding-bottom: 20px;
+      display: grid;
+  
+      grid-template: auto / auto;
+     }
+    .filter__body h2{
+      display: block;
+    }
+    .filter__item__title {
+      font-family: Comic Sans MS, Comic Sans, cursive;
+      margin-bottom: 20px;
+      text-align: center;
+      grid-column-start: 1;
+      grid-column-start: 2;
+    }
+    .filter__item {
+      color: #00620e;
+      margin-left: 30px;
+      height: 25px;
+      width: 250px;
+      grid-column-start: 1;
+      grid-column-start: 2;
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .filter__list{
+    min-width: 300px;
+    background-color: #7e7e7e;
+    box-shadow: 1px 1px 15px #282828;
+    grid-column-start: 2;
+    grid-column-end: 3d;
+  }
+  
+  
+  
+  
+  
+  .footer__wrapper{
+    background-color: #2b2b2b;
+  
+  }
+  
+  
+  
+  
+  .popup{
+    z-index: 1050;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .popup__area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .popup:target {
+    opacity: 1;
+    visibility: visible;
+  }
+  .popup__body{
+    min-height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+  }
+  .popup__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+  }
+  .popup__form{
+    width: 400px;
+    height: 250px;
+    background-color: #f0f0f0;
+    padding: 20px 10px;
+    text-align: center;
+    border:5px solid green;
+    border-radius: 30px;
+    font-family:serif ;
+  
+    box-shadow: 1px 1px 15px green;
+  
+    display: grid;
+  
+    grid-template: 45px 30px 1fr 30px 1fr 1fr 30px/ 1fr;
+  }
+  
+  .notst__link__green {
+    text-decoration: none;
+    color: green;
+  }

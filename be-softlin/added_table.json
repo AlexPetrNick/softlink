@@ -1,0 +1,16 @@
+{
+  "core_amd" :[ "Carrizo", "Matisse", "Godavari", "Zen+", "Summit Ridge", "Vermeer", "Zen", "Zen 2", "Pinnacle Ridge", "Picasso"],
+  "core_intel": ["Comet Lake", "Coffee Lake", "Cascade Lake", "Skylake", "Coffee Lake Refresh", "Haswell", "Kaby Lake", "Sandy Bridge-EP"],
+  "Brand": ["Silicon Power", "Powerman", "Super Flower", "Crucial", "Cougar", "Transcend", "Western Digital", "Intel", "FSP", "Thermaltake",
+    "Corsair", "GigaByte", "Super Power", "Accord", "Samsung", "Kingston", "Verbatim", "A-Data", "Linkworld", "MSI", "GameMax", "HIPER",
+    "Palit", "PowerCool", "Foxline", "Hikvision", "PNY", "Aerocool", "HP", "QUMO", "Toshiba", "GINZZU", "ASUS", "Hipro", "SanDisk", "InWin",
+    "Crown", "Chieftec", "Team", "Zalman", "Be quiet", "Plextor",
+    "Formula", "Micron", "Apacer", "ASRock", "HGST", "Seagate", "Exegate", "Deepcool", "Smart Buy", "KingMax", "Patriot", "DELL", "Netac", "Lenovo", "Cooler Master"],
+  "Socket_mother": ["Socket 1200", "Socket 1151 v2", "Socket AM4", "Socket 2066", "Socket TR4", "Socket 1151", "Socket 775"],
+  "chipsetI": ["Z490", "B365", "H310", "B360", "B460", "H410", "Z590", "X299", "Q370", "Z390", "H370", "915G", "J1800", "G41"],
+  "chipsetA": [ "AMD A520", "AMD B450", "AMD B550", "AMD A320", "AMD B350", "AMD X399", "AMD X570"],
+  "ff_mother": ["mATX", "ATX", "mini-ITX", "uATX"],
+  "ff_oper": ["DIMM", "SO-DIMM"],
+  "ff_pow": ["ATX", "ITX", "TFX", "SFX"],
+  "ff_ssd": ["M.2", "2.5", "mSATA", "2.52", "PCI-E", "3.0"]
+}
