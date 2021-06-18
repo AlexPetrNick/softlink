@@ -24,8 +24,6 @@ let initState = {
         mother: [
         ],
         hdd: [
-        ],
-        cpu: [
         ]
 
     }

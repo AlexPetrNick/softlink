@@ -1,6 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
+
+class Cabinet(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bug_hdd = models.TextField(max_length=50)
+    bug_mother = models.TextField(max_length=50)
+    bug_cpu = models.TextField(max_length=50)
+    bug_video = models.TextField(max_length=50)
+
+@receiver(post_save, sender=User)
+def create_user_cabinet(sender, instance, created, **kwargs):
+    if created:
+        Cabinet.objects.create(user=instance)
 
 
 class Socket(models.Model):
