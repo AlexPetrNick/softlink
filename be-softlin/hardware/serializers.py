@@ -3,8 +3,12 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 
+
+
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор ПОльзователя"""
+
+    cabinet = serializers.RelatedField(read_only=True)
 
     class Meta:
         model = User

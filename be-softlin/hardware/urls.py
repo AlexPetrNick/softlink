@@ -22,4 +22,5 @@ urlpatterns = [
     path('users/<int:pk>/', views.UserInfo.as_view()),
     path('setcook/', views.set_cookie),
     path('check/', views.check_token),
+    path('cabinet/additem/', views.add_item_on_cabinet)
 ]

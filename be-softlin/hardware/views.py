@@ -1,4 +1,3 @@
-import re
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -11,12 +10,17 @@ from .serializers import *
 from rest_framework.pagination import PageNumberPagination
 
 
+
+def add_item_on_cabinet(request):
+
+
+    return Response('asdfa', status=200)
+
+
 def check_token(request):
     temp = request
-    temp = request
-    temp = request
-    return HttpResponse('asdf')
 
+    return HttpResponse('asdf')
 
 def set_cookie(request):
     print('sdfasdf')
@@ -39,7 +43,6 @@ def set_cookie(request):
 class UserInfo(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
 
 
 
