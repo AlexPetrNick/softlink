@@ -3,8 +3,7 @@ export const SET_ERROR = 'SET-ERROR'
 
 
 let initState = {
-    isAuthorization: true,
-    refreshToken: "",
+    isAuthorization: false,
     error: "",
 }
 

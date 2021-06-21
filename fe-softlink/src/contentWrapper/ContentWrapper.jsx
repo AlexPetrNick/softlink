@@ -38,7 +38,7 @@ const ContentWrapper = (props) => {
 		</div>
 		<div></div>
 		<div className="abstraktWrapper">
-			<Route path="/cabinet" component={CabinetContainer} />
+			<Route path="/cabinet" component={CabinetContainer} />	
 			<Route path="/new/:newId" component={NewDetailContainer} />
 			<Route path="/hardware/cpu" component={CpuContainer}/>
 			<Route path="/hardware/hdd" component={HddPageContainer}/>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UserControl  from './UserControl'
 import UserControlAuth from './UserControlAuth'
-import {logIn, logOut, setCorrLogin, setCorrPassword} from '../Redux/userControlReducer'
+import {logIn, logOut, setCorrLogin, setCorrPassword, setIdUser} from '../Redux/userControlReducer'
 import {setError, authorization} from '../Redux/authReducer'
 
 
@@ -26,6 +26,7 @@ class AuthentificateUser extends React.Component{
                 stateAuth  = {this.props.stateAuth}
                 setError = {this.props.setError}
                 authorization = {this.props.authorization}
+                setIdUser = {this.props.setIdUser}
             />
         }
         </>
@@ -49,7 +50,8 @@ export const UserControlContainer = connect(mapStateToProps, {
     setCorrLogin,
     setCorrPassword,
     setError,
-    authorization
+    authorization,
+    setIdUser
 })(AuthentificateUser)
 
 

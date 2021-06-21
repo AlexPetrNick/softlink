@@ -1,5 +1,6 @@
 import React from 'react';
 import {apiUser} from '../apiDAL/DAL';
+import { setIdUser } from '../Redux/userControlReducer';
 import './User.css';
 
 const UserControl = (props) => {
@@ -15,11 +16,20 @@ const UserControl = (props) => {
 				if(!js.detail){
 					props.authorization(true)
 					apiUser.setCookie(js.access)
+				return js
 				}
 			})
+			.then(js2 => apiUser.getDataUser())
 			.catch(err => {
 				props.setError(err.detail)
 			})
+		
+		
+		//getDataUser()
+		//	.then(ans => {
+		//	props.setIdUser(ans.id)
+		//		console.log(props.allState)
+		//	})
 	}
 
 	

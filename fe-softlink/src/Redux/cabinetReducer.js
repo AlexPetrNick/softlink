@@ -1,3 +1,5 @@
+import {apiCabinet} from '../apiDAL/DAL'
+
 export const GET_ITEM_IN_BUG = "GET-ITEM-IN-BUG"
 export const GET_ITEM_IN_BUG_MOTHER = "GET-ITEM-IN-BUG-MOTHER"
 export const GET_ITEM_IN_BUG_HDD = "GET-ITEM-IN-BUG-HDD"
@@ -5,6 +7,7 @@ export const GET_ITEM_IN_BUG_CPU = "GET-ITEM-IN-BUG-CPU"
 export const ERASE_ITEM_IN_BUG_HDD = "ERASE-ITEM-IN-BUG-HDD"
 export const ERASE_ITEM_IN_BUG_CPU = "ERASE-ITEM-IN-BUG-CPU"
 export const ERASE_ITEM_IN_BUG_MOTHER = "ERASE-ITEM-IN-BUG-MOTHER"
+export const GET_STATE_CABINET = "GET-STATE-CABINET"
 
 let initState = {
     itemIdBugHdd: [],
@@ -104,6 +107,19 @@ const CabinetReducer = (state=initState, action) => {
                     cpu: [...state.bag.cpu.filter(item => item.id != action.id)] 
                 }
             }
+        case GET_STATE_CABINET:
+            return {
+                ...state,
+                //itemIdBugHdd: [],
+                //itemIdBugCpu: [],   
+                //itemIdBugMother: [],
+                bag: {
+                    cpu: [...state.bag.cpu, action.data.bug_cpu],
+                    video: [...state.bag.video, action.data.bug_video],
+                    mother: [...state.bag.mother, action.data.bug_mother],
+                    hdd: [...state.bag.hdd, action.data.bug_hdd]
+                }
+            }
         default:
             return state
     }
@@ -118,6 +134,15 @@ export const getItemInBugHardCPU = (item) => ({ type: GET_ITEM_IN_BUG_CPU, item 
 export const eraseItemInBugHardHDD = (id) => ({ type: ERASE_ITEM_IN_BUG_HDD, id })
 export const eraseItemInBugHardCPU = (id) => ({ type: ERASE_ITEM_IN_BUG_CPU, id })
 export const eraseItemInBugHardMother = (id) => ({ type: ERASE_ITEM_IN_BUG_MOTHER, id })
+export const getStateCabinetAC = (data) => ({ type: GET_STATE_CABINET, data })
 
 
 /* THUNK */
+
+export const getCabinetThunkCreator = (id) => {
+    return (dispatch) => {
+        console.log('IN THUNK')
+        let temp = apiCabinet.getStateCabinet(id)
+        console.log(temp)
+    }
+}

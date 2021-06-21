@@ -122,6 +122,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+SESSION_COOKIE_SAMESITE = 'Strict'
+CSRF_COOKIE_SAMESITE = 'Strict'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -224,3 +226,4 @@ SIMPLE_JWT = {
     #'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     #'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+

@@ -110,10 +110,16 @@ export const apiUser = {
                 "refresh": refToken
             })
         })
+    },
+    getDataUser: () => {
+        fetch(authUrl + "users/me/")
+            .then(resp => resp.json)
     }
     
 }
 
-let getAccessToken = (username, password) => {
-
+export const apiCabinet = {
+    getStateCabinet: (id) => {
+        fetch(baseUrl + "cabinet/" + String(id))
+    }
 }

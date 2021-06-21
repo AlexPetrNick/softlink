@@ -4,8 +4,10 @@ export const LOG_IN = "LOG-IN"
 export const LOG_OUT = "LOG-OUT"
 export const SET_CORR_LOGIN = "SET-CORR-LOGIN"
 export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
+export const SET_ID_USER = "SET-ID-USER"
 
 const initState = {
+    id: "",
     login: "",
     username: "",
     password: "",
@@ -48,6 +50,12 @@ let userControlReducer = (state=initState, action) => {
                 correctPassword: action.correctPassword
             }
         }
+        case SET_ID_USER: {
+            return {
+                ...state,
+                id: action.id
+            }
+        }
         default:
             return state
     }
@@ -59,6 +67,7 @@ export const logIn = (token) => ({ type:LOG_IN, token })
 export const logOut = () => ({ type:LOG_OUT })
 export const setCorrLogin = (correctLogin) => ({ type:SET_CORR_LOGIN, correctLogin })
 export const setCorrPassword = (correctPassword) => ({ type:SET_CORR_PASSWORD, correctPassword })
+export const setIdUser = (id) => ({ type:SET_ID_USER, id })
 
 
 export default userControlReducer

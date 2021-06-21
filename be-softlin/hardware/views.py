@@ -55,17 +55,16 @@ def check_token(request):
 
 def set_cookie(request):
     print('sdfasdf')
-
     dict_header = dict(request.headers)
     [key, value_dirt] = dict_header['Set-Cookie'].split('=')
     [value, setting] = value_dirt.split(';')
 
     request.COOKIES[key] = value
-    print(request.headers)
 
+    print(value)
     if setting == 'HttpOnly':
         response = HttpResponse('Success')
-        response.set_cookie(key, value, httponly=True)
+        response.set_cookie(key, value, httponly=True, samesite='lax')
         return response
 
 
@@ -104,7 +103,7 @@ class NewsList(generics.ListAPIView):
     queryset = News.objects.all()
     serializer_class = NewsListSerializer
     pagination_class = NewsListPaginator
-
+    
 
 
 class NewView(generics.RetrieveAPIView):
