@@ -13,6 +13,14 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class CabinetSerializer(serializers.ModelSerializer):
+    """Сериализатор Кабинета"""
+
+
+    class Meta:
+        model = Cabinet
+        fields = '__all__'
         
 
 class NewsListSerializer(serializers.ModelSerializer):

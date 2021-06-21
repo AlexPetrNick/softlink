@@ -1,8 +1,9 @@
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from django.http import HttpResponse, response
-from .models import HDD, Brand, Processor
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from .models import HDD, Brand, Processor, HDD, Cabinet
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -11,10 +12,40 @@ from rest_framework.pagination import PageNumberPagination
 
 
 
-def add_item_on_cabinet(request):
+class AddItemHDD(APIView):
+        
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        cabinet = Cabinet.objects.get(user_id = user.id)
+        hdd = HDD.objects.get(id=pk)
+        if len(cabinet.bug_hdd) == 0:
+            cabinet.bug_hdd = str(hdd.id)
+            cabinet.save()
+        else:
+            cabinet.bug_hdd += "," + str(hdd.id)
+            cabinet.save()
+        return HttpResponse(cabinet.bug_hdd)
 
+class EraseItemHDD(APIView):
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        cabinet = Cabinet.objects.get(user_id = user.id)
+        hdd = HDD.objects.get(id=pk)
+        correct_hdd = []
+        corr_id = ''
+        item_hdd = cabinet.bug_hdd.split(',')
+        for item in item_hdd:
+            if item != str(pk):
+                correct_hdd.append(item)
+        for id in correct_hdd:
+            if len(corr_id) == 0:
+                corr_id += id
+            else:
+                corr_id += ","+id
+        cabinet.bug_hdd = corr_id
+        cabinet.save()
+        return HttpResponse(cabinet.bug_hdd)
 
-    return Response('asdfa', status=200)
 
 
 def check_token(request):
@@ -38,11 +69,15 @@ def set_cookie(request):
         return response
 
 
+class CabinetInfo(generics.RetrieveAPIView):
+    queryset = Cabinet.objects.all()
+    serializer_class = CabinetSerializer
 
 
 class UserInfo(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
 
 

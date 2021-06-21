@@ -19,8 +19,10 @@ urlpatterns = [
     path('new_create', views.CreateNews.as_view()),
     path('news', views.NewsList.as_view()),
     path('new/<int:pk>/', views.NewView.as_view()),
-    path('users/<int:pk>/', views.UserInfo.as_view()),
+    path('user/<int:pk>/', views.UserInfo.as_view()),
     path('setcook/', views.set_cookie),
     path('check/', views.check_token),
-    path('cabinet/additem/', views.add_item_on_cabinet)
+    path('cabinet/<int:pk>/', views.CabinetInfo.as_view()),
+    path('cabinet/hard/<int:pk>', views.AddItemHDD.as_view()),
+    path('cabinet/erase_hard/<int:pk>', views.EraseItemHDD.as_view())
 ]
