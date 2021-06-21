@@ -11,7 +11,6 @@ from .serializers import *
 from rest_framework.pagination import PageNumberPagination
 
 
-
 class AddItemHDD(APIView):
         
     def post(self, request, pk):
@@ -103,6 +102,7 @@ class NewsList(generics.ListAPIView):
     queryset = News.objects.all()
     serializer_class = NewsListSerializer
     pagination_class = NewsListPaginator
+    
     
 
 
