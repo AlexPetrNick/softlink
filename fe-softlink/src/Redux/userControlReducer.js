@@ -30,7 +30,7 @@ let userControlReducer = (state=initState, action) => {
             return {
                 ...state,
                 id: action.data.id,
-                username: action.data.username
+                username: action.data.username,
             }
         }
         default:

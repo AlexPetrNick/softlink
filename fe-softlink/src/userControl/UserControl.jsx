@@ -3,7 +3,6 @@ import {apiUser} from '../apiDAL/DAL';
 import './User.css';
 
 const UserControl = (props) => {
-	
 
 	let onClicklogIn = () => {
 		let user = props.state.correctLogin
@@ -17,12 +16,16 @@ const UserControl = (props) => {
 				}
 			}).then(json => {
 				apiUser.getDataUser()
-					.then(js => props.setDataUser(js))	
+					.then(js => {
+						props.setDataUser(js)
+					})	
 			})
 			.catch(err => {
 				props.setError(err.detail)
-			})
-		
+			});
+			
+			props.setCorrLogin(null);
+			props.setCorrPassword(null);
 	}
 
 	

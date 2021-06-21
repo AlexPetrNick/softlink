@@ -185,7 +185,8 @@ DJOSER = {
 
 CORS_ALLOW_HEADERS = [
     'set-cookie',
-    'content-type'
+    'content-type',
+    'authorization'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

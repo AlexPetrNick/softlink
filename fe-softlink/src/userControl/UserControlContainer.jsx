@@ -16,6 +16,9 @@ class AuthentificateUser extends React.Component{
             { this.props.stateAuth.isAuthorization && localStorage.getItem('access') ?
             <UserControlAuth
                 state = {this.props.allState}
+                logOut = {this.props.logOut}
+                setCorrLogin = {this.props.setCorrLogin}
+                setCorrPassword = {this.props.setCorrPassword}
              /> :
             <UserControl
                 state = {this.props.allState}

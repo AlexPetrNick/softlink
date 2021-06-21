@@ -3,7 +3,11 @@ import {NavLink} from "react-router-dom";
 
 const UserControl = (props) => {
 
-	window.state = props
+	let onClickExit = () => {
+		props.logOut()
+		localStorage.removeItem('access')
+		localStorage.removeItem('refresh')
+	}
 
 	return (
 		<div className="session___control">
@@ -12,7 +16,7 @@ const UserControl = (props) => {
 				<div className="site__name__label">SoftLink</div>
 				<span className="text__green">Пользователь</span>
 				<span className="text__green">{props.state.login}</span>
-				<div className="button_login">Выход</div>
+				<div className="button_login" onClick={ onClickExit }>Выход</div>
 				<div className="registration__menu">
 					<div className="button__registraton_lk">
 						<NavLink to="/cabinet">Кабинет</NavLink> 

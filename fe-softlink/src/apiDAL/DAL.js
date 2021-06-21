@@ -76,12 +76,6 @@ export const apiCpu = {
 }
 
 export const apiUser = {
-    getUser: (idUser) => {
-        return(
-            fetch(baseUrl+"users/"+idUser)
-                .then(response => response.json())
-        )
-    },
     authorization: (username, password) => {
         return(
         fetch(authUrl + "jwt/create", {
