@@ -2,7 +2,12 @@
 const baseUrl = 'http://127.0.0.1:8000/api/'
 const authUrl = 'http://127.0.0.1:8000/auth/'
 
+let access = localStorage.getItem('access')
 
+let header = {
+    "Content-type": "application/json",
+    "Authorization": "JWT " + String(access)
+}
 
 
 export const apiNews = {
@@ -91,6 +96,12 @@ export const apiUser = {
             })
         }
         )
+        .then(resp => resp.json())
+        .then(jsonfile => {
+            localStorage.setItem('access', jsonfile.access)
+            localStorage.setItem('refresh', jsonfile.refresh)
+            return jsonfile
+        })
     )    
     }, 
     setCookie: (token) => {
@@ -112,8 +123,19 @@ export const apiUser = {
         })
     },
     getDataUser: () => {
-        fetch(authUrl + "users/me/")
+        fetch(authUrl + "users/me/", {
+            headers: header
+        })
             .then(resp => resp.json)
+    },
+    isValidToken: (token) => {
+        fetch(authUrl + "jwt/verify/", {
+            method: "post",
+            credentials: "include",
+            body: JSON.stringify({
+                "token": token
+            })
+        })    
     }
     
 }

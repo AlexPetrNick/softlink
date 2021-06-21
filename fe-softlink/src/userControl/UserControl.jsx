@@ -1,6 +1,5 @@
 import React from 'react';
 import {apiUser} from '../apiDAL/DAL';
-import { setIdUser } from '../Redux/userControlReducer';
 import './User.css';
 
 const UserControl = (props) => {
@@ -11,25 +10,19 @@ const UserControl = (props) => {
 		let pass = props.state.correctPassword
 
 		apiUser.authorization(user, pass)
-			.then(resp => resp.json())
 			.then(js => {
 				if(!js.detail){
 					props.authorization(true)
-					apiUser.setCookie(js.access)
-				return js
+					return js
 				}
+			}).then(json => {
+				apiUser.getDataUser()
+					.then(js => props.setDataUser(js))	
 			})
-			.then(js2 => apiUser.getDataUser())
 			.catch(err => {
 				props.setError(err.detail)
 			})
 		
-		
-		//getDataUser()
-		//	.then(ans => {
-		//	props.setIdUser(ans.id)
-		//		console.log(props.allState)
-		//	})
 	}
 
 	
@@ -43,7 +36,6 @@ const UserControl = (props) => {
 		props.setCorrPassword(textPassword)
 	}
 
-	window.state = props.allState
 
 	return (
 		<div className="session___control">

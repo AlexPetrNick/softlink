@@ -1,43 +1,19 @@
-import React from 'react'
-
-export const LOG_IN = "LOG-IN"
-export const LOG_OUT = "LOG-OUT"
 export const SET_CORR_LOGIN = "SET-CORR-LOGIN"
 export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
-export const SET_ID_USER = "SET-ID-USER"
+export const SET_DATA_USER = "SET-DATA-USER"
 
 const initState = {
     id: "",
-    login: "",
     username: "",
     password: "",
     firstName: "",
     secondName: "",
-    token: "",
-    isAuth: false,
-    cabinetId: 0,
     correctLogin: "",
     correctPassword: ""
 }
 
 let userControlReducer = (state=initState, action) => {
     switch(action.type) {
-        case LOG_IN: {
-            return {
-                ...state,
-                token: action.token,
-                password: state.correctPassword,
-                login: state.correctLogin,
-                correctLogin: "22",
-                correctPassword: "22"
-            }
-        }
-        case LOG_OUT: {
-            return {
-                ...state,
-                token: null
-            }
-        }
         case SET_CORR_LOGIN: {
             return {
                 ...state,
@@ -50,10 +26,11 @@ let userControlReducer = (state=initState, action) => {
                 correctPassword: action.correctPassword
             }
         }
-        case SET_ID_USER: {
+        case SET_DATA_USER: {
             return {
                 ...state,
-                id: action.id
+                id: action.data.id,
+                username: action.data.username
             }
         }
         default:
@@ -61,13 +38,10 @@ let userControlReducer = (state=initState, action) => {
     }
 }
 
-//Передаем токен TODO: убрать, передаем логин и пароль с state
-export const logIn = (token) => ({ type:LOG_IN, token })
 
-export const logOut = () => ({ type:LOG_OUT })
 export const setCorrLogin = (correctLogin) => ({ type:SET_CORR_LOGIN, correctLogin })
 export const setCorrPassword = (correctPassword) => ({ type:SET_CORR_PASSWORD, correctPassword })
-export const setIdUser = (id) => ({ type:SET_ID_USER, id })
+export const setDataUser = (data) => ({ type:SET_DATA_USER, data })
 
 
 export default userControlReducer

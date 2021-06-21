@@ -5,11 +5,6 @@ const UserControl = (props) => {
 
 	window.state = props
 
-	let onClickLogOut = () => {
-		props.logOut()
-	}
-
-
 	return (
 		<div className="session___control">
 			<div className="fill__left"></div>
@@ -17,7 +12,7 @@ const UserControl = (props) => {
 				<div className="site__name__label">SoftLink</div>
 				<span className="text__green">Пользователь</span>
 				<span className="text__green">{props.state.login}</span>
-				<div className="button_login" onClick={ onClickLogOut }>Выход</div>
+				<div className="button_login">Выход</div>
 				<div className="registration__menu">
 					<div className="button__registraton_lk">
 						<NavLink to="/cabinet">Кабинет</NavLink> 

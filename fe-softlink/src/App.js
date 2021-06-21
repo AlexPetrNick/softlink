@@ -7,6 +7,7 @@ import ContentWrapper from './contentWrapper/ContentWrapper.jsx';
 import FooterWrapper from './footerWrapper/footerWrapper.js';
 
 function App(props) {
+  window.stateAll = props
   return (
     <BrowserRouter>
         <div className="wrapper">
