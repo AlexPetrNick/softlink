@@ -14,14 +14,55 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+
 class CabinetSerializer(serializers.ModelSerializer):
     """Сериализатор Кабинета"""
 
+    bug_hdd = serializers.SerializerMethodField()
+    bug_mother = serializers.SerializerMethodField()
+    bug_cpu = serializers.SerializerMethodField()
+    bug_video = serializers.SerializerMethodField()
 
     class Meta:
         model = Cabinet
         fields = '__all__'
-        
+
+    def get_bug_hdd(self, obj):
+        bug_hdd = obj.bug_hdd
+        if bug_hdd:
+            temp_list_hard_id = bug_hdd.split(',')
+            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            return HddListSerializer(temp_list_hard, many=True).data
+        else:
+            return {}
+
+    def get_bug_mother(self, obj):
+        bug_mother = obj.bug_mother
+        if bug_mother:
+            temp_list_hard_id = bug_mother.split(',')
+            temp_list_hard = Mother.objects.filter(id__in = temp_list_hard_id)
+            return MotherListSerializers(temp_list_hard, many=True).data
+        else:
+            return {}
+
+    def get_bug_cpu(self, obj):
+        bug_cpu = obj.bug_cpu
+        if bug_cpu:
+            temp_list_hard_id = bug_cpu.split(',')
+            temp_list_hard = Processor.objects.filter(id__in = temp_list_hard_id)
+            return CpuListSerializers(temp_list_hard, many=True).data
+        else:
+            return {}
+
+    def get_bug_video(self, obj):
+        bug_video = obj.bug_video
+        if bug_video:
+            temp_list_hard_id = bug_video.split(',')
+            temp_list_hard = VideoCard.objects.filter(id__in = temp_list_hard_id)
+            return VideoListSerializers(temp_list_hard, many=True).data
+        else:
+            return {}
+            
 
 class NewsListSerializer(serializers.ModelSerializer):
     """Сериализатор Новостей"""

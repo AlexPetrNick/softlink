@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 class Cabinet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bug_hdd = models.TextField(max_length=50)
+    bug_hdd = models.TextField(max_length=50, blank=True)
     bug_mother = models.TextField(max_length=50)
     bug_cpu = models.TextField(max_length=50)
     bug_video = models.TextField(max_length=50)
