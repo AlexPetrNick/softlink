@@ -12,20 +12,16 @@ const UserControl = (props) => {
 			.then(js => {
 				if(!js.detail){
 					props.authorization(true)
-					return js
+					props.setDataUser(js)
 				}
-			}).then(json => {
-				apiUser.getDataUser()
-					.then(js => {
-						props.setDataUser(js)
-					})	
 			})
 			.catch(err => {
 				props.setError(err.detail)
 			});
-			
+				
 			props.setCorrLogin(null);
 			props.setCorrPassword(null);
+		
 	}
 
 	
@@ -42,7 +38,7 @@ const UserControl = (props) => {
 
 	return (
 		<div className="session___control">
-			<div className="alert__error__login" hidden='true'>
+			<div className="alert__error__login" hidden>
 				<div className="alert__text">{props.stateAuth.error}</div>
 			</div>
 			<div className="fill__left"></div>

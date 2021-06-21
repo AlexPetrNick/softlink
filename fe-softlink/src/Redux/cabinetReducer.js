@@ -141,8 +141,10 @@ export const getStateCabinetAC = (data) => ({ type: GET_STATE_CABINET, data })
 
 export const getCabinetThunkCreator = (id) => {
     return (dispatch) => {
-        console.log('IN THUNK')
-        let temp = apiCabinet.getStateCabinet(id)
-        console.log(temp)
+        console.log(id)
+        apiCabinet.getStateCabinet(id)
+        .then(response => {
+            dispatch(getStateCabinetAC(response))
+        })
     }
 }

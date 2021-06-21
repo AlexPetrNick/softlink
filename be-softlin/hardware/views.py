@@ -70,6 +70,7 @@ def set_cookie(request):
 class CabinetInfo(generics.RetrieveAPIView):
     queryset = Cabinet.objects.all()
     serializer_class = CabinetSerializer
+    
 
 
 class UserInfo(generics.RetrieveAPIView):

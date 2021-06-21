@@ -1,6 +1,7 @@
 
 const baseUrl = 'http://127.0.0.1:8000/api/'
 const authUrl = 'http://127.0.0.1:8000/auth/'
+const tokenUrl = 'http://127.0.0.1:8000/token/'
 
 let access = localStorage.getItem('access')
 
@@ -78,7 +79,7 @@ export const apiCpu = {
 export const apiUser = {
     authorization: (username, password) => {
         return(
-        fetch(authUrl + "jwt/create", {
+        fetch(tokenUrl, {
             method: "post",
             credentials: "include",
             headers: {
@@ -136,6 +137,9 @@ export const apiUser = {
 
 export const apiCabinet = {
     getStateCabinet: (id) => {
-        fetch(baseUrl + "cabinet/" + String(id))
+        fetch(baseUrl + "cabinet/" + id, {
+            headers: header,
+        })
+        .then(resp => resp.json(id))
     }
 }

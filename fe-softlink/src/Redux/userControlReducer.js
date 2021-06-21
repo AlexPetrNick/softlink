@@ -9,7 +9,8 @@ const initState = {
     firstName: "",
     secondName: "",
     correctLogin: "",
-    correctPassword: ""
+    correctPassword: "",
+    cabinet_id: 0,
 }
 
 let userControlReducer = (state=initState, action) => {
@@ -27,10 +28,12 @@ let userControlReducer = (state=initState, action) => {
             }
         }
         case SET_DATA_USER: {
+            window.user22 = state
             return {
                 ...state,
                 id: action.data.id,
-                username: action.data.username,
+                username: action.data.user,
+                cabinet_id: action.data.cabinet_id
             }
         }
         default:

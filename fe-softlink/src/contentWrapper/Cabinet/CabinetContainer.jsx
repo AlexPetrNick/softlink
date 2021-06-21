@@ -6,11 +6,11 @@ import {getCabinetThunkCreator} from '../../Redux/cabinetReducer'
   
 
 class fetchContainerComponent extends React.Component{
-    componentDidMount() {
-        this.props.getCabinetThunkCreator("2")
-    }
     
     render() {
+        if (this.props.stateUser.cabinet_id != 0) {
+            this.props.getCabinetThunkCreator(this.props.stateUser.cabinet_id)
+        }
         return (
             <Cabinet
                 stateCabinet={this.props.state}
