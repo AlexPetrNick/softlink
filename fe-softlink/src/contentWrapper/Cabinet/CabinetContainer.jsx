@@ -2,15 +2,12 @@ import React from 'react'
 import Cabinet from './Cabinet'
 import { connect } from 'react-redux';
 import './cabinet.css'
-import {getCabinetThunkCreator} from '../../Redux/cabinetReducer'
+import {getCabinetThunkCreator, getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
+import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
   
 
-class fetchContainerComponent extends React.Component{
-    
+class ContainerComponent extends React.Component{
     render() {
-        if (this.props.stateUser.cabinet_id != 0) {
-            this.props.getCabinetThunkCreator(this.props.stateUser.cabinet_id)
-        }
         return (
             <Cabinet
                 stateCabinet={this.props.state}
@@ -20,16 +17,18 @@ class fetchContainerComponent extends React.Component{
     }
 }
 
-
+let fetchContainerComponent = withCorrectCabinet(ContainerComponent)
 
 let mapStateToProps = (state) => {
     return {
-        state: state.pageCabinet,
+        stateCabinet: state.pageCabinet,
         stateUser: state.pageUser,
         stateAuth: state.auth
     }
 }
 
 export default connect(mapStateToProps, {
-    getCabinetThunkCreator
+    getCabinetThunkCreator,
+    getStateCabinetAC,
+    updateCabinetAC
 })(fetchContainerComponent)

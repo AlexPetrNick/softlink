@@ -8,11 +8,13 @@ export const ERASE_ITEM_IN_BUG_HDD = "ERASE-ITEM-IN-BUG-HDD"
 export const ERASE_ITEM_IN_BUG_CPU = "ERASE-ITEM-IN-BUG-CPU"
 export const ERASE_ITEM_IN_BUG_MOTHER = "ERASE-ITEM-IN-BUG-MOTHER"
 export const GET_STATE_CABINET = "GET-STATE-CABINET"
+export const UPDATE_CABINET = "UPDATE_CABINET"
 
 let initState = {
     itemIdBugHdd: [],
     itemIdBugCpu: [],
     itemIdBugMother: [],
+    updateCabinet: true,
     personalComputer: {
         name: "MyFirstComputer",
         cpu: "Intel",
@@ -120,6 +122,11 @@ const CabinetReducer = (state=initState, action) => {
                     hdd: [...state.bag.hdd, action.data.bug_hdd]
                 }
             }
+        case UPDATE_CABINET:
+            return {
+                ...state,
+                updateCabinet: action.toggle,
+            }    
         default:
             return state
     }
@@ -135,6 +142,7 @@ export const eraseItemInBugHardHDD = (id) => ({ type: ERASE_ITEM_IN_BUG_HDD, id 
 export const eraseItemInBugHardCPU = (id) => ({ type: ERASE_ITEM_IN_BUG_CPU, id })
 export const eraseItemInBugHardMother = (id) => ({ type: ERASE_ITEM_IN_BUG_MOTHER, id })
 export const getStateCabinetAC = (data) => ({ type: GET_STATE_CABINET, data })
+export const updateCabinetAC = (toggle) => ({ type: UPDATE_CABINET, toggle })
 
 
 /* THUNK */

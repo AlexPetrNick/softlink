@@ -21,7 +21,6 @@ const UserControl = (props) => {
 				
 			props.setCorrLogin(null);
 			props.setCorrPassword(null);
-		
 	}
 
 	

@@ -100,14 +100,16 @@ export const apiUser = {
     )    
     }, 
     setCookie: (token) => {
-        fetch(baseUrl + "setcook/",{
-          method: "get",
-          credentials: "include",
-          headers: {
-          "Content-type": "application/json",
-          "Set-Cookie": "Authorization=JWT "+String(token)+";HttpOnly"
-        },
-        })
+        return(
+            fetch(baseUrl + "setcook/",{
+              method: "get",
+              credentials: "include",
+              headers: {
+              "Content-type": "application/json",
+              "Set-Cookie": "Authorization=JWT "+String(token)+";HttpOnly"
+            },
+            })
+        )
       },
     refreshToken: (refToken) => {
         fetch(authUrl + "jwt/refresh", {
@@ -118,10 +120,12 @@ export const apiUser = {
         })
     },
     getDataUser: () => {
-        fetch(authUrl + "users/me/", {
-            headers: header
-        })
-            .then(resp => resp.json)
+        return (
+            fetch(authUrl + "users/me/", {
+                headers: header
+            })
+                .then(resp => resp.json)
+        )
     },
     isValidToken: (token) => {
         fetch(authUrl + "jwt/verify/", {
@@ -137,9 +141,11 @@ export const apiUser = {
 
 export const apiCabinet = {
     getStateCabinet: (id) => {
-        fetch(baseUrl + "cabinet/" + id, {
-            headers: header,
-        })
-        .then(resp => resp.json(id))
+        return (
+            fetch(baseUrl + "cabinet/" + id, {
+                headers: header,
+            })
+            .catch(err => console.log(err))
+        )
     }
 }

@@ -13,7 +13,7 @@ class AuthentificateUser extends React.Component{
     render() {
         return(
         <>
-            { localStorage.getItem('access') ?
+            { String(localStorage.getItem('access')).length > 10 ?
             <UserControlAuth
                 state = {this.props.allState}
                 logOut = {this.props.logOut}
