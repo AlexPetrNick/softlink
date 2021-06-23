@@ -7,10 +7,12 @@ const ItemHdd = (props) => {
 
 	let getItem = () => {
 		apiCabinet.addItemHdd(props.data.id)
+		props.updateCabinet(true)
 	}
 
 	let eraseItem = () => {
-		piCabinet.eraseItemHdd(props.data.id)
+		apiCabinet.eraseItemHdd(props.data.id)
+		props.updateCabinet(true)
 	}
 
 	//&#10006;	убрать итем

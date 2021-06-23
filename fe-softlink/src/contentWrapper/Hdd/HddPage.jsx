@@ -28,7 +28,8 @@ let HddPage = (props) => {
 			<ItemHdd
 			key={data.id}
 			data={data}
-			getItem={props.getItem}
+			stateBugIdHard = {props.stateBugIdHard}
+			updateCabinet = {props.updateCabinet}
 			/>
 			)
 		})
