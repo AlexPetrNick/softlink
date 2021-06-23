@@ -23,6 +23,6 @@ urlpatterns = [
     path('setcook/', views.set_cookie),
     path('check/', views.check_token),
     path('cabinet/<int:pk>/', views.CabinetInfo.as_view()),
-    path('cabinet/hard/<int:pk>', views.AddItemHDD.as_view()),
-    path('cabinet/erase_hard/<int:pk>', views.EraseItemHDD.as_view()),
+    path('cabinet/hdd/<int:pk>', views.AddItemHDD.as_view()),
+    path('cabinet/erase_hdd/<int:pk>', views.EraseItemHDD.as_view()),
 ]

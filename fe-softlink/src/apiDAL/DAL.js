@@ -147,5 +147,23 @@ export const apiCabinet = {
             })
             .catch(err => console.log(err))
         )
+    },
+    addItemHdd: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/hdd/' + String(id), {
+                method: "post",
+                headers: header
+                }
+            )
+        )
+    },
+    eraseItemHdd: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_hdd/' + String(id), {
+                method: "post",
+                headers: header
+                }
+            )
+        )
     }
 }
