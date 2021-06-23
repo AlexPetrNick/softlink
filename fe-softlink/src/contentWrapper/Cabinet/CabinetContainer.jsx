@@ -10,7 +10,7 @@ class ContainerComponent extends React.Component{
     render() {
         return (
             <Cabinet
-                stateCabinet={this.props.state}
+                stateCabinet={this.props.stateCabinet}
                 stateUser={this.props.stateUser}
             />
         )

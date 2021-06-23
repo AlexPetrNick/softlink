@@ -110,22 +110,20 @@ const CabinetReducer = (state=initState, action) => {
                 }
             }
         case GET_STATE_CABINET:
+            console.log(action.data.bug_hdd)
             return {
                 ...state,
-                //itemIdBugHdd: [],
-                //itemIdBugCpu: [],   
-                //itemIdBugMother: [],
                 bag: {
-                    cpu: [...state.bag.cpu, action.data.bug_cpu],
-                    video: [...state.bag.video, action.data.bug_video],
-                    mother: [...state.bag.mother, action.data.bug_mother],
-                    hdd: [...state.bag.hdd, action.data.bug_hdd]
+                    cpu: [],
+                    video: [],
+                    mother: [],
+                    hdd: [...action.data.bug_hdd]
                 }
             }
         case UPDATE_CABINET:
             return {
                 ...state,
-                updateCabinet: action.toggle,
+                updateCabinet: action.bol,
             }    
         default:
             return state
@@ -142,7 +140,7 @@ export const eraseItemInBugHardHDD = (id) => ({ type: ERASE_ITEM_IN_BUG_HDD, id 
 export const eraseItemInBugHardCPU = (id) => ({ type: ERASE_ITEM_IN_BUG_CPU, id })
 export const eraseItemInBugHardMother = (id) => ({ type: ERASE_ITEM_IN_BUG_MOTHER, id })
 export const getStateCabinetAC = (data) => ({ type: GET_STATE_CABINET, data })
-export const updateCabinetAC = (toggle) => ({ type: UPDATE_CABINET, toggle })
+export const updateCabinetAC = (bol) => ({ type: UPDATE_CABINET, bol })
 
 
 /* THUNK */

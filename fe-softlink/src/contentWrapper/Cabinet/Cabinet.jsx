@@ -2,6 +2,7 @@ import userPhoto from '../../image/userPhoto.jpg'
 import schema from '../../image/scheme.jpg'
 
 let Cabinet = (props) => {
+    console.log(props)
     let hard = props.stateCabinet.bag.hdd
     let cpu = props.stateCabinet.bag.cpu
     let mother = props.stateCabinet.bag.mother
