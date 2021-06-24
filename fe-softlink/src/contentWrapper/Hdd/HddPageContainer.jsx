@@ -31,7 +31,8 @@ let mapStateToProps = (state) => {
 	return {
 		stateHard: state.pageHard,
 		stateBugHard: state.pageCabinet.bag.hdd,
-		stateBugIdHard: state.pageCabinet.itemIdBugHdd
+		stateBugIdHard: state.pageCabinet.itemIdBugHdd,
+		stateup: state.pageCabinet.updateCabinet
 	}
 }
 

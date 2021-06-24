@@ -6,14 +6,16 @@ import cabinetReducer from "./cabinetReducer";
 import hardPageReducer from "./hardPageReducer"
 import thunkMiddleware from "redux-thunk"
 import { authReducer } from './authReducer';
+import appReducer from './appReducer'
 
 let reducers = combineReducers({
     pageNews: pageNewsReducer,
     pageUser: userControlReducer,
-    pageNew: newDetailReducer,
+    pageNew: newDetailReducer, 
     pageCabinet: cabinetReducer,
     pageHard: hardPageReducer,
-    auth: authReducer
+    auth: authReducer,
+    app: appReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

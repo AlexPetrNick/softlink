@@ -80,8 +80,15 @@ const CabinetReducer = (state=initState, action) => {
                 }
             }
         case GET_STATE_CABINET:
+            let idHdd = []
+            if (action.data.bug_hdd.lenght > 0) {
+                idHdd = action.data.bug_hdd.map((hdd) => hdd.id)
+            }
+            console.log(action.data.bug_hdd.lenght())
+            console.log(idHdd)
             return {
                 ...state,
+                itemIdBugHdd: [...idHdd],
                 bag: {
                     cpu: [],
                     video: [],

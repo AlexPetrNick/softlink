@@ -30,6 +30,7 @@ let HddPage = (props) => {
 			data={data}
 			stateBugIdHard = {props.stateBugIdHard}
 			updateCabinet = {props.updateCabinet}
+			ucab = {props.stateup}
 			/>
 			)
 		})

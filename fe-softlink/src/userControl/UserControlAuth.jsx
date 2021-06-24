@@ -3,6 +3,9 @@ import {NavLink} from "react-router-dom";
 
 const UserControl = (props) => {
 
+	
+
+
 	let onClickExit = () => {
 		props.logOut()
 		localStorage.removeItem('access')
@@ -27,6 +30,5 @@ const UserControl = (props) => {
 		</div>
 	);
 }
-
 
 export default UserControl;

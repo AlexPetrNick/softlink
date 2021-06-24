@@ -1,3 +1,5 @@
+import {apiUser} from '../apiDAL/DAL'
+
 export const SET_CORR_LOGIN = "SET-CORR-LOGIN"
 export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
 export const SET_DATA_USER = "SET-DATA-USER"
@@ -48,3 +50,11 @@ export const setDataUser = (data) => ({ type:SET_DATA_USER, data })
 
 
 export default userControlReducer
+
+export const infoUserThunkCreator = () => (dispatch) => {
+    return apiUser.getDataUser()
+        .then(response => {
+            dispatch(setDataUser(response))
+        })
+
+}

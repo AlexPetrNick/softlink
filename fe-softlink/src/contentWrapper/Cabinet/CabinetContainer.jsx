@@ -23,7 +23,6 @@ let mapStateToProps = (state) => {
     return {
         stateCabinet: state.pageCabinet,
         stateUser: state.pageUser,
-        stateAuth: state.auth
     }
 }
 

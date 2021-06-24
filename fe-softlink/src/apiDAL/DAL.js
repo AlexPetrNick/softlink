@@ -5,9 +5,20 @@ const tokenUrl = 'http://127.0.0.1:8000/token/'
 
 let access = localStorage.getItem('access')
 
-let header = {
-    "Content-type": "application/json",
-    "Authorization": "JWT " + String(access)
+let getHeader = () => {
+    let jwtString;
+    if (access) {
+        jwtString  = "JWT " + String(access)
+        return {
+            "Content-type": "application/json",
+            "Authorization": jwtString,
+        }
+    } else {
+        return {
+            "Content-type": "application/json"
+        }
+    }
+
 }
 
 
@@ -79,7 +90,7 @@ export const apiCpu = {
 export const apiUser = {
     authorization: (username, password) => {
         return(
-        fetch(tokenUrl, {
+        fetch(authUrl + "jwt/create/", {
             method: "post",
             credentials: "include",
             headers: {
@@ -122,7 +133,7 @@ export const apiUser = {
     getDataUser: () => {
         return (
             fetch(authUrl + "users/me/", {
-                headers: header
+                headers: getHeader()
             })
                 .then(resp => resp.json)
         )
@@ -143,7 +154,7 @@ export const apiCabinet = {
     getStateCabinet: (id) => {
         return (
             fetch(baseUrl + "cabinet/" + id, {
-                headers: header,
+                headers: getHeader(),
             })
             .catch(err => console.log(err))
         )
@@ -152,7 +163,7 @@ export const apiCabinet = {
         return (
             fetch(baseUrl + 'cabinet/hdd/' + String(id), {
                 method: "post",
-                headers: header
+                headers: getHeader()
                 }
             )
         )
@@ -161,7 +172,7 @@ export const apiCabinet = {
         return (
             fetch(baseUrl + 'cabinet/erase_hdd/' + String(id), {
                 method: "post",
-                headers: header
+                headers: getHeader()
                 }
             )
         )

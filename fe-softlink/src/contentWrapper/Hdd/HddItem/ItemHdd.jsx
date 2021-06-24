@@ -3,11 +3,12 @@ import hdd from '../../../image/hdd.jpg'
 import {apiCabinet} from '../../../apiDAL/DAL'
 
 const ItemHdd = (props) => {
-
+	console.log(props)
 
 	let getItem = () => {
 		apiCabinet.addItemHdd(props.data.id)
 		props.updateCabinet(true)
+		console.log("add item hdd" + String(props.data.id))
 	}
 
 	let eraseItem = () => {
