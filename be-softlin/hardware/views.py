@@ -25,6 +25,7 @@ class AddItemHDD(APIView):
             cabinet.save()
         return HttpResponse(cabinet.bug_hdd)
 
+
 class EraseItemHDD(APIView):
     def post(self, request, pk):
         user = User.objects.get(username=request.user)
@@ -67,9 +68,15 @@ def set_cookie(request):
         return response
 
 
-class CabinetInfo(generics.RetrieveAPIView):
-    queryset = Cabinet.objects.all()
-    serializer_class = CabinetSerializer
+class CabinetInfo(APIView):
+
+    def get(self, request):
+        user_id = request.user.id
+        cabinet = Cabinet.objects.get(user = user_id)
+        serializer = CabinetSerializer(cabinet)
+        return Response(serializer.data)
+
+
     
 
 

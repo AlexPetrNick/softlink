@@ -12,13 +12,11 @@ const UserControl = (props) => {
 			.then(js => {
 				if(!js.detail){
 					props.authorization(true)
-					props.setDataUser(js)
 				}
 			})
 			.catch(err => {
 				props.setError(err.detail)
 			});
-				
 			props.setCorrLogin(null);
 			props.setCorrPassword(null);
 	}
