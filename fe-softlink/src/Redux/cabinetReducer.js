@@ -80,15 +80,8 @@ const CabinetReducer = (state=initState, action) => {
                 }
             }
         case GET_STATE_CABINET:
-            let idHdd = []
-            if (action.data.bug_hdd.lenght > 0) {
-                idHdd = action.data.bug_hdd.map((hdd) => hdd.id)
-            }
-            console.log(action.data.bug_hdd.lenght())
-            console.log(idHdd)
             return {
                 ...state,
-                itemIdBugHdd: [...idHdd],
                 bag: {
                     cpu: [],
                     video: [],
@@ -119,10 +112,9 @@ export const updateCabinetAC = (bol) => ({ type: UPDATE_CABINET, bol })
 
 /* THUNK */
 
-export const getCabinetThunkCreator = (id) => {
+export const getCabinetThunkCreator = () => {
     return (dispatch) => {
-        console.log(id)
-        apiCabinet.getStateCabinet(id)
+        apiCabinet.getStateCabinet()
         .then(response => {
             dispatch(getStateCabinetAC(response))
         })

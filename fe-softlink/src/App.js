@@ -5,19 +5,23 @@ import {UserControlContainer} from './userControl/UserControlContainer';
 import PictureUp from './pictureUp/PictureUp';
 import ContentWrapper from './contentWrapper/ContentWrapper.jsx';
 import FooterWrapper from './footerWrapper/footerWrapper.js';
-import {initThunkCreator} from './Redux/appReducer'
+import {initThunkCreator, isInit} from './Redux/appReducer'
 import {connect} from 'react-redux'
 import Preloader from './Preloader/Preloader';
 
 
 class App extends React.Component {         
   componentDidMount() {
-    this.props.initThunkCreator() 
+    if (localStorage.getItem('access')) {
+      this.props.initThunkCreator() 
+    } else {
+      this.props.isInit()
+    }
   }
 
 
   render() {
-
+    window.store = this.props.stateAll
     return (
       <>
         { this.props.stateInit ? 
@@ -39,9 +43,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  stateAll: state,
   stateInit: state.app.isInit
 })
 
 export default connect (mapStateToProps, {
-  initThunkCreator
+  initThunkCreator,
+  isInit
 })(App);

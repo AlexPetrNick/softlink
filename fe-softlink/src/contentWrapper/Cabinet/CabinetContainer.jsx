@@ -17,8 +17,6 @@ class ContainerComponent extends React.Component{
     }
 }
 
-let fetchContainerComponent = withCorrectCabinet(ContainerComponent)
-
 let mapStateToProps = (state) => {
     return {
         stateCabinet: state.pageCabinet,
@@ -30,4 +28,4 @@ export default connect(mapStateToProps, {
     getCabinetThunkCreator,
     getStateCabinetAC,
     updateCabinetAC
-})(fetchContainerComponent)
+})(ContainerComponent)

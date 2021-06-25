@@ -3,7 +3,6 @@ import hdd from '../../../image/hdd.jpg'
 import {apiCabinet} from '../../../apiDAL/DAL'
 
 const ItemHdd = (props) => {
-	console.log(props)
 
 	let getItem = () => {
 		apiCabinet.addItemHdd(props.data.id)
@@ -17,8 +16,9 @@ const ItemHdd = (props) => {
 	}
 
 	//&#10006;	убрать итем
-
-		
+	console.log(props.stateBugHard)
+	console.log(props.data)
+	
 	return (	
 		<div className="item__content ">
 			<img className="picture__hard_item" src={hdd} alt="" />
@@ -37,7 +37,7 @@ const ItemHdd = (props) => {
 					<span>{props.data.propusk_sposob} </span>
 				</div>
 				<div className="control">
-					{ props.stateBugIdHard.includes(props.data.id) ? 
+					{ props.stateBugHard.includes(props.data) ? 
 					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
 					<button className="button__add__item" onClick={getItem}>&#10004;</button>
 					}

@@ -1,8 +1,11 @@
 import {apiUser} from '../apiDAL/DAL'
+import { apiCabinet } from '../apiDAL/DAL'
+
 
 export const SET_CORR_LOGIN = "SET-CORR-LOGIN"
 export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
 export const SET_DATA_USER = "SET-DATA-USER"
+export const SET_ID_CABINET = "SET-ID-CABINET"
 
 const initState = {
     id: "",
@@ -30,12 +33,16 @@ let userControlReducer = (state=initState, action) => {
             }
         }
         case SET_DATA_USER: {
-            window.user22 = state
             return {
                 ...state,
                 id: action.data.id,
-                username: action.data.user,
-                cabinet_id: action.data.cabinet_id
+                username: action.data.username
+            }
+        }
+        case SET_ID_CABINET: {
+            return {
+                ...state,
+                cabinet_id: action.cabId
             }
         }
         default:
@@ -47,14 +54,26 @@ let userControlReducer = (state=initState, action) => {
 export const setCorrLogin = (correctLogin) => ({ type:SET_CORR_LOGIN, correctLogin })
 export const setCorrPassword = (correctPassword) => ({ type:SET_CORR_PASSWORD, correctPassword })
 export const setDataUser = (data) => ({ type:SET_DATA_USER, data })
+export const setCabinetId = (cabId) => ({ type:SET_ID_CABINET, cabId })
 
 
 export default userControlReducer
 
+/* THUNK */
+
+export const idCabinetThunkCreator = () => (dispatch) => {
+    return apiCabinet.getStateCabinet()
+        .then(response => {
+            dispatch(setCabinetId(response.id))
+        })
+
+}
+
 export const infoUserThunkCreator = () => (dispatch) => {
     return apiUser.getDataUser()
-        .then(response => {
-            dispatch(setDataUser(response))
+        .then(resp => {
+            console.log(resp)
+            dispatch(setDataUser(resp))
         })
 
 }

@@ -22,13 +22,16 @@ let HddPage = (props) => {
 
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
+
+
+
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
 			return(
 			<ItemHdd
 			key={data.id}
 			data={data}
-			stateBugIdHard = {props.stateBugIdHard}
+			stateBugHard = {props.stateBugHard}
 			updateCabinet = {props.updateCabinet}
 			ucab = {props.stateup}
 			/>

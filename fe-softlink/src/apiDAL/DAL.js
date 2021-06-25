@@ -104,6 +104,7 @@ export const apiUser = {
         )
         .then(resp => resp.json())
         .then(jsonfile => {
+            console.log(jsonfile)
             localStorage.setItem('access', jsonfile.access)
             localStorage.setItem('refresh', jsonfile.refresh)
             return jsonfile
@@ -135,7 +136,7 @@ export const apiUser = {
             fetch(authUrl + "users/me/", {
                 headers: getHeader()
             })
-                .then(resp => resp.json)
+            .then(resp => resp.json())
         )
     },
     isValidToken: (token) => {
@@ -151,11 +152,12 @@ export const apiUser = {
 }
 
 export const apiCabinet = {
-    getStateCabinet: (id) => {
+    getStateCabinet: () => {
         return (
-            fetch(baseUrl + "cabinet/" + id, {
+            fetch(baseUrl + "cabinet/", {
                 headers: getHeader(),
             })
+            .then(response => response.json())
             .catch(err => console.log(err))
         )
     },
