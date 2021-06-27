@@ -114,9 +114,25 @@ export const updateCabinetAC = (bol) => ({ type: UPDATE_CABINET, bol })
 
 export const getCabinetThunkCreator = () => {
     return (dispatch) => {
-        apiCabinet.getStateCabinet()
-        .then(response => {
-            dispatch(getStateCabinetAC(response))
-        })
+        let stateCabinet = apiCabinet.getStateCabinet()
+        .then(response => response)
+        Promise.all([stateCabinet])
+            .then(value => {
+                dispatch(getStateCabinetAC(value[0]))
+            }
+        )
+    }
+}
+export const cabinetIsUpdateThunkCreator = () => {
+    return (dispatch) => {
+        let stateCabinet = apiCabinet.getStateCabinet()
+        .then(response => response)
+        Promise.all([stateCabinet])
+            .then(value => {
+                console.log(value)
+                dispatch(getStateCabinetAC(value[0]))
+                dispatch(updateCabinetAC(false))
+            }
+        )
     }
 }

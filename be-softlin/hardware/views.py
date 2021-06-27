@@ -23,6 +23,7 @@ class AddItemHDD(APIView):
         else:
             cabinet.bug_hdd += "," + str(hdd.id)
             cabinet.save()
+        print(cabinet)
         return HttpResponse(cabinet.bug_hdd)
 
 

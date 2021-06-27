@@ -6,18 +6,16 @@ const ItemHdd = (props) => {
 
 	let getItem = () => {
 		apiCabinet.addItemHdd(props.data.id)
-		props.updateCabinet(true)
-		console.log("add item hdd" + String(props.data.id))
+		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
 		apiCabinet.eraseItemHdd(props.data.id)
-		props.updateCabinet(true)
+		props.updateCabinetAC(true)
 	}
 
 	//&#10006;	убрать итем
-	console.log(props.stateBugHard)
-	console.log(props.data)
+
 	
 	return (	
 		<div className="item__content ">
@@ -37,7 +35,7 @@ const ItemHdd = (props) => {
 					<span>{props.data.propusk_sposob} </span>
 				</div>
 				<div className="control">
-					{ props.stateBugHard.includes(props.data) ? 
+					{ props.idBugHard.includes(props.data.id) ? 
 					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
 					<button className="button__add__item" onClick={getItem}>&#10004;</button>
 					}

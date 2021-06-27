@@ -7,6 +7,8 @@ import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
   
 
 class ContainerComponent extends React.Component{
+
+
     render() {
         return (
             <Cabinet
@@ -16,6 +18,9 @@ class ContainerComponent extends React.Component{
         )
     }
 }
+
+
+//let UpdateCabinet = withCorrectCabinet(ContainerComponent)
 
 let mapStateToProps = (state) => {
     return {

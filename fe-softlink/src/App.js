@@ -8,16 +8,19 @@ import FooterWrapper from './footerWrapper/footerWrapper.js';
 import {initThunkCreator, isInit} from './Redux/appReducer'
 import {connect} from 'react-redux'
 import Preloader from './Preloader/Preloader';
+import {cabinetIsUpdateThunkCreator} from './Redux/cabinetReducer'
 
 
 class App extends React.Component {         
   componentDidMount() {
-    if (localStorage.getItem('access')) {
       this.props.initThunkCreator() 
-    } else {
-      this.props.isInit()
-    }
   }
+
+  componentDidUpdate(prevProps) {
+		if(this.props.stateup) {
+			this.props.cabinetIsUpdateThunkCreator()
+		} 
+	}
 
 
   render() {
@@ -44,10 +47,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   stateAll: state,
-  stateInit: state.app.isInit
+  stateInit: state.app.isInit,
+  stateup: state.pageCabinet.updateCabinet
 })
 
 export default connect (mapStateToProps, {
   initThunkCreator,
-  isInit
+  isInit,
+  cabinetIsUpdateThunkCreator
 })(App);

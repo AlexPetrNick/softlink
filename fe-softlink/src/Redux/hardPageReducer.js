@@ -4,6 +4,7 @@ export const SET_PAGE_META = 'SET_PAGE_META'
 export const SET_DATA = 'SET-DATA'
 export const SET_META_REPEAT = 'SET-META-REPEAT'
 export const TOGGLE_FETCH = 'TOGGLE-FETCH'
+export const PAGE_UPDATE = 'PAGE-UPDATE'
 
 let initState = {
     countOnPage: 1,
@@ -12,7 +13,8 @@ let initState = {
     urlPrevPage: "",
     currentPage: 1,
     data: [],
-    isFetching: false
+    isFetching: false,
+    pageUpdate: false
 
 }
 
@@ -45,6 +47,12 @@ const hardPageReducer = (state=initState, action) => {
                 isFetching: action.isLoad
             }
         }
+        case PAGE_UPDATE: {
+            return{
+                ...state,
+                pageUpdate: action.update
+            }
+        }
         default:
             return state
     }
@@ -56,6 +64,7 @@ export const setMetaRepeat = (next, prev, current) => ({ type: SET_META_REPEAT, 
 export const setPageMeta = (count, perPage, urlNextPage, urlPrevPage, currentPage) => ({ type:SET_PAGE_META, count, perPage, urlNextPage, urlPrevPage, currentPage })
 export const setData = (data) => ({ type: SET_DATA, data })
 export const toggleFetch = (isLoad) => ({ type: TOGGLE_FETCH, isLoad })
+export const pageUpdate = (update) => ({ type: PAGE_UPDATE, update })
 
 /* THUNK */
 
