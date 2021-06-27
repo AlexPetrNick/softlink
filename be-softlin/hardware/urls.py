@@ -25,4 +25,6 @@ urlpatterns = [
     path('cabinet/', views.CabinetInfo.as_view()),
     path('cabinet/hdd/<int:pk>', views.AddItemHDD.as_view()),
     path('cabinet/erase_hdd/<int:pk>', views.EraseItemHDD.as_view()),
+    path('cabinet/mother/<int:pk>', views.AddItemMother.as_view()),
+    path('cabinet/erase_mother/<int:pk>', views.EraseItemMother.as_view()),
 ]

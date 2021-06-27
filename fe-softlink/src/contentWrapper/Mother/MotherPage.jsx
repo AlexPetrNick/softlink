@@ -21,15 +21,26 @@ let MotherPage = (props) => {
 
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
+
+
+	let idBugHard = props.stateBugHard.map((hard)=>{
+		if(hard) {
+			return hard.id
+		} else {
+			return []
+		}
+	})
+
+
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
 			return(
 			<MotherItem
 			key={data.id}
 			data={data}
-			getItem={props.getItem} 
+			idBugHard = {idBugHard}
 			stateBugIdHard={props.stateBugIdHard}
-			eraseItemHard={props.eraseItemHard}
+			updateCabinetAC = {props.updateCabinetAC}
 			/>
 			)
 		})

@@ -1,13 +1,16 @@
 import React from 'react'
+import {apiCabinet} from '../../../apiDAL/DAL'
 
 const ItemMother = (props) => {
 
 	let getItem = () => {
-		props.getItem(props.data)
+		apiCabinet.addItemMother(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		props.eraseItemHard(props.data.id)
+		apiCabinet.eraseItemMother(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
 
@@ -29,7 +32,7 @@ const ItemMother = (props) => {
 					<span>{props.data.tech_proc} </span>
 				</div>
 				<div className="control">
-					{ props.stateBugIdHard.includes(props.data.id) ? 
+					{ props.idBugHard.includes(props.data.id) ? 
 					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
 					<button className="button__add__item" onClick={getItem}>&#10004;</button>
 					}

@@ -83,6 +83,7 @@ export const getHardPageThunkCreator = (page=0, hard=apiHdd) => {
         } else {
             hard.fetchOnMount()
             .then(data => {
+                console.log(data)
                 dispatch(setPageMeta(data.count, data.per_page, data.links.next, data.links.previous, data.current_page))
                 dispatch(setData(data.results))
                 dispatch(toggleFetch(false))

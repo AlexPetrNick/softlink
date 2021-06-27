@@ -178,5 +178,23 @@ export const apiCabinet = {
                 }
             )
         )
+    },
+    addItemMother: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/mother/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemMother: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_mother/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
     }
 }

@@ -11,6 +11,64 @@ from .serializers import *
 from rest_framework.pagination import PageNumberPagination
 
 
+def add_item_on_cabinet_variable (request, pk, bug_name):
+    user = User.objects.get(username=request.user)
+    cabinet = Cabinet.objects.get(user_id = user.id)
+    item_hard = Mother.objects.get(id=pk)
+    bug = ''
+    if bug_name == "mother":
+        bug = cabinet.bug_mother
+    if len(bug) == 0:
+        bug = str(item_hard.id)
+        print(len(bug))
+        cabinet.save()
+    else:
+        bug += "," + str(item_hard.id)
+        print("else")
+        print(bug)
+        cabinet.save()
+    return bug
+
+
+
+class AddItemMother(APIView):
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        cabinet = Cabinet.objects.get(user_id = user.id)
+        mother = Mother.objects.get(id=pk)
+        if len(cabinet.bug_mother) == 0:
+            cabinet.bug_mother = str(mother.id)
+            cabinet.save()
+        else:
+            cabinet.bug_mother += "," + str(mother.id)
+            cabinet.save()
+        print(cabinet)
+        return HttpResponse(cabinet.bug_mother)
+
+
+class EraseItemMother(APIView):
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        cabinet = Cabinet.objects.get(user_id = user.id)
+        mother = Mother.objects.get(id=pk)
+        correct_mother = []
+        corr_id = ''
+        item_hdd = cabinet.bug_mother.split(',')
+        print(item_hdd)
+        for item in item_hdd:
+            if item != str(pk):
+                correct_mother.append(item)
+        for id in correct_mother:
+            if len(corr_id) == 0:
+                corr_id += id
+            else:
+                corr_id += ","+id
+        cabinet.bug_mother = corr_id
+        cabinet.save()
+        return HttpResponse(cabinet.bug_mother)
+
+
+
 class AddItemHDD(APIView):
         
     def post(self, request, pk):
@@ -78,7 +136,6 @@ class CabinetInfo(APIView):
         return Response(serializer.data)
 
 
-    
 
 
 class UserInfo(generics.RetrieveAPIView):
