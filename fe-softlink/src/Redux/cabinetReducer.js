@@ -85,8 +85,8 @@ const CabinetReducer = (state=initState, action) => {
                 bag: {
                     cpu: [],
                     video: [],
-                    mother: [...action.data.bug_mother],
-                    hdd: [...action.data.bug_hdd]
+                    mother: action.data.bug_mother,
+                    hdd: action.data.bug_hdd
                 }
             }
         case UPDATE_CABINET:

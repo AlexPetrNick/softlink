@@ -3,18 +3,39 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+import uuid
+
+def generate_uuid():
+    return uuid.uuid4
+
+
+class Computer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.TextField(max_length=50, default=generate_uuid())
+    power_supply_id = models.TextField(max_length=50, blank=True)
+    mother_id = models.TextField(max_length=50, blank=True)
+    hdd_id = models.TextField(max_length=50, blank=True)
+    cpu_id = models.TextField(max_length=50)
+
+@receiver(post_save, sender=User)
+def create_user_computer(sender, instance, created, **kwargs):
+    if created:
+        Computer.objects.create(user=instance)
+
+
 
 class Cabinet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bug_hdd = models.TextField(max_length=50, blank=True)
-    bug_mother = models.TextField(max_length=50)
-    bug_cpu = models.TextField(max_length=50)
-    bug_video = models.TextField(max_length=50)
+    bug_mother = models.TextField(max_length=50, blank=True)
+    bug_cpu = models.TextField(max_length=50, blank=True)
+    bug_video = models.TextField(max_length=50, blank=True)
 
 @receiver(post_save, sender=User)
 def create_user_cabinet(sender, instance, created, **kwargs):
     if created:
         Cabinet.objects.create(user=instance)
+
 
 
 class Socket(models.Model):
@@ -23,6 +44,7 @@ class Socket(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class CoreAMD(models.Model):

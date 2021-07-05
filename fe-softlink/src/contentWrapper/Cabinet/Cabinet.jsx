@@ -6,6 +6,8 @@ let Cabinet = (props) => {
     let hard = props.stateCabinet.bag.hdd
     let cpu = props.stateCabinet.bag.cpu
     let mother = props.stateCabinet.bag.mother
+
+
     return (
         <div className="cabinet__wrapper">
             <div className="info__user">

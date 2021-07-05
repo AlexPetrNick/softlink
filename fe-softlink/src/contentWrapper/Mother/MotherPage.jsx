@@ -22,6 +22,7 @@ let MotherPage = (props) => {
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
 
+	console.log(props.stateBugHard)
 
 	let idBugHard = props.stateBugHard.map((hard)=>{
 		if(hard) {
