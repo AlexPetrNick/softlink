@@ -31,6 +31,38 @@ def add_item_on_cabinet_variable (request, pk, bug_name):
 
 
 
+class ComputerInfo(generics.RetrieveAPIView):
+    """Получить инфу по компьютеру"""
+    queryset = Computer.objects.all()
+    serializer_class = ComputerSerializer
+
+
+class ComputerAddMother(APIView):
+    """Добавить материнку в компьютер"""
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        comp = Computer.objects.get(user_id = user.id)
+        mother = Mother.objects.get(id=pk)
+        comp.mother_id = mother.id
+        comp.save()
+        return HttpResponse(comp.mother_id)
+
+
+class ComputerAddHDD(APIView):
+    """Добавить жесткий диск в компьютер"""
+    def post(self, request, pk):
+        user = User.objects.get(username=request.user)
+        comp = Computer.objects.get(user_id = user.id)
+        hdd = HDD.objects.get(id=pk)
+        if len(comp.hdd_id) == 0:
+            comp.hdd_id = str(hdd.id)
+            comp.save()
+        else:
+            comp.hdd_id += "," + str(hdd.id)
+            comp.save()
+        return HttpResponse(comp.hdd_id)
+
+
 class AddItemMother(APIView):
     def post(self, request, pk):
         user = User.objects.get(username=request.user)

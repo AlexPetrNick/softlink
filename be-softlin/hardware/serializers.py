@@ -4,6 +4,38 @@ from .models import *
 from django.contrib.auth.models import User
 
 
+class ComputerSerializer(serializers.ModelSerializer):
+    """Сериализатор компьютера"""
+
+    freeslot_mother = serializers.SerializerMethodField()
+    freeslot_hdd = serializers.SerializerMethodField()
+    freeslot_cpu = serializers.SerializerMethodField()
+
+        
+    def get_freeslot_mother(self, obj):
+        mother = obj.mother_id
+        if mother:
+            return 0
+        return 1
+
+    def get_freeslot_hdd(self, obj):
+        mother = obj.mother_id
+        if mother:
+            mother_obj = Mother.objects.get(id = int(mother))
+            return mother_obj.sata_cnt
+        return 0
+
+    def get_freeslot_cpu(self, obj):
+        mother = obj.mother_id
+        if mother:
+            return 1
+        return 0
+
+    class Meta:
+        model = Computer
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор ПОльзователя"""
 
