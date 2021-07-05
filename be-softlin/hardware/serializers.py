@@ -20,9 +20,11 @@ class ComputerSerializer(serializers.ModelSerializer):
 
     def get_freeslot_hdd(self, obj):
         mother = obj.mother_id
+        hdd_in_computer = len(obj.hdd_id.split(','))
         if mother:
             mother_obj = Mother.objects.get(id = int(mother))
-            return mother_obj.sata_cnt
+            free = int(mother_obj.sata_cnt) - hdd_in_computer
+            return free
         return 0
 
     def get_freeslot_cpu(self, obj):

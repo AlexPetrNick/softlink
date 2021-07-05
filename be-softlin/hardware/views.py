@@ -54,12 +54,16 @@ class ComputerAddHDD(APIView):
         user = User.objects.get(username=request.user)
         comp = Computer.objects.get(user_id = user.id)
         hdd = HDD.objects.get(id=pk)
-        if len(comp.hdd_id) == 0:
-            comp.hdd_id = str(hdd.id)
-            comp.save()
-        else:
-            comp.hdd_id += "," + str(hdd.id)
-            comp.save()
+        mother = Mother.objects.get(id = int(comp.mother_id))
+        print(len(comp.hdd_id.split(',')))
+        if len(comp.hdd_id.split(',')) >= mother.sata_cnt:
+            return HttpResponse('Нету свободных слотов, освободите слот!!! ', status=400)
+        if hdd.id != id:
+            if len(comp.hdd_id) == 0:
+                comp.hdd_id = str(hdd.id)
+            else:
+                comp.hdd_id += "," + str(hdd.id)
+        comp.save()
         return HttpResponse(comp.hdd_id)
 
 
