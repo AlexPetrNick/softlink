@@ -30,4 +30,12 @@ urlpatterns = [
     path('cabinet/erase_mother/<int:pk>', views.EraseItemMother.as_view()),
     path('cabinet/cpu/<int:pk>', views.AddItemCpu.as_view()),
     path('cabinet/erase_cpu/<int:pk>', views.EraseItemCpu.as_view()),
+    path('cabinet/ssd/<int:pk>', views.AddItemSsd.as_view()),
+    path('cabinet/erase_ssd/<int:pk>', views.EraseItemSsd.as_view()),
+    path('cabinet/video/<int:pk>', views.AddItemVideo.as_view()),
+    path('cabinet/erase_video/<int:pk>', views.EraseItemVideo.as_view()),
+    path('cabinet/ram/<int:pk>', views.AddItemRam.as_view()),
+    path('cabinet/erase_ram/<int:pk>', views.EraseItemRam.as_view()),
+    path('cabinet/power/<int:pk>', views.AddItemPower.as_view()),
+    path('cabinet/erase_power/<int:pk>', views.EraseItemPower.as_view()),
 ]

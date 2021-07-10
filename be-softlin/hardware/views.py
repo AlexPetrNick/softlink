@@ -9,35 +9,114 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
 from rest_framework.pagination import PageNumberPagination
-from django.db.models import Model
 
 
-#TODO: ssd, video, ram, power,
+class AddItemPower(APIView):
+    """Добавить в кабинет блок питания"""
+    def post(self, request, pk):
+        item_id = PowerSupply.objects.get(id=pk).id
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        if str(item_id) not in (cabinet.bag_powersup.split(',')):
+            if len(cabinet.bag_powersup) == 0:
+                cabinet.bag_powersup = str(item_id)
+            else:
+                cabinet.bag_powersup += "," + str(item_id)
+            cabinet.save()
+        return HttpResponse(cabinet.bag_powersup)
+
+
+class EraseItemPower(APIView):
+    """Удалить из кабинета блока питания"""
+    def post(self, request, pk):
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        list_item = cabinet.bag_powersup.split(',')
+        print(cabinet.bag_powersup.split(','))
+        if str(pk) in (cabinet.bag_powersup.split(',')):
+            list_item.remove(str(pk))
+            cabinet.bag_powersup = str(list_item).replace("[", "").replace("]","").replace("\'","").replace(" ","")
+        cabinet.save()
+        return HttpResponse(cabinet.bag_powersup)
+
+
+class AddItemRam(APIView):
+    """Добавить в кабинет оперативку"""
+    def post(self, request, pk):
+        item_id = RAM.objects.get(id=pk).id
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        if str(item_id) not in (cabinet.bag_ram.split(',')):
+            if len(cabinet.bag_ram) == 0:
+                cabinet.bag_ram = str(item_id)
+            else:
+                cabinet.bag_ram += "," + str(item_id)
+            cabinet.save()
+        return HttpResponse(cabinet.bag_ram)
+
+
+class EraseItemRam(APIView):
+    """Удалить из кабинета оперативку"""
+    def post(self, request, pk):
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        list_item = cabinet.bag_ram.split(',')
+        print(cabinet.bag_ram.split(','))
+        if str(pk) in (cabinet.bag_ram.split(',')):
+            list_item.remove(str(pk))
+            cabinet.bag_ram = str(list_item).replace("[", "").replace("]","").replace("\'","").replace(" ","")
+        cabinet.save()
+        return HttpResponse(cabinet.bag_ram)
+
+
+class AddItemVideo(APIView):
+    """Добавить в кабинет видеокарту"""
+    def post(self, request, pk):
+        item_id = VideoCard.objects.get(id=pk).id
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        if str(item_id) not in (cabinet.bag_video.split(',')):
+            if len(cabinet.bag_video) == 0:
+                cabinet.bag_video = str(item_id)
+            else:
+                cabinet.bag_video += "," + str(item_id)
+            cabinet.save()
+        return HttpResponse(cabinet.bag_video)
+
+
+class EraseItemVideo(APIView):
+    """Удалить из кабинета видеокарты"""
+    def post(self, request, pk):
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        list_item = cabinet.bag_video.split(',')
+        print(cabinet.bag_video.split(','))
+        if str(pk) in (cabinet.bag_video.split(',')):
+            list_item.remove(str(pk))
+            cabinet.bag_video = str(list_item).replace("[", "").replace("]","").replace("\'","").replace(" ","")
+        cabinet.save()
+        return HttpResponse(cabinet.bag_video)
+
+
 class AddItemSsd(APIView):
-    """Добавить в кабинет процессор"""
+    """Добавить в кабинет ssd"""
     def post(self, request, pk):
         item_id = SSD.objects.get(id=pk).id
         cabinet = Cabinet.objects.get(user_id = request.user.id)
-        if str(item_id) not in (cabinet.bag_cpu.split(',')):
-            if len(cabinet.bag_cpu) == 0:
-                cabinet.bag_cpu = str(item_id)
+        if str(item_id) not in (cabinet.bag_ssd.split(',')):
+            if len(cabinet.bag_ssd) == 0:
+                cabinet.bag_ssd = str(item_id)
             else:
-                cabinet.bag_cpu += "," + str(item_id)
+                cabinet.bag_ssd += "," + str(item_id)
             cabinet.save()
-        return HttpResponse(cabinet.bag_cpu)
+        return HttpResponse(cabinet.bag_ssd)
 
 
 class EraseItemSsd(APIView):
-    """Удалить из кабинета процессор"""
+    """Удалить из кабинета ssd"""
     def post(self, request, pk):
         cabinet = Cabinet.objects.get(user_id = request.user.id)
-        list_cpu = cabinet.bag_cpu.split(',')
-        print(cabinet.bag_cpu.split(','))
-        if str(pk) in (cabinet.bag_cpu.split(',')):
-            list_cpu.remove(str(pk))
-            cabinet.bag_cpu = str(list_cpu).replace("[", "").replace("]","").replace("\'","").replace(" ","")
+        list_item = cabinet.bag_ssd.split(',')
+        print(cabinet.bag_ssd.split(','))
+        if str(pk) in (cabinet.bag_ssd.split(',')):
+            list_item.remove(str(pk))
+            cabinet.bag_ssd = str(list_item).replace("[", "").replace("]","").replace("\'","").replace(" ","")
         cabinet.save()
-        return HttpResponse(cabinet.bag_cpu)
+        return HttpResponse(cabinet.bag_ssd)
 
 
 class AddItemCpu(APIView):
