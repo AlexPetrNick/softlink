@@ -85,8 +85,8 @@ const CabinetReducer = (state=initState, action) => {
                 bag: {
                     cpu: [],
                     video: [],
-                    mother: action.data.bug_mother,
-                    hdd: action.data.bug_hdd
+                    mother: action.data.bag_mother,
+                    hdd: action.data.bag_hdd
                 }
             }
         case UPDATE_CABINET:
@@ -129,7 +129,6 @@ export const cabinetIsUpdateThunkCreator = () => {
         .then(response => response)
         Promise.all([stateCabinet])
             .then(value => {
-                console.log(value)
                 dispatch(getStateCabinetAC(value[0]))
                 dispatch(updateCabinetAC(false))
             }

@@ -3,6 +3,8 @@ import ItemHdd from "./HddItem/ItemHdd";
 
 let HddPage = (props) => {
 
+	console.log(props)
+
 	let onClickLinkPage = (page) => {
 		props.getPageData(page)
 	}

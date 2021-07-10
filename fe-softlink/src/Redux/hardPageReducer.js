@@ -72,7 +72,6 @@ export const getHardPageThunkCreator = (page=0, hard=apiHdd) => {
     return (dispatch) => {
         
         dispatch(toggleFetch(true))
-
         if (page) {
             hard.fetchOnClick(page)
             .then(data => {

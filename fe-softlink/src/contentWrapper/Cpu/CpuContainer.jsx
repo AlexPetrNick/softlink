@@ -12,19 +12,6 @@ class CpuPageContainer extends Component {
 		
 	}
 
-	getItemHard = (item) => {
-		this.props.getItemInBugHardCPU(item)
-
-	}
-
-	eraseItemHard = (id) => {
-		this.props.eraseItemInBugHardCPU(id)
-	}
-
-	getHardOnPage = (page) => {
-		this.props.getHardPageThunkCreator(page, apiCpu)
-	}
-
 
 	render() {
 		return (

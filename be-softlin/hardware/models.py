@@ -26,10 +26,14 @@ def create_user_computer(sender, instance, created, **kwargs):
 
 class Cabinet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bug_hdd = models.TextField(max_length=50, blank=True)
-    bug_mother = models.TextField(max_length=50, blank=True)
-    bug_cpu = models.TextField(max_length=50, blank=True)
-    bug_video = models.TextField(max_length=50, blank=True)
+    bag_hdd = models.TextField(max_length=50, blank=True)
+    bag_mother = models.TextField(max_length=50, blank=True)
+    bag_cpu = models.TextField(max_length=50, blank=True)
+    bag_video = models.TextField(max_length=50, blank=True)
+    bag_ssd = models.TextField(max_length=50, blank=True)
+    bag_powersup = models.TextField(max_length=50, blank=True)
+    bag_ram= models.TextField(max_length=50, blank=True)
+
 
 @receiver(post_save, sender=User)
 def create_user_cabinet(sender, instance, created, **kwargs):

@@ -1,3 +1,4 @@
+from typing import List
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -5,29 +6,66 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import HDD, Brand, Processor, HDD, Cabinet
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from .serializers import *
 from rest_framework.pagination import PageNumberPagination
+from django.db.models import Model
 
 
-def add_item_on_cabinet_variable (request, pk, bug_name):
-    user = User.objects.get(username=request.user)
-    cabinet = Cabinet.objects.get(user_id = user.id)
-    item_hard = Mother.objects.get(id=pk)
-    bug = ''
-    if bug_name == "mother":
-        bug = cabinet.bug_mother
-    if len(bug) == 0:
-        bug = str(item_hard.id)
-        print(len(bug))
+#TODO: ssd, video, ram, power,
+class AddItemSsd(APIView):
+    """Добавить в кабинет процессор"""
+    def post(self, request, pk):
+        item_id = SSD.objects.get(id=pk).id
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        if str(item_id) not in (cabinet.bag_cpu.split(',')):
+            if len(cabinet.bag_cpu) == 0:
+                cabinet.bag_cpu = str(item_id)
+            else:
+                cabinet.bag_cpu += "," + str(item_id)
+            cabinet.save()
+        return HttpResponse(cabinet.bag_cpu)
+
+
+class EraseItemSsd(APIView):
+    """Удалить из кабинета процессор"""
+    def post(self, request, pk):
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        list_cpu = cabinet.bag_cpu.split(',')
+        print(cabinet.bag_cpu.split(','))
+        if str(pk) in (cabinet.bag_cpu.split(',')):
+            list_cpu.remove(str(pk))
+            cabinet.bag_cpu = str(list_cpu).replace("[", "").replace("]","").replace("\'","").replace(" ","")
         cabinet.save()
-    else:
-        bug += "," + str(item_hard.id)
-        print("else")
-        print(bug)
+        return HttpResponse(cabinet.bag_cpu)
+
+
+class AddItemCpu(APIView):
+    """Добавить в кабинет процессор"""
+    def post(self, request, pk):
+        cpu_id = Processor.objects.get(id=pk).id
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        if str(cpu_id) not in (cabinet.bag_cpu.split(',')):
+            if len(cabinet.bag_cpu) == 0:
+                cabinet.bag_cpu = str(cpu_id)
+            else:
+                cabinet.bag_cpu += "," + str(cpu_id)
+            cabinet.save()
+        return HttpResponse(cabinet.bag_cpu)
+
+
+class EraseItemCpu(APIView):
+    """Удалить из кабинета процессор"""
+    def post(self, request, pk):
+        cabinet = Cabinet.objects.get(user_id = request.user.id)
+        list_cpu = cabinet.bag_cpu.split(',')
+        print(cabinet.bag_cpu.split(','))
+        if str(pk) in (cabinet.bag_cpu.split(',')):
+            list_cpu.remove(str(pk))
+            cabinet.bag_cpu = str(list_cpu).replace("[", "").replace("]","").replace("\'","").replace(" ","")
         cabinet.save()
-    return bug
+        return HttpResponse(cabinet.bag_cpu)
+
 
 
 
@@ -72,14 +110,14 @@ class AddItemMother(APIView):
         user = User.objects.get(username=request.user)
         cabinet = Cabinet.objects.get(user_id = user.id)
         mother = Mother.objects.get(id=pk)
-        if len(cabinet.bug_mother) == 0:
-            cabinet.bug_mother = str(mother.id)
+        if len(cabinet.bag_mother) == 0:
+            cabinet.bag_mother = str(mother.id)
             cabinet.save()
         else:
-            cabinet.bug_mother += "," + str(mother.id)
+            cabinet.bag_mother += "," + str(mother.id)
             cabinet.save()
         print(cabinet)
-        return HttpResponse(cabinet.bug_mother)
+        return HttpResponse(cabinet.bag_mother)
 
 
 class EraseItemMother(APIView):
@@ -89,7 +127,7 @@ class EraseItemMother(APIView):
         mother = Mother.objects.get(id=pk)
         correct_mother = []
         corr_id = ''
-        item_hdd = cabinet.bug_mother.split(',')
+        item_hdd = cabinet.bag_mother.split(',')
         print(item_hdd)
         for item in item_hdd:
             if item != str(pk):
@@ -99,9 +137,9 @@ class EraseItemMother(APIView):
                 corr_id += id
             else:
                 corr_id += ","+id
-        cabinet.bug_mother = corr_id
+        cabinet.bag_mother = corr_id
         cabinet.save()
-        return HttpResponse(cabinet.bug_mother)
+        return HttpResponse(cabinet.bag_mother)
 
 
 
@@ -111,14 +149,14 @@ class AddItemHDD(APIView):
         user = User.objects.get(username=request.user)
         cabinet = Cabinet.objects.get(user_id = user.id)
         hdd = HDD.objects.get(id=pk)
-        if len(cabinet.bug_hdd) == 0:
-            cabinet.bug_hdd = str(hdd.id)
+        if len(cabinet.bag_hdd) == 0:
+            cabinet.bag_hdd = str(hdd.id)
             cabinet.save()
         else:
-            cabinet.bug_hdd += "," + str(hdd.id)
+            cabinet.bag_hdd += "," + str(hdd.id)
             cabinet.save()
         print(cabinet)
-        return HttpResponse(cabinet.bug_hdd)
+        return HttpResponse(cabinet.bag_hdd)
 
 
 class EraseItemHDD(APIView):
@@ -128,7 +166,7 @@ class EraseItemHDD(APIView):
         hdd = HDD.objects.get(id=pk)
         correct_hdd = []
         corr_id = ''
-        item_hdd = cabinet.bug_hdd.split(',')
+        item_hdd = cabinet.bag_hdd.split(',')
         for item in item_hdd:
             if item != str(pk):
                 correct_hdd.append(item)
@@ -137,9 +175,9 @@ class EraseItemHDD(APIView):
                 corr_id += id
             else:
                 corr_id += ","+id
-        cabinet.bug_hdd = corr_id
+        cabinet.bag_hdd = corr_id
         cabinet.save()
-        return HttpResponse(cabinet.bug_hdd)
+        return HttpResponse(cabinet.bag_hdd)
 
 
 
@@ -147,20 +185,6 @@ def check_token(request):
     temp = request
 
     return HttpResponse('asdf')
-
-def set_cookie(request):
-    print('sdfasdf')
-    dict_header = dict(request.headers)
-    [key, value_dirt] = dict_header['Set-Cookie'].split('=')
-    [value, setting] = value_dirt.split(';')
-
-    request.COOKIES[key] = value
-
-    print(value)
-    if setting == 'HttpOnly':
-        response = HttpResponse('Success')
-        response.set_cookie(key, value, httponly=True, samesite='lax')
-        return response
 
 
 class CabinetInfo(APIView):

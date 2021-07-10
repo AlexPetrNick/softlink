@@ -20,8 +20,6 @@ urlpatterns = [
     path('news', views.NewsList.as_view()),
     path('new/<int:pk>/', views.NewView.as_view()),
     path('user/<int:pk>/', views.UserInfo.as_view()),
-    path('setcook/', views.set_cookie),
-    path('check/', views.check_token),
     path('cabinet/', views.CabinetInfo.as_view()),
     path('computer/<int:pk>', views.ComputerInfo.as_view()),
     path('computer/mother/<int:pk>', views.ComputerAddMother.as_view()),
@@ -30,4 +28,6 @@ urlpatterns = [
     path('cabinet/erase_hdd/<int:pk>', views.EraseItemHDD.as_view()),
     path('cabinet/mother/<int:pk>', views.AddItemMother.as_view()),
     path('cabinet/erase_mother/<int:pk>', views.EraseItemMother.as_view()),
+    path('cabinet/cpu/<int:pk>', views.AddItemCpu.as_view()),
+    path('cabinet/erase_cpu/<int:pk>', views.EraseItemCpu.as_view()),
 ]

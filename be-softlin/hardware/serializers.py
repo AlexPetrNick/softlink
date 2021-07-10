@@ -51,46 +51,73 @@ class UserSerializer(serializers.ModelSerializer):
 class CabinetSerializer(serializers.ModelSerializer):
     """Сериализатор Кабинета"""
 
-    bug_hdd = serializers.SerializerMethodField()
-    bug_mother = serializers.SerializerMethodField()
-    bug_cpu = serializers.SerializerMethodField()
-    bug_video = serializers.SerializerMethodField()
+    bag_hdd = serializers.SerializerMethodField()
+    bag_mother = serializers.SerializerMethodField()
+    bag_cpu = serializers.SerializerMethodField()
+    bag_video = serializers.SerializerMethodField()
 
     class Meta:
         model = Cabinet
         fields = '__all__'
 
-    def get_bug_hdd(self, obj):
-        bug_hdd = obj.bug_hdd
-        if bug_hdd:
-            temp_list_hard_id = bug_hdd.split(',')
+    def get_bag_hdd(self, obj):
+        bag_hdd = obj.bag_hdd
+        if bag_hdd:
+            temp_list_hard_id = bag_hdd.split(',')
             temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
             return HddListSerializer(temp_list_hard, many=True).data
         else:
-            return {}
+            return []
 
-    def get_bug_mother(self, obj):
-        bug_mother = obj.bug_mother
-        if bug_mother:
-            temp_list_hard_id = bug_mother.split(',')
+    def get_bag_ssd(self, obj):
+        bag_ssd = obj.bag_ssd
+        if bag_ssd:
+            temp_list_hard_id = bag_ssd.split(',')
+            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            return SsdListSerializers(temp_list_hard, many=True).data
+        else:
+            return []
+
+    def get_bag_powersup(self, obj):
+        bag_powersup = obj.bag_powersup
+        if bag_powersup:
+            temp_list_hard_id = bag_powersup.split(',')
+            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            return PowerSupplyListSerializers(temp_list_hard, many=True).data
+        else:
+            return []
+
+    def get_bag_ram(self, obj):
+        bag_ram = obj.bag_ram
+        if bag_ram:
+            temp_list_hard_id = bag_ram.split(',')
+            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            return RamListSerializers(temp_list_hard, many=True).data
+        else:
+            return []
+
+    def get_bag_mother(self, obj):
+        bag_mother = obj.bag_mother
+        if bag_mother:
+            temp_list_hard_id = bag_mother.split(',')
             temp_list_hard = Mother.objects.filter(id__in = temp_list_hard_id)
             return MotherListSerializers(temp_list_hard, many=True).data
         else:
-            return {}
+            return []
 
-    def get_bug_cpu(self, obj):
-        bug_cpu = obj.bug_cpu
-        if bug_cpu:
-            temp_list_hard_id = bug_cpu.split(',')
+    def get_bag_cpu(self, obj):
+        bag_cpu = obj.bag_cpu
+        if bag_cpu:
+            temp_list_hard_id = bag_cpu.split(',')
             temp_list_hard = Processor.objects.filter(id__in = temp_list_hard_id)
             return CpuListSerializers(temp_list_hard, many=True).data
         else:
-            return {}
+            return []
 
-    def get_bug_video(self, obj):
-        bug_video = obj.bug_video
-        if bug_video:
-            temp_list_hard_id = bug_video.split(',')
+    def get_bag_video(self, obj):
+        bag_video = obj.bag_video
+        if bag_video:
+            temp_list_hard_id = bag_video.split(',')
             temp_list_hard = VideoCard.objects.filter(id__in = temp_list_hard_id)
             return VideoListSerializers(temp_list_hard, many=True).data
         else:
