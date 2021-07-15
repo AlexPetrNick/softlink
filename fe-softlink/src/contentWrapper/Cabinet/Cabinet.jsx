@@ -48,8 +48,8 @@ let Cabinet = (props) => {
                 <div className="bug__name">Материнка
                     {mother.map((data) => {
                             return(
-
                                 <div className="bug__item">
+                                    <div className="button__item">&laquo;</div>
                                     <div className="bug__item__name">
                                         {data.model} {data.brand}
                                     </div>
@@ -63,8 +63,8 @@ let Cabinet = (props) => {
                 <div className="bug__name">Процессор
                     {cpu.map((data) => {
                             return(
-
                                 <div className="bug__item">
+                                    <div className="button__item">&laquo;</div>
                                     <div className="bug__item__name">
                                         {data.model} {data.brand}
                                     </div>
@@ -79,6 +79,7 @@ let Cabinet = (props) => {
                     {power.map((data) => {
                         return( 
                             <div className="bug__item">
+                                <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
@@ -94,6 +95,7 @@ let Cabinet = (props) => {
                         return(
 
                             <div className="bug__item">
+                                <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
@@ -107,8 +109,8 @@ let Cabinet = (props) => {
                 <div className="bug__name">SSD
                     {ssd.map((data) => {
                         return(
-
                             <div className="bug__item">
+                                <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
@@ -124,6 +126,7 @@ let Cabinet = (props) => {
                         return(
 
                             <div className="bug__item">
+                                <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
@@ -134,11 +137,12 @@ let Cabinet = (props) => {
                         )
                     })}
                 </div>
-                <div className="bug__name"><span>Жесткий</span>
+                <div className="bug__name">Жесткий
                     {hard.map((data) => {
                         return(
 
-                            <div className="bug__item">
+                            <div className="bug__item">                    
+                                <div className="button__item enable">&raquo;</div>
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
