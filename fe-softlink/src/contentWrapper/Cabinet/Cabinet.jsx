@@ -6,6 +6,10 @@ let Cabinet = (props) => {
     let hard = props.stateCabinet.bag.hdd
     let cpu = props.stateCabinet.bag.cpu
     let mother = props.stateCabinet.bag.mother
+    let power = props.stateCabinet.bag.powersupply
+    let ssd = props.stateCabinet.bag.ssd
+    let video = props.stateCabinet.bag.video
+    let ram = props.stateCabinet.bag.ram
 
 
     return (
@@ -71,9 +75,65 @@ let Cabinet = (props) => {
                             )
                         })}
                 </div>
-                <div className="bug__name">Видеокарта</div>
-                <div className="bug__name">Оперативная</div>
-                <div className="bug__name">SSD</div>
+                <div className="bug__name">Блок питания
+                    {power.map((data) => {
+                        return( 
+                            <div className="bug__item">
+                                <div className="bug__item__name">
+                                    {data.model} {data.brand}
+                                </div>
+                                <div className="bug__item__disc">
+                                    Описание Итема
+                                </div>
+                            </div>
+                        )
+                    })}     
+                </div>
+                <div className="bug__name">Видеокарта
+                    {video.map((data) => {
+                        return(
+
+                            <div className="bug__item">
+                                <div className="bug__item__name">
+                                    {data.model} {data.brand}
+                                </div>
+                                <div className="bug__item__disc">
+                                    Описание Итема
+                                </div>
+                            </div>
+                        )
+                    })}        
+                </div>
+                <div className="bug__name">SSD
+                    {ssd.map((data) => {
+                        return(
+
+                            <div className="bug__item">
+                                <div className="bug__item__name">
+                                    {data.model} {data.brand}
+                                </div>
+                                <div className="bug__item__disc">
+                                    Описание Итема
+                                </div>
+                            </div>
+                        )
+                    })} 
+                </div>
+                <div className="bug__name">Оперативная
+                    {ram.map((data) => {
+                        return(
+
+                            <div className="bug__item">
+                                <div className="bug__item__name">
+                                    {data.model} {data.brand}
+                                </div>
+                                <div className="bug__item__disc">
+                                    Описание Итема
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
                 <div className="bug__name"><span>Жесткий</span>
                     {hard.map((data) => {
                         return(

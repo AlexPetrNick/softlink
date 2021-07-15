@@ -1,5 +1,5 @@
 import React from 'react';
-import CpuItem from "./CpuItem/CpuItem";
+import CpuItem from './CpuItem/CpuItem'
 
 let CpuPage = (props) => {
 
@@ -21,10 +21,26 @@ let CpuPage = (props) => {
 
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
+
+	let idBugHard = props.stateBugHard.map((hard)=>{
+		if(hard) {
+			return hard.id
+		} else {
+			return []
+		}
+	})
+
+	console.log(idBugHard)
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
 			return(
-				<CpuItem {...props} key={data.id} data={data} getItem={props.getItem}  />
+			<CpuItem
+			key={data.id}
+			data={data}
+			idBugHard = {idBugHard}
+			stateBugIdHard={props.stateBugIdHard}
+			updateCabinetAC = {props.updateCabinetAC}
+			/>
 			)
 		})
 
@@ -39,8 +55,7 @@ let CpuPage = (props) => {
 					<div className="empty"></div>
 						<ul className="page__slot">
 							{props.stateHard.urlPrevPage ? 
-							<li className="prev__page"><a href="#">Пред.</a></li>:
-							null}
+							<li className="prev__page"><a href="#">Пред.</a></li>: null}
 							{pages.map((data) => {
 								return(
 									<li className="number__page">
@@ -49,8 +64,7 @@ let CpuPage = (props) => {
 								)
 							})}
 							{props.stateHard.urlNextPage ? 
-							<li className="next__page"><a href="#">След.</a></li>:
-							null}
+							<li className="next__page"><a href="#">След.</a></li>: null}
 						</ul>
 					<div className="empty"></div>
 				</div>
@@ -60,25 +74,24 @@ let CpuPage = (props) => {
 				<form action="#" method="GET" id="filter__memory">
 					<div className="filter__body">
 						<div className="filter__item__title">Память</div>
-						<div className="filter__item">
-							<input id="check" type="checkbox" name="memory" value="12" /> 12
-						</div>
+							<div className="filter__item">
+								<input id="check" type="checkbox" name="memory" value="12" /> 12
+							</div>
 					</div>
 					<input type="submit" />
 				</form>
 				<form action="#" method="GET" id="filter__formfactor">
 					<div className="filter__body">
 						<div className="filter__item__title">Память</div>
-						<div className="filter__item">
-							<input type="checkbox" name="form_factor" value="12" /> 12
-						</div>
+							<div className="filter__item">
+								<input type="checkbox" name="form_factor" value="12" /> 12
+							</div>
 					</div>
 					<input type="submit" />
 				</form>
 			</div>
 		</div>
-	)
-}
-
+	);
+	}
 
 export default CpuPage

@@ -1,14 +1,17 @@
 import React from 'react'
 import cpuImage from '../../../image/cpuImage.jpg'
+import {apiCabinet} from '../../../apiDAL/DAL'
 
 const CpuItem = (props) => {
+	
 	let getItem = () => {
-		props.getItem(props.data)
+		apiCabinet.addItemCpu(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
-
 	let eraseItem = () => {
-		props.eraseItemHard(props.data.id)
+		apiCabinet.eraseItemCpu(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
 	return (
@@ -29,7 +32,7 @@ const CpuItem = (props) => {
 					<span>{props.data.tech_proc} </span>
 				</div>
 				<div className="control">
-					{ props.stateBugIdHard.includes(props.data.id) ? 
+					{ props.idBugHard.includes(props.data.id) ? 
 					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
 					<button className="button__add__item" onClick={getItem}>&#10004;</button>
 					}

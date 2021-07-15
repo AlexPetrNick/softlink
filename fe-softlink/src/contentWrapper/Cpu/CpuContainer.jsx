@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import CpuPage from './CpuPage'
-import {getHardPageThunkCreator, setData} from '../../Redux/hardPageReducer'
-import {getItemInBugHardCPU, eraseItemInBugHardCPU} from '../../Redux/cabinetReducer'
+import {setData, getHardPageThunkCreator, toggleFetch} from '../../Redux/hardPageReducer'
+import {updateCabinetAC, getCabinetThunkCreator, cabinetIsUpdateThunkCreator} from '../../Redux/cabinetReducer'
 import {apiCpu} from '../../apiDAL/DAL'
 import Preloader from '../../Preloader/Preloader'
 
@@ -12,6 +12,10 @@ class CpuPageContainer extends Component {
 		
 	}
 
+	getPageData = (page) => {
+		this.props.getHardPageThunkCreator(page, apiCpu)
+	}
+
 
 	render() {
 		return (
@@ -19,7 +23,6 @@ class CpuPageContainer extends Component {
 			{this.props.stateHard.isFetching ? <Preloader /> : 
 			<CpuPage {...this.props} 
 			getPageData = {this.getHardOnPage}
-			getItem = {this.getItemHard}
 			 />
 			}
 			</>
@@ -28,18 +31,18 @@ class CpuPageContainer extends Component {
 }
 
 let mapStateToProps = (state) => {
-	console.log(state)
 	return {
 		stateHard: state.pageHard,
-		stateUserToken: state.pageUser.token,
 		stateBugHard: state.pageCabinet.bag.cpu,
-		stateBugIdHard: state.pageCabinet.itemIdBugCpu
+		stateup: state.pageCabinet.updateCabinet
 	}
 }
 
 export default connect(mapStateToProps, {
-	getHardPageThunkCreator,
-	getItemInBugHardCPU,
 	setData,
-	eraseItemInBugHardCPU
+	getHardPageThunkCreator,
+	updateCabinetAC,
+	toggleFetch,
+	getCabinetThunkCreator,
+	cabinetIsUpdateThunkCreator
 })(CpuPageContainer)

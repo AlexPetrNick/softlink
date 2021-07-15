@@ -5,12 +5,12 @@ import picture from '../../../image/video.jpg'
 const ItemVideo = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemMother(props.data.id)
+		apiCabinet.addItemVideo(props.data.id)
 		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemMother(props.data.id)
+		apiCabinet.eraseItemVideo(props.data.id)
 		props.updateCabinetAC(true)
 	}
 

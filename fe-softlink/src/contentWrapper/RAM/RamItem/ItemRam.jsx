@@ -5,12 +5,12 @@ import pict from '../../../image/ram.jpg'
 let ItemRam = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemMother(props.data.id)
+		apiCabinet.addItemRam(props.data.id)
 		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemMother(props.data.id)
+		apiCabinet.eraseItemRam(props.data.id)
 		props.updateCabinetAC(true)
 	}
 

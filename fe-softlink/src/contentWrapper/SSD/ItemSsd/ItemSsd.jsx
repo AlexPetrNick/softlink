@@ -6,12 +6,12 @@ const ItemSsd = (props) => {
 	
 
 	let getItem = () => {
-		apiCabinet.addItemMother(props.data.id)
+		apiCabinet.addItemSsd(props.data.id)
 		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemMother(props.data.id)
+		apiCabinet.eraseItemSsd(props.data.id)
 		props.updateCabinetAC(true)
 	}
 

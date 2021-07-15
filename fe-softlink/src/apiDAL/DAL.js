@@ -263,7 +263,7 @@ export const apiCabinet = {
     },
     addItemCpu: (id) => {
         return (
-            fetch(baseUrl + 'cpu/mother/' + String(id), {
+            fetch(baseUrl + 'cabinet/cpu/' + String(id), {
                 method: "post",
                 headers: getHeader()
                 }

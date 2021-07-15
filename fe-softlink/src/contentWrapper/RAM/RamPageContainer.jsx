@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import RamPage from './RamPage';
-import { getHardPageThunkCreator } from '../../Redux/hardPageReducer';
+import {setData, getHardPageThunkCreator, toggleFetch} from '../../Redux/hardPageReducer'
+import {updateCabinetAC, getCabinetThunkCreator, cabinetIsUpdateThunkCreator} from '../../Redux/cabinetReducer'
 import { apiRam } from '../../apiDAL/DAL';
 
 class RamPageContainer extends React.Component {
@@ -33,5 +34,10 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
+	setData,
 	getHardPageThunkCreator,
+	updateCabinetAC,
+	toggleFetch,
+	getCabinetThunkCreator,
+	cabinetIsUpdateThunkCreator
 })(RamPageContainer)

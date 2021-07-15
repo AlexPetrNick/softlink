@@ -5,12 +5,12 @@ import power from '../../../image/power.jfif'
 const ItemPower = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemMother(props.data.id)
+		apiCabinet.addItemPower(props.data.id)
 		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemMother(props.data.id)
+		apiCabinet.eraseItemPower(props.data.id)
 		props.updateCabinetAC(true)
 	}
 	return (
