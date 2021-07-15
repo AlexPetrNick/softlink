@@ -481,7 +481,7 @@ class PowerSupplyListPaginator(PageNumberPagination):
 
 class PowerSupplyListView(generics.ListAPIView):
     """Вывод HDD List"""
-    queryset = HDD.objects.all()
+    queryset = PowerSupply.objects.all()
     serializer_class = PowerSupplyListSerializers
     pagination_class = PowerSupplyListPaginator
 
@@ -506,7 +506,7 @@ class SsdListPaginator(PageNumberPagination):
 
 class SsdListView(generics.ListAPIView):
     """Вывод HDD List"""
-    queryset = HDD.objects.all()
+    queryset = SSD.objects.all()
     serializer_class = SsdListSerializers
     pagination_class = SsdListPaginator
 

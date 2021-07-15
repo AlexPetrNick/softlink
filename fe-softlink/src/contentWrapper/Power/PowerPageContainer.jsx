@@ -3,19 +3,20 @@ import {connect} from 'react-redux'
 import {setData, getHardPageThunkCreator, toggleFetch} from '../../Redux/hardPageReducer'
 import {updateCabinetAC, getCabinetThunkCreator, cabinetIsUpdateThunkCreator} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
-import { apiVideo } from '../../apiDAL/DAL'
-import VideoPage from './VideoPage'
+import { apiPower } from '../../apiDAL/DAL';
+import PowerPage from './PowerPage'
 
-class VideoCardContainer extends React.Component {
+
+class PowerContainer extends React.Component {
     
     componentDidMount() {
-        console.log("Компонента видео mount")
-        this.props.getHardPageThunkCreator(0, apiVideo)
+        console.log("Компонента павер mount")
+        this.props.getHardPageThunkCreator(0, apiPower)
     }
 
     getPageData = (page) => {
-        console.log("Page видео click")
-        this.props.getHardPageThunkCreator(page, apiVideo)
+        console.log("Page павер click")
+        this.props.getHardPageThunkCreator(page, apiPower)
     }
 
 
@@ -23,7 +24,7 @@ class VideoCardContainer extends React.Component {
         return(
             <>
 			{this.props.stateHard.isFetching ? <Preloader /> : 
-            <VideoPage {...this.props} 
+            <PowerPage {...this.props}
             getPageData = {this.getPageData}
             />} 
             </>
@@ -35,7 +36,7 @@ class VideoCardContainer extends React.Component {
 let mapStateToProps = (state) => {
     return{
         stateHard: state.pageHard,
-		stateBugHard: state.pageCabinet.bag.video,
+		stateBugHard: state.pageCabinet.bag.powersupply,
 		stateup: state.pageCabinet.updateCabinet
     }
 }
@@ -47,4 +48,4 @@ export default connect(mapStateToProps, {
 	toggleFetch,
 	getCabinetThunkCreator,
 	cabinetIsUpdateThunkCreator
-})(VideoCardContainer)
+})(PowerContainer)

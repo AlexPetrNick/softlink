@@ -30,11 +30,10 @@ let initState = {
         ],
         ssd: [
         ],
-        powersup: [
+        powersupply: [
         ],
         ram: [
         ]
-
     }
 
 }
@@ -91,8 +90,11 @@ const CabinetReducer = (state=initState, action) => {
                 bag: {
                     cpu: [],
                     video: [],
+                    ram: [],
+                    powersupply: [],
+                    ssd: [],
                     mother: action.data.bag_mother,
-                    hdd: action.data.bag_hdd
+                    hdd: action.data.bag_hdd,
                 }
             }
         case UPDATE_CABINET:

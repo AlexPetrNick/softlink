@@ -86,6 +86,38 @@ export const apiVideo = {
 
 }
 
+export const apiPower = {
+    fetchOnMount: () => {
+        return(
+            fetch(baseUrl + "power/?format=json")
+		    .then(responce => responce.json())
+        )
+    },
+    fetchOnClick: (page) => {
+        return(
+            fetch(baseUrl + "power/?format=json&page=" + String(page))
+		    .then(responce => responce.json())
+        )
+    }
+
+}
+
+export const apiSsd = {
+    fetchOnMount: () => {
+        return(
+            fetch(baseUrl + "ssd/?format=json")
+		    .then(responce => responce.json())
+        )
+    },
+    fetchOnClick: (page) => {
+        return(
+            fetch(baseUrl + "ssd/?format=json&page=" + String(page))
+		    .then(responce => responce.json())
+        )
+    }
+
+}
+
 export const apiMother = {
     fetchOnMount: () => {
         return(

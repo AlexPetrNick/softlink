@@ -5,8 +5,8 @@ import HddPageContainer from './Hdd/HddPageContainer'
 import MotherPageContainer from './Mother/MotherPageContainer'
 import RamPageContainer from "./RAM/RamPageContainer";
 import VideoPageContainer from "./Video/VideoPageContainer";
-import PowerPage from './Power/PowerPage'
-import SsdPage from './SSD/SsdPage'
+import PowerContainer from './Power/PowerPageContainer'
+import SsdPageContainet from './SSD/SsdPageContainer'
 import NewsPageContainer from './News/NewsPageContainer'
 import NewDetailContainer from './News/NewDetailContainer'
 import CabinetContainer from './Cabinet/CabinetContainer'
@@ -45,8 +45,8 @@ const ContentWrapper = (props) => {
 			<Route path="/hardware/mother" component={MotherPageContainer}/>
 			<Route path="/hardware/ram" component={RamPageContainer}/>
 			<Route path="/hardware/videocard" component={VideoPageContainer}/>
-			<Route path="/hardware/power" component={PowerPage}/>
-			<Route path="/hardware/ssd" component={SsdPage}/>
+			<Route path="/hardware/power" component={PowerContainer}/>
+			<Route path="/hardware/ssd" component={SsdPageContainet}/>
 			<Route path="/news" component={NewsPageContainer} />
 		</div>
 		<div></div>

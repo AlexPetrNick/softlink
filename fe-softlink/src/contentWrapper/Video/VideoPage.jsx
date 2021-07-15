@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ItemVideo from './ItemVideo/ItemVideo'
 
 let VideoPage = (props) => {
-	
 	console.log("drawing video")
 	let onClickLinkPage = (page) => {
 		props.getPageData(page)
