@@ -55,6 +55,9 @@ class CabinetSerializer(serializers.ModelSerializer):
     bag_mother = serializers.SerializerMethodField()
     bag_cpu = serializers.SerializerMethodField()
     bag_video = serializers.SerializerMethodField()
+    bag_ssd = serializers.SerializerMethodField()
+    bag_powersup = serializers.SerializerMethodField()
+    bag_ram = serializers.SerializerMethodField()
 
     class Meta:
         model = Cabinet
@@ -73,7 +76,7 @@ class CabinetSerializer(serializers.ModelSerializer):
         bag_ssd = obj.bag_ssd
         if bag_ssd:
             temp_list_hard_id = bag_ssd.split(',')
-            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            temp_list_hard = SSD.objects.filter(id__in = temp_list_hard_id)
             return SsdListSerializers(temp_list_hard, many=True).data
         else:
             return []
@@ -82,7 +85,7 @@ class CabinetSerializer(serializers.ModelSerializer):
         bag_powersup = obj.bag_powersup
         if bag_powersup:
             temp_list_hard_id = bag_powersup.split(',')
-            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            temp_list_hard = PowerSupply.objects.filter(id__in = temp_list_hard_id)
             return PowerSupplyListSerializers(temp_list_hard, many=True).data
         else:
             return []
@@ -91,7 +94,7 @@ class CabinetSerializer(serializers.ModelSerializer):
         bag_ram = obj.bag_ram
         if bag_ram:
             temp_list_hard_id = bag_ram.split(',')
-            temp_list_hard = HDD.objects.filter(id__in = temp_list_hard_id)
+            temp_list_hard = RAM.objects.filter(id__in = temp_list_hard_id)
             return RamListSerializers(temp_list_hard, many=True).data
         else:
             return []

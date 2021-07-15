@@ -4,6 +4,8 @@ import './User.css';
 
 const UserControl = (props) => {
 
+	console.log("user control пользователь не залогинен")
+
 	let onClicklogIn = () => {
 		let user = props.state.correctLogin
 		let pass = props.state.correctPassword

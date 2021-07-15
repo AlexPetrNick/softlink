@@ -10,6 +10,7 @@ class ContainerComponent extends React.Component{
 
 
     render() {
+        console.log("cabinet container")
         return (
             <Cabinet
                 stateCabinet={this.props.stateCabinet}

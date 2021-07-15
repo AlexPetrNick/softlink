@@ -3,7 +3,7 @@ import ItemHdd from "./HddItem/ItemHdd";
 
 let HddPage = (props) => {
 
-	console.log(props)
+	console.log("drawing hdd")
 
 	let onClickLinkPage = (page) => {
 		props.getPageData(page)

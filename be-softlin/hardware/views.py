@@ -267,10 +267,10 @@ def check_token(request):
 
 
 class CabinetInfo(APIView):
-
     def get(self, request):
         user_id = request.user.id
         cabinet = Cabinet.objects.get(user = user_id)
+        print("тут error")
         serializer = CabinetSerializer(cabinet)
         return Response(serializer.data)
 
@@ -432,7 +432,7 @@ class RamListPaginator(PageNumberPagination):
 
 class RamListView(generics.ListAPIView):
     """Вывод HDD List"""
-    queryset = HDD.objects.all()
+    queryset = RAM.objects.all()
     serializer_class = RamListSerializers
     pagination_class = RamListPaginator
 

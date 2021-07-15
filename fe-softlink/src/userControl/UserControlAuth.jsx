@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 const UserControl = (props) => {
 
-	
+	console.log("usercontrol пользователь залогинен")
 
 
 	let onClickExit = () => {

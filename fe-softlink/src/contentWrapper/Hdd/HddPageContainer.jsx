@@ -8,6 +8,7 @@ import Preloader from '../../Preloader/Preloader'
 
 class HddPageContainer extends React.Component {
 	componentDidMount() { 
+		console.log("hdd page did mount")
 		this.props.getHardPageThunkCreator()
 	}
 

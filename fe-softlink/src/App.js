@@ -13,11 +13,13 @@ import {cabinetIsUpdateThunkCreator} from './Redux/cabinetReducer'
 
 class App extends React.Component {         
   componentDidMount() {
+      console.log("app did mount")
       this.props.initThunkCreator() 
   }
 
   componentDidUpdate(prevProps) {
 		if(this.props.stateup) {
+      console.log("app did update")
 			this.props.cabinetIsUpdateThunkCreator()
 		} 
 	}

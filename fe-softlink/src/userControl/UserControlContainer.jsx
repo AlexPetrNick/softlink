@@ -11,6 +11,7 @@ class AuthentificateUser extends React.Component{
     
     
     render() {
+        console.log("AuthentificateUser")
         return(
         <>
             { String(localStorage.getItem('access')).length > 10 ?
