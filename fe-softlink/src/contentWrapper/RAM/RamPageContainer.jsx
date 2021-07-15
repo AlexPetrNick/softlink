@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import RamPage from './RamPageContainer';
+import RamPage from './RamPage';
 import { getHardPageThunkCreator } from '../../Redux/hardPageReducer';
 import { apiRam } from '../../apiDAL/DAL';
 
@@ -17,13 +17,15 @@ class RamPageContainer extends React.Component {
 
 	render() {
 		return (
-			<RamPage {...this.props} />
+			<RamPage {...this.props} 
+			getPageData = {this.getPageData}
+			/>
 		)
 	}		
 }
 
 let mapStateToProps = (state) => { 
-	return {
+	return {						
 		stateHard: state.pageHard,
 		stateBugHard: state.pageCabinet.bag.mother,
 		stateup: state.pageCabinet.updateCabinet

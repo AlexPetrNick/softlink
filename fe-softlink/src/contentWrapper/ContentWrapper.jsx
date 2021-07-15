@@ -4,7 +4,7 @@ import CpuContainer from './Cpu/CpuContainer'
 import HddPageContainer from './Hdd/HddPageContainer'
 import MotherPageContainer from './Mother/MotherPageContainer'
 import RamPageContainer from "./RAM/RamPageContainer";
-import VideoPage from './Video/VideoPage'
+import VideoPageContainer from "./Video/VideoPageContainer";
 import PowerPage from './Power/PowerPage'
 import SsdPage from './SSD/SsdPage'
 import NewsPageContainer from './News/NewsPageContainer'
@@ -44,7 +44,7 @@ const ContentWrapper = (props) => {
 			<Route path="/hardware/hdd" component={HddPageContainer}/>
 			<Route path="/hardware/mother" component={MotherPageContainer}/>
 			<Route path="/hardware/ram" component={RamPageContainer}/>
-			<Route path="/hardware/videocard" component={VideoPage}/>
+			<Route path="/hardware/videocard" component={VideoPageContainer}/>
 			<Route path="/hardware/power" component={PowerPage}/>
 			<Route path="/hardware/ssd" component={SsdPage}/>
 			<Route path="/news" component={NewsPageContainer} />

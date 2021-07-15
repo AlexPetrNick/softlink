@@ -1,79 +1,99 @@
 import React, {Component} from 'react';
-import ItemVideo from "./ItemVideo/ItemVideo";
+import ItemVideo from './ItemVideo/ItemVideo'
 
-class VideoPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			data: [],
-			url: "http://127.0.0.1:8000/api/videocard/?format=json"
-		};
+let VideoPage = (props) => {
+	
+	console.log("drawing video")
+	let onClickLinkPage = (page) => {
+		props.getPageData(page)
 	}
 
-	componentDidMount() {
-		fetch(this.state.url)
-		.then(data => data.json())
-		.then(data => this.setState({data}))
-	}
+	let count = props.stateHard.countOnPage
+	let perPage = props.stateHard.perPage
+	let cntPage;
+	let pages = []
 
-	render() {
-		const dataList = this.state.data
-		let ItemList;
-		if (dataList){
-			ItemList = dataList.map((d) => {
-				console.log(d.id)
-				return (
-				<ItemVideo  
-					brand={d.brand}
-					model={d.model} 
-					series={d.series}
-					tech_proc={d.tech_proc}
-					type_memory={d.type_memory}
-					connector={d.connector}
-				/>
-				)
-			})
+	if(perPage) {
+		cntPage = Math.ceil(count/perPage)
+		for (let i=1; i <= cntPage; i++) {
+			pages.push(i)
 		}
-		return (
-			<div className="wrapper__hard">
-				<div className="content___list">
-					<div className="page_content">
-						{ItemList}
-					</div>
-					<div className="page__number__list">
-						<div className="empty"></div>
-							<ul className="page__slot">
-								<li className="prev__page"><a href="#">Пред.</a></li>
-								<li className="number__page"><a href="#">3</a></li>
-								<li className="next__page"><a href="#">След.</a></li>
-							</ul>
-						<div className="empty"></div>
-					</div>
-				</div>
+	}
 
-				<div className="filter__list">
-					<form action="#" method="GET" id="filter__memory">
-						<div className="filter__body">
-							<div className="filter__item__title">Память</div>
-								<div className="filter__item">
-									<input id="check" type="checkbox" name="memory" value="12" /> 12
-								</div>
-						</div>
-						<input type="submit" />
-					</form>
-					<form action="#" method="GET" id="filter__formfactor">
-						<div className="filter__body">
-							<div className="filter__item__title">Память</div>
-								<div className="filter__item">
-									<input type="checkbox" name="form_factor" value="12" /> 12
-								</div>
-						</div>
-						<input type="submit" />
-					</form>
+	let hardItem = props.stateHard.data[0]
+	let componentHard;
+
+
+	let idBugHard = props.stateBugHard.map((hard)=>{
+		if(hard) {
+			return hard.id
+		} else {
+			return []
+		}
+	})
+
+
+	if (hardItem) {
+		componentHard = hardItem.map((data) => {
+			return(
+			<ItemVideo
+			key={data.id}
+			data={data}
+			idBugHard = {idBugHard}
+			stateBugIdHard={props.stateBugIdHard}
+			updateCabinetAC = {props.updateCabinetAC}
+			/>
+			)
+		})
+
+	}
+	return (
+		<div className="wrapper__hard">
+			<div className="content___list">
+				<div className="page_content">
+					{componentHard}
+				</div>
+				<div className="page__number__list">
+					<div className="empty"></div>
+						<ul className="page__slot">
+							{props.stateHard.urlPrevPage ? 
+							<li className="prev__page"><a href="#">Пред.</a></li>: null}
+							{pages.map((data) => {
+								return(
+									<li className="number__page">
+										<span onClick={()=> onClickLinkPage(data)}>{data}</span>
+									</li>
+								)
+							})}
+							{props.stateHard.urlNextPage ? 
+							<li className="next__page"><a href="#">След.</a></li>: null}
+						</ul>
+					<div className="empty"></div>
 				</div>
 			</div>
-		);
+
+			<div className="filter__list">
+				<form action="#" method="GET" id="filter__memory">
+					<div className="filter__body">
+						<div className="filter__item__title">Память</div>
+							<div className="filter__item">
+								<input id="check" type="checkbox" name="memory" value="12" /> 12
+							</div>
+					</div>
+					<input type="submit" />
+				</form>
+				<form action="#" method="GET" id="filter__formfactor">
+					<div className="filter__body">
+						<div className="filter__item__title">Память</div>
+							<div className="filter__item">
+								<input type="checkbox" name="form_factor" value="12" /> 12
+							</div>
+					</div>
+					<input type="submit" />
+				</form>
+			</div>
+		</div>
+	);
 	}
-}
 
 export default VideoPage
