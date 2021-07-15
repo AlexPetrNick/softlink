@@ -3,7 +3,7 @@ import {NavLink, Route} from "react-router-dom";
 import CpuContainer from './Cpu/CpuContainer'
 import HddPageContainer from './Hdd/HddPageContainer'
 import MotherPageContainer from './Mother/MotherPageContainer'
-import RamPage from './RAM/RamPage'
+import RamPageContainer from "./RAM/RamPageContainer";
 import VideoPage from './Video/VideoPage'
 import PowerPage from './Power/PowerPage'
 import SsdPage from './SSD/SsdPage'
@@ -43,7 +43,7 @@ const ContentWrapper = (props) => {
 			<Route path="/hardware/cpu" component={CpuContainer}/>
 			<Route path="/hardware/hdd" component={HddPageContainer}/>
 			<Route path="/hardware/mother" component={MotherPageContainer}/>
-			<Route path="/hardware/ram" component={RamPage}/>
+			<Route path="/hardware/ram" component={RamPageContainer}/>
 			<Route path="/hardware/videocard" component={VideoPage}/>
 			<Route path="/hardware/power" component={PowerPage}/>
 			<Route path="/hardware/ssd" component={SsdPage}/>

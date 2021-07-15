@@ -54,6 +54,38 @@ export const apiHdd = {
 
 }
 
+export const apiRam = {
+    fetchOnMount: () => {
+        return(
+            fetch(baseUrl + "ram/?format=json")
+		    .then(responce => responce.json())
+        )
+    },
+    fetchOnClick: (page) => {
+        return(
+            fetch(baseUrl + "ram/?format=json&page=" + String(page))
+		    .then(responce => responce.json())
+        )
+    }
+
+}
+
+export const apiVideo = {
+    fetchOnMount: () => {
+        return(
+            fetch(baseUrl + "videocard/?format=json")
+		    .then(responce => responce.json())
+        )
+    },
+    fetchOnClick: (page) => {
+        return(
+            fetch(baseUrl + "videocard/?format=json&page=" + String(page))
+		    .then(responce => responce.json())
+        )
+    }
+
+}
+
 export const apiMother = {
     fetchOnMount: () => {
         return(

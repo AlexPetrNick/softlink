@@ -456,8 +456,8 @@ class VideoListPaginator(PageNumberPagination):
         })
 
 class VideoListView(generics.ListAPIView):
-    """Вывод HDD List"""
-    queryset = HDD.objects.all()
+    """Вывод видео List"""
+    queryset = VideoCard.objects.all()
     serializer_class = VideoListSerializers
     pagination_class = VideoListPaginator
 
