@@ -260,5 +260,95 @@ export const apiCabinet = {
                 }
             )
         )
+    },
+    addItemCpu: (id) => {
+        return (
+            fetch(baseUrl + 'cpu/mother/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemCpu: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_cpu/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    addItemSsd: (id) => {
+        return (
+            fetch(baseUrl + 'ssd/mother/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemSsd: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_ssd/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    addItemVideo: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/video/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemVideo: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_video/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    addItemRam: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/ram/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemRam: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_ram/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    addItemPower: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/power/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
+    },
+    eraseItemPower: (id) => {
+        return (
+            fetch(baseUrl + 'cabinet/erase_power/' + String(id), {
+                method: "post",
+                headers: getHeader()
+                }
+            )
+        )
     }
 }
