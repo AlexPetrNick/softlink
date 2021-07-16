@@ -1,8 +1,8 @@
 import userPhoto from '../../image/userPhoto.jpg'
 import schema from '../../image/scheme.jpg'
+import { apiCabinet } from '../../apiDAL/DAL'
 
 let Cabinet = (props) => {
-    console.log("conponent cabinet")
     let hard = props.stateCabinet.bag.hdd
     let cpu = props.stateCabinet.bag.cpu
     let mother = props.stateCabinet.bag.mother
@@ -56,6 +56,7 @@ let Cabinet = (props) => {
                                     <div className="bug__item__disc">
                                         Описание Итема
                                     </div>
+                                    <div className="erase_item"><b>X</b></div>
                                 </div>
                             )
                         })}
@@ -71,6 +72,7 @@ let Cabinet = (props) => {
                                     <div className="bug__item__disc">
                                         Описание Итема
                                     </div>
+                                    <div className="erase_item"><b>X</b></div>
                                 </div>
                             )
                         })}
@@ -86,6 +88,7 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
+                                <div className="erase_item"><b>X</b></div>
                             </div>
                         )
                     })}     
@@ -93,7 +96,6 @@ let Cabinet = (props) => {
                 <div className="bug__name">Видеокарта
                     {video.map((data) => {
                         return(
-
                             <div className="bug__item">
                                 <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
@@ -102,6 +104,7 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
+                                <div className="erase_item"><b>X</b></div>
                             </div>
                         )
                     })}        
@@ -117,6 +120,7 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
+                                <div className="erase_item"><b>X</b></div>
                             </div>
                         )
                     })} 
@@ -124,7 +128,6 @@ let Cabinet = (props) => {
                 <div className="bug__name">Оперативная
                     {ram.map((data) => {
                         return(
-
                             <div className="bug__item">
                                 <div className="button__item">&laquo;</div>
                                 <div className="bug__item__name">
@@ -133,6 +136,7 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
+                                <div className="erase_item"><b>X</b></div>
                             </div>
                         )
                     })}
@@ -140,7 +144,6 @@ let Cabinet = (props) => {
                 <div className="bug__name">Жесткий
                     {hard.map((data) => {
                         return(
-
                             <div className="bug__item">                    
                                 <div className="button__item enable">&raquo;</div>
                                 <div className="bug__item__name">
@@ -149,6 +152,7 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
+                                <div className="erase_item"><b>X</b></div>
                             </div>
                         )
                     })}

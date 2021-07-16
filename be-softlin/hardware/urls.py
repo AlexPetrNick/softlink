@@ -21,7 +21,7 @@ urlpatterns = [
     path('new/<int:pk>/', views.NewView.as_view()),
     path('user/<int:pk>/', views.UserInfo.as_view()),
     path('cabinet/', views.CabinetInfo.as_view()),
-    path('computer/<int:pk>', views.ComputerInfo.as_view()),
+    path('computer/', views.ComputerInfo.as_view()),
     path('computer/mother/<int:pk>', views.ComputerAddMother.as_view()),
     path('computer/hdd/<int:pk>', views.ComputerAddHDD.as_view()),
     path('cabinet/hdd/<int:pk>', views.AddItemHDD.as_view()),

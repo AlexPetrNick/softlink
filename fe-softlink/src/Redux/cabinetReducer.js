@@ -9,16 +9,7 @@ export const GET_STATE_CABINET = "GET-STATE-CABINET"
 export const UPDATE_CABINET = "UPDATE_CABINET"
 
 let initState = {
-    itemIdBugHdd: [],
-    itemIdBugCpu: [],
-    itemIdBugMother: [],
     updateCabinet: true,
-    personalComputer: {
-        name: "MyFirstComputer",
-        cpu: "Intel",
-        mother: "MSI",
-        video: "NVideo"
-    },
     bag: {
         cpu: [
         ],

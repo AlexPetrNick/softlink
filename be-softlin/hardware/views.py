@@ -147,18 +147,20 @@ class EraseItemCpu(APIView):
 
 
 
-
-class ComputerInfo(generics.RetrieveAPIView):
-    """Получить инфу по компьютеру"""
-    queryset = Computer.objects.all()
-    serializer_class = ComputerSerializer
+class ComputerInfo(APIView):
+    def get(self, request):
+        user_id = request.user.id
+        computer = Computer.objects.get(user = user_id)
+        serializer = ComputerSerializer(computer)
+        print(serializers.data)
+        return Response(serializer.data)
 
 
 class ComputerAddMother(APIView):
     """Добавить материнку в компьютер"""
     def post(self, request, pk):
         user = User.objects.get(username=request.user)
-        comp = Computer.objects.get(user_id = user.id)
+        comp = Computer.objects.get(user = user.id)
         mother = Mother.objects.get(id=pk)
         comp.mother_id = mother.id
         comp.save()
