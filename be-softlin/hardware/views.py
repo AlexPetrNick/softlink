@@ -149,10 +149,9 @@ class EraseItemCpu(APIView):
 
 class ComputerInfo(APIView):
     def get(self, request):
-        user_id = request.user.id
-        computer = Computer.objects.get(user = user_id)
+        id = request.user.id
+        computer = Computer.objects.get(user_id = id)
         serializer = ComputerSerializer(computer)
-        print(serializers.data)
         return Response(serializer.data)
 
 

@@ -2,36 +2,76 @@ from django.db.models import fields
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
+import json
+from django.db.models import Model
 
+
+def get_list_item_from_id(json_id, model: Model, serializer: serializers.ModelSerializer):
+    
+    try:
+        hard_row = json.loads(json_id) 
+    except:
+        hard_row = []
+    
+    if not hard_row:
+        return []
+    list_hard = model.objects.filter(id__in = hard_row["id"])
+    return serializer(list_hard, many=True).data
 
 class ComputerSerializer(serializers.ModelSerializer):
     """Сериализатор компьютера"""
 
-    freeslot_mother = serializers.SerializerMethodField()
-    freeslot_hdd = serializers.SerializerMethodField()
-    freeslot_cpu = serializers.SerializerMethodField()
+    cpu_ids = serializers.SerializerMethodField()
+    mother_ids = serializers.SerializerMethodField()
+    hdd_ids = serializers.SerializerMethodField()
+    ssd_ids = serializers.SerializerMethodField()
+    video_ids = serializers.SerializerMethodField()
+    power_supply_ids = serializers.SerializerMethodField()
+    ram_ids = serializers.SerializerMethodField()
+    
 
+    def get_cpu_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.cpu_ids, Processor, CpuListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
+
+    def get_mother_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.mother_ids, Mother, MotherListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
+
+    def get_hdd_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.hdd_ids, HDD, HddListSerializer)
+        if not hard_ids:
+            return [] 
+        return hard_ids
         
-    def get_freeslot_mother(self, obj):
-        mother = obj.mother_id
-        if mother:
-            return 0
-        return 1
+    def get_ssd_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.ssd_ids, SSD, SsdListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
 
-    def get_freeslot_hdd(self, obj):
-        mother = obj.mother_id
-        hdd_in_computer = len(obj.hdd_id.split(','))
-        if mother:
-            mother_obj = Mother.objects.get(id = int(mother))
-            free = int(mother_obj.sata_cnt) - hdd_in_computer
-            return free
-        return 0
-
-    def get_freeslot_cpu(self, obj):
-        mother = obj.mother_id
-        if mother:
-            return 1
-        return 0
+    
+    def get_video_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.video_ids, VideoCard, VideoListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
+        
+    def get_ram_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.ram_ids, RAM, RamListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
+        
+    def get_power_supply_ids(self, obj):
+        hard_ids = get_list_item_from_id(obj.power_supply_ids, PowerSupply, PowerSupplyListSerializers)
+        if not hard_ids:
+            return [] 
+        return hard_ids
 
     class Meta:
         model = Computer

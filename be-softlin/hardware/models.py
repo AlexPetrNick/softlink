@@ -12,10 +12,13 @@ def generate_uuid():
 class Computer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=50, default=generate_uuid())
-    power_supply_id = models.TextField(max_length=50, blank=True)
-    mother_id = models.TextField(max_length=50, blank=True)
-    hdd_id = models.TextField(max_length=50, blank=True)
-    cpu_id = models.TextField(max_length=50)
+    power_supply_ids = models.TextField(max_length=50, blank=True)
+    mother_ids = models.TextField(max_length=50, blank=True)
+    hdd_ids = models.TextField(max_length=50, blank=True)
+    cpu_ids = models.TextField(max_length=50, blank=True)
+    ssd_ids = models.TextField(max_length=50, blank=True)
+    video_ids = models.TextField(max_length=50, blank=True)
+    ram_ids = models.TextField(max_length=50, blank=True)
 
 @receiver(post_save, sender=User)
 def create_user_computer(sender, instance, created, **kwargs):
