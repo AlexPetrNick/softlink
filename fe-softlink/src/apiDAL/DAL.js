@@ -21,10 +21,21 @@ let getHeader = () => {
 
 }
 
+export const apiComputer = {
+    fetchComputer: () => {
+        return(
+            fetch(baseUrl + 'computer', {
+                headers: getHeader()
+            })
+                .then(resp => resp.json())
+        )
+    }
+}
 
 export const apiNews = {
     fetchOnMount: () => {
-        return (fetch(baseUrl + 'news?format=json')
+        return (
+            fetch(baseUrl + 'news?format=json')
             .then(resp => resp.json()
             )
         )
@@ -352,3 +363,4 @@ export const apiCabinet = {
         )
     }
 }
+

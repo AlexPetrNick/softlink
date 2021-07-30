@@ -7,6 +7,7 @@ import hardPageReducer from "./hardPageReducer"
 import thunkMiddleware from "redux-thunk"
 import { authReducer } from './authReducer';
 import appReducer from './appReducer'
+import computerReducer from './computerReducer'
 
 let reducers = combineReducers({
     pageNews: pageNewsReducer,
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     pageCabinet: cabinetReducer,
     pageHard: hardPageReducer,
     auth: authReducer,
-    app: appReducer
+    app: appReducer,
+    computer: computerReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

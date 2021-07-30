@@ -8,6 +8,9 @@ import uuid
 def generate_uuid():
     return uuid.uuid4
 
+class InterfaceMemory(models.Model):
+    name = models.TextField(max_length=50, blank=True)
+
 
 class Computer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -184,7 +187,9 @@ class Mother(models.Model):
     ddr3 = models.TextField(max_length=30, blank=True)
     ddr3L = models.TextField(max_length=30, blank=True)
     ddr4 = models.TextField(max_length=30, blank=True)
-    pcie16 = models.TextField(max_length=30)
+    pcie16 = models.TextField(max_length=30, blank=True)
+    pcie4 = models.TextField(max_length=30, blank=True)
+    pcie2 = models.TextField(max_length=30, blank=True)
     sata_cnt = models.IntegerField(blank=True)
     m2_cnt = models.IntegerField(blank=True)
     has_NVMe = models.BooleanField(default=False)

@@ -13,6 +13,8 @@ def get_list_item_from_id(json_id, model: Model, serializer: serializers.ModelSe
     except:
         hard_row = []
     
+    print(hard_row)
+
     if not hard_row:
         return []
     list_hard = model.objects.filter(id__in = hard_row["id"])
@@ -21,53 +23,52 @@ def get_list_item_from_id(json_id, model: Model, serializer: serializers.ModelSe
 class ComputerSerializer(serializers.ModelSerializer):
     """Сериализатор компьютера"""
 
-    cpu_ids = serializers.SerializerMethodField()
-    mother_ids = serializers.SerializerMethodField()
-    hdd_ids = serializers.SerializerMethodField()
-    ssd_ids = serializers.SerializerMethodField()
-    video_ids = serializers.SerializerMethodField()
-    power_supply_ids = serializers.SerializerMethodField()
-    ram_ids = serializers.SerializerMethodField()
+    cpu = serializers.SerializerMethodField()
+    mother = serializers.SerializerMethodField()
+    hdd = serializers.SerializerMethodField()
+    ssd = serializers.SerializerMethodField()
+    video = serializers.SerializerMethodField()
+    power_supply = serializers.SerializerMethodField()
+    ram = serializers.SerializerMethodField()
     
 
-    def get_cpu_ids(self, obj):
+    def get_cpu(self, obj):
         hard_ids = get_list_item_from_id(obj.cpu_ids, Processor, CpuListSerializers)
         if not hard_ids:
             return [] 
         return hard_ids
 
-    def get_mother_ids(self, obj):
+    def get_mother(self, obj):
         hard_ids = get_list_item_from_id(obj.mother_ids, Mother, MotherListSerializers)
         if not hard_ids:
             return [] 
         return hard_ids
 
-    def get_hdd_ids(self, obj):
+    def get_hdd(self, obj):
         hard_ids = get_list_item_from_id(obj.hdd_ids, HDD, HddListSerializer)
         if not hard_ids:
             return [] 
         return hard_ids
         
-    def get_ssd_ids(self, obj):
+    def get_ssd(self, obj):
         hard_ids = get_list_item_from_id(obj.ssd_ids, SSD, SsdListSerializers)
         if not hard_ids:
             return [] 
         return hard_ids
 
-    
-    def get_video_ids(self, obj):
+    def get_video(self, obj):
         hard_ids = get_list_item_from_id(obj.video_ids, VideoCard, VideoListSerializers)
         if not hard_ids:
             return [] 
         return hard_ids
         
-    def get_ram_ids(self, obj):
+    def get_ram(self, obj):
         hard_ids = get_list_item_from_id(obj.ram_ids, RAM, RamListSerializers)
         if not hard_ids:
             return [] 
         return hard_ids
         
-    def get_power_supply_ids(self, obj):
+    def get_power_supply(self, obj):
         hard_ids = get_list_item_from_id(obj.power_supply_ids, PowerSupply, PowerSupplyListSerializers)
         if not hard_ids:
             return [] 

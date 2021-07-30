@@ -1,6 +1,6 @@
 import userPhoto from '../../image/userPhoto.jpg'
-import schema from '../../image/scheme.jpg'
 import { apiCabinet } from '../../apiDAL/DAL'
+import ComputerContainer from './Computer/ComputerContainer'
 
 let Cabinet = (props) => {
     let hard = props.stateCabinet.bag.hdd
@@ -24,26 +24,7 @@ let Cabinet = (props) => {
                     <div className="user__second__name">{props.stateUser.secondName}</div>  
                 </div>
             </div>
-            <div className="user__computer">
-                <div className="computer__schema">
-                    <img src={schema}  />
-                </div>
-                <div></div>
-                <div className="computer__data">
-                    <div className="computer__data__name">Материнка</div>
-                    <div className="computer__data__item"></div>
-                    <div className="computer__data__name">Процессор</div>
-                    <div className="computer__data__item"></div>
-                    <div className="computer__data__name">Видеокарта</div>
-                    <div className="computer__data__item"></div>
-                    <div className="computer__data__name">Оперативная</div>
-                    <div className="computer__data__item"></div>
-                    <div className="computer__data__name">SSD</div>
-                    <div className="computer__data__item"></div>
-                    <div className="computer__data__name">Жесткий диск</div>
-                    <div className="computer__data__item"></div>
-                </div>
-            </div>
+            <ComputerContainer />
             <div className="user__bug">
                 <div className="bug__name">Материнка
                     {mother.map((data) => {
