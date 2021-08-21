@@ -3,6 +3,43 @@ import { apiCabinet } from '../../apiDAL/DAL'
 import ComputerContainer from './Computer/ComputerContainer'
 
 let Cabinet = (props) => {
+
+	let eraseItemSsd = (id) => {
+		apiCabinet.eraseItemSsd(id)
+		props.updateCabinetAC(true)
+	}
+
+
+	let eraseItemVideo = (id) => {
+		apiCabinet.eraseItemVideo(id)
+		props.updateCabinetAC(true)
+	}
+
+	let eraseItemHdd = (id) => {
+		apiCabinet.eraseItemHdd(id)
+		props.updateCabinetAC(true)
+	}
+
+	let eraseItemMother = (id) => {
+		apiCabinet.eraseItemMother(id)
+		props.updateCabinetAC(true)
+	}
+
+	let eraseItemPower = (id) => {
+		apiCabinet.eraseItemPower(id)
+		props.updateCabinetAC(true)
+	}
+
+	let eraseItemRam = (id) => {
+		apiCabinet.eraseItemRam(id)
+		props.updateCabinetAC(true)
+	}
+
+	let eraseItemCpu = (id) => {
+		apiCabinet.eraseItemCpu(id)
+        props.updateCabinetAC(true);
+	}
+
     console.log("Draw Cabinet")
     let stateCab = props.stateCabinet
     let stateComp = props.stateComp
@@ -14,6 +51,11 @@ let Cabinet = (props) => {
     let video = stateCab.bag.video
     let ram = stateCab.bag.ram
     let arrRam = stateComp.ram.map((data) => data.id)
+    let ramSlot = {
+        ddr3: stateComp.remainDdr3,
+        ddr3L: stateComp.remainDdr3L,
+        ddr4: stateComp.remainDdr4,
+    }
     let arrHard = stateComp.hdd.map((data) => data.id)
     let arrVideo = stateComp.video.map((data) => data.id)
     let arrSsd = stateComp.ssd.map((data) => data.id)
@@ -24,7 +66,7 @@ let Cabinet = (props) => {
         msata: 0
     }
 
-    let haveSlot = (data) => {
+    let haveSlotSsd = (data) => {
         if (data == "SATA-III") {
             if (ssdSlot.sata) {
                 return <div className="button__item">&laquo;</div>
@@ -46,28 +88,28 @@ let Cabinet = (props) => {
         }
     }
 
-    let test = ssd.map((data) => {
-        return(
-            <div className="bug__item">
-                { 
-                    data.id == stateComp.ssd[0].id ?
-                        <div className="button__item enable">&raquo;</div> :
-                        haveSlot(data.interface) ?
-                        <div className="button__item">&laquo;</div> :
-                        <div className="button__item disable">X</div>
-                }
-                <div className="bug__item__name">
-                    {data.model} {data.brand}
-                </div>
-                <div className="bug__item__disc">
-                    Описание Итема
-                </div>
-                <div className="erase_item"><b>X</b></div>
-            </div>
-        )
-    })
+    let haveSlotRam = (data) => {
+        if (data == "DDR3") {
+            if (ramSlot.ddr3) {
+                return <div className="button__item">&laquo;</div>
+            } else {
+                return <div className="button__item disable">X</div>
+            }
+        } else if (data == "DDR3L") {
+            if (ramSlot.ddr3L) {
+                return <div className="button__item">&laquo;</div>
+            } else {
+                return <div className="button__item disable">X</div>
+            }
+        } else if (data == "DDR4") {
+            if (ramSlot.ddr4) {
+                return <div className="button__item">&laquo;</div>
+            } else {
+                return <div className="button__item disable">X</div>
+            }
+        }
+    }
 
-    console.log(test)
     return (
         <div className="cabinet__wrapper">
             <div className="info__user">
@@ -99,7 +141,11 @@ let Cabinet = (props) => {
                                     <div className="bug__item__disc">
                                         Описание Итема
                                     </div>
-                                    <div className="erase_item"><b>X</b></div>
+                                    {
+                                        data.id == stateComp.mother[0].id ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemMother(data.id)}}><b>X</b></div>
+                                    }
                                 </div>
                             )
                         })}
@@ -108,19 +154,23 @@ let Cabinet = (props) => {
                     {cpu.map((data) => {
                             return(
                                 <div className="bug__item">
-                                { data.id == props.stateComp.cpu[0].id ?
-                                        <div className="button__item enable">&raquo;</div> :
-                                        stateComp.remainCpu ?
-                                        <div className="button__item">&laquo;</div> :
-                                        <div className="button__item disable">X</div>
-                                }
+                                    { data.id == props.stateComp.cpu[0].id ?
+                                            <div className="button__item enable">&raquo;</div> :
+                                            stateComp.remainCpu ?
+                                            <div className="button__item">&laquo;</div> :
+                                            <div className="button__item disable">X</div>
+                                    }
                                     <div className="bug__item__name">
                                         {data.model} {data.brand}
                                     </div>
                                     <div className="bug__item__disc">
                                         Описание Итема
                                     </div>
-                                    <div className="erase_item"><b>X</b></div>
+                                    {
+                                        data.id == props.stateComp.cpu[0].id ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemCpu(data.id)}}><b>X</b></div>
+                                    }
                                 </div>
                             )
                         })}
@@ -129,19 +179,23 @@ let Cabinet = (props) => {
                     {power.map((data) => {
                         return( 
                             <div className="bug__item">
-                            { data.id == props.stateComp.power[0].id ?
-                                    <div className="button__item enable">&raquo;</div> :
-                                    stateComp.remainPower ?
-                                    <div className="button__item">&laquo;</div> :
-                                    <div className="button__item disable">X</div>
-                            }
+                                { data.id == props.stateComp.power[0].id ?
+                                        <div className="button__item enable">&raquo;</div> :
+                                        stateComp.remainPower ?
+                                        <div className="button__item">&laquo;</div> :
+                                        <div className="button__item disable">X</div>
+                                }
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
-                                <div className="erase_item"><b>X</b></div>
+                                    {
+                                        data.id == props.stateComp.power[0].id ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemPower(data.id)}}><b>X</b></div>
+                                    }
                             </div>
                         )
                     })}     
@@ -162,7 +216,11 @@ let Cabinet = (props) => {
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
-                                <div className="erase_item"><b>X</b></div>
+                                    {
+                                        arrVideo.some((item) => item == data.id) ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemVideo(data.id)}}><b>X</b></div>
+                                    }
                             </div>
                         )
                     })}        
@@ -172,19 +230,21 @@ let Cabinet = (props) => {
                         return(
                             <div className="bug__item">
                                 { 
-                                    data.id == stateComp.ssd[0].id ?
+                                    arrSsd.some((item) => item == data.id) ?
                                         <div className="button__item enable">&raquo;</div> :
-                                        haveSlot(data.interface) ?
-                                        <div className="button__item">&laquo;</div> :
-                                        <div className="button__item disable">X</div>
+                                        haveSlotSsd(data.interface)
                                 }
                                 <div className="bug__item__name">
-                                    {data.model} {data.brand}
+                                    {data.model} {data.brand} {data.interface}
                                 </div>
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
-                                <div className="erase_item"><b>X</b></div>
+                                {
+                                   arrSsd.some((item) => item == data.id) ? 
+                                   <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                   <div className="erase_item" onClick={() => {eraseItemSsd(data.id)}}><b>X</b></div>
+                                }
                             </div>
                         )
                     })} 
@@ -193,17 +253,22 @@ let Cabinet = (props) => {
                     {ram.map((data) => {
                         return(
                             <div className="bug__item">
-                            { arrRam.some((item) => item == data.id) ?
-                                    <div className="button__item enable">&raquo;</div> :
-                                    <div className="button__item">&laquo;</div>
-                            }
+                                    { 
+                                        arrRam.some((item) => item == data.id) ?
+                                            <div className="button__item enable">&raquo;</div> :
+                                            haveSlotRam(data.type_memory)
+                                    }
                                 <div className="bug__item__name">
-                                    {data.id}. {data.model} {data.brand} 
+                                    {data.model} {data.brand} {data.type_memory}
                                 </div>
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
-                                <div className="erase_item"><b>X</b></div>
+                                    {
+                                        arrRam.some((item) => item == data.id) ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemRam(data.id)}}><b>X</b></div>
+                                    }
                             </div>
                         )
                     })}
@@ -211,20 +276,22 @@ let Cabinet = (props) => {
                 <div className="bug__name">Жесткий
                     {hard.map((data) => {
                         return(
-                            <div className="bug__item"> 
-                                {console.log(hard)}                   
-                                {console.log(arrHard)}                   
-                                { arrHard.some((item) => item == data.id) ?
-                                    <div className="button__item enable">&raquo;</div> :
-                                    <div className="button__item">&laquo;</div>
-                                }
+                            <div className="bug__item">                   
+                                    { arrHard.some((item) => item == data.id) ?
+                                        <div className="button__item enable">&raquo;</div> :
+                                        <div className="button__item">&laquo;</div>
+                                    }
                                 <div className="bug__item__name">
                                     {data.model} {data.brand}
                                 </div>
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
-                                <div className="erase_item"><b>X</b></div>
+                                    {
+                                        arrHard.some((item) => item == data.id) ? 
+                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item" onClick={() => {eraseItemHdd(data.id)}}><b>X</b></div>
+                                    }
                             </div>
                         )
                     })}

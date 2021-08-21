@@ -292,7 +292,7 @@ export const apiCabinet = {
     },
     addItemSsd: (id) => {
         return (
-            fetch(baseUrl + 'ssd/mother/' + String(id), {
+            fetch(baseUrl + 'cabinet/ssd/' + String(id), {
                 method: "post",
                 headers: getHeader()
                 }

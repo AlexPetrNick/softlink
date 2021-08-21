@@ -129,10 +129,6 @@
     border: 1px solid black;
 }
 
-.disable {
-    background-color: #7d7d7d;
-}
-
 .button__item:hover {
     text-shadow: 0px 5px 5px yellow;
 }
@@ -151,4 +147,13 @@
 
 .erase_item:hover {
     color: black;
+}
+
+.deleteCant {
+    background-color: #7d7d7d;
+    color: white;
+}
+
+.disable {
+    background-color: #7d7d7d;
 }
