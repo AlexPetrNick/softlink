@@ -24,10 +24,6 @@
 .user__bug {
     text-align: center;
     font-size: 20px;
-
-
-}
-.user__logo{
 }
 .user__logo img {
     padding-top: 15px;
@@ -61,7 +57,6 @@
     padding-top: 20px;
     text-align: center;
 }
-.computer__schema{}
 .computer__schema img{
     width: 350px;
     height: 300px;
