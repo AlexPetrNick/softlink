@@ -65,7 +65,8 @@ let Cabinet = (props) => {
         sata: stateComp.remainSata,
         msata: 0
     }
-
+    let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
+    let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let haveSlotSsd = (data) => {
         if (data == "SATA-III") {
             if (ssdSlot.sata) {
@@ -143,7 +144,7 @@ let Cabinet = (props) => {
                                     </div>
                                     {
                                         data.id == stateComp.mother[0].id ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemMother(data.id)}}><b>X</b></div>
                                     }
                                 </div>
@@ -168,7 +169,7 @@ let Cabinet = (props) => {
                                     </div>
                                     {
                                         data.id == props.stateComp.cpu[0].id ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemCpu(data.id)}}><b>X</b></div>
                                     }
                                 </div>
@@ -193,7 +194,7 @@ let Cabinet = (props) => {
                                 </div>
                                     {
                                         data.id == props.stateComp.power[0].id ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemPower(data.id)}}><b>X</b></div>
                                     }
                             </div>
@@ -218,7 +219,7 @@ let Cabinet = (props) => {
                                 </div>
                                     {
                                         arrVideo.some((item) => item == data.id) ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemVideo(data.id)}}><b>X</b></div>
                                     }
                             </div>
@@ -242,7 +243,7 @@ let Cabinet = (props) => {
                                 </div>
                                 {
                                    arrSsd.some((item) => item == data.id) ? 
-                                   <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                   <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                    <div className="erase_item" onClick={() => {eraseItemSsd(data.id)}}><b>X</b></div>
                                 }
                             </div>
@@ -266,7 +267,7 @@ let Cabinet = (props) => {
                                 </div>
                                     {
                                         arrRam.some((item) => item == data.id) ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemRam(data.id)}}><b>X</b></div>
                                     }
                             </div>
@@ -289,7 +290,7 @@ let Cabinet = (props) => {
                                 </div>
                                     {
                                         arrHard.some((item) => item == data.id) ? 
-                                        <div className="erase_item deleteCant" title="Нельзя удалить из кабинета пока итем в компьютере"><b>X</b></div>:
+                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
                                         <div className="erase_item" onClick={() => {eraseItemHdd(data.id)}}><b>X</b></div>
                                     }
                             </div>

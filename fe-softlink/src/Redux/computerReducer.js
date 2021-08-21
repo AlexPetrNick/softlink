@@ -14,7 +14,16 @@ export const TOGGLE_CORRECT = 'TOGGLE-CORRECT'
 export const CHANGE_NAME = 'CHANGE_NAME'
 export const MOUNT_COMPUTER = 'MOUNT_COMPUTER'
 
-
+let typeItem = {
+    0: "Не определен",
+    1: "Материнка",
+    2: "Процессор",
+    3: "Оперативная память",
+    4: "Видеокарта",
+    5: "Блок питания",
+    6: "SSD",
+    7: "HDD",
+}
 
 const computerReducer = (state=initState, action) => {
     switch(action.type) {

@@ -8,6 +8,9 @@ import uuid
 def generate_uuid():
     return uuid.uuid4
 
+class TypeItem(models.Model):
+    name = models.TextField(max_length=50, blank=True)
+
 class InterfaceMemory(models.Model):
     name = models.TextField(max_length=50, blank=True)
 
@@ -157,6 +160,7 @@ class Processor(models.Model):
     tdp = models.TextField(max_length=20)
     has_graph = models.BooleanField()
     image = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.series)
@@ -172,6 +176,7 @@ class HDD(models.Model):
     interface = models.TextField(max_length=30)
     propusk_sposob = models.TextField(max_length=30)
     power = models.TextField(max_length=30)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -196,6 +201,7 @@ class Mother(models.Model):
     port = models.TextField(max_length=150)
     bios = models.TextField(max_length=30)
     form_fact = models.ForeignKey(FormFactorMother, on_delete=models.CASCADE)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -210,6 +216,7 @@ class RAM(models.Model):
     work_freq = models.TextField(max_length=30)
     timing = models.TextField(max_length=30)
     latency = models.TextField(max_length=30)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -231,6 +238,7 @@ class VideoCard(models.Model):
     port = models.TextField(max_length=30)
     added_power = models.TextField(max_length=30)
     power = models.TextField(max_length=30)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -246,6 +254,7 @@ class PowerSupply(models.Model):
     molex = models.TextField(max_length=30)
     sata = models.TextField(max_length=30)
     fdd = models.TextField(max_length=30)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -262,6 +271,7 @@ class SSD(models.Model):
     interface = models.TextField(max_length=30)
     propusk_sposob = models.TextField(max_length=30)
     power_in = models.TextField(max_length=30)
+    type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
