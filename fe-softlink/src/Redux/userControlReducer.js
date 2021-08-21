@@ -64,7 +64,11 @@ export default userControlReducer
 export const idCabinetThunkCreator = () => (dispatch) => {
     return apiCabinet.getStateCabinet()
         .then(response => {
-            dispatch(setCabinetId(response.id))
+            if (response.id){
+                dispatch(setCabinetId(response.id))   
+            } else {
+                dispatch(setCabinetId(0))
+            }
         })
 
 }

@@ -33,7 +33,7 @@ class SsdPageContainer extends React.Component {
 let mapStateToProps = (state) => {
     return({
         stateHard: state.pageHard,
-		stateBugHard: state.pageCabinet.bag.mother,
+		stateBugHard: state.pageCabinet.bag.ssd,
 		stateup: state.pageCabinet.updateCabinet
     })
 }

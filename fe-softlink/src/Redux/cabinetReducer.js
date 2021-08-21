@@ -117,6 +117,7 @@ export const getCabinetThunkCreator = () => {
         .then(response => response)
         Promise.all([stateCabinet])
             .then(value => {
+                console.log(value)
                 dispatch(getStateCabinetAC(value[0]))
             }
         )

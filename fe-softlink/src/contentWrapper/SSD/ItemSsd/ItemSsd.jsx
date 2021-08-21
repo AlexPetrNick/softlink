@@ -15,7 +15,7 @@ const ItemSsd = (props) => {
 		props.updateCabinetAC(true)
 	}
 
-
+	console.log(props.idBugHard)
 	return (
 		<div className="item__content">
 			<img className="picture__hard_item" src={ssd} alt="" />

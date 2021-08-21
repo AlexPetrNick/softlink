@@ -12,10 +12,7 @@ class ContainerComponent extends React.Component{
     render() {
         console.log("cabinet container")
         return (
-            <Cabinet
-                stateCabinet={this.props.stateCabinet}
-                stateUser={this.props.stateUser}
-            />
+            <Cabinet {...this.props}     />
         )
     }
 }
@@ -25,6 +22,7 @@ class ContainerComponent extends React.Component{
 
 let mapStateToProps = (state) => {
     return {
+        stateComp: state.computer,
         stateCabinet: state.pageCabinet,
         stateUser: state.pageUser,
     }

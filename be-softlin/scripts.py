@@ -1,20 +1,29 @@
 import sqlite3
 import random
 
-connector = sqlite3.connect('db.sqlite3')
-connector = sqlite3.connect('db.sqlite3')
+connector = sqlite3.connect('db copy.sqlite3')
+
+lis = []
 
 cur = connector.cursor()
-cur = connector.cursor()
-cur = connector.cursor()
 
-cnt = cur.execute("select id from hardware_mother where ddr3 > ''").fetchall()
-print(cnt)
-for i in range(0, len(cnt)):
-    temp = cur.execute("select ddr3 from hardware_mother where id={0}".format(cnt[i][0])).fetchone()
-    cnt_ddr = list(temp)[0][:1]
-    temp2 = cur.execute("update hardware_mother set ddr3={0} where id={1}".format(cnt_ddr, cnt[i][0]))
-    
+nameinter = cur.execute("select * from hardware_interfacememory ").fetchall()
+print(nameinter)
 
-connector.commit()
+nameinterssd = cur.execute("select interface from hardware_ssd ").fetchall()
+
+for ssd in nameinterssd:
+    for inter in nameinter:
+        if ssd[0] == inter[1]:
+            temp = inter[0]
+            lis.append(temp)
+
+##for inte in lis:
+
+    #cur.execute("update hardware_ssd set interface=?", inte)
+
+lis.index(1)
+
+print(lis)
+
 connector.close()

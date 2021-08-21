@@ -4,9 +4,6 @@ import Computer from './Computer'
 import {fetchComputerThunkCreator} from '../../../Redux/computerReducer'
 
 class ComputerContainer extends React.Component{
-    componentDidMount() {
-        this.props.fetchComputerThunkCreator()
-    }
 
     render() {
         return(

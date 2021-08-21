@@ -7,15 +7,28 @@ Response:
 
     {
     "id": 2,
-    "cpu_ids": [], //json
-    "mother_ids": [], //json
-    "hdd_ids": [], //json
-    "ssd_ids": [], //json
-    "video_ids": [], //json
-    "power_supply_ids": [], //json
-    "ram_ids": [], //json
+    "cpu_list": [], //json
+    "mother_list": [], //json
+    "hdd_list": [], //json
+    "ssd_list": [], //json
+    "video_list": [], //json
+    "power_supply_list": [], //json
+    "ram_list": [], //json
     "name": "e7a8b1d5-1ac3-4b88-9fb1-6983d3041639",
-    "user": 7
+    "user": 7,
+    TODO:
+    "mother_cnt": 0, //int
+    "power_supply_cnt": 0, //int
+    "cpu_amd_cnt": 0, //int
+    "cpu_intel_cnt": 0, //int
+    "ddr3_cnt": 0, //int
+    "ddr3l_cnt": 0, //int
+    "ddr4_cnt": 0, //int
+    "sata_cnt": 0, //int
+    "m2_cnt": 0, //int
+    "pcie2_cnt": 0, //int
+    "pcie4_cnt": 0, //int
+    "pcie16_cnt": 0, //int
 }
 _________________________________________________________
 

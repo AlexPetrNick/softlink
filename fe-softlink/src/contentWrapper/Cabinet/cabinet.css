@@ -71,14 +71,17 @@
     text-align: center;
     font-size: 20px;
 
-    grid-template: repeat(12, 40px)/1fr;
+    grid-template: auto /1fr;
 
 }
+
 .computer__data__name{
     background-color: #4f4f4f;
+    height: auto;
 }
 .computer__data__item{
     background-color: #858585;
+    height: 40px;
 }
 
 .bug__name{
@@ -124,6 +127,10 @@
 .enable {
     background-color: red;
     border: 1px solid black;
+}
+
+.disable {
+    background-color: #7d7d7d;
 }
 
 .button__item:hover {
