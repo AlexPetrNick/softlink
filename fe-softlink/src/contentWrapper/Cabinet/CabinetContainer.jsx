@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './cabinet.css'
 import {getCabinetThunkCreator, getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
 import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
+import {addItemInComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
@@ -31,5 +32,6 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getCabinetThunkCreator,
     getStateCabinetAC,
-    updateCabinetAC
+    updateCabinetAC,
+    addItemInComputer
 })(ContainerComponent)

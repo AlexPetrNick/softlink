@@ -40,6 +40,12 @@ let Cabinet = (props) => {
         props.updateCabinetAC(true);
 	}
 
+    let addItem = (data) => {
+        console.log("click")
+        props.addItemInComputer(data)
+		props.updateCabinetAC(true)
+    }
+
     console.log("Draw Cabinet")
     let stateCab = props.stateCabinet
     let stateComp = props.stateComp
@@ -63,26 +69,32 @@ let Cabinet = (props) => {
         m2: stateComp.remainM2,
         pcie: stateComp.remainPcie4,
         sata: stateComp.remainSata,
-        msata: 0
+        msata: stateComp.remainMSata
     }
     let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
     let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let haveSlotSsd = (data) => {
-        if (data == "SATA-III") {
+        if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
                 return <div className="button__item disable">X</div>
             }
-        } else if (data == "M2") {
+        } else if (data.interface == "M2") {
             if (ssdSlot.m2) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
                 return <div className="button__item disable">X</div>
             }
-        } else if (data == "PCI-E 3.0 x4") {
+        } else if (data.interface == "PCI-E 3.0 x4") {
             if (ssdSlot.pcie) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
+            } else {
+                return <div className="button__item disable">X</div>
+            }
+        } else if (data.interface == "mSATA") {
+            if (ssdSlot.msata) {
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
                 return <div className="button__item disable">X</div>
             }
@@ -90,21 +102,22 @@ let Cabinet = (props) => {
     }
 
     let haveSlotRam = (data) => {
-        if (data == "DDR3") {
+        console.log(data)
+        if (data.type_memory == "DDR3") {
             if (ramSlot.ddr3) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" >X</div>
             }
-        } else if (data == "DDR3L") {
+        } else if (data.type_memory == "DDR3L") {
             if (ramSlot.ddr3L) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
                 return <div className="button__item disable">X</div>
             }
-        } else if (data == "DDR4") {
+        } else if (data.type_memory == "DDR4") {
             if (ramSlot.ddr4) {
-                return <div className="button__item">&laquo;</div>
+                return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
                 return <div className="button__item disable">X</div>
             }
@@ -233,7 +246,7 @@ let Cabinet = (props) => {
                                 { 
                                     arrSsd.some((item) => item == data.id) ?
                                         <div className="button__item enable">&raquo;</div> :
-                                        haveSlotSsd(data.interface)
+                                        haveSlotSsd(data)
                                 }
                                 <div className="bug__item__name">
                                     {data.model} {data.brand} {data.interface}
@@ -251,24 +264,24 @@ let Cabinet = (props) => {
                     })} 
                 </div>
                 <div className="bug__name">Оперативная
-                    {ram.map((data) => {
+                    {ram.map((dataRam) => {
                         return(
                             <div className="bug__item">
                                     { 
-                                        arrRam.some((item) => item == data.id) ?
+                                        arrRam.some((item) => item == dataRam.id) ?
                                             <div className="button__item enable">&raquo;</div> :
-                                            haveSlotRam(data.type_memory)
+                                            haveSlotRam(dataRam)
                                     }
                                 <div className="bug__item__name">
-                                    {data.model} {data.brand} {data.type_memory}
+                                    {dataRam.model} {dataRam.brand} {dataRam.type_memory}
                                 </div>
                                 <div className="bug__item__disc">
                                     Описание Итема
                                 </div>
                                     {
-                                        arrRam.some((item) => item == data.id) ? 
+                                        arrRam.some((item) => item == dataRam.id) ? 
                                         <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemRam(data.id)}}><b>X</b></div>
+                                        <div className="erase_item" onClick={() => {eraseItemRam(dataRam.id)}}><b>X</b></div>
                                     }
                             </div>
                         )

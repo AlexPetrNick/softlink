@@ -13,6 +13,8 @@ export const VIDEO = 'VIDEO'
 export const TOGGLE_CORRECT = 'TOGGLE-CORRECT'
 export const CHANGE_NAME = 'CHANGE_NAME'
 export const MOUNT_COMPUTER = 'MOUNT_COMPUTER'
+let ramCnt = 0;
+let cnt;
 
 let typeItem = {
     0: "Не определен",
@@ -25,60 +27,76 @@ let typeItem = {
     7: "HDD",
 }
 
+let typeRam = {
+    ddr3: "DDR3",
+    ddr3L: "DDR3L",
+    ddr4: "DDR4",
+}
+
+let typeSsd = {
+    m2: "M2",
+    pcie: "PCI-E 3.0 x4",
+    sata: "SATA-III",
+    msata: "mSATA"
+}
+
 const computerReducer = (state=initState, action) => {
     switch(action.type) {
         case ADD_ITEM_IN_COMPUTER:
-            let cnt
-            switch(action.typeItem) {
-                case MOTHER:
-                    cnt = state.cntMother - 1
+            if (action.data.type_item == 3) {
+                if (action.data.type_memory == typeRam.ddr3) {
+                    ramCnt = state.remainDdr3 - 1 
                     return {
                         ...state,
-                        mother: [...state.mother, action.data],
-                        cntMother: cnt
+                        remainDdr3: ramCnt,
+                        ram: [...state.ram, action.data]
                     }
-                case CPU:
-                    cnt = state.cntCpu - 1
+                } else if (action.data.type_memory == typeRam.ddr3L) {
+                    ramCnt = state.remainDdr3L - 1 
                     return {
                         ...state,
-                        cpu: [...state.cpu, action.data],
-                        cntCpu: cnt
+                        remainDdr3L: ramCnt,
+                        ram: [...state.ram, action.data]
                     }
-                case HDD:
-                    cnt = state.cntHdd - 1
+                } else { 
+                    ramCnt = state.remainDdr4 - 1 
                     return {
                         ...state,
-                        cpu: [...state.hdd, action.data],
-                        cntHdd: cnt
+                        remainDdr4: ramCnt,
+                        ram: [...state.ram, action.data]
                     }
-                case SSD:
-                    cnt = state.cntSsd - 1
+                }
+            }
+            else if (action.data.type_item == 6) {
+                if (action.data.interface == typeSsd.m2) {
+                    cnt = state.remainM2 - 1
                     return {
                         ...state,
-                        cpu: [...state.ssd, action.data],
-                        cntSsd: cnt
-                    } 
-                case VIDEO:
-                    cnt = state.cntVideo - 1
-                    return {
-                        ...state,
-                        cpu: [...state.video, action.data],
-                        cntVideo: cnt
+                        remainM2: cnt,
+                        ssd: [...state.ssd, action.data]
                     }
-                case RAM:
-                    cnt = state.cntRam - 1
+                } else if (action.data.interface == typeSsd.pcie) {
+                    cnt = state.remainPcie4 - 1
                     return {
                         ...state,
-                        cpu: [...state.ram, action.data],
-                        cntRam: cnt
+                        remainPcie4: cnt,
+                        ssd: [...state.ssd, action.data]
                     }
-                case POWER:
-                    cnt = state.cntPower - 1
+                } else if (action.data.interface == typeSsd.sata) {
+                    cnt = state.remainSata - 1
                     return {
                         ...state,
-                        cpu: [...state.power, action.data],
-                        cntPower: cnt
+                        remainSata: cnt,
+                        ssd: [...state.ssd, action.data]
                     }
+                } else {
+                    cnt = state.remainMSata - 1
+                    return {
+                        ...state,
+                        remainMSata: cnt,
+                        ssd: [...state.ssd, action.data]
+                    }
+                }
             }
         case ERASE_ITEM_ON_COMPUTER:
             switch(action.typeItem){
@@ -132,42 +150,6 @@ const computerReducer = (state=initState, action) => {
                         cntPower: cnt
                     }
             }
-        case MOUNT_COMPUTER:
-            let cMother = action.data.mother
-            let cntM
-            if (cMother.length > 0){
-                console.log('есть мать')
-            } else {
-                console.log('нету мати')
-            }
-            //let cPower = action.data.power_supply ? 0 : 1
-            let sock = action.data.mother[0].socket
-            let cHdd = parseInt(action.data.mother[0].sata_cnt, 10)
-            return {
-                ...state,
-                name: action.data.name,
-                cpu: action.data.cpu,
-                mother: action.data.mother,
-                hdd: [...action.data.hdd],
-                ssd: [...action.data.ssd],
-                ram: [...action.data.ram],
-                power: [...action.data.power_supply],
-                video: [...action.data.video],
-                cntMother: cntM,
-                cntCpu: {
-                    cnt: 0,
-                    socket: sock
-                },
-                cntHdd: cHdd,
-                cntSsd: 0,
-                cntRam: {
-                    ddr3: 0,
-                    ddr3l: 0,
-                    ddr4: 0
-                },
-                cntVideo: 0,
-                cntPower: 0,
-            }
         case TOGGLE_CORRECT:
             return {
                 ...state,
@@ -179,7 +161,7 @@ const computerReducer = (state=initState, action) => {
 }
 export default computerReducer
 
-export const addItemInComputer = (data, typeItem) => ({ type: ADD_ITEM_IN_COMPUTER, data, typeItem })
+export const addItemInComputer = (data) => ({ type: ADD_ITEM_IN_COMPUTER, data })
 export const eraseItemInComputer = (id, typeItem) => ({ type: ERASE_ITEM_ON_COMPUTER, id, typeItem })
 export const toggleCorrect = (truth) => ({ type:TOGGLE_CORRECT, truth })
 export const changeName = (name) => ({ type: CHANGE_NAME, name})
@@ -225,13 +207,14 @@ let initState = {
         "form_fact": "mATX",
         "model": "TUF GAMING A520M-PLUS",
         "work_freq": "2133 - 4800 МГц",
-        "ddr3": "",
-        "ddr3L": "",
-        "ddr4": "4",
-        "pcie16": "1",
-        "pcie4": "",
+        "ddr3": 0,
+        "ddr3L": 0,
+        "ddr4": 4,
+        "pcie16": 1,
+        "pcie4": 0,
         "pcie2": "",
         "sata_cnt": 6,
+        "msata_cnt": 1,
         "m2_cnt": 1,
         "has_NVMe": true,
         "port": "1x PS/22x USB 2.01x RJ-451x HDMI1x DVI-D1x VGA (D-Sub)3x Audio jack4 x USB 3.2 Gen 11 x USB 3.2 Gen 2",
@@ -247,19 +230,6 @@ let initState = {
         "freq": "7200",
         "propusk_sposob": "6 Гбит/сек",
         "power": "SATA"
-    }],
-    ssd: [{
-        "id": 3,
-        "brand": "Intel",
-        "form_factor": "M.2",
-        "model": "SSDSCKKW128G8X1959549",
-        "type_mem": "TLC",
-        "memory": "128 Gb",
-        "speed_read": "550",
-        "speed_write": "440",
-        "interface": "SATA-III",
-        "propusk_sposob": "6 Гбит/с",
-        "power_in": "От M.2 PCI-Express Gen3 x4"
     }],
     ram: [{
         "id": 3,
@@ -313,6 +283,19 @@ let initState = {
         "added_power": "0 (нет)",
         "power": "300 Вт"
     }],
+    ssd: [{
+        "id": 3,
+        "brand": "Intel",
+        "form_factor": "M.2",
+        "model": "SSDSCKKW128G8X1959549",
+        "type_mem": "TLC",
+        "memory": "128 Gb",
+        "speed_read": "550",
+        "speed_write": "440",
+        "interface": "SATA-III",
+        "propusk_sposob": "6 Гбит/с",
+        "power_in": "От M.2 PCI-Express Gen3 x4"
+    }],
     remainMother: 0,
     remainVideo: 0,
     remainPower: 0,
@@ -325,4 +308,5 @@ let initState = {
     remainPcie16: 0,
     remainM2: 1,
     remainSata: 4,
+    remainMSata: 1,
 }
