@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './cabinet.css'
 import {getCabinetThunkCreator, getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
 import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
-import {addItemInComputer} from '../../Redux/computerReducer'
+import {addItemInComputer, eraseItemInComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
@@ -33,5 +33,6 @@ export default connect(mapStateToProps, {
     getCabinetThunkCreator,
     getStateCabinetAC,
     updateCabinetAC,
-    addItemInComputer
+    addItemInComputer,
+    eraseItemInComputer
 })(ContainerComponent)

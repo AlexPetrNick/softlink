@@ -40,10 +40,31 @@ let typeSsd = {
     msata: "mSATA"
 }
 
+let nullMother = {
+    "id": 0,
+    "cpu": 0,
+    "ddr3": 0,
+    "ddr3L": 0,
+    "ddr4": 0,
+    "pcie16": 0,
+    "pcie4": 0,
+    "pcie2": 0,
+    "sata_cnt": 0,
+    "msata_cnt": 0,
+    "m2_cnt": 0,
+}
+
 const computerReducer = (state=initState, action) => {
     switch(action.type) {
         case ADD_ITEM_IN_COMPUTER:
-            if (action.data.type_item == 3) {
+            if (action.data.type_item == 1) {
+                let moth = action.data
+                return {
+                    ...state,
+                    remainMother: 0,
+                    mother: [moth]
+                }
+            } else if (action.data.type_item == 3) {
                 if (action.data.type_memory == typeRam.ddr3) {
                     ramCnt = state.remainDdr3 - 1 
                     return {
@@ -99,56 +120,16 @@ const computerReducer = (state=initState, action) => {
                 }
             }
         case ERASE_ITEM_ON_COMPUTER:
-            switch(action.typeItem){
-                case MOTHER:
-                    cnt = state.cntMother + 1
-                    return {
-                        ...state,
-                        cpu: state.mother.filter(item => item.id != action.id),
-                        cntMother: cnt
-                    }
-                case CPU:
-                    cnt = state.cntCpu + 1
-                    return {
-                        ...state,
-                        cpu: state.cpu.filter(item => item.id != action.id),
-                        cntCpu: cnt
-                    }
-                case HDD:
-                    cnt = state.cntHdd + 1
-                    return {
-                        ...state,
-                        cpu: state.hdd.filter(item => item.id != action.id),
-                        cntHdd: cnt
-                    }
-                case SSD:
-                    cnt = state.cntSsd + 1
-                    return {
-                        ...state,
-                        cpu: state.ssd.filter(item => item.id != action.id),
-                        cntSsd: cnt
-                    }
-                case RAM:
-                    cnt = state.cntRam + 1
-                    return {
-                        ...state,
-                        cpu: state.ram.filter(item => item.id != action.id),
-                        cntRam: cnt
-                    }
-                case VIDEO:
-                    cnt = state.cntVideo + 1
-                    return {
-                        ...state,
-                        cpu: state.video.filter(item => item.id != action.id),
-                        cntVideo: cnt
-                    }
-                case POWER:
-                    cnt = state.cntPower + 1
-                    return {
-                        ...state,
-                        cpu: state.power.filter(item => item.id != action.id),
-                        cntPower: cnt
-                    }
+            if (action.data.type_item == 1) {
+                return {
+                    ...state,
+                    remainMother: 1,
+                    mother: [nullMother]
+                }
+            } else {
+                return {
+                ...state
+            }
             }
         case TOGGLE_CORRECT:
             return {
@@ -162,7 +143,7 @@ const computerReducer = (state=initState, action) => {
 export default computerReducer
 
 export const addItemInComputer = (data) => ({ type: ADD_ITEM_IN_COMPUTER, data })
-export const eraseItemInComputer = (id, typeItem) => ({ type: ERASE_ITEM_ON_COMPUTER, id, typeItem })
+export const eraseItemInComputer = (data) => ({ type: ERASE_ITEM_ON_COMPUTER, data })
 export const toggleCorrect = (truth) => ({ type:TOGGLE_CORRECT, truth })
 export const changeName = (name) => ({ type: CHANGE_NAME, name})
 export const mountComputer = (data) => ({ type: MOUNT_COMPUTER, data })
@@ -207,6 +188,7 @@ let initState = {
         "form_fact": "mATX",
         "model": "TUF GAMING A520M-PLUS",
         "work_freq": "2133 - 4800 МГц",
+        "cpu": 1,
         "ddr3": 0,
         "ddr3L": 0,
         "ddr4": 4,
@@ -297,9 +279,9 @@ let initState = {
         "power_in": "От M.2 PCI-Express Gen3 x4"
     }],
     remainMother: 0,
-    remainVideo: 0,
+    remainVideo: 1,
     remainPower: 0,
-    remainCpu: 0,
+    remainCpu: 1,
     remainDdr3: 0,
     remainDdr3L: 0,
     remainDdr4: 2,

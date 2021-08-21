@@ -5,7 +5,7 @@ import {fetchComputerThunkCreator, toggleCorrect} from '../../../Redux/computerR
 
 class ComputerContainer extends React.Component{
 
-    toggleS(truth) {
+    toggleS = (truth) => {
         this.props.toggleCorrect(truth)
     }
 

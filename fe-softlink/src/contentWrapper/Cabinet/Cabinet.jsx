@@ -41,8 +41,12 @@ let Cabinet = (props) => {
 	}
 
     let addItem = (data) => {
-        console.log("click")
         props.addItemInComputer(data)
+		props.updateCabinetAC(true)
+    }
+
+    let eraseItemFromComp = (data) => {
+        props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
     }
 
@@ -144,9 +148,9 @@ let Cabinet = (props) => {
                                 <div className="bug__item">
                                     { 
                                         data.id == stateComp.mother[0].id ?
-                                            <div className="button__item enable">&raquo;</div> :
+                                            <div className="button__item enable" onClick={() => {eraseItemFromComp(data)}}>&raquo;</div> :
                                             stateComp.remainMother ?
-                                            <div className="button__item">&laquo;</div> :
+                                            <div className="button__item" onClick={() => addItem(data)}>&laquo;</div> :
                                             <div className="button__item disable">X</div>
                                     }
                                     <div className="bug__item__name">

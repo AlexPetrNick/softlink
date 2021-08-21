@@ -29,10 +29,9 @@ let Computer = (props) => {
         )
     })
 
-
-    let generalCntCpu = 1
+    let generalCntPower = 1
+    let generalCntCpu = stateComp.mother[0].cpu
     let generalCntMother = 1
-    let realCntMother = stateComp.mother ? 0 : 1
     let generalCntVideo = parseInt(stateComp.mother[0].pcie16)
     let generalCntDdr3 = stateComp.mother[0].ddr3
     let generalCntDdr3L = stateComp.mother[0].ddr3L
@@ -42,16 +41,19 @@ let Computer = (props) => {
     let generalCntSata = stateComp.mother[0].sata_cnt
     let generalCntPcie = stateComp.mother[0].pcie4
     let generalCntMSata = stateComp.mother[0].msata_cnt
-    console.log(generalCntM2)
-    console.log(generalCntSata)
-    console.log(generalCntPcie)
-    console.log(generalCntMSata)
     let generalCntSsd = parseInt(generalCntM2) + parseInt(generalCntSata) + parseInt(generalCntPcie) + parseInt(generalCntMSata)
-    let reactCntSsd = stateComp.remainM2 + stateComp.remainMSata + stateComp.remainSata + stateComp.remainPcie4
+    console.log(parseInt(generalCntM2))
+    console.log(parseInt(generalCntSata))
+    console.log(parseInt(generalCntPcie))
+    console.log(parseInt(generalCntMSata))
+    let realCntSsd = stateComp.remainM2 + stateComp.remainMSata + stateComp.remainSata + stateComp.remainPcie4
+    let realCntMother = stateComp.mother[0].id != 0 ? 1 : 0
+    let realCntCpu = stateComp.remainCpu
+    let realCntVideo = stateComp.remainVideo
+    let realCntPower = generalCntPower - stateComp.remainPower
     let hdd = stateComp.hdd[0]
     let power = stateComp.power[0]
     let ramSlot = stateComp.remainDdr3 + stateComp.remainDdr3L + stateComp.remainDdr4
-    console.log(parseInt(stateComp.remainDdr3))
     return(
         <div className="user__computer">
             <div className="computer__schema">
@@ -61,9 +63,9 @@ let Computer = (props) => {
             <div className="computer__data">
                 <ComputerNameItem toggle={props.toggleS} text='Материнка' cntReal={realCntMother} cntFix ={generalCntMother} />
                 <div className="computer__data__item">{mother}</div>             
-                <ComputerNameItem toggle={props.toggleS} text='Процессор' cntReal={stateComp.remainCpu} cntFix ={generalCntCpu} />
+                <ComputerNameItem toggle={props.toggleS} text='Процессор' cntReal={realCntCpu} cntFix ={generalCntCpu} />
                 <div className="computer__data__item">{cpu.brand} {cpu.model}</div>
-                <ComputerNameItem toggle={props.toggleS} text='Видеокарта' cntReal={stateComp.remainVideo} cntFix ={generalCntVideo} />
+                <ComputerNameItem toggle={props.toggleS} text='Видеокарта' cntReal={realCntVideo} cntFix ={generalCntVideo} />
                 <div className="computer__data__item">{video.graph_proc}</div>
                 <div className="computer__data__name">
                     <ComputerNameItem toggle={props.toggleS} text='Оперативная' cntReal={ramSlot} cntFix ={generalCntRam} />
@@ -73,7 +75,7 @@ let Computer = (props) => {
                 </div>
                 {ramList}
                 <div className="computer__data__name">
-                    <ComputerNameItem toggle={props.toggleS} text='SSD' cntReal={reactCntSsd} cntFix ={generalCntSsd} />
+                    <ComputerNameItem toggle={props.toggleS} text='SSD' cntReal={realCntSsd} cntFix ={generalCntSsd} />
                     <ComputerNameItem toggle={props.toggleS} text='M2' cntReal={stateComp.remainM2} cntFix ={generalCntM2} />
                     <ComputerNameItem toggle={props.toggleS} text='Sata' cntReal={stateComp.remainSata} cntFix ={generalCntSata} />
                     <ComputerNameItem toggle={props.toggleS} text='PCI-E' cntReal={stateComp.remainPcie4} cntFix ={generalCntPcie} />
@@ -83,7 +85,7 @@ let Computer = (props) => {
                 <div className="computer__data__item">{ssd.brand} {ssd.model}</div>
                 <ComputerNameItem toggle={props.toggleS} text='Жесткий диск' cntReal={stateComp.remainSata} cntFix ={generalCntSata} />
                 <div className="computer__data__item">{hdd.brand} {hdd.model}</div>
-                <ComputerNameItem toggle={props.toggleS} text='Блок питания' cntReal={stateComp.remainPower} cntFix ={1} />
+                <ComputerNameItem toggle={props.toggleS} text='Блок питания' cntReal={realCntPower} cntFix ={1} />
                 <div className="computer__data__item">{power.brand} {power.model}</div>
                 </div>
         </div>
