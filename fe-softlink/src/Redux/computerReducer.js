@@ -11,6 +11,7 @@ export const RAM = 'RAM'
 export const POWER = 'POWER'
 export const VIDEO = 'VIDEO'
 export const TOGGLE_CORRECT = 'TOGGLE-CORRECT'
+export const TOGGLE_ERROR = 'TOGGLE_ERROR'
 export const CHANGE_NAME = 'CHANGE_NAME'
 export const MOUNT_COMPUTER = 'MOUNT_COMPUTER'
 let ramCnt = 0;
@@ -135,6 +136,11 @@ const computerReducer = (state=initState, action) => {
             return {
                 ...state,
                 isCorrect: action.truth
+        }
+        case TOGGLE_ERROR:
+            return {
+                ...state,
+                haveError: action.truth
             }
         default:
             return state
@@ -145,6 +151,7 @@ export default computerReducer
 export const addItemInComputer = (data) => ({ type: ADD_ITEM_IN_COMPUTER, data })
 export const eraseItemInComputer = (data) => ({ type: ERASE_ITEM_ON_COMPUTER, data })
 export const toggleCorrect = (truth) => ({ type:TOGGLE_CORRECT, truth })
+export const toggleError = (truth) => ({ type:TOGGLE_ERROR, truth })
 export const changeName = (name) => ({ type: CHANGE_NAME, name})
 export const mountComputer = (data) => ({ type: MOUNT_COMPUTER, data })
 
@@ -162,6 +169,7 @@ export const fetchComputerThunkCreator = () => {
 let initState = {
     name: 'ComputerOne',
     isCorrect: true,
+    haveError: 0,
     cpu: [{
         "id": 8,
         "brand": "AMD",

@@ -1,18 +1,15 @@
 let ComputerNameItem = (props) => {
 
-    console.log(props)
     let correctText = (cntReal, cntFix) => {
         if ((cntReal == cntFix) && cntFix != 0 ) {
             return 'correct'
         } else if (cntReal > cntFix) {
-            //props.toggle(false)
             return 'incorrect'
         } else {
             return 'passive'
         }
     }
     
-    console.log(correctText(props.cntReal, props.cntFix))
 
     let funcCorrect = (stateText, text, cntReal, cntFix) => {
         if (stateText == 'correct') {

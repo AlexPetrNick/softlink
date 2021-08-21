@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Computer from './Computer'
-import {fetchComputerThunkCreator, toggleCorrect} from '../../../Redux/computerReducer'
+import {fetchComputerThunkCreator, toggleError} from '../../../Redux/computerReducer'
 
 class ComputerContainer extends React.Component{
 
     toggleS = (truth) => {
-        this.props.toggleCorrect(truth)
+        console.log(this)
+        this.props.toggleError(truth)
     }
 
 
@@ -25,5 +26,5 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     fetchComputerThunkCreator,
-    toggleCorrect
+    toggleError
 })(ComputerContainer)

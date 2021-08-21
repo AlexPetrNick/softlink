@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import schema from '../../../image/scheme.jpg'
 import ComputerNameItem from './ComputerNameItem'
+import SaveButton from './SaveButton/SaveButton'
 
 
 let Computer = (props) => {
+    var elementsLength = document.getElementsByClassName('incorrect').length
+
+    console.log(elementsLength)
+
 
     let stateComp = props.state
-    console.dir(stateComp)
     let mother = stateComp.mother[0].model
     let cpu = stateComp.cpu[0]
     let video = stateComp.video[0]
@@ -42,10 +46,6 @@ let Computer = (props) => {
     let generalCntPcie = stateComp.mother[0].pcie4
     let generalCntMSata = stateComp.mother[0].msata_cnt
     let generalCntSsd = parseInt(generalCntM2) + parseInt(generalCntSata) + parseInt(generalCntPcie) + parseInt(generalCntMSata)
-    console.log(parseInt(generalCntM2))
-    console.log(parseInt(generalCntSata))
-    console.log(parseInt(generalCntPcie))
-    console.log(parseInt(generalCntMSata))
     let realCntSsd = stateComp.remainM2 + stateComp.remainMSata + stateComp.remainSata + stateComp.remainPcie4
     let realCntMother = stateComp.mother[0].id != 0 ? 1 : 0
     let realCntCpu = stateComp.remainCpu
@@ -58,9 +58,12 @@ let Computer = (props) => {
         <div className="user__computer">
             <div className="computer__schema">
                 <img src={schema}  />
+                <SaveButton text="Сохранить" cntError={elementsLength}/>
+                <div className="droppingChanges">Сбросить</div>
             </div>
             <div></div>
             <div className="computer__data">
+
                 <ComputerNameItem toggle={props.toggleS} text='Материнка' cntReal={realCntMother} cntFix ={generalCntMother} />
                 <div className="computer__data__item">{mother}</div>             
                 <ComputerNameItem toggle={props.toggleS} text='Процессор' cntReal={realCntCpu} cntFix ={generalCntCpu} />

@@ -137,7 +137,7 @@ let Cabinet = (props) => {
                 <div className="user__data">
                     <div className="user__login">{props.stateUser.login}</div>
                     <div className="user__firstname">{props.stateUser.firstName}</div>
-                    <div className="user__second__name">{props.stateUser.secondName}</div>  
+                    <div className="user__second__name">{props.stateUser.secondName}</div>
                 </div>
             </div>
             <ComputerContainer />

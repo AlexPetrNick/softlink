@@ -19,7 +19,7 @@
 
     display: grid;
 
-    grid-template: 300px 30px 1fr/ 1fr;
+    grid-template: 320px 30px 1fr/ 1fr;
 }
 .user__bug {
     text-align: center;
@@ -163,4 +163,26 @@
 
 .disable {
     background-color: #7d7d7d;
+}
+.saveChanges {
+    display: inline-block;
+    border: 1px solid rgb(1, 119, 182);
+    width: 100px;
+    padding-left: 24px;
+    height: 30px;
+    background-color: rgb(88, 88, 199);
+}
+
+.disabled {
+    background-color: rgb(85, 85, 85);
+}
+
+.droppingChanges {
+    padding-left: 24px;
+    margin-left: 10px;      
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    border: 1px solid black;
+    background-color: red;
 }
