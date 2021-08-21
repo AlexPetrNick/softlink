@@ -9,6 +9,7 @@ let MotherPage = (props) => {
 
 	let count = props.stateHard.countOnPage
 	let perPage = props.stateHard.perPage
+	let current = props.stateHard.currentPage
 	let cntPage;
 	let pages = []
 
@@ -22,7 +23,6 @@ let MotherPage = (props) => {
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
 
-	console.log(props.stateBugHard)
 
 	let idBugHard = props.stateBugHard.map((hard)=>{
 		if(hard) {
@@ -61,7 +61,10 @@ let MotherPage = (props) => {
 							{pages.map((data) => {
 								return(
 									<li className="number__page">
+										{data == current ?
+										<span onClick={()=> onClickLinkPage(data)}><u><b>{data}</b></u></span> : 
 										<span onClick={()=> onClickLinkPage(data)}>{data}</span>
+										}
 									</li>
 								)
 							})}
