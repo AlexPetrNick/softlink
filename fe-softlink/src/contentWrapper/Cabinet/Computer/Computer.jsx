@@ -40,7 +40,10 @@ let Computer = (props) => {
             <div className="computer__data__item">{item}</div>
         )
     })
-
+    
+    let aa = {
+        asdfsdf: 1
+    }
 
     return(
         <div className="user__computer">

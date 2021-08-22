@@ -1,3 +1,7 @@
 1. Добавить в материнку pci-e x2, pci-3 x4
 2. Добавить таблицу interface_memory
 3. Заменить значения в таблице ssd на id из interface_memory
+
+
+test merge
+test merge 2
