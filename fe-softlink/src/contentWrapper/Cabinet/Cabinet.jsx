@@ -7,55 +7,43 @@ import down from '../../image/down.png'
 import BagItem from './Bag/BagItem'
 
 let Cabinet = (props) => {
-
-
-
+    console.log("Draw Cabinet")
 	let eraseItemSsd = (id) => {
 		apiCabinet.eraseItemSsd(id)
 		props.updateCabinetAC(true)
 	}
-
-
 	let eraseItemVideo = (id) => {
 		apiCabinet.eraseItemVideo(id)
 		props.updateCabinetAC(true)
 	}
-
 	let eraseItemHdd = (id) => {
 		apiCabinet.eraseItemHdd(id)
 		props.updateCabinetAC(true)
 	}
-
 	let eraseItemMother = (id) => {
 		apiCabinet.eraseItemMother(id)
 		props.updateCabinetAC(true)
 	}
-
 	let eraseItemPower = (id) => {
 		apiCabinet.eraseItemPower(id)
 		props.updateCabinetAC(true)
 	}
-
 	let eraseItemRam = (id) => {
 		apiCabinet.eraseItemRam(id)
 		props.updateCabinetAC(true)
 	}
-
 	let eraseItemCpu = (id) => {
 		apiCabinet.eraseItemCpu(id)
         props.updateCabinetAC(true);
 	}
-
     let addItem = (data) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)
     }
-
     let eraseItemFromComp = (data) => {
         props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
     }
-
     let haveSlotSsd = (data) => {
         if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
@@ -119,36 +107,68 @@ let Cabinet = (props) => {
         }
     }
 
-    console.log("Draw Cabinet")
-    let classBagClose = "bug__item closed"
-    let classBagOpen = "bug__item"
-    let stateCab = props.stateCabinet
-    let stateComp = props.stateComp
-    let hard = stateCab.bag.hdd 
-    let cpu = stateCab.bag.cpu
-    let mother = stateCab.bag.mother
-    let power = stateCab.bag.powersupply
-    let ssd = stateCab.bag.ssd
-    let video = stateCab.bag.video
-    let ram = stateCab.bag.ram
-    let arrRam = stateComp.ram.map((data) => data.id)
-    let ramSlot = {
-        ddr3: stateComp.remainDdr3,
-        ddr3L: stateComp.remainDdr3L,
-        ddr4: stateComp.remainDdr4,
-    }
-    let arrHard = stateComp.hdd.map((data) => data.id)
-    let arrVideo = stateComp.video.map((data) => data.id)
-    let arrSsd = stateComp.ssd.map((data) => data.id)
-    let ssdSlot = {
-        m2: stateComp.remainM2,
-        pcie: stateComp.remainPcie4,
-        sata: stateComp.remainSata,
-        msata: stateComp.remainMSata
-    }
     let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
     let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
+    let stateCab = props.stateCabinet
+    let stateComp = props.stateComp
+    let dataMother = stateComp.mother[0]
+    let dataSsd = stateComp.ssd
+    let dataRam = stateComp.ram
 
+    let arrRam = stateComp.ram.map((data) => data.id) 
+    let arrHard = stateComp.hdd.map((data) => data.id)
+    let arrVideo = stateComp.video.map((data) => data.id)
+    let arrSsd = dataSsd.map((data) => data.id)
+
+    let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
+    let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
+    
+
+    let genStatComp = {
+        generalCntPower: 1,
+        generalCntMother: 1,
+        generalCntCpu: dataMother.cpu,
+        generalCntVideo: dataMother.pcie16,
+        generalCntDdr3: dataMother.ddr3,
+        generalCntDdr3L: dataMother.ddr3L,
+        generalCntDdr4: dataMother.ddr4,
+        generalCntRam: dataMother.ddr3 + dataMother.ddr3L + dataMother.ddr4,
+        generalCntM2: dataMother.m2_cnt,
+        generalCntSata: dataMother.sata_cnt,
+        generalCntPcie: dataMother.pcie4,
+        generalCntMSata: dataMother.msata_cnt,
+        generalCntSsd: dataMother.m2_cnt + dataMother.sata_cnt + dataMother.pcie4 + dataMother.msata_cnt
+    }
+
+    let realStatComp = {
+        realCntM2: dataSsd.length ? dataSsd.filter(a => a.interface == 'M2').length : 0,
+        realCntMSata: dataSsd.length ? dataSsd.filter(a => a.interface == 'mSATA').length : 0,
+        realCntSata: CntSataSsd,
+        realCntPcie4: dataSsd.length ? dataSsd.filter(a => a.interface == 'PCI-E 3.0 x4').length : 0,
+        realCntMother: dataMother.id ? 1 : 0,
+        realCntCpu: stateComp.cpu.length ? stateComp.cpu.length : 0,
+        realCntVideo: stateComp.video.length ? stateComp.video.length : 0,
+        realCntPower: stateComp.power.length ? stateComp.power.length : 0,
+        realCntDdr3: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3').length : 0,
+        realCntDdr3L: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3L').length : 0,
+        realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0,
+        realCntHdd: CntSataHdd
+    }
+
+    let realCntSsd = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
+    let realCntRam = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
+
+    let ramSlot = {
+        ddr3: genStatComp.generalCntDdr3 - realStatComp.realCntDdr3,
+        ddr3L: genStatComp.generalCntDdr3L - realStatComp.realCntDdr3L,
+        ddr4: genStatComp.generalCntDdr4 - realStatComp.realCntDdr4
+    }
+    let ssdSlot = {
+        m2: genStatComp.generalCntM2 - realStatComp.realCntM2,
+        pcie: genStatComp.generalCntPcie - realStatComp.realCntPcie4,
+        sata: genStatComp.generalCntSata - realStatComp.realCntSata,
+        msata: genStatComp.generalCntMSata - realStatComp.realCntMSata
+    }
 
 
     return (
@@ -163,7 +183,12 @@ let Cabinet = (props) => {
                     <div className="user__second__name">{props.stateUser.secondName}</div>
                 </div>
             </div>
-            <ComputerContainer />
+            <ComputerContainer 
+                realStatComp = {realStatComp}
+                genStatComp = {genStatComp}
+                realCntSsd = {realCntSsd}
+                realCntRam = {realCntRam}
+            />
             <div className="user__bug">
                 <div className="bug__wrapper">
                     <div className="bug_title">
@@ -171,7 +196,7 @@ let Cabinet = (props) => {
                         <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}}/>
                     </div>
                     <div className="bag_inner">
-                        {mother.map((data) => {
+                        {stateCab.bag.mother.map((data) => {
                                 return(
                                     <BagItem 
                                         data={data}
@@ -179,8 +204,8 @@ let Cabinet = (props) => {
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
                                         eraseItemMother={eraseItemMother}
-                                        stateCompItem={stateComp.mother[0]}
-                                        remain={stateComp.remainMother}
+                                        stateCompItem={dataMother}
+                                        remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     />
                                 )
                             })}
@@ -192,7 +217,7 @@ let Cabinet = (props) => {
                         <img className="img__roll" src={up} width="30"  onClick={(e) => {openClose(e)}}/>
                     </div>
                     <div className="bag_inner">
-                        {cpu.map((data) => {
+                        {stateCab.bag.cpu.map((data) => {
                                 return(
                                     <BagItem 
                                         data={data}
@@ -213,7 +238,7 @@ let Cabinet = (props) => {
                         <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}} />
                     </div>
                     <div className="bag_inner">
-                        {power.map((data) => {
+                        {stateCab.bag.powersupply.map((data) => {
                                 return(
                                     <BagItem 
                                         data={data}
@@ -233,7 +258,7 @@ let Cabinet = (props) => {
                         <div>Видеокарта</div>
                         <img className="img__roll" src={up} width="30"  />
                     </div>
-                    {video.map((data) => {
+                    {stateCab.bag.video.map((data) => {
                         return(
                             <div className="bug__item">
                                     { arrVideo.some((item) => item == data.id) ?
@@ -262,7 +287,7 @@ let Cabinet = (props) => {
                         <div>SSD</div>
                         <img className="img__roll" src={up} width="30"  />
                     </div>
-                    {ssd.map((data) => {
+                    {stateCab.bag.ssd.map((data) => {
                         return(
                             <div className="bug__item">
                                 { 
@@ -290,7 +315,7 @@ let Cabinet = (props) => {
                         <div>Оперативная</div>
                         <img className="img__roll" src={up} width="30"  />
                     </div>
-                    {ram.map((dataRam) => {
+                    {stateCab.bag.ram.map((dataRam) => {
                         return(
                             <div className="bug__item">
                                     { 
@@ -318,7 +343,7 @@ let Cabinet = (props) => {
                         <div>Жесткий</div>
                         <img className="img__roll" src={up} width="30"  />
                     </div>
-                    {hard.map((data) => {
+                    {stateCab.bag.hdd.map((data) => {
                         return(
                             <div className="bug__item">                   
                                     { arrHard.some((item) => item == data.id) ?
