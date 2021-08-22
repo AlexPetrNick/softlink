@@ -86,30 +86,48 @@
     color: red;
 }
 
-.bug__name{
+.bug__wrapper{
     border: 1px solid black;
     background-color: #102e00;
     color: #a1a1a1;
+    display: grid;
+    grid-template-rows: 30px 1fr;
 }
-.bug__name span {
+.bug__wrapper span {
     background-color: #404040;
 }
 
 .bug__item{
     color: black;
-    height: auto;
     display: grid;
     border: 2px solid black;
-
+    overflow: hidden;
+    height: 65px;
     grid-template: 30px 40px / 40px 1fr 40px;
 }
+
+.bug_title {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    grid-template-rows: 25px;
+}
+
+.bag_inner {
+    height: auto;
+    overflow: hidden;
+}
+.closed {
+    height: 0;
+}
+
+
 .button__item{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
     padding-top: 15px;
-
+    
     color: thistle;
     background-color: green;
     border: 2px solid white;
@@ -155,10 +173,6 @@
     background-color: #7d7d7d;
     color: white;
 }
-
-.disable {
-    background-color: #7d7d7d;
-}
 .saveChanges {
     display: inline-block;
     border: 1px solid rgb(1, 119, 182);
@@ -168,9 +182,7 @@
     background-color: rgb(88, 88, 199);
 }
 
-.disabled {
-    background-color: rgb(85, 85, 85);
-}
+
 
 .droppingChanges {
     padding-left: 24px;
@@ -179,5 +191,9 @@
     height: 30px;
     display: inline-block;
     border: 1px solid black;
-    background-color: red;
+    background-color: rgb(221, 8, 8);
+}
+
+.disabled {
+    background-color: rgb(85, 85, 85);
 }

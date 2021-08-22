@@ -1,8 +1,14 @@
+import React, { useState } from 'react'
 import userPhoto from '../../image/userPhoto.jpg'
 import { apiCabinet } from '../../apiDAL/DAL'
 import ComputerContainer from './Computer/ComputerContainer'
+import up from '../../image/up.png'
+import down from '../../image/down.png'
+import BagItem from './Bag/BagItem'
 
 let Cabinet = (props) => {
+
+
 
 	let eraseItemSsd = (id) => {
 		apiCabinet.eraseItemSsd(id)
@@ -50,33 +56,6 @@ let Cabinet = (props) => {
 		props.updateCabinetAC(true)
     }
 
-    console.log("Draw Cabinet")
-    let stateCab = props.stateCabinet
-    let stateComp = props.stateComp
-    let hard = stateCab.bag.hdd
-    let cpu = stateCab.bag.cpu
-    let mother = stateCab.bag.mother
-    let power = stateCab.bag.powersupply
-    let ssd = stateCab.bag.ssd
-    let video = stateCab.bag.video
-    let ram = stateCab.bag.ram
-    let arrRam = stateComp.ram.map((data) => data.id)
-    let ramSlot = {
-        ddr3: stateComp.remainDdr3,
-        ddr3L: stateComp.remainDdr3L,
-        ddr4: stateComp.remainDdr4,
-    }
-    let arrHard = stateComp.hdd.map((data) => data.id)
-    let arrVideo = stateComp.video.map((data) => data.id)
-    let arrSsd = stateComp.ssd.map((data) => data.id)
-    let ssdSlot = {
-        m2: stateComp.remainM2,
-        pcie: stateComp.remainPcie4,
-        sata: stateComp.remainSata,
-        msata: stateComp.remainMSata
-    }
-    let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
-    let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let haveSlotSsd = (data) => {
         if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
@@ -128,6 +107,50 @@ let Cabinet = (props) => {
         }
     }
 
+    let openClose = (e) => {
+        let button = e.nativeEvent.path[0]
+        let bagInner = button.parentNode.parentNode.childNodes[1]
+        if (bagInner.classList.length > 1) {
+            bagInner.classList.remove("closed")
+            button.setAttribute("src", up)
+        } else { 
+            bagInner.classList.add("closed")
+            button.setAttribute("src", down)
+        }
+    }
+
+    console.log("Draw Cabinet")
+    let classBagClose = "bug__item closed"
+    let classBagOpen = "bug__item"
+    let stateCab = props.stateCabinet
+    let stateComp = props.stateComp
+    let hard = stateCab.bag.hdd 
+    let cpu = stateCab.bag.cpu
+    let mother = stateCab.bag.mother
+    let power = stateCab.bag.powersupply
+    let ssd = stateCab.bag.ssd
+    let video = stateCab.bag.video
+    let ram = stateCab.bag.ram
+    let arrRam = stateComp.ram.map((data) => data.id)
+    let ramSlot = {
+        ddr3: stateComp.remainDdr3,
+        ddr3L: stateComp.remainDdr3L,
+        ddr4: stateComp.remainDdr4,
+    }
+    let arrHard = stateComp.hdd.map((data) => data.id)
+    let arrVideo = stateComp.video.map((data) => data.id)
+    let arrSsd = stateComp.ssd.map((data) => data.id)
+    let ssdSlot = {
+        m2: stateComp.remainM2,
+        pcie: stateComp.remainPcie4,
+        sata: stateComp.remainSata,
+        msata: stateComp.remainMSata
+    }
+    let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
+    let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
+
+
+
     return (
         <div className="cabinet__wrapper">
             <div className="info__user">
@@ -142,83 +165,74 @@ let Cabinet = (props) => {
             </div>
             <ComputerContainer />
             <div className="user__bug">
-                <div className="bug__name">Материнка
-                    {mother.map((data) => {
-                            return(
-                                <div className="bug__item">
-                                    { 
-                                        data.id == stateComp.mother[0].id ?
-                                            <div className="button__item enable" onClick={() => {eraseItemFromComp(data)}}>&raquo;</div> :
-                                            stateComp.remainMother ?
-                                            <div className="button__item" onClick={() => addItem(data)}>&laquo;</div> :
-                                            <div className="button__item disable">X</div>
-                                    }
-                                    <div className="bug__item__name">
-                                        {data.model} {data.brand}
-                                    </div>
-                                    <div className="bug__item__disc">
-                                        Описание Итема
-                                    </div>
-                                    {
-                                        data.id == stateComp.mother[0].id ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemMother(data.id)}}><b>X</b></div>
-                                    }
-                                </div>
-                            )
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Материнка</div>
+                        <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}}/>
+                    </div>
+                    <div className="bag_inner">
+                        {mother.map((data) => {
+                                return(
+                                    <BagItem 
+                                        data={data}
+                                        eraseItemFromComp={eraseItemFromComp}
+                                        addItem={addItem}
+                                        titleEraseItem={titleEraseItem}
+                                        eraseItemMother={eraseItemMother}
+                                        stateCompItem={stateComp.mother[0]}
+                                        remain={stateComp.remainMother}
+                                    />
+                                )
+                            })}
+                    </div>
+                </div>
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Процессор</div>
+                        <img className="img__roll" src={up} width="30"  onClick={(e) => {openClose(e)}}/>
+                    </div>
+                    <div className="bag_inner">
+                        {cpu.map((data) => {
+                                return(
+                                    <BagItem 
+                                        data={data}
+                                        eraseItemFromComp={eraseItemFromComp}
+                                        addItem={addItem}
+                                        titleEraseItem={titleEraseItem}
+                                        eraseItemMother={eraseItemCpu}
+                                        stateCompItem={stateComp.cpu[0]}
+                                        remain={stateComp.remainCpu}
+                                    />
+                                )
+                            })}
+                    </div>
+                </div>
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Блок питания</div>
+                        <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}} />
+                    </div>
+                    <div className="bag_inner">
+                        {power.map((data) => {
+                                return(
+                                    <BagItem 
+                                        data={data}
+                                        eraseItemFromComp={eraseItemFromComp}
+                                        addItem={addItem}
+                                        titleEraseItem={titleEraseItem}
+                                        eraseItemMother={eraseItemPower}
+                                        stateCompItem={stateComp.power[0]}
+                                        remain={stateComp.remainPower}
+                                    />
+                                )
                         })}
+                    </div>     
                 </div>
-                <div className="bug__name">Процессор
-                    {cpu.map((data) => {
-                            return(
-                                <div className="bug__item">
-                                    { data.id == props.stateComp.cpu[0].id ?
-                                            <div className="button__item enable">&raquo;</div> :
-                                            stateComp.remainCpu ?
-                                            <div className="button__item">&laquo;</div> :
-                                            <div className="button__item disable">X</div>
-                                    }
-                                    <div className="bug__item__name">
-                                        {data.model} {data.brand}
-                                    </div>
-                                    <div className="bug__item__disc">
-                                        Описание Итема
-                                    </div>
-                                    {
-                                        data.id == props.stateComp.cpu[0].id ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemCpu(data.id)}}><b>X</b></div>
-                                    }
-                                </div>
-                            )
-                        })}
-                </div>
-                <div className="bug__name">Блок питания
-                    {power.map((data) => {
-                        return( 
-                            <div className="bug__item">
-                                { data.id == props.stateComp.power[0].id ?
-                                        <div className="button__item enable">&raquo;</div> :
-                                        stateComp.remainPower ?
-                                        <div className="button__item">&laquo;</div> :
-                                        <div className="button__item disable">X</div>
-                                }
-                                <div className="bug__item__name">
-                                    {data.model} {data.brand}
-                                </div>
-                                <div className="bug__item__disc">
-                                    Описание Итема
-                                </div>
-                                    {
-                                        data.id == props.stateComp.power[0].id ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemPower(data.id)}}><b>X</b></div>
-                                    }
-                            </div>
-                        )
-                    })}     
-                </div>
-                <div className="bug__name">Видеокарта
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Видеокарта</div>
+                        <img className="img__roll" src={up} width="30"  />
+                    </div>
                     {video.map((data) => {
                         return(
                             <div className="bug__item">
@@ -243,7 +257,11 @@ let Cabinet = (props) => {
                         )
                     })}        
                 </div>
-                <div className="bug__name">SSD
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>SSD</div>
+                        <img className="img__roll" src={up} width="30"  />
+                    </div>
                     {ssd.map((data) => {
                         return(
                             <div className="bug__item">
@@ -267,7 +285,11 @@ let Cabinet = (props) => {
                         )
                     })} 
                 </div>
-                <div className="bug__name">Оперативная
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Оперативная</div>
+                        <img className="img__roll" src={up} width="30"  />
+                    </div>
                     {ram.map((dataRam) => {
                         return(
                             <div className="bug__item">
@@ -291,7 +313,11 @@ let Cabinet = (props) => {
                         )
                     })}
                 </div>
-                <div className="bug__name">Жесткий
+                <div className="bug__wrapper">
+                    <div className="bug_title">
+                        <div>Жесткий</div>
+                        <img className="img__roll" src={up} width="30"  />
+                    </div>
                     {hard.map((data) => {
                         return(
                             <div className="bug__item">                   

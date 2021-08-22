@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import schema from '../../../image/scheme.jpg'
 import ComputerNameItem from './ComputerNameItem'
-import SaveButton from './SaveButton/SaveButton'
+import SaveButton from './Button/SaveButton'
+import DropButton from './Button/DropButton'
 
 
 let Computer = (props) => {
-    var elementsLength = document.getElementsByClassName('incorrect').length
-
-    console.log(elementsLength)
-
-
+    let [stateComputer, setStateComputer] = useState(props.state.mother[0])
+    let differentState = JSON.stringify(stateComputer) === JSON.stringify(props.state.mother[0])
+    console.log(differentState)
+    let elementsLength = document.getElementsByClassName('incorrect').length
     let stateComp = props.state
     let mother = stateComp.mother[0].model
     let cpu = stateComp.cpu[0]
@@ -59,7 +59,7 @@ let Computer = (props) => {
             <div className="computer__schema">
                 <img src={schema}  />
                 <SaveButton text="Сохранить" cntError={elementsLength}/>
-                <div className="droppingChanges">Сбросить</div>
+                <DropButton text="Сбросить1" isChange={differentState} />
             </div>
             <div></div>
             <div className="computer__data">
