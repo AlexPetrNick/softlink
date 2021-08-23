@@ -21,7 +21,7 @@ let BagItem = (props) => {
             {
                 props.data.id == props.stateCompItem.id ? 
                 <div className="erase_item deleteCant" title={props.titleEraseItem}><b>X</b></div>:
-                <div className="erase_item" onClick={() => {props.eraseItemMother(props.data.id)}}><b>X</b></div>
+                <div className="erase_item" onClick={() => {props.eraseItem(props.data.id)}}><b>X</b></div>
             }
         </div>
     )

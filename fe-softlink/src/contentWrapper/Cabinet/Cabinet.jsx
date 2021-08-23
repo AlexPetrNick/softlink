@@ -193,7 +193,7 @@ let Cabinet = (props) => {
                 <div className="bug__wrapper">
                     <TitleBagButton nameTitle="Материнка" up={up} openClose={openClose} />
                     <div className="bag_inner">
-                        {stateCab.bag.mother.map((data) => {
+                        {stateCab.bag.mother.length ? stateCab.bag.mother.map((data) => {
                                 return(
                                     <BagItem 
                                         data={data}
@@ -205,7 +205,7 @@ let Cabinet = (props) => {
                                         remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     />
                                 )
-                            })}
+                            }) : null }
                     </div>
                 </div>
                 <div className="bug__wrapper">
