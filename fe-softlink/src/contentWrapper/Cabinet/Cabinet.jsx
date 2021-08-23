@@ -45,52 +45,52 @@ let Cabinet = (props) => {
         props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
     }
-    let haveSlotSsd = (data) => {
+    let haveSlotSsd = (data, titleSlot) => {
         if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         } else if (data.interface == "M2") {
             if (ssdSlot.m2) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         } else if (data.interface == "PCI-E 3.0 x4") {
             if (ssdSlot.pcie) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         } else if (data.interface == "mSATA") {
             if (ssdSlot.msata) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         }
     }
 
-    let haveSlotRam = (data) => {
+    let haveSlotRam = (data, titleSlot) => {
         if (data.type_memory == "DDR3") {
             if (ramSlot.ddr3) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable" >X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         } else if (data.type_memory == "DDR3L") {
             if (ramSlot.ddr3L) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         } else if (data.type_memory == "DDR4") {
             if (ramSlot.ddr4) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
             } else {
-                return <div className="button__item disable">X</div>
+                return <div className="button__item disable" title={titleSlot}>X</div>
             }
         }
     }
@@ -107,8 +107,6 @@ let Cabinet = (props) => {
         }
     }
 
-    let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
-    let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let stateCab = props.stateCabinet
     let stateComp = props.stateComp
     let dataMother = stateComp.mother[0]
@@ -202,7 +200,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemMother}
                                     arrayItem={arrMother}
                                     remain={genStatComp.generalCntMother - realStatComp.realCntMother}
@@ -220,7 +217,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemCpu}
                                     arrayItem={arrCpu}
                                     remain={genStatComp.generalCntCpu - realStatComp.realCntCpu}
@@ -238,7 +234,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemPower}
                                     arrayItem={arrPower}
                                     remain={genStatComp.generalCntPower - realStatComp.realCntPower}
@@ -256,7 +251,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemVideo}
                                     arrayItem={arrVideo}
                                     remain={genStatComp.generalCntVideo - realStatComp.realCntVideo}
@@ -274,7 +268,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemSsd}
                                     arrayItem={arrSsd}
                                     remain={genStatComp.generalCntSsd - realCntSsd}
@@ -293,7 +286,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemRam}
                                     arrayItem={arrRam}
                                     remain={genStatComp.generalCntRam - realCntRam}
@@ -312,7 +304,6 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    titleEraseItem={titleEraseItem}
                                     eraseItem={eraseItemHdd}
                                     arrayItem={arrHdd}
                                     remain={genStatComp.generalCntSata - realStatComp.realCntSata}
