@@ -203,7 +203,7 @@ let Cabinet = (props) => {
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
                                         eraseItem={eraseItemMother}
-                                        stateCompItem={dataMother}
+                                        arrayItem={arrMother}
                                         remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     />
                                 )
