@@ -102,7 +102,7 @@ const computerReducer = (state=initState, action) => {
             if (action.data.type_item == 1) {
                 return {
                     ...state,
-                    mother: [nullMother]
+                    mother: []
                 }
             } else {
                 return {
