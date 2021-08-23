@@ -5,6 +5,7 @@ import ComputerContainer from './Computer/ComputerContainer'
 import up from '../../image/up.png'
 import down from '../../image/down.png'
 import BagItem from './Bag/BagItem'
+import BagItemTest from './Bag/BagItemTest'
 import TitleBagButton from './Button/TitleBagButton'
 
 let Cabinet = (props) => {
@@ -115,7 +116,8 @@ let Cabinet = (props) => {
     let dataSsd = stateComp.ssd
     let dataRam = stateComp.ram
 
-    let arrRam = stateComp.ram.map((data) => data.id) 
+    let arrMother = stateComp.mother.map((data) => data.id)   
+    let arrRam = stateComp.ram.map((data) => data.id)   
     let arrHard = stateComp.hdd.map((data) => data.id)
     let arrVideo = stateComp.video.map((data) => data.id)
     let arrSsd = dataSsd.map((data) => data.id)
@@ -195,13 +197,13 @@ let Cabinet = (props) => {
                     <div className="bag_inner">
                         {stateCab.bag.mother.length ? stateCab.bag.mother.map((data) => {
                                 return(
-                                    <BagItem 
+                                    <BagItemTest 
                                         data={data}
                                         eraseItemFromComp={eraseItemFromComp}
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
                                         eraseItem={eraseItemMother}
-                                        stateCompItem={dataMother}
+                                        arrayItem={arrMother}
                                         remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     />
                                 )
