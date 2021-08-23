@@ -5,6 +5,7 @@ import ComputerContainer from './Computer/ComputerContainer'
 import up from '../../image/up.png'
 import down from '../../image/down.png'
 import BagItem from './Bag/BagItem'
+import TitleBagButton from './Button/TitleBagButton'
 
 let Cabinet = (props) => {
     console.log("Draw Cabinet")
@@ -73,7 +74,6 @@ let Cabinet = (props) => {
     }
 
     let haveSlotRam = (data) => {
-        console.log(data)
         if (data.type_memory == "DDR3") {
             if (ramSlot.ddr3) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
@@ -191,10 +191,7 @@ let Cabinet = (props) => {
             />
             <div className="user__bug">
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Материнка</div>
-                        <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}}/>
-                    </div>
+                    <TitleBagButton nameTitle="Материнка" up={up} openClose={openClose} />
                     <div className="bag_inner">
                         {stateCab.bag.mother.map((data) => {
                                 return(
@@ -212,10 +209,7 @@ let Cabinet = (props) => {
                     </div>
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Процессор</div>
-                        <img className="img__roll" src={up} width="30"  onClick={(e) => {openClose(e)}}/>
-                    </div>
+                    <TitleBagButton nameTitle="Процессор" up={up} openClose={openClose} />
                     <div className="bag_inner">
                         {stateCab.bag.cpu.map((data) => {
                                 return(
@@ -233,10 +227,7 @@ let Cabinet = (props) => {
                     </div>
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Блок питания</div>
-                        <img className="img__roll" src={up} width="30" onClick={(e) => {openClose(e)}} />
-                    </div>
+                    <TitleBagButton nameTitle="Блок питания" up={up} openClose={openClose} />
                     <div className="bag_inner">
                         {stateCab.bag.powersupply.map((data) => {
                                 return(
@@ -254,10 +245,8 @@ let Cabinet = (props) => {
                     </div>     
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Видеокарта</div>
-                        <img className="img__roll" src={up} width="30"  />
-                    </div>
+                    <TitleBagButton nameTitle="Видеокарта" up={up} openClose={openClose} />                    
+                    <div className="bag_inner">
                     {stateCab.bag.video.map((data) => {
                         return(
                             <div className="bug__item">
@@ -280,13 +269,12 @@ let Cabinet = (props) => {
                                     }
                             </div>
                         )
-                    })}        
+                    })} 
+                    </div>       
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>SSD</div>
-                        <img className="img__roll" src={up} width="30"  />
-                    </div>
+                    <TitleBagButton nameTitle="SSD" up={up} openClose={openClose} />   
+                    <div className="bag_inner">
                     {stateCab.bag.ssd.map((data) => {
                         return(
                             <div className="bug__item">
@@ -308,13 +296,12 @@ let Cabinet = (props) => {
                                 }
                             </div>
                         )
-                    })} 
+                    })}
+                    </div> 
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Оперативная</div>
-                        <img className="img__roll" src={up} width="30"  />
-                    </div>
+                    <TitleBagButton nameTitle="Оперативная" up={up} openClose={openClose} /> 
+                    <div className="bag_inner">
                     {stateCab.bag.ram.map((dataRam) => {
                         return(
                             <div className="bug__item">
@@ -337,12 +324,11 @@ let Cabinet = (props) => {
                             </div>
                         )
                     })}
+                    </div>
                 </div>
                 <div className="bug__wrapper">
-                    <div className="bug_title">
-                        <div>Жесткий</div>
-                        <img className="img__roll" src={up} width="30"  />
-                    </div>
+                    <TitleBagButton nameTitle="Жесткий" up={up} openClose={openClose} />
+                    <div className="bag_inner">       
                     {stateCab.bag.hdd.map((data) => {
                         return(
                             <div className="bug__item">                   
@@ -364,6 +350,7 @@ let Cabinet = (props) => {
                             </div>
                         )
                     })}
+                    </div>
                 </div>
             </div>
         </div>

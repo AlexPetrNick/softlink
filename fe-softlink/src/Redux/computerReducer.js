@@ -62,7 +62,6 @@ const computerReducer = (state=initState, action) => {
                 let moth = action.data
                 return {
                     ...state,
-                    remainMother: 0,
                     mother: [moth]
                 }
             } else if (action.data.type_item == 3) {
@@ -70,21 +69,18 @@ const computerReducer = (state=initState, action) => {
                     ramCnt = state.remainDdr3 - 1 
                     return {
                         ...state,
-                        remainDdr3: ramCnt,
                         ram: [...state.ram, action.data]
                     }
                 } else if (action.data.type_memory == typeRam.ddr3L) {
                     ramCnt = state.remainDdr3L - 1 
                     return {
                         ...state,
-                        remainDdr3L: ramCnt,
                         ram: [...state.ram, action.data]
                     }
                 } else { 
                     ramCnt = state.remainDdr4 - 1 
                     return {
                         ...state,
-                        remainDdr4: ramCnt,
                         ram: [...state.ram, action.data]
                     }
                 }
@@ -94,28 +90,24 @@ const computerReducer = (state=initState, action) => {
                     cnt = state.remainM2 - 1
                     return {
                         ...state,
-                        remainM2: cnt,
                         ssd: [...state.ssd, action.data]
                     }
                 } else if (action.data.interface == typeSsd.pcie) {
                     cnt = state.remainPcie4 - 1
                     return {
                         ...state,
-                        remainPcie4: cnt,
                         ssd: [...state.ssd, action.data]
                     }
                 } else if (action.data.interface == typeSsd.sata) {
                     cnt = state.remainSata - 1
                     return {
                         ...state,
-                        remainSata: cnt,
                         ssd: [...state.ssd, action.data]
                     }
                 } else {
                     cnt = state.remainMSata - 1
                     return {
                         ...state,
-                        remainMSata: cnt,
                         ssd: [...state.ssd, action.data]
                     }
                 }
@@ -124,7 +116,6 @@ const computerReducer = (state=initState, action) => {
             if (action.data.type_item == 1) {
                 return {
                     ...state,
-                    remainMother: 1,
                     mother: [nullMother]
                 }
             } else {

@@ -9,9 +9,8 @@ let Computer = (props) => {
 
     let [stateComputer, setStateComputer] = useState(props.state.mother[0])
     let differentState = JSON.stringify(stateComputer) === JSON.stringify(props.state.mother[0])
-    console.log(differentState)
-    let elementsLength = document.getElementsByClassName('incorrect').length
-    
+    let elementsLength = Boolean(document.getElementsByClassName('incorrect').length)
+    console.log(elementsLength)
     let stateComp = props.state
 
     let mother = stateComp.mother[0].model
@@ -49,7 +48,7 @@ let Computer = (props) => {
         <div className="user__computer">
             <div className="computer__schema">
                 <img src={schema}  />
-                <SaveButton text="Сохранить" cntError={elementsLength}/>
+                <SaveButton text="Сохранить" isChange={differentState} cntError={elementsLength}/>
                 <DropButton text="Сбросить1" isChange={differentState} />
             </div>
             <div></div>
