@@ -4,8 +4,7 @@ import { apiCabinet } from '../../apiDAL/DAL'
 import ComputerContainer from './Computer/ComputerContainer'
 import up from '../../image/up.png'
 import down from '../../image/down.png'
-import BagItem from './Bag/BagItem'
-import BagItemTest from './Bag/BagItemTest'
+import BagItem from './Bag/BagItemTest'
 import TitleBagButton from './Button/TitleBagButton'
 
 let Cabinet = (props) => {
@@ -117,8 +116,10 @@ let Cabinet = (props) => {
     let dataRam = stateComp.ram
 
     let arrMother = stateComp.mother.map((data) => data.id)   
+    let arrCpu = stateComp.cpu.map((data) => data.id)   
+    let arrPower = stateComp.power.map((data) => data.id)   
     let arrRam = stateComp.ram.map((data) => data.id)   
-    let arrHard = stateComp.hdd.map((data) => data.id)
+    let arrHdd = stateComp.hdd.map((data) => data.id)
     let arrVideo = stateComp.video.map((data) => data.id)
     let arrSsd = dataSsd.map((data) => data.id)
 
@@ -192,166 +193,132 @@ let Cabinet = (props) => {
                 realCntRam = {realCntRam}
             />
             <div className="user__bug">
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Материнка" up={up} openClose={openClose} />
-                    <div className="bag_inner">
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Материнка" up={up} openClose={openClose} />
+                        <div className="bag_inner">
                         {stateCab.bag.mother.length ? stateCab.bag.mother.map((data) => {
-                                return(
-                                    <BagItemTest 
-                                        data={data}
-                                        eraseItemFromComp={eraseItemFromComp}
-                                        addItem={addItem}
-                                        titleEraseItem={titleEraseItem}
-                                        eraseItem={eraseItemMother}
-                                        arrayItem={arrMother}
-                                        remain={genStatComp.generalCntMother - realStatComp.realCntMother}
-                                    />
-                                )
-                            }) : null }
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemMother}
+                                    arrayItem={arrMother}
+                                    remain={genStatComp.generalCntMother - realStatComp.realCntMother}
+                                />
+                            )
+                        }) : null }
+                        </div>
                     </div>
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Процессор" up={up} openClose={openClose} />
-                    <div className="bag_inner">
-                        {stateCab.bag.cpu.map((data) => {
-                                return(
-                                    <BagItem 
-                                        data={data}
-                                        eraseItemFromComp={eraseItemFromComp}
-                                        addItem={addItem}
-                                        titleEraseItem={titleEraseItem}
-                                        eraseItem={eraseItemCpu}
-                                        stateCompItem={stateComp.cpu[0]}
-                                        remain={stateComp.remainCpu}
-                                    />
-                                )
-                            })}
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Процессор" up={up} openClose={openClose} />
+                        <div className="bag_inner">
+                        {stateCab.bag.cpu.length ? stateCab.bag.cpu.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemCpu}
+                                    arrayItem={arrCpu}
+                                    remain={genStatComp.generalCntCpu - realStatComp.realCntCpu}
+                                />
+                            )
+                        }) : null}
+                        </div>
                     </div>
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Блок питания" up={up} openClose={openClose} />
-                    <div className="bag_inner">
-                        {stateCab.bag.powersupply.map((data) => {
-                                return(
-                                    <BagItem 
-                                        data={data}
-                                        eraseItemFromComp={eraseItemFromComp}
-                                        addItem={addItem}
-                                        titleEraseItem={titleEraseItem}
-                                        eraseItem={eraseItemPower}
-                                        stateCompItem={stateComp.power[0]}
-                                        remain={stateComp.remainPower}
-                                    />
-                                )
-                        })}
-                    </div>     
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Видеокарта" up={up} openClose={openClose} />                    
-                    <div className="bag_inner">
-                    {stateCab.bag.video.map((data) => {
-                        return(
-                            <div className="bug__item">
-                                    { arrVideo.some((item) => item == data.id) ?
-                                            <div className="button__item enable">&raquo;</div> :
-                                            stateComp.remainPcie16 ?
-                                            <div className="button__item">&laquo;</div> :
-                                            <div className="button__item disable">X</div>
-                                    }
-                                <div className="bug__item__name">
-                                    {data.model} {data.brand}
-                                </div>
-                                <div className="bug__item__disc">
-                                    Описание Итема
-                                </div>
-                                    {
-                                        arrVideo.some((item) => item == data.id) ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemVideo(data.id)}}><b>X</b></div>
-                                    }
-                            </div>
-                        )
-                    })} 
-                    </div>       
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="SSD" up={up} openClose={openClose} />   
-                    <div className="bag_inner">
-                    {stateCab.bag.ssd.map((data) => {
-                        return(
-                            <div className="bug__item">
-                                { 
-                                    arrSsd.some((item) => item == data.id) ?
-                                        <div className="button__item enable">&raquo;</div> :
-                                        haveSlotSsd(data)
-                                }
-                                <div className="bug__item__name">
-                                    {data.model} {data.brand} {data.interface}
-                                </div>
-                                <div className="bug__item__disc">
-                                    Описание Итема
-                                </div>
-                                {
-                                   arrSsd.some((item) => item == data.id) ? 
-                                   <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                   <div className="erase_item" onClick={() => {eraseItemSsd(data.id)}}><b>X</b></div>
-                                }
-                            </div>
-                        )
-                    })}
-                    </div> 
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Оперативная" up={up} openClose={openClose} /> 
-                    <div className="bag_inner">
-                    {stateCab.bag.ram.map((dataRam) => {
-                        return(
-                            <div className="bug__item">
-                                    { 
-                                        arrRam.some((item) => item == dataRam.id) ?
-                                            <div className="button__item enable">&raquo;</div> :
-                                            haveSlotRam(dataRam)
-                                    }
-                                <div className="bug__item__name">
-                                    {dataRam.model} {dataRam.brand} {dataRam.type_memory}
-                                </div>
-                                <div className="bug__item__disc">
-                                    Описание Итема
-                                </div>
-                                    {
-                                        arrRam.some((item) => item == dataRam.id) ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemRam(dataRam.id)}}><b>X</b></div>
-                                    }
-                            </div>
-                        )
-                    })}
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Блок питания" up={up} openClose={openClose} />
+                        <div className="bag_inner">
+                        {stateCab.bag.powersupply.length ? stateCab.bag.powersupply.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemPower}
+                                    arrayItem={arrPower}
+                                    remain={genStatComp.generalCntPower - realStatComp.realCntPower}
+                                />
+                            )
+                        }) : null}
+                        </div>     
                     </div>
-                </div>
-                <div className="bug__wrapper">
-                    <TitleBagButton nameTitle="Жесткий" up={up} openClose={openClose} />
-                    <div className="bag_inner">       
-                    {stateCab.bag.hdd.map((data) => {
-                        return(
-                            <div className="bug__item">                   
-                                    { arrHard.some((item) => item == data.id) ?
-                                        <div className="button__item enable">&raquo;</div> :
-                                        <div className="button__item">&laquo;</div>
-                                    }
-                                <div className="bug__item__name">
-                                    {data.model} {data.brand}
-                                </div>
-                                <div className="bug__item__disc">
-                                    Описание Итема
-                                </div>
-                                    {
-                                        arrHard.some((item) => item == data.id) ? 
-                                        <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                                        <div className="erase_item" onClick={() => {eraseItemHdd(data.id)}}><b>X</b></div>
-                                    }
-                            </div>
-                        )
-                    })}
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Видеокарта" up={up} openClose={openClose} />                    
+                        <div className="bag_inner">
+                        {stateCab.bag.video.length ? stateCab.bag.video.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemVideo}
+                                    arrayItem={arrVideo}
+                                    remain={genStatComp.generalCntVideo - realStatComp.realCntVideo}
+                                />
+                            )
+                        }) : null} 
+                        </div>       
+                    </div>
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="SSD" up={up} openClose={openClose} />   
+                        <div className="bag_inner">
+                        {stateCab.bag.ssd.length ? stateCab.bag.ssd.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemSsd}
+                                    arrayItem={arrSsd}
+                                    remain={genStatComp.generalCntSsd - realCntSsd}
+                                    haveManySlot={haveSlotSsd}
+                                />
+                            )
+                        }) : null}
+                        </div> 
+                    </div>
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Оперативная" up={up} openClose={openClose} /> 
+                        <div className="bag_inner">
+                        { stateCab.bag.ram.length ? stateCab.bag.ram.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemRam}
+                                    arrayItem={arrRam}
+                                    remain={genStatComp.generalCntRam - realCntRam}
+                                    haveManySlot={haveSlotRam}
+                                />
+                            )
+                        }) : null}
+                        </div>
+                    </div>
+                    <div className="bug__wrapper">
+                        <TitleBagButton nameTitle="Жесткий" up={up} openClose={openClose} />
+                        <div className="bag_inner">       
+                        {stateCab.bag.hdd.length ? stateCab.bag.hdd.map((data) => {
+                            return(
+                                <BagItem 
+                                    data={data}
+                                    eraseItemFromComp={eraseItemFromComp}
+                                    addItem={addItem}
+                                    titleEraseItem={titleEraseItem}
+                                    eraseItem={eraseItemHdd}
+                                    arrayItem={arrHdd}
+                                    remain={genStatComp.generalCntSata - realStatComp.realCntSata}
+                                />
+                            )
+                        }) : null}
                     </div>
                 </div>
             </div>
