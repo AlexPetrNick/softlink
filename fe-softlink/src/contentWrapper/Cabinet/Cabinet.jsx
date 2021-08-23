@@ -200,7 +200,7 @@ let Cabinet = (props) => {
                                         eraseItemFromComp={eraseItemFromComp}
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
-                                        eraseItemMother={eraseItemMother}
+                                        eraseItem={eraseItemMother}
                                         stateCompItem={dataMother}
                                         remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     />
@@ -218,7 +218,7 @@ let Cabinet = (props) => {
                                         eraseItemFromComp={eraseItemFromComp}
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
-                                        eraseItemMother={eraseItemCpu}
+                                        eraseItem={eraseItemCpu}
                                         stateCompItem={stateComp.cpu[0]}
                                         remain={stateComp.remainCpu}
                                     />
@@ -236,7 +236,7 @@ let Cabinet = (props) => {
                                         eraseItemFromComp={eraseItemFromComp}
                                         addItem={addItem}
                                         titleEraseItem={titleEraseItem}
-                                        eraseItemMother={eraseItemPower}
+                                        eraseItem={eraseItemPower}
                                         stateCompItem={stateComp.power[0]}
                                         remain={stateComp.remainPower}
                                     />

@@ -59,57 +59,43 @@ const computerReducer = (state=initState, action) => {
     switch(action.type) {
         case ADD_ITEM_IN_COMPUTER:
             if (action.data.type_item == 1) {
-                let moth = action.data
                 return {
                     ...state,
-                    mother: [moth]
+                    mother: [action.data]
+                }
+            } else if (action.data.type_item == 2) {
+                return {
+                    ...state,
+                    cpu: [action.data]
                 }
             } else if (action.data.type_item == 3) {
-                if (action.data.type_memory == typeRam.ddr3) {
-                    ramCnt = state.remainDdr3 - 1 
-                    return {
-                        ...state,
-                        ram: [...state.ram, action.data]
-                    }
-                } else if (action.data.type_memory == typeRam.ddr3L) {
-                    ramCnt = state.remainDdr3L - 1 
-                    return {
-                        ...state,
-                        ram: [...state.ram, action.data]
-                    }
-                } else { 
-                    ramCnt = state.remainDdr4 - 1 
-                    return {
-                        ...state,
-                        ram: [...state.ram, action.data]
-                    }
+                return {
+                    ...state,
+                    ram: [...state.ram, action.data]
                 }
-            }
-            else if (action.data.type_item == 6) {
-                if (action.data.interface == typeSsd.m2) {
-                    cnt = state.remainM2 - 1
-                    return {
-                        ...state,
-                        ssd: [...state.ssd, action.data]
-                    }
-                } else if (action.data.interface == typeSsd.pcie) {
-                    cnt = state.remainPcie4 - 1
-                    return {
-                        ...state,
-                        ssd: [...state.ssd, action.data]
-                    }
-                } else if (action.data.interface == typeSsd.sata) {
-                    cnt = state.remainSata - 1
-                    return {
-                        ...state,
-                        ssd: [...state.ssd, action.data]
-                    }
-                } else {
-                    cnt = state.remainMSata - 1
-                    return {
-                        ...state,
-                        ssd: [...state.ssd, action.data]
-                    }
+            } else if (action.data.type_item == 4) {
+                return {
+                    ...state,
+                    video: [...state.ram, action.data]
+                }
+            } else if (action.data.type_item == 5) {
+                return {
+                    ...state,
+                    power: [...state.ssd, action.data]
+                }
+            } else if (action.data.type_item == 6) {
+                return {
+                    ...state,
+                    ssd: [...state.ssd, action.data]
+                }
+            } else if (action.data.type_item == 7) {
+                return {
+                    ...state,
+                    hdd: [...state.ssd, action.data]
+                }
+            } else {
+                return {
+                    ...state
                 }
             }
         case ERASE_ITEM_ON_COMPUTER:
