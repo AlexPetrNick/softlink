@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import computer from '../../../image/scheme.jpg'
 
 let BagItem = (props) => {
 
@@ -6,8 +7,14 @@ let BagItem = (props) => {
     let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let haveItemOnComputer = props.arrayItem.some((item) => item == props.data.id)
 
+    let hoverOutItem = () => {
+        let elem = document.getElementsByClassName('computer__image')[0]
+        elem.setAttribute('src', computer)
+    }
+
+
     return (
-        <div className="bug__item" >
+        <div className="bug__item" onMouseOut={hoverOutItem} onMouseOver={() => { props.hover(props.image) }}>
             { haveItemOnComputer ?
                     <div className="button__item enable" onClick={() => {props.eraseItemFromComp(props.data)}}>&raquo;</div> :
                     !props.haveManySlot ?
@@ -15,7 +22,7 @@ let BagItem = (props) => {
                         <div className="button__item" onClick={() => props.addItem(props.data)}>&laquo;</div> :
                         <div className="button__item disable" title={titleDontSlot}>X</div>
                     :
-                    props.haveManySlot(props.data, titleDontSlot)
+                    props.haveManySlot(props.data, titleDontSlot )
             }
             <div className="bug__item__name">
                 {props.data.model} {props.data.brand}
@@ -26,7 +33,7 @@ let BagItem = (props) => {
             {
                 haveItemOnComputer ? 
                 <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                <div className="erase_item" onClick={() => {props.eraseItemMother(props.data.id)}}><b>X</b></div>
+                <div className="erase_item" onClick={() => {props.eraseItem(props.data.id)}}><b>X</b></div>
             }
         </div>
     )

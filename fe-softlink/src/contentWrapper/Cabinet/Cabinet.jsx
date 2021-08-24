@@ -1,3 +1,10 @@
+import cpuIm from '../../image/imageComp/cpu.jpg'
+import motherIm from '../../image/imageComp/mother.png'
+import powerIm from '../../image/imageComp/power.jpg'
+import ramIm from '../../image/imageComp/ram.jfif'
+import hddIm from '../../image/imageComp/hdd.jpg'
+import ssdIm from '../../image/imageComp/ssd.jfif'
+import videoIm from '../../image/imageComp/video.jfif'
 import React, { useState } from 'react'
 import userPhoto from '../../image/userPhoto.jpg'
 import { apiCabinet } from '../../apiDAL/DAL'
@@ -9,6 +16,12 @@ import TitleBagButton from './Button/TitleBagButton'
 
 let Cabinet = (props) => {
     console.log("Draw Cabinet")
+
+    let hoverOnItem = (image) => {
+        let elem = document.getElementsByClassName('computer__image')[0]
+        elem.setAttribute('src', image)
+    }
+
 	let eraseItemSsd = (id) => {
 		apiCabinet.eraseItemSsd(id)
 		props.updateCabinetAC(true)
@@ -123,22 +136,26 @@ let Cabinet = (props) => {
 
     let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
     let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
-    
+
+    console.log(dataMother)
 
     let genStatComp = {
         generalCntPower: 1,
         generalCntMother: 1,
-        generalCntCpu: dataMother.cpu,
-        generalCntVideo: dataMother.pcie16,
-        generalCntDdr3: dataMother.ddr3,
-        generalCntDdr3L: dataMother.ddr3L,
-        generalCntDdr4: dataMother.ddr4,
-        generalCntRam: dataMother.ddr3 + dataMother.ddr3L + dataMother.ddr4,
-        generalCntM2: dataMother.m2_cnt,
-        generalCntSata: dataMother.sata_cnt,
-        generalCntPcie: dataMother.pcie4,
-        generalCntMSata: dataMother.msata_cnt,
-        generalCntSsd: dataMother.m2_cnt + dataMother.sata_cnt + dataMother.pcie4 + dataMother.msata_cnt
+        generalCntCpu: dataMother ? dataMother.cpu : 0 ,
+        generalCntVideo: dataMother ? dataMother.pcie16 : 0,
+        generalCntDdr3: dataMother ? dataMother.ddr3 : 0,
+        generalCntDdr3L: dataMother ? dataMother.ddr3L : 0,
+        generalCntDdr4: dataMother ? dataMother.ddr4 : 0,
+        generalCntM2: dataMother ? dataMother.m2_cnt : 0,
+        generalCntSata: dataMother ? dataMother.sata_cnt : 0,
+        generalCntPcie: dataMother ? dataMother.pcie4 : 0,
+        generalCntMSata: dataMother ? dataMother.msata_cnt : 0,
+    }
+
+    let genStatCompArray = {
+        generalCntSsd: genStatComp.generalCntM2 + genStatComp.generalCntSata + genStatComp.generalCntPcie + genStatComp.generalCntMSata,
+        generalCntRam: genStatComp.generalCntDdr3 + genStatComp.generalCntDdr3L + genStatComp.generalCntDdr4
     }
 
     let realStatComp = {
@@ -146,7 +163,7 @@ let Cabinet = (props) => {
         realCntMSata: dataSsd.length ? dataSsd.filter(a => a.interface == 'mSATA').length : 0,
         realCntSata: CntSataSsd,
         realCntPcie4: dataSsd.length ? dataSsd.filter(a => a.interface == 'PCI-E 3.0 x4').length : 0,
-        realCntMother: dataMother.id ? 1 : 0,
+        realCntMother: dataMother ? 1 : 0,
         realCntCpu: stateComp.cpu.length ? stateComp.cpu.length : 0,
         realCntVideo: stateComp.video.length ? stateComp.video.length : 0,
         realCntPower: stateComp.power.length ? stateComp.power.length : 0,
@@ -155,6 +172,7 @@ let Cabinet = (props) => {
         realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0,
         realCntHdd: CntSataHdd
     }
+
 
     let realCntSsd = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
     let realCntRam = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
@@ -187,6 +205,7 @@ let Cabinet = (props) => {
             <ComputerContainer 
                 realStatComp = {realStatComp}
                 genStatComp = {genStatComp}
+                genStatCompArray = {genStatCompArray}
                 realCntSsd = {realCntSsd}
                 realCntRam = {realCntRam}
             />
@@ -203,6 +222,8 @@ let Cabinet = (props) => {
                                     eraseItem={eraseItemMother}
                                     arrayItem={arrMother}
                                     remain={genStatComp.generalCntMother - realStatComp.realCntMother}
+                                    hover={hoverOnItem}
+                                    image={motherIm}
                                 />
                             )
                         }) : null }
@@ -220,6 +241,8 @@ let Cabinet = (props) => {
                                     eraseItem={eraseItemCpu}
                                     arrayItem={arrCpu}
                                     remain={genStatComp.generalCntCpu - realStatComp.realCntCpu}
+                                    hover={hoverOnItem}
+                                    image={cpuIm}
                                 />
                             )
                         }) : null}
@@ -237,6 +260,8 @@ let Cabinet = (props) => {
                                     eraseItem={eraseItemPower}
                                     arrayItem={arrPower}
                                     remain={genStatComp.generalCntPower - realStatComp.realCntPower}
+                                    hover={hoverOnItem}
+                                    image={powerIm}
                                 />
                             )
                         }) : null}
@@ -254,6 +279,8 @@ let Cabinet = (props) => {
                                     eraseItem={eraseItemVideo}
                                     arrayItem={arrVideo}
                                     remain={genStatComp.generalCntVideo - realStatComp.realCntVideo}
+                                    hover={hoverOnItem}
+                                    image={videoIm}
                                 />
                             )
                         }) : null} 
@@ -270,8 +297,10 @@ let Cabinet = (props) => {
                                     addItem={addItem}
                                     eraseItem={eraseItemSsd}
                                     arrayItem={arrSsd}
-                                    remain={genStatComp.generalCntSsd - realCntSsd}
+                                    remain={genStatCompArray.generalCntSsd - realCntSsd}
                                     haveManySlot={haveSlotSsd}
+                                    hover={hoverOnItem}
+                                    image={ssdIm}
                                 />
                             )
                         }) : null}
@@ -288,8 +317,10 @@ let Cabinet = (props) => {
                                     addItem={addItem}
                                     eraseItem={eraseItemRam}
                                     arrayItem={arrRam}
-                                    remain={genStatComp.generalCntRam - realCntRam}
+                                    remain={genStatCompArray.generalCntRam - realCntRam}
                                     haveManySlot={haveSlotRam}
+                                    hover={hoverOnItem}
+                                    image={ramIm}
                                 />
                             )
                         }) : null}
@@ -307,6 +338,8 @@ let Cabinet = (props) => {
                                     eraseItem={eraseItemHdd}
                                     arrayItem={arrHdd}
                                     remain={genStatComp.generalCntSata - realStatComp.realCntSata}
+                                    hover={hoverOnItem}
+                                    image={hddIm}
                                 />
                             )
                         }) : null}

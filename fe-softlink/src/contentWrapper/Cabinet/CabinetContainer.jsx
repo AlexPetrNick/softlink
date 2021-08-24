@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import './cabinet.css'
 import {getCabinetThunkCreator, getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
 import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
-import {addItemInComputer, eraseItemInComputer} from '../../Redux/computerReducer'
+import {addItemInComputer, eraseItemInComputer, mountComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
-
-
     render() {
         console.log("cabinet container")
         return (
@@ -17,9 +15,6 @@ class ContainerComponent extends React.Component{
         )
     }
 }
-
-
-//let UpdateCabinet = withCorrectCabinet(ContainerComponent)
 
 let mapStateToProps = (state) => {
     return {
@@ -34,5 +29,6 @@ export default connect(mapStateToProps, {
     getStateCabinetAC,
     updateCabinetAC,
     addItemInComputer,
-    eraseItemInComputer
+    eraseItemInComputer,
+    mountComputer
 })(ContainerComponent)

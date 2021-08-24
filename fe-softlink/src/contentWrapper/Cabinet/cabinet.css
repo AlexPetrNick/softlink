@@ -77,6 +77,8 @@
 .computer__data__item{
     background-color: #858585;
     height: 40px;
+    border: 2px solid white;
+    padding-top: 5px;
 }
 
 .correct {
@@ -187,9 +189,7 @@
     background-color: rgb(88, 88, 199);
 }
 
-.disabled {
-    background-color: rgb(85, 85, 85);
-}
+
 
 .droppingChanges {
     padding-left: 24px;
@@ -199,4 +199,7 @@
     display: inline-block;
     border: 1px solid black;
     background-color: red;
+}
+.disabled {
+    background-color: rgb(85, 85, 85);
 }

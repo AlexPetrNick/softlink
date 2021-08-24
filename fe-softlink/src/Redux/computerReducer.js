@@ -3,13 +3,6 @@ import { apiComputer } from "../apiDAL/DAL"
 
 export const ADD_ITEM_IN_COMPUTER = 'ADD-ITEM-IN-COMPUTER'
 export const ERASE_ITEM_ON_COMPUTER = 'ERASE-ITEM-ON-COMPUTER'
-export const MOTHER = 'MOTHER'
-export const CPU = 'CPU'
-export const HDD = 'MOTHER'
-export const SSD = 'SSD'
-export const RAM = 'RAM'
-export const POWER = 'POWER'
-export const VIDEO = 'VIDEO'
 export const TOGGLE_CORRECT = 'TOGGLE-CORRECT'
 export const TOGGLE_ERROR = 'TOGGLE_ERROR'
 export const CHANGE_NAME = 'CHANGE_NAME'
@@ -76,12 +69,12 @@ const computerReducer = (state=initState, action) => {
             } else if (action.data.type_item == 4) {
                 return {
                     ...state,
-                    video: [...state.ram, action.data]
+                    video: [...state.video, action.data]
                 }
             } else if (action.data.type_item == 5) {
                 return {
                     ...state,
-                    power: [...state.ssd, action.data]
+                    power: [...state.power, action.data]
                 }
             } else if (action.data.type_item == 6) {
                 return {
@@ -91,7 +84,7 @@ const computerReducer = (state=initState, action) => {
             } else if (action.data.type_item == 7) {
                 return {
                     ...state,
-                    hdd: [...state.ssd, action.data]
+                    hdd: [...state.hdd, action.data]
                 }
             } else {
                 return {
@@ -104,6 +97,40 @@ const computerReducer = (state=initState, action) => {
                     ...state,
                     mother: []
                 }
+            } else if (action.data.type_item == 2) {
+                return {
+                    ...state,
+                    cpu: []
+                }
+            } else if (action.data.type_item == 3) {
+                let removeItem = state.ram.filter((data) => action.data.id != data.id)
+                return {
+                    ...state,
+                    ram: [...removeItem]
+                }
+            } else if (action.data.type_item == 4) {
+                let removeItem = state.video.filter((data) => action.data.id != data.id)
+                return {
+                    ...state,
+                    video: [...removeItem]
+                }
+            } else if (action.data.type_item == 5) {
+                return {
+                    ...state,
+                    power: []
+                }
+            } else if (action.data.type_item == 6) {
+                let removeItem = state.ssd.filter((data) => action.data.id != data.id)
+                return {
+                    ...state,
+                    ssd: [...removeItem]
+                }
+            } else if (action.data.type_item == 7) {
+                let removeItem = state.hdd.filter((data) => action.data.id != data.id)
+                return {
+                    ...state,
+                    hdd: [...removeItem]
+                }
             } else {
                 return {
                 ...state
@@ -114,6 +141,10 @@ const computerReducer = (state=initState, action) => {
                 ...state,
                 isCorrect: action.truth
         }
+        case MOUNT_COMPUTER:
+            return {
+                ...action.data
+            }
         case TOGGLE_ERROR:
             return {
                 ...state,
