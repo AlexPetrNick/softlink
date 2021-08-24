@@ -203,6 +203,7 @@ let Cabinet = (props) => {
                 </div>
             </div>
             <ComputerContainer 
+                mountComputer = {props.mountComputer}
                 realStatComp = {realStatComp}
                 genStatComp = {genStatComp}
                 genStatCompArray = {genStatCompArray}
