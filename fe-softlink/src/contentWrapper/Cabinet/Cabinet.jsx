@@ -137,8 +137,6 @@ let Cabinet = (props) => {
     let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
     let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
 
-    console.log(dataMother)
-
     let genStatComp = {
         generalCntPower: 1,
         generalCntMother: 1,
@@ -203,7 +201,6 @@ let Cabinet = (props) => {
                 </div>
             </div>
             <ComputerContainer 
-                mountComputer = {props.mountComputer}
                 realStatComp = {realStatComp}
                 genStatComp = {genStatComp}
                 genStatCompArray = {genStatCompArray}
