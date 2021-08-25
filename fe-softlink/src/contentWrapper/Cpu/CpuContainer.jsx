@@ -22,7 +22,7 @@ class CpuPageContainer extends Component {
 			<>
 			{this.props.stateHard.isFetching ? <Preloader /> : 
 			<CpuPage {...this.props} 
-			getPageData = {this.getHardOnPage}
+			getPageData = {this.getPageData}
 			 />
 			}
 			</>

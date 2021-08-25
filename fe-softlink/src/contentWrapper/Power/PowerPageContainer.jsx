@@ -15,7 +15,6 @@ class PowerContainer extends React.Component {
     }
 
     getPageData = (page) => {
-        console.log("Page павер click")
         this.props.getHardPageThunkCreator(page, apiPower)
     }
 

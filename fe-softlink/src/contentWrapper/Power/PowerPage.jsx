@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemPower from './ItemPower/ItemPower'
+import PagingComponent from '../Paging/PagingComponent'
 
 let VideoPage = (props) => {
 	
@@ -9,6 +10,7 @@ let VideoPage = (props) => {
 	}
 	let count = props.stateHard.countOnPage
 	let perPage = props.stateHard.perPage
+	let current = props.stateHard.currentPage
 	let cntPage;
 	let pages = []
 
@@ -52,23 +54,13 @@ let VideoPage = (props) => {
 				<div className="page_content">
 					{componentHard}
 				</div>
-				<div className="page__number__list">
-					<div className="empty"></div>
-						<ul className="page__slot">
-							{props.stateHard.urlPrevPage ? 
-							<li className="prev__page"><a href="#">Пред.</a></li>: null}
-							{pages.map((data) => {
-								return(
-									<li className="number__page">
-										<span onClick={()=> onClickLinkPage(data)}>{data}</span>
-									</li>
-								)
-							})}
-							{props.stateHard.urlNextPage ? 
-							<li className="next__page"><a href="#">След.</a></li>: null}
-						</ul>
-					<div className="empty"></div>
-				</div>
+				<PagingComponent 
+					pages={pages} 
+					current={current} 
+					onClicking={onClickLinkPage}
+					prev = {props.stateHard.urlPrevPage} 
+					next = {props.stateHard.urlNextPage}
+				/>
 			</div>
 
 			<div className="filter__list">

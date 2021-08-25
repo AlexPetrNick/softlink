@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import MotherItem from "./MotherItem/MotherItem";
+import PagingComponent from '../Paging/PagingComponent'
 
 let MotherPage = (props) => {
-
 	let onClickLinkPage = (page) => {
 		props.getPageData(page)
 	}
-
 	let count = props.stateHard.countOnPage
 	let perPage = props.stateHard.perPage
 	let current = props.stateHard.currentPage
@@ -19,11 +18,8 @@ let MotherPage = (props) => {
 			pages.push(i)
 		}
 	}
-
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
-
-
 	let idBugHard = props.stateBugHard.map((hard)=>{
 		if(hard) {
 			return hard.id
@@ -31,8 +27,6 @@ let MotherPage = (props) => {
 			return []
 		}
 	})
-
-
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
 			return(
@@ -53,26 +47,13 @@ let MotherPage = (props) => {
 				<div className="page_content">
 					{componentHard}
 				</div>
-				<div className="page__number__list">
-					<div className="empty"></div>
-						<ul className="page__slot">
-							{props.stateHard.urlPrevPage ? 
-							<li className="prev__page"><a href="#">Пред.</a></li>: null}
-							{pages.map((data) => {
-								return(
-									<li className="number__page">
-										{data == current ?
-										<span onClick={()=> onClickLinkPage(data)}><u><b>{data}</b></u></span> : 
-										<span onClick={()=> onClickLinkPage(data)}>{data}</span>
-										}
-									</li>
-								)
-							})}
-							{props.stateHard.urlNextPage ? 
-							<li className="next__page"><a href="#">След.</a></li>: null}
-						</ul>
-					<div className="empty"></div>
-				</div>
+				<PagingComponent 
+					pages={pages} 
+					current={current} 
+					onClicking={onClickLinkPage}
+					prev = {props.stateHard.urlPrevPage} 
+					next = {props.stateHard.urlNextPage}
+				/>
 			</div>
 
 			<div className="filter__list">
