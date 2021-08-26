@@ -1,6 +1,6 @@
 import React from 'react'
-import { apiCabinet } from '../../../apiDAL/DAL'
-import picture from '../../../image/video.jpg'
+import {apiCabinet} from '../../apiDAL/DAL'
+import picture from '../../image/video.jpg'
 
 const ItemVideo = (props) => {
 
@@ -17,7 +17,7 @@ const ItemVideo = (props) => {
 
 	return (
 		<div className="item__content">
-		<img className="picture__hard_item" src={picture}  alt="" />
+		<img className="picture__hard_item" src={picture}   width="238" height="160"   alt="" />
 			<div className="title__hard__item">{props.data.graph_proc}</div>
 			<div className="description__hard__item">
 				<div>

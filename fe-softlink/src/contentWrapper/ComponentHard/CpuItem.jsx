@@ -1,17 +1,17 @@
 import React from 'react'
-import cpuImage from '../../../image/cpuImage.jpg'
-import {CpuFunc} from '../../../addedFunction/otherFunc'
+import cpuImage from '../../image/cpuImage.jpg'
+import {apiCabinet} from '../../apiDAL/DAL'
 
 const CpuItem = (props) => {
 	
 	let getItem = () => {
-		CpuFunc.add(props.data.id)
-        props.updateCabinetAC(true);
+		apiCabinet.addItemCpu(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		CpuFunc.erase(props.data.id)
-        props.updateCabinetAC(true);
+		apiCabinet.eraseItemCpu(props.data.id)
+		props.updateCabinetAC(true)
 	}
 
 	return (

@@ -1,6 +1,6 @@
 import React from 'react'
-import {apiCabinet} from '../../../apiDAL/DAL'
-import pict from '../../../image/ram.jpg'
+import {apiCabinet} from '../../apiDAL/DAL'
+import pict from '../../image/ram.jpg'
 
 let ItemRam = (props) => {
 
@@ -16,7 +16,7 @@ let ItemRam = (props) => {
 
 	return (
 		<div className="item__content">
-			<img className="picture__hard_item" src={pict} alt="" />
+			<img className="picture__hard_item" src={pict}   width="238" height="160"  alt="" />
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
 				<div>

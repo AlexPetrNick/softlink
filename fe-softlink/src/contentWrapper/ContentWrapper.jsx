@@ -1,15 +1,9 @@
 import React from "react";
 import {NavLink, Route} from "react-router-dom";
-import CpuContainer from './Cpu/CpuContainer'
-import HddPageContainer from './Hdd/HddPageContainer'
-import MotherPageContainer from './Mother/MotherPageContainer'
-import RamPageContainer from "./RAM/RamPageContainer";
-import VideoPageContainer from "./Video/VideoPageContainer";
-import PowerContainer from './Power/PowerPageContainer'
-import SsdPageContainet from './SSD/SsdPageContainer'
 import NewsPageContainer from './News/NewsPageContainer'
 import NewDetailContainer from './News/NewDetailContainer'
 import CabinetContainer from './Cabinet/CabinetContainer'
+import ItemHardContainer from './ItemHard/ItemHardContainer'
 
 const ContentWrapper = (props) => {
 	return (
@@ -40,14 +34,14 @@ const ContentWrapper = (props) => {
 		<div className="abstraktWrapper">
 			<Route path="/cabinet" component={CabinetContainer} />	
 			<Route path="/new/:newId" component={NewDetailContainer} />
-			<Route path="/hardware/cpu" component={CpuContainer}/>
-			<Route path="/hardware/hdd" component={HddPageContainer}/>
-			<Route path="/hardware/mother" component={MotherPageContainer}/>
-			<Route path="/hardware/ram" component={RamPageContainer}/>
-			<Route path="/hardware/videocard" component={VideoPageContainer}/>
-			<Route path="/hardware/power" component={PowerContainer}/>
-			<Route path="/hardware/ssd" component={SsdPageContainet}/>
-			<Route path="/news" component={NewsPageContainer} />
+			<Route path="/hardware/cpu" render={() => <ItemHardContainer itemType={0}/>}/>
+			<Route path="/hardware/hdd" render={() => <ItemHardContainer itemType={7}/>}/>
+			<Route path="/hardware/mother" render={() => <ItemHardContainer itemType={1}/>}/>
+			<Route path="/hardware/ram" render={() => <ItemHardContainer itemType={3}/>}/>
+			<Route path="/hardware/videocard" render={() => <ItemHardContainer itemType={4}/>}/>
+			<Route path="/hardware/power" render={() => <ItemHardContainer itemType={5}/>}/>
+			<Route path="/hardware/ssd" render={() => <ItemHardContainer itemType={6}/>}/>
+			<Route path="/news" component={NewsPageContainer}/>
 		</div>
 		<div></div>
 	</div>

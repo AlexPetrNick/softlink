@@ -1,32 +1,33 @@
+import {apiCabinet} from '../../apiDAL/DAL'
 import React from 'react'
-import {apiCabinet} from '../../../apiDAL/DAL'
-import power from '../../../image/power.jfif'
+import ssd from '../../image/ssd.jfif'
 
-const ItemPower = (props) => {
+const ItemSsd = (props) => {
+	
 
 	let getItem = () => {
-		apiCabinet.addItemPower(props.data.id)
+		apiCabinet.addItemSsd(props.data.id)
 		props.updateCabinetAC(true)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemPower(props.data.id)
+		apiCabinet.eraseItemSsd(props.data.id)
 		props.updateCabinetAC(true)
 	}
 	return (
 		<div className="item__content">
-			<img className="picture__hard_item" src={power} alt="" />
+			<img className="picture__hard_item" src={ssd}  width="238" height="160"  alt="" />
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
 				<div>
-					<strong>Мощность: </strong>
-					<span>{props.data.power_all} </span>
-					<strong>Molex: </strong>
-					<span>{props.data.molex} </span>
-					<strong>SATA: </strong>
-					<span>{props.data.sata} </span>
-					<strong>FDD: </strong>
-					<span>{props.data.fdd} </span>
+					<strong>Форм-факт: </strong>
+					<span>{props.data.form_factor} </span>
+					<strong>Память: </strong>
+					<span>{props.data.memory} </span>
+					<strong>Интерфейс: </strong>
+					<span>{props.data.interface} </span>
+					<strong>Проп. способность: </strong>
+					<span>{props.data.propusk_sposob} </span>
 				</div>
 				<div className="control">
 					{ props.idBugHard.includes(props.data.id) ? 
@@ -41,4 +42,4 @@ const ItemPower = (props) => {
 }
 
 
-export default ItemPower
+export default ItemSsd

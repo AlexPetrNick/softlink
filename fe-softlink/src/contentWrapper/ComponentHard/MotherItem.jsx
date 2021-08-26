@@ -1,6 +1,6 @@
 import React from 'react'
-import {apiCabinet} from '../../../apiDAL/DAL'
-import mother from '../../../image/mother.jfif'
+import {apiCabinet} from '../../apiDAL/DAL'
+import mother from '../../image/mother.jfif'
 
 const ItemMother = (props) => {
 
@@ -17,7 +17,7 @@ const ItemMother = (props) => {
 
 	return (
 		<div className="item__content">
-			<img className="picture__hard_item" src={mother}  alt="" />
+			<img className="picture__hard_item" src={mother}  width="238" height="160"   alt="" />
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
 				<div className="description">

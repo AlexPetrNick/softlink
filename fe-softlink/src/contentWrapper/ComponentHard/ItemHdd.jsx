@@ -1,6 +1,6 @@
 import React from 'react'
-import hdd from '../../../image/hdd.jpg'
-import {apiCabinet} from '../../../apiDAL/DAL'
+import hdd from '../../image/hdd.jpg'
+import {apiCabinet} from '../../apiDAL/DAL'
 
 const ItemHdd = (props) => {
 
@@ -19,7 +19,7 @@ const ItemHdd = (props) => {
 	
 	return (	
 		<div className="item__content ">
-			<img className="picture__hard_item" src={hdd} alt="" />
+			<img className="picture__hard_item" src={hdd} width="238" height="160" alt="" />
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
 				<div className="description">
