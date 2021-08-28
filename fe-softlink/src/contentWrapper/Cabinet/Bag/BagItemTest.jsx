@@ -33,7 +33,7 @@ let BagItem = (props) => {
             {
                 haveItemOnComputer ? 
                 <div className="erase_item deleteCant" title={titleEraseItem}><b>X</b></div>:
-                <div className="erase_item" onClick={() => {props.eraseItem(props.data.id)}}><b>X</b></div>
+                <div className="erase_item" onClick={() => {props.eraseItem(props.data.id, props.data.type_item)}}><b>X</b></div>
             }
         </div>
     )

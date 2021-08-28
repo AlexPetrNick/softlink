@@ -16,40 +16,11 @@ import TitleBagButton from './Button/TitleBagButton'
 
 let Cabinet = (props) => {
     console.log("Draw Cabinet")
-
+    console.log(props)
     let hoverOnItem = (image) => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
     }
-
-	let eraseItemSsd = (id) => {
-		apiCabinet.eraseItemSsd(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemVideo = (id) => {
-		apiCabinet.eraseItemVideo(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemHdd = (id) => {
-		apiCabinet.eraseItemHdd(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemMother = (id) => {
-		apiCabinet.eraseItemMother(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemPower = (id) => {
-		apiCabinet.eraseItemPower(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemRam = (id) => {
-		apiCabinet.eraseItemRam(id)
-		props.updateCabinetAC(true)
-	}
-	let eraseItemCpu = (id) => {
-		apiCabinet.eraseItemCpu(id)
-        props.updateCabinetAC(true);
-	}
     let addItem = (data) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)
@@ -217,7 +188,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemMother}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrMother}
                                     remain={genStatComp.generalCntMother - realStatComp.realCntMother}
                                     hover={hoverOnItem}
@@ -236,7 +207,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemCpu}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrCpu}
                                     remain={genStatComp.generalCntCpu - realStatComp.realCntCpu}
                                     hover={hoverOnItem}
@@ -255,7 +226,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemPower}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrPower}
                                     remain={genStatComp.generalCntPower - realStatComp.realCntPower}
                                     hover={hoverOnItem}
@@ -274,7 +245,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemVideo}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrVideo}
                                     remain={genStatComp.generalCntVideo - realStatComp.realCntVideo}
                                     hover={hoverOnItem}
@@ -293,7 +264,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemSsd}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrSsd}
                                     remain={genStatCompArray.generalCntSsd - realCntSsd}
                                     haveManySlot={haveSlotSsd}
@@ -313,7 +284,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemRam}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrRam}
                                     remain={genStatCompArray.generalCntRam - realCntRam}
                                     haveManySlot={haveSlotRam}
@@ -333,7 +304,7 @@ let Cabinet = (props) => {
                                     data={data}
                                     eraseItemFromComp={eraseItemFromComp}
                                     addItem={addItem}
-                                    eraseItem={eraseItemHdd}
+                                    eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrHdd}
                                     remain={genStatComp.generalCntSata - realStatComp.realCntSata}
                                     hover={hoverOnItem}

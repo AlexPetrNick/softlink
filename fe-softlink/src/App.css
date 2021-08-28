@@ -366,39 +366,84 @@
 
   display: grid;
   grid-gap: 3px;
-  grid-template: 175px 45px 1fr/ 1fr 70px;
+  grid-template: 160px 1fr 1.7fr/ 210px 30fr;
 }
 
 .item__content:hover {
   box-shadow: 0 0 10px green;
 }
+.picture__hard_item {
+  width: 200px;
+  height: 160px;
+  margin: 3px;
+  border: 3px solid #000;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  background-size: cover;
+}
+
+.addedButton{
+  display: grid;
+  margin-top: 10px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  grid-template: 35px / 1fr;
+}
+
+.added__state__mother{
+  height: 30px;
+  width: 30px;
+  border: 2px solid red;
+  background-color: red;
+}
+
+.added__state__mother__slot{
+  height: 30px;
+  width: 30px;
+  border: 2px solid red;
+  background-color: red;
+}
+
+.in_mother {
+  border: 2px solid green;
+  background-color: green;
+}
 
 .title__hard__item {
-  padding-top: 2px;
+  padding-top: 20px;
   text-align: center;
   font-size: 18px;
   font-style: italic;
   grid-column-start: 1;
   grid-column-end: 3;
-}
-.picture__hard_item {
-  margin: 3px;
-  border: 3px solid #000;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  background-size: cover;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .description__hard__item{
   background-color: #c7c7c7;
   grid-column-start: 1;
   grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
   margin: 0px 5px 5px 5px;
   text-align:left;
   font-size: 15px;
   border-top: 1px solid #000;
+  padding-top: 10px;
+  padding-left: 15px;
 
   display: grid;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 
   grid-template: 1fr / 1fr 50px;
 }
@@ -407,7 +452,6 @@
 }
 .control {
   padding-left: 2px;
-  padding-top: 5px;
 }
 
 .button__add__item{
@@ -555,12 +599,12 @@
   margin-top: 10px;
   margin-left: 10px;
   width: 750px;
-  height: 480px;
+  height: auto;
   padding: 10px;
 
   display: grid;
   grid-gap: 10px;
-  grid-template: 70px 1fr 35px 1fr/1fr;
+  grid-template: 70px auto 35px 1fr/1fr;
 }
 .news__title {
   padding-top: 15px;
@@ -573,7 +617,7 @@
 .news__content {
   border-top: 1px solid #53bf00;
   border-radius: 10px;
-  height: 350px;
+  height: auto;
 }
 
 /*Теги новостей*/

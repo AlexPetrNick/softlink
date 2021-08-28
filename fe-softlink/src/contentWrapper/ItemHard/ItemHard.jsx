@@ -27,6 +27,9 @@ let ItemHard = (props) => {
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
 
+	let stateMother = props.stateMotherComputer
+
+
 	let trueBag = (typeItem) => {
 				switch(typeItem) {
 					case (1): {
@@ -44,17 +47,18 @@ let ItemHard = (props) => {
 					case (6): {
 						return props.stateBugHard.ssd 
 					}
-					case (7): {
-						return props.stateBugHard.hdd 
+					case (2): {
+						return props.stateBugHard.cpu 
 					}
 					default:
-						return props.stateBugHard.cpu 
+						return props.stateBugHard.hdd 
 					}
 			}
 
-
+	console.log(trueBag(props.typeItem))
 	let idBugHard = trueBag(props.typeItem).map((hard)=>{
 		if(hard) {
+			console.log(hard.type_item)
 			return hard.id
 		} else {
 			return []
@@ -73,6 +77,7 @@ let ItemHard = (props) => {
 					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>
 					)
 				}
@@ -85,6 +90,7 @@ let ItemHard = (props) => {
 					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>)					
 				}
 				case (4): {
@@ -96,6 +102,7 @@ let ItemHard = (props) => {
 					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>
 					)
 				}
@@ -108,6 +115,7 @@ let ItemHard = (props) => {
 					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>
 					)
 				}	
@@ -120,6 +128,7 @@ let ItemHard = (props) => {
 					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>
 					)
 				}
@@ -133,6 +142,7 @@ let ItemHard = (props) => {
 					ucab = {props.stateup}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
 					/>
 					)
 				}
@@ -145,6 +155,7 @@ let ItemHard = (props) => {
 						stateBugIdHard={props.stateBugIdHard}
 						cabinetAddItem = {props.cabinetAddItem}
 						cabinetEraseItem = {props.cabinetEraseItem}
+						stateMother = {stateMother}
 						/>
 						)
 				}

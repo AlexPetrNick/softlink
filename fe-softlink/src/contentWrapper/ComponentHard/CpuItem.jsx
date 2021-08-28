@@ -1,5 +1,7 @@
 import React from 'react'
 import cpuImage from '../../image/cpuImage.jpg'
+import iconMother from '../../image/icons/inMother.png'
+import iconMotherSlot from '../../image/icons/motherboard.png'
 
 const CpuItem = (props) => {
 
@@ -11,9 +13,24 @@ const CpuItem = (props) => {
 		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
+	console.log(props)
+	let inMotherComputer = props.data.id === props.stateMother.id
+	let inMother = false
+	if (inMotherComputer) {
+		inMother = true
+	}
+	
+	let trueSocket = props.data === props.stateMother
+
 	return (
 		<div className="item__content">
-			<img className="picture__hard_item" src={cpuImage}  alt="" />
+			<div className="picture__hard_item">
+				<img className="" src={cpuImage}  width="200" height="160" alt="" />
+			</div>
+			<div className="addedButton">
+				<img src={iconMother} className={inMother ? "added__state__mother in_mother" : "added__state__mother"} width="30" height="30" />
+				<img src={iconMotherSlot} className="added__state__mother__slot" width="30" height="30" />
+			</div>
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
 				<div className="description">

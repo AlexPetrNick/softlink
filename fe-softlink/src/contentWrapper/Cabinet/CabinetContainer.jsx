@@ -2,8 +2,8 @@ import React from 'react'
 import Cabinet from './Cabinet'
 import { connect } from 'react-redux';
 import './cabinet.css'
-import {getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
-import {addItemInComputer, eraseItemInComputer} from '../../Redux/computerReducer'
+import {getStateCabinetAC, updateCabinetAC, cabinetEraseItem} from '../../Redux/cabinetReducer'
+import {addItemInComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
@@ -32,5 +32,5 @@ export default connect(mapStateToProps, {
     getStateCabinetAC,
     updateCabinetAC,
     addItemInComputer,
-    eraseItemInComputer
+    cabinetEraseItem
 })(ContainerComponent)

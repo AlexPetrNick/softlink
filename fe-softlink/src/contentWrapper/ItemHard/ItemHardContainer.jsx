@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {setData, getHardPageThunkCreator} from '../../Redux/hardPageReducer'
 import {updateCabinetAC, cabinetIsUpdateThunkCreator, cabinetAddItem, cabinetEraseItem} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
-import {apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
+import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
 
 let typeItem = {
     0: "Не определен",
@@ -36,8 +36,8 @@ class ItemHardContainer extends React.Component {
 			case (6): {
 				return this.props.getHardPageThunkCreator(0, apiSsd)
 			}
-			case (7): {
-				return this.props.getHardPageThunkCreator(0, apiHdd)
+			case (2): {
+				return this.props.getHardPageThunkCreator(0, apiCpu)
 			}
 			default:
 				this.props.getHardPageThunkCreator(0)
@@ -60,8 +60,8 @@ class ItemHardContainer extends React.Component {
 			case (6): {
 				return this.props.getHardPageThunkCreator(page, apiSsd)
 			}
-			case (7): {
-				return this.props.getHardPageThunkCreator(page, apiHdd)
+			case (2): {
+				return this.props.getHardPageThunkCreator(page, apiCpu)
 			}
 			default:
 				this.props.getHardPageThunkCreator(page)
@@ -83,10 +83,10 @@ class ItemHardContainer extends React.Component {
 }
 let mapStateToProps = (state, props) => {
 	return {
+		stateMotherComputer: state.computer.mother[0],
 		typeItem: props.itemType,
 		stateHard: state.pageHard,
 		stateBugHard: state.pageCabinet.bag,
-		stateup: state.pageCabinet.updateCabinet
 	}
 }
 

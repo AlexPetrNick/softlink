@@ -1,6 +1,6 @@
 import React from 'react';
 import {setStateTextTitleNews, setStateTextContentNews, addNews, setCatch} from '../../Redux/actionsNews'
-import {setCurrentPage, setInitCopmRequest, toggleLoad, getNewsThunkCreator} from '../../Redux/actionsNews'
+import {setCurrentPage, getNewsThunkCreator} from '../../Redux/actionsNews'
 import {testAC} from '../../Redux/pageNewsReducer'
 import {connect} from 'react-redux'
 import NewsPage from './NewsPage'
