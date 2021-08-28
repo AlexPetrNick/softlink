@@ -1,10 +1,10 @@
 import React from 'react';
 import ItemHard from './ItemHard'
 import {connect} from 'react-redux'
-import {setData, getHardPageThunkCreator, toggleFetch} from '../../Redux/hardPageReducer'
-import {updateCabinetAC, getCabinetThunkCreator, cabinetIsUpdateThunkCreator} from '../../Redux/cabinetReducer'
+import {setData, getHardPageThunkCreator} from '../../Redux/hardPageReducer'
+import {updateCabinetAC, cabinetIsUpdateThunkCreator, cabinetAddItem, cabinetEraseItem} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
-import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
+import {apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
 
 let typeItem = {
     0: "Не определен",
@@ -19,6 +19,7 @@ let typeItem = {
 
 class ItemHardContainer extends React.Component {
 	componentDidMount() {
+		console.log('itemhard did mount')
 		switch(this.props.itemType) {
 			case (1): {
 				return this.props.getHardPageThunkCreator(0, apiMother)
@@ -72,7 +73,8 @@ class ItemHardContainer extends React.Component {
 			{this.props.stateHard.isFetching ? <Preloader /> : 
 			<ItemHard {...this.props} 
 			getPageData = {this.getPageData}
-			toggleFetch = {this.props.toggleFetch}
+			cabinetAddItem = {this.props.cabinetAddItem}
+			cabinetEraseItem = {this.props.cabinetEraseItem}
 			 />
 			}
 			</>
@@ -92,7 +94,7 @@ export default connect(mapStateToProps, {
 	setData,
 	getHardPageThunkCreator,
 	updateCabinetAC,
-	toggleFetch,
-	getCabinetThunkCreator,
-	cabinetIsUpdateThunkCreator
+	cabinetIsUpdateThunkCreator,
+	cabinetAddItem,
+	cabinetEraseItem
 })(ItemHardContainer) 

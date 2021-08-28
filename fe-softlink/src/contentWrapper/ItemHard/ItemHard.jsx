@@ -71,7 +71,8 @@ let ItemHard = (props) => {
 					data={data}
 					idBugHard = {idBugHard}
 					stateBugIdHard={props.stateBugIdHard}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>
 					)
 				}
@@ -82,7 +83,8 @@ let ItemHard = (props) => {
 					data={data}
 					idBugHard = {idBugHard}
 					stateBugIdHard={props.stateBugIdHard}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>)					
 				}
 				case (4): {
@@ -92,7 +94,8 @@ let ItemHard = (props) => {
 					data={data}
 					idBugHard = {idBugHard}
 					stateBugIdHard={props.stateBugIdHard}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>
 					)
 				}
@@ -103,7 +106,8 @@ let ItemHard = (props) => {
 					data={data}
 					idBugHard = {idBugHard}
 					stateBugIdHard={props.stateBugIdHard}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>
 					)
 				}	
@@ -114,7 +118,8 @@ let ItemHard = (props) => {
 					data={data}
 					idBugHard = {idBugHard}
 					stateBugIdHard={props.stateBugIdHard}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>
 					)
 				}
@@ -126,7 +131,8 @@ let ItemHard = (props) => {
 					idBugHard = {idBugHard}
 					updateCabinet = {props.updateCabinet}
 					ucab = {props.stateup}
-					updateCabinetAC = {props.updateCabinetAC}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
 					/>
 					)
 				}
@@ -137,7 +143,8 @@ let ItemHard = (props) => {
 						data={data}
 						idBugHard = {idBugHard}
 						stateBugIdHard={props.stateBugIdHard}
-						updateCabinetAC = {props.updateCabinetAC}
+						cabinetAddItem = {props.cabinetAddItem}
+						cabinetEraseItem = {props.cabinetEraseItem}
 						/>
 						)
 				}

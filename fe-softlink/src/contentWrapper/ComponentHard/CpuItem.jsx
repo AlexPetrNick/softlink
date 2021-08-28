@@ -1,17 +1,14 @@
 import React from 'react'
 import cpuImage from '../../image/cpuImage.jpg'
-import {apiCabinet} from '../../apiDAL/DAL'
 
 const CpuItem = (props) => {
-	
+
 	let getItem = () => {
-		apiCabinet.addItemCpu(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemCpu(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
 	return (

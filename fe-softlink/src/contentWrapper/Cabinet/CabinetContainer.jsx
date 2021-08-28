@@ -2,12 +2,16 @@ import React from 'react'
 import Cabinet from './Cabinet'
 import { connect } from 'react-redux';
 import './cabinet.css'
-import {getCabinetThunkCreator, getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
-import {withCorrectCabinet} from '../../hok/withCorrectCabinet'
+import {getStateCabinetAC, updateCabinetAC} from '../../Redux/cabinetReducer'
 import {addItemInComputer, eraseItemInComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
+
+    componentDidUpdate(){
+        console.log("update")
+    }
+
     render() {
         console.log("cabinet container")
         return (
@@ -25,7 +29,6 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    getCabinetThunkCreator,
     getStateCabinetAC,
     updateCabinetAC,
     addItemInComputer,

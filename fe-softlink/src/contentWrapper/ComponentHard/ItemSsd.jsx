@@ -1,4 +1,3 @@
-import {apiCabinet} from '../../apiDAL/DAL'
 import React from 'react'
 import ssd from '../../image/ssd.jfif'
 
@@ -6,13 +5,11 @@ const ItemSsd = (props) => {
 	
 
 	let getItem = () => {
-		apiCabinet.addItemSsd(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemSsd(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 	return (
 		<div className="item__content">

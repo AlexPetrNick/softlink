@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {UserControlContainer} from './userControl/UserControlContainer';
 import PictureUp from './pictureUp/PictureUp';
 import ContentWrapper from './contentWrapper/ContentWrapper.jsx';
@@ -8,7 +8,6 @@ import FooterWrapper from './footerWrapper/footerWrapper.js';
 import {initThunkCreator, isInit} from './Redux/appReducer'
 import {connect} from 'react-redux'
 import Preloader from './Preloader/Preloader';
-import {cabinetIsUpdateThunkCreator} from './Redux/cabinetReducer'
 
 
 class App extends React.Component {         
@@ -17,12 +16,13 @@ class App extends React.Component {
       this.props.initThunkCreator() 
   }
 
-  componentDidUpdate(prevProps) {
-		if(this.props.stateup) {
-      console.log("app did update")
-			this.props.cabinetIsUpdateThunkCreator()
-		} 
-	}
+  /*componentDidUpdate(prevProps, prevState, s) {
+
+    debugger
+    console.log(this.props.stateAll.pageCabinet.updateCabinet)
+		this.props.cabinetIsUpdateThunkCreator(true)
+    console.log(this.props.stateAll.pageCabinet.updateCabinet)
+	}*/
 
 
   render() {
@@ -55,6 +55,5 @@ const mapStateToProps = (state) => ({
 
 export default connect (mapStateToProps, {
   initThunkCreator,
-  isInit,
-  cabinetIsUpdateThunkCreator
+  isInit
 })(App);

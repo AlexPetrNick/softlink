@@ -1,17 +1,14 @@
 import React from 'react'
-import {apiCabinet} from '../../apiDAL/DAL'
 import pict from '../../image/ram.jpg'
 
 let ItemRam = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemRam(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemRam(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
 	return (

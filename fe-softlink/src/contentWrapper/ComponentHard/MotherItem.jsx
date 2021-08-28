@@ -5,13 +5,11 @@ import mother from '../../image/mother.jfif'
 const ItemMother = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemMother(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemMother(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
 

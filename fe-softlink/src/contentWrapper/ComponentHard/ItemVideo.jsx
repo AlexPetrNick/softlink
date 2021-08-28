@@ -1,17 +1,14 @@
 import React from 'react'
-import {apiCabinet} from '../../apiDAL/DAL'
 import picture from '../../image/video.jpg'
 
 const ItemVideo = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemVideo(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemVideo(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
 

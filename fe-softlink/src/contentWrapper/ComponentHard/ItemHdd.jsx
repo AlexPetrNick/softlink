@@ -1,17 +1,14 @@
 import React from 'react'
 import hdd from '../../image/hdd.jpg'
-import {apiCabinet} from '../../apiDAL/DAL'
 
 const ItemHdd = (props) => {
 
 	let getItem = () => {
-		apiCabinet.addItemHdd(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
 	let eraseItem = () => {
-		apiCabinet.eraseItemHdd(props.data.id)
-		props.updateCabinetAC(true)
+		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
 	//&#10006;	убрать итем

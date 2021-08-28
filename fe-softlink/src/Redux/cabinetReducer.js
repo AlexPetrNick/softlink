@@ -1,4 +1,4 @@
-import {apiCabinet} from '../apiDAL/DAL'
+import {apiCabinet, apiMother} from '../apiDAL/DAL'
 
 export const GET_ITEM_IN_BUG = "GET-ITEM-IN-BUG"
 export const GET_ITEM_IN_BUG_MOTHER = "GET-ITEM-IN-BUG-MOTHER"
@@ -123,15 +123,76 @@ export const getCabinetThunkCreator = () => {
         )
     }
 }
-export const cabinetIsUpdateThunkCreator = () => {
+
+export const cabinetIsUpdateThunkCreator = (isUpdate) => {
     return (dispatch) => {
         let stateCabinet = apiCabinet.getStateCabinet()
-        .then(response => response)
         Promise.all([stateCabinet])
             .then(value => {
                 dispatch(getStateCabinetAC(value[0]))
-                dispatch(updateCabinetAC(false))
             }
         )
+    }
+}
+
+export const cabinetEraseItem = (idItem, itemType) => {
+    return (dispatch) => {
+        let addtem;
+        let stateCabinet;
+        switch(itemType){
+            case 1:
+                addtem = apiCabinet.eraseItemMother(idItem)
+            case 3:
+                addtem = apiCabinet.eraseItemRam(idItem)
+            case 4:
+                addtem = apiCabinet.eraseItemVideo(idItem)
+            case 5:
+                addtem = apiCabinet.eraseItemPower(idItem)
+            case 6:
+                addtem = apiCabinet.eraseItemSsd(idItem)
+            case 7:
+                addtem = apiCabinet.eraseItemHdd(idItem)
+            case 2:
+                addtem = apiCabinet.eraseItemCpu(idItem)    
+        }
+        addtem
+            .then(resp => {
+                stateCabinet = apiCabinet.getStateCabinet()
+                return stateCabinet
+            }).then(value => {
+                console.log(value)
+                dispatch(getStateCabinetAC(value))
+            })
+    }
+}
+
+export const cabinetAddItem = (idItem, itemType) => {
+    return (dispatch) => {
+        let addtem;
+        let stateCabinet;
+        switch(itemType){
+            case 1:
+                addtem = apiCabinet.addItemMother(idItem)
+            case 3:
+                addtem = apiCabinet.addItemRam(idItem)
+            case 4:
+                addtem = apiCabinet.addItemVideo(idItem)
+            case 5:
+                addtem = apiCabinet.addItemPower(idItem)
+            case 6:
+                addtem = apiCabinet.addItemSsd(idItem)
+            case 7:
+                addtem = apiCabinet.addItemHdd(idItem)
+            case 2:
+                addtem = apiCabinet.addItemCpu(idItem)    
+        }
+        addtem
+            .then(resp => {
+                stateCabinet = apiCabinet.getStateCabinet()
+                return stateCabinet
+            }).then(value => {
+                console.log(value)
+                dispatch(getStateCabinetAC(value))
+            })
     }
 }
