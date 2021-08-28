@@ -181,7 +181,7 @@ let initState = {
     cpu: [{
         "id": 8,
         "brand": "AMD",
-        "socket": "AMD AM4",
+        "socket": "AM4",
         "core_int": "No",
         "core_amd": "Matisse",
         "series": "AMD Ryzen",
@@ -198,7 +198,7 @@ let initState = {
     mother: [{
         "id": 7,
         "brand": "ASUS",
-        "socket": "Socket AM4",
+        "socket": "AM4",
         "chipsetI": "H310",
         "chipsetA": "AMD A520",
         "form_fact": "mATX",

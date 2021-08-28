@@ -13,14 +13,17 @@ const CpuItem = (props) => {
 		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
-	console.log(props)
 	let inMotherComputer = props.data.id === props.stateMother.id
 	let inMother = false
 	if (inMotherComputer) {
 		inMother = true
 	}
 	
-	let trueSocket = props.data === props.stateMother
+	let trueSocket = props.data.socket === props.stateMother.socket
+	let Socket = false
+	if (trueSocket) {
+		Socket = true
+	}
 
 	return (
 		<div className="item__content">
@@ -29,7 +32,7 @@ const CpuItem = (props) => {
 			</div>
 			<div className="addedButton">
 				<img src={iconMother} className={inMother ? "added__state__mother in_mother" : "added__state__mother"} width="30" height="30" />
-				<img src={iconMotherSlot} className="added__state__mother__slot" width="30" height="30" />
+				<img src={iconMotherSlot} className={ Socket ? "added__state__mother__slot in_mother" : "added__state__mother__slot"} width="30" height="30" />
 			</div>
 			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
 			<div className="description__hard__item">
