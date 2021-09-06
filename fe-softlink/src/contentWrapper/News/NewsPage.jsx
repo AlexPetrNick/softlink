@@ -30,14 +30,11 @@ const NewsPage = (props) => {
             return (<NewsItem id={data.id} key={data.id} title={data.title} content={data.content} />)
         })
     }
-    
     let countPages = Math.ceil(props.countNews / props.perPage)
     let pages = []
-
     for (let i=1; i <= countPages; i++) {
         pages.push(i)
     }
-    
     let styleSelect = 'pageSelected'
 
 

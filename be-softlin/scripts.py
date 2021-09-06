@@ -1,29 +1,28 @@
 import sqlite3
 import random
 
-connector = sqlite3.connect('db copy.sqlite3')
+connector = sqlite3.connect('db.sqlite3')
 
 lis = []
 
 cur = connector.cursor()
 
-nameinter = cur.execute("select * from hardware_interfacememory ").fetchall()
-print(nameinter)
+item_hdd = cur.execute("select power_interface from hardware_hdd ").fetchall()
+print(item_hdd)
 
-nameinterssd = cur.execute("select interface from hardware_ssd ").fetchall()
+itemRand = ['SATA']
 
-for ssd in nameinterssd:
-    for inter in nameinter:
-        if ssd[0] == inter[1]:
-            temp = inter[0]
-            lis.append(temp)
+sql_update_query = """Update hardware_hdd set power_interface = ? where id = ?"""
 
-##for inte in lis:
+j = 1
 
-    #cur.execute("update hardware_ssd set interface=?", inte)
+for i in item_hdd:
+    data = (random.choice(itemRand), j)
+    cur.execute(sql_update_query, data)
+    j += 1
 
-lis.index(1)
+item_hdd = cur.execute("select power_interface from hardware_hdd ").fetchall()
+print(item_hdd)
 
-print(lis)
-
+connector.commit()
 connector.close()

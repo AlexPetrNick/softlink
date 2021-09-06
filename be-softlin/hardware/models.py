@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+2
+3
+4
+5
+import random
+
 import uuid
 
 def generate_uuid():
@@ -144,6 +150,7 @@ class Image(models.Model):
     id = models.IntegerField(primary_key=True)
     image = models.ImageField()
 
+list_powers = [65, 75, 85, 90, 100, 125, 130, 70]
 
 class Processor(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
@@ -161,10 +168,12 @@ class Processor(models.Model):
     has_graph = models.BooleanField()
     image = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.series)
 
+list_powers_hdd = [20, 25, 30]
 
 class HDD(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
@@ -175,13 +184,15 @@ class HDD(models.Model):
     freq = models.TextField(max_length=30)
     interface = models.TextField(max_length=30)
     propusk_sposob = models.TextField(max_length=30)
-    power = models.TextField(max_length=30)
+    power_interface = models.TextField(max_length=30, blank=True)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers_hdd))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
 
 
+list_powers_mother = [20, 25, 30]
 class Mother(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.TextField(max_length=30)
@@ -204,11 +215,12 @@ class Mother(models.Model):
     bios = models.TextField(max_length=30)
     form_fact = models.ForeignKey(FormFactorMother, on_delete=models.CASCADE)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers_mother))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
 
-
+list_powers_ram = [2, 3, 4, 5]
 class RAM(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.TextField(max_length=30)
@@ -219,11 +231,12 @@ class RAM(models.Model):
     timing = models.TextField(max_length=30)
     latency = models.TextField(max_length=30)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers_ram))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
 
-
+list_powers_video = [150, 200, 250, 230]
 class VideoCard(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.TextField(max_length=30)
@@ -239,8 +252,9 @@ class VideoCard(models.Model):
     connector = models.TextField(max_length=30)
     port = models.TextField(max_length=30)
     added_power = models.TextField(max_length=30)
-    power = models.TextField(max_length=30)
+    power_interface = models.TextField(max_length=30, blank=True)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers_video))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)
@@ -262,6 +276,7 @@ class PowerSupply(models.Model):
         return str(self.brand) + ' ' + str(self.model)
 
 
+list_powers_ssd = [10, 5, 15]
 class SSD(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.TextField(max_length=30)
@@ -274,6 +289,7 @@ class SSD(models.Model):
     propusk_sposob = models.TextField(max_length=30)
     power_in = models.TextField(max_length=30)
     type_item = models.ForeignKey(TypeItem, blank=True, default=0, on_delete=models.CASCADE)
+    power = models.IntegerField(default=random.choice(list_powers_ssd))
 
     def __str__(self):
         return str(self.brand) + ' ' + str(self.model)

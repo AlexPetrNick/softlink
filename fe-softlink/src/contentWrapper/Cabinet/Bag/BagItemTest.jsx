@@ -28,7 +28,7 @@ let BagItem = (props) => {
                 {props.data.model} {props.data.brand}
             </div>
             <div className="bug__item__disc">
-                Описание Итема
+                { "ID: " + String(props.data.id)}
             </div>
             {
                 haveItemOnComputer ? 

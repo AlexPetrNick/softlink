@@ -193,7 +193,8 @@ let initState = {
         "cache2": 1024,
         "tdp": "95 Вт",
         "has_graph": false,
-        "image": null
+        "image": null,
+        "power": "75"
     }],
     mother: [{
         "id": 7,
@@ -216,7 +217,8 @@ let initState = {
         "m2_cnt": 1,
         "has_NVMe": true,
         "port": "1x PS/22x USB 2.01x RJ-451x HDMI1x DVI-D1x VGA (D-Sub)3x Audio jack4 x USB 3.2 Gen 11 x USB 3.2 Gen 2",
-        "bios": "UEFI AMI BIOS, 256 Мбит"
+        "bios": "UEFI AMI BIOS, 256 Мбит",
+        "power": "25"
     }],
     hdd: [{
         "id": 1,
@@ -227,7 +229,7 @@ let initState = {
         "buffer": "64",
         "freq": "7200",
         "propusk_sposob": "6 Гбит/сек",
-        "power": "SATA"
+        "power": "30"
     }],
     ram: [{
         "id": 3,
@@ -238,7 +240,8 @@ let initState = {
         "work_freq": "2400",
         "timing": "15-15-15",
         "latency": "CL15",
-        "form_factor": 115
+        "form_factor": 115,
+        "power": "3"
     },
     {
         "id": 4,
@@ -249,7 +252,8 @@ let initState = {
         "work_freq": "2666",
         "timing": "19",
         "latency": "CL19",
-        "form_factor": 115
+        "form_factor": 115,
+        "power": "5"
     }],
     power: [{
         "id": 2,
@@ -279,7 +283,7 @@ let initState = {
         "connector": "PCI-E 16x 3.0",
         "port": "HDMIDisplayPortDVI-D",
         "added_power": "0 (нет)",
-        "power": "300 Вт"
+        "power": "150"
     }],
     ssd: [{
         "id": 3,
@@ -292,7 +296,8 @@ let initState = {
         "speed_write": "440",
         "interface": "SATA-III",
         "propusk_sposob": "6 Гбит/с",
-        "power_in": "От M.2 PCI-Express Gen3 x4"
+        "power_in": "От M.2 PCI-Express Gen3 x4",
+        "power": "15"
     }],
     remainMother: 0,
     remainVideo: 0,

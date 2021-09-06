@@ -3,6 +3,7 @@ import schema from '../../../image/scheme.jpg'
 import ComputerNameItem from './ComputerNameItem'
 import SaveButton from './Button/SaveButton'
 import DropButton from './Button/DropButton'
+import PowerPlace from './Button/PowerPlace'
 
 
 let Computer = (props) => {
@@ -16,17 +17,17 @@ let Computer = (props) => {
     let elementsLength = Boolean(document.getElementsByClassName('incorrect').length)
     let stateComp = props.state
 
-    let mother = stateComp.mother[0] ? stateComp.mother[0].model : null
-    let cpu =  stateComp.cpu[0] ? stateComp.cpu[0].model + "" + stateComp.cpu[0].brand : null
-    let video = stateComp.video[0] ? stateComp.video[0].graph_proc : null
-    let power = stateComp.power[0] ? stateComp.power[0].model + "" + stateComp.power[0].brand : null
+    let mother = stateComp.mother[0] ? "ID" + stateComp.mother[0].id + " " + stateComp.mother[0].model : null
+    let cpu =  stateComp.cpu[0] ? "ID" + stateComp.cpu[0].id + " " + stateComp.cpu[0].model + " " + stateComp.cpu[0].brand : null
+    let video = stateComp.video[0] ? "ID" + stateComp.video[0].id + " " + stateComp.video[0].graph_proc : null
+    let power = stateComp.power[0] ? "ID" + stateComp.power[0].id + " " + stateComp.power[0].model + "" + stateComp.power[0].brand : null
 
     let genStatComp = props.genStatComp
     let realStatComp = props.realStatComp
     let genStatCompArray = props.genStatCompArray
 
     let ram = stateComp.ram.length ? stateComp.ram.map((item) => {
-        return (String(item.brand) + ' ' + String(item.model))
+        return ('ID' + String(item.id) + ' ' + String(item.brand) + ' ' + String(item.model))
     }).map((item) => {
         return(
             <div className="computer__data__item">{item}</div>
@@ -34,7 +35,7 @@ let Computer = (props) => {
     }) : (<div className="computer__data__item"></div>)
 
     let ssd = stateComp.ssd.length ? stateComp.ssd.map((item) => {
-        return (String(item.brand) + ' ' + String(item.model))
+        return ('ID' + String(item.id) + ' ' + String(item.brand) + ' ' + String(item.model))
     }).map((item) => {
         return(
             <div className="computer__data__item">{item}</div>
@@ -42,7 +43,7 @@ let Computer = (props) => {
     }) : (<div className="computer__data__item"></div>)
 
     let hdd = stateComp.hdd.length ? stateComp.hdd.map((item) => {
-        return (String(item.brand) + ' ' + String(item.model))
+        return ('ID' + String(item.id) + ' ' + String(item.brand) + ' ' + String(item.model))
     }).map((item) => {
         return(
             <div className="computer__data__item">{item}</div>
@@ -57,7 +58,7 @@ let Computer = (props) => {
                 <SaveButton text="Сохранить" isChange={differentState} cntError={elementsLength}/>
                 <DropButton text="Сбросить1" isChange={differentState} stateLocal={stateComputer} />
             </div>
-            <div></div>
+                <PowerPlace />
             <div className="computer__data">
 
                 <ComputerNameItem toggle={props.toggleS} text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />

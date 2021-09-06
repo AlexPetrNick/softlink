@@ -21,6 +21,7 @@ let Cabinet = (props) => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
     }
+     
     let addItem = (data) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)

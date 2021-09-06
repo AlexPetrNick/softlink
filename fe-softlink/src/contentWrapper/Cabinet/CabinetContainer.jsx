@@ -3,7 +3,7 @@ import Cabinet from './Cabinet'
 import { connect } from 'react-redux';
 import './cabinet.css'
 import {getStateCabinetAC, updateCabinetAC, cabinetEraseItem} from '../../Redux/cabinetReducer'
-import {addItemInComputer} from '../../Redux/computerReducer'
+import {addItemInComputer, eraseItemInComputer} from '../../Redux/computerReducer'
   
 
 class ContainerComponent extends React.Component{
@@ -32,5 +32,6 @@ export default connect(mapStateToProps, {
     getStateCabinetAC,
     updateCabinetAC,
     addItemInComputer,
-    cabinetEraseItem
+    cabinetEraseItem,
+    eraseItemInComputer
 })(ContainerComponent)
