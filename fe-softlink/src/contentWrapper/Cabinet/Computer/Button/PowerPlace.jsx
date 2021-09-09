@@ -2,26 +2,29 @@ import React from 'react'
 
 let PowerPlace = (props) => {
 
-    let allPower = 400
-    let remaindPower = 180
+    console.log(props)
 
-    let isYellow = remaindPower <= allPower*0.15
+    let allPower = Number(props.powerAll)
+    let remaindPower = props.remainPower
+
+    let isYellow = remaindPower <= allPower*0.15 && remaindPower > 0
     let colorBorder = "green"
     let colorBack = "green"
     let colorAll = "green"
 
     let remaindUsed = (remaindPower*100) / allPower
+    console.log(remaindUsed)
     let remaindPercent = String(remaindUsed) + "%"
 
 
-    if (!isYellow) {
-        colorBack = "green"
-        colorBorder = "2px solid green"
-        colorAll = "#67e329"
-    } else if (remaindPower <= 0) {
+    if  ((remaindPower <= 0) || (remaindPower == 0)) {
         colorBack = "red"
         colorBorder = "2px solid red"
         colorAll = "#ff907d"
+    } else if (!isYellow) {
+        colorBack = "green"
+        colorBorder = "2px solid green"
+        colorAll = "#67e329"
     } else {
         colorBack = "#aba800"
         colorBorder = "2px solid #aba800"

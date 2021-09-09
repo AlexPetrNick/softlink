@@ -778,75 +778,77 @@
 }
 /*Фильтрация данных поле*/
 
-  .filter__body {
-    padding-top: 20px;
-    margin: auto;
-    margin-top: 15px;
-    width: 250px;
-    height: auto;
-    background-color: #8c8c8c;
-    padding-bottom: 20px;
-    display: grid;
-
-    grid-template: auto / auto;
-   }
-  .filter__body h2{
-    display: block;
-  }
-  .filter__item__title {
-    font-family: Comic Sans MS, Comic Sans, cursive;
-    margin-bottom: 20px;
-    text-align: center;
-    grid-column-start: 1;
-    grid-column-start: 2;
-  }
-  .filter__item {
-    color: #00620e;
-    margin-left: 30px;
-    height: 25px;
-    width: 250px;
-    grid-column-start: 1;
-    grid-column-start: 2;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .filter__list{
   min-width: 300px;
-  max-height: 400px;
+  max-height: auto;
   background-color: #7e7e7e;
   box-shadow: 1px 1px 15px #282828;
   grid-column-start: 2;
   grid-column-end: 3;
 }
+
+.filter__body {
+  padding-top: 20px;
+  margin: auto;
+  margin-top: 15px;
+  width: 250px;
+  height: auto;
+  background-color: #8c8c8c;
+  padding-bottom: 20px;
+  display: grid;
+
+  grid-template: auto / auto;
+  }
+.filter__body h2{
+  display: block;
+}
+.filter__item__title {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  margin-bottom: 20px;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-start: 2;
+}
+.filter__item {
+  color: #00620e;
+  margin-left: 30px;
+  height: auto;
+  width: 250px;
+  grid-column-start: 1;
+  grid-column-start: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

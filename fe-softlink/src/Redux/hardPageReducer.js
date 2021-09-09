@@ -6,6 +6,14 @@ export const SET_META_REPEAT = 'SET-META-REPEAT'
 export const TOGGLE_FETCH = 'TOGGLE-FETCH'
 export const PAGE_UPDATE = 'PAGE-UPDATE'
 
+export const filterFieldSsd = {
+    form_factor: ['Форм-фактор', 'form_factor', '123', '124', '125', '126', '127', '128' ],
+    type_mem: ['Тип памяти', 'type_mem', '3D MLC', '3D NAND', '3D NAND TLC', '3D QLC NAND', '3D XPoint', 'MLC', 'TLC' ],
+    memory: [ 'Память', 'memory','1 Tb', '120 Gb', '128 Gb', '2 Tb', '240 Gb', '256 Gb', '3.2 Tb', '3.84 Tb', '375 Gb','4 Tb', '480 Gb', '500 Gb', '512 Gb', '6.4 Tb', '7.68 Tb', '960 Gb'],
+    interface: ['Подлюкчение', 'interface','M2','PCI-E 3.0 x4','SATA-III','mSATA']
+}
+
+
 let initState = {
     countOnPage: 1,
     perPage: 1,

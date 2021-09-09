@@ -7,6 +7,7 @@ import ItemRam from '../ComponentHard/ItemRam'
 import ItemSsd from '../ComponentHard/ItemSsd'
 import ItemVideo from '../ComponentHard/ItemVideo'
 import MotherItem from '../ComponentHard/MotherItem'
+import {filterFieldSsd} from '../../Redux/hardPageReducer'
 
 let ItemHard = (props) => {
 	let onClickLinkPage = (page) => {
@@ -163,6 +164,82 @@ let ItemHard = (props) => {
 
 	}
 
+	let itemFilter = []
+	let getFetch = ''
+	let filterDict = {form_factor:[], type_mem: [], memory: [], interface: [] }
+
+	
+
+	let addfilterDict = (key, value, dict) => {
+		for (let item in dict) {
+			if (item == key) {
+				console.log(value)
+				console.log(key)
+				console.log(dict[item])
+				dict[item].push(value)
+			}
+		}
+	}
+
+	let getParamsOnGet = (e) => {
+		let value = e.target.attributes.value.value
+		let key = e.target.attributes.name.value
+		addfilterDict(key, value, filterDict)
+	}
+
+
+
+	let drawInput = (array) => {
+		let name = array[1]
+		let arrayCheck = []
+		for (let i=2; i < array.length; i++) {
+			arrayCheck.push(
+				<>
+				<input type="checkbox" name={name} value={array[i]} onChange={getParamsOnGet} />{array[i]}<br />
+				</>
+			)
+		}
+		return arrayCheck
+	}
+
+
+
+	for (let item in filterFieldSsd){
+		let title = filterFieldSsd[item][0]
+		itemFilter.push(
+			<div className="filter__body">
+				<div className="filter__item__title">{title}</div>
+				<div className="filter__item">
+					{drawInput(filterFieldSsd[item])}
+				</div>
+			</div>
+		)}
+
+	console.log(String(filterDict['form_factor']))
+		
+	let arrayToString = (arr) => {
+		let params = ''
+		for (let item in arr) {
+			if (params) {
+				params += "," + String(arr[item])
+			} else {
+				params = String(arr[item])
+			}
+		}
+		return params
+	}
+
+	let testQuery = () => {
+		const filter = 'filter'
+		let queryString = ''
+		for (let item in filterDict) {
+			if (filterDict[item].length) {
+				queryString += "&" + String(item) + "=" + arrayToString(filterDict[item])
+			}
+		}
+		console.log(queryString)
+	}	
+
 	return (
 		<div className="wrapper__hard">
 			<div className="content___list">
@@ -179,25 +256,13 @@ let ItemHard = (props) => {
 			</div>
 
 			<div className="filter__list">
+				<button onClick={testQuery}>Click</button>
 				<form action="#" method="GET" id="filter__memory">
-					<div className="filter__body">
-						<div className="filter__item__title">Память</div>
-							<div className="filter__item">
-								<input id="check" type="checkbox" name="memory" value="12" /> 12
-							</div>
-					</div>
-					<input type="submit" />
-				</form>
-				<form action="#" method="GET" id="filter__formfactor">
-					<div className="filter__body">
-						<div className="filter__item__title">Память</div>
-							<div className="filter__item">
-								<input type="checkbox" name="form_factor" value="12" /> 12
-							</div>
-					</div>
+					{itemFilter}
 					<input type="submit" />
 				</form>
 			</div>
+
 		</div>
 	);
 	}

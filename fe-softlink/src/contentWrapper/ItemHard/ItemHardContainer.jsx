@@ -71,7 +71,8 @@ class ItemHardContainer extends React.Component {
 		return (
 			<>
 			{this.props.stateHard.isFetching ? <Preloader /> : 
-			<ItemHard {...this.props} 
+			<ItemHard {...this.props}
+			getHardPageThunkCreator={this.props.getHardPageThunkCreator}
 			getPageData = {this.getPageData}
 			cabinetAddItem = {this.props.cabinetAddItem}
 			cabinetEraseItem = {this.props.cabinetEraseItem}

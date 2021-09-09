@@ -259,7 +259,7 @@ let initState = {
         "id": 2,
         "brand": "FSP",
         "model": "QD500 85+",
-        "power_all": "500 Вт",
+        "power_all": "500",
         "PFC": "Активный",
         "int_for_mother": "24+4+4 pin",
         "molex": "2 шт",

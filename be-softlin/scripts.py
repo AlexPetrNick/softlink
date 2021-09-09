@@ -7,22 +7,22 @@ lis = []
 
 cur = connector.cursor()
 
-item_hdd = cur.execute("select power_interface from hardware_hdd ").fetchall()
+item_hdd = cur.execute("select power_all from hardware_powersupply").fetchall()
 print(item_hdd)
 
-itemRand = ['SATA']
-
-sql_update_query = """Update hardware_hdd set power_interface = ? where id = ?"""
-
+qury = """update hardware_powersupply set power_all = ? where id = ?"""
 j = 1
 
 for i in item_hdd:
-    data = (random.choice(itemRand), j)
-    cur.execute(sql_update_query, data)
+    correct = i[0].split(' ')[0]
+    data = (correct,j)
+    cur.execute(qury, data)
     j += 1
 
-item_hdd = cur.execute("select power_interface from hardware_hdd ").fetchall()
+
+item_hdd = cur.execute("select power_all from hardware_powersupply").fetchall()
 print(item_hdd)
+
 
 connector.commit()
 connector.close()

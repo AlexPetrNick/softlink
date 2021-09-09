@@ -51,6 +51,23 @@ let Computer = (props) => {
     }) : (<div className="computer__data__item"></div>)
 
 
+    let correctGetSumm = (mass) => {
+        let a = 0;
+        let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
+        console.log(res)
+        return res
+    }
+
+    let allPower = stateComp.power.length ? stateComp.power[0].power_all : 0
+    let allPowerVideo = correctGetSumm(stateComp.video)
+    let allPowerRam = correctGetSumm(stateComp.ram)
+    let allPowerHdd = correctGetSumm(stateComp.hdd)
+    let allPowerSsd = correctGetSumm(stateComp.ssd)
+    let allPowerCpu = correctGetSumm(stateComp.cpu)
+    let allPowerMother = correctGetSumm(stateComp.mother)
+    let remainPower = allPower ? allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother) : 0
+
+
     return(
         <div className="user__computer">
             <div className="computer__schema">
@@ -58,7 +75,10 @@ let Computer = (props) => {
                 <SaveButton text="Сохранить" isChange={differentState} cntError={elementsLength}/>
                 <DropButton text="Сбросить1" isChange={differentState} stateLocal={stateComputer} />
             </div>
-                <PowerPlace />
+                <PowerPlace 
+                    powerAll={allPower} 
+                    remainPower={remainPower} 
+                />
             <div className="computer__data">
 
                 <ComputerNameItem toggle={props.toggleS} text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />

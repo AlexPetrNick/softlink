@@ -1,3 +1,4 @@
+from django.db.models import Q
 from typing import List
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -505,8 +506,61 @@ class SsdListPaginator(PageNumberPagination):
             'results': data
         })
 
+    def paginate_queryset(self, queryset, request, view=None):
+        #print(dir(request.query_params))
+        #print(len(request.query_params.dict().keys()))
+
+        def ret_or_and(query, temp_q):
+            if query == None:
+                query = temp_q
+                return query
+            else:
+                query &= temp_q
+                return query
+
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        print(dict_query)
+
+        if len(keys) and 'format' not in keys:
+            print('123123123')
+            if 'form_factor' in keys:
+                temp_q = Q(form_factor__in=dict_query['form_factor'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'type_mem' in keys:
+                temp_q = Q(type_mem__in=dict_query['type_mem'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'memory' in keys:
+                temp_q = Q(memory__in=dict_query['memory'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'interface' in keys:
+                temp_q = Q(interface__in=dict_query['interface'].split(','))
+                query = ret_or_and(query, temp_q)
+            ssd_query = SSD.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+
+        return super().paginate_queryset(queryset, request, view)
+
+
+"""if gender_list:
+    gender_q = Q(genre__in=genre_list)
+    query = gender_q
+
+if author_list:
+    author_q = Q(author__in=author_list)
+    if gender_list:
+       query|=author_q
+    else:
+       query = author_q
+
+books = []
+if query:
+   books = Book.objects.filter(query).distinct()"""
+
+
 class SsdListView(generics.ListAPIView):
-    """Вывод HDD List"""
+    """Вывод SSD List"""
     queryset = SSD.objects.all()
     serializer_class = SsdListSerializers
     pagination_class = SsdListPaginator

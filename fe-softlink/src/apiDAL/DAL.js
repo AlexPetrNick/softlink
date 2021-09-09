@@ -120,9 +120,9 @@ export const apiSsd = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "ssd/?format=json&page=" + String(page))
+            fetch(baseUrl + "ssd/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
