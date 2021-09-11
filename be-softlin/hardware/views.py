@@ -521,9 +521,9 @@ class SsdListPaginator(PageNumberPagination):
         keys = request.query_params.dict().keys()
         dict_query = request.query_params
         query = None
-        print(dict_query)
+        print(keys)
 
-        if len(keys) and 'format' not in keys:
+        if 'filter' in keys:
             print('123123123')
             if 'form_factor' in keys:
                 temp_q = Q(form_factor__in=dict_query['form_factor'].split(','))

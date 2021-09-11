@@ -76,13 +76,15 @@ export const pageUpdate = (update) => ({ type: PAGE_UPDATE, update })
 
 /* THUNK */
 
-export const getHardPageThunkCreator = (page=0, hard=apiHdd) => {
+export const getHardPageThunkCreator = (page=0, hard=apiHdd, params) => {
+    console.log(params)
     return (dispatch) => {
         console.log("fetching hardpage")
         dispatch(toggleFetch(true))
         if (page) {
-            hard.fetchOnClick(page)
+            hard.fetchOnClick(page, params)
             .then(data => {
+                console.log(data)
                 dispatch(setMetaRepeat(data.links.next, data.links.previous, data.current_page))
                 dispatch(setData(data.results))
                 dispatch(toggleFetch(false))

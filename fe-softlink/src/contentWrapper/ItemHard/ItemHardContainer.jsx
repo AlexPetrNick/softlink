@@ -43,28 +43,28 @@ class ItemHardContainer extends React.Component {
 				this.props.getHardPageThunkCreator(0)
 		}
 	}
-	getPageData = (page) => {
+	getPageData = (page, params='') => {
 		switch(this.props.itemType) {
 			case (1): {
-				return this.props.getHardPageThunkCreator(page, apiMother)
+				return this.props.getHardPageThunkCreator(page, apiMother, params=params)
 			}
 			case (3): {
-				return this.props.getHardPageThunkCreator(page, apiRam)
+				return this.props.getHardPageThunkCreator(page, apiRam, params=params)
 			}
 			case (4): {
-				return this.props.getHardPageThunkCreator(page, apiVideo)
+				return this.props.getHardPageThunkCreator(page, apiVideo, params=params)
 			}
 			case (5): {
-				return this.props.getHardPageThunkCreator(page, apiPower)
+				return this.props.getHardPageThunkCreator(page, apiPower, params=params)
 			}	
 			case (6): {
-				return this.props.getHardPageThunkCreator(page, apiSsd)
+				return this.props.getHardPageThunkCreator(page, apiSsd, params=params)
 			}
 			case (2): {
-				return this.props.getHardPageThunkCreator(page, apiCpu)
+				return this.props.getHardPageThunkCreator(page, apiCpu, params=params)
 			}
 			default:
-				this.props.getHardPageThunkCreator(page)
+				this.props.getHardPageThunkCreator(page, params=params)
 	}
 	}
 	render() {
@@ -72,7 +72,6 @@ class ItemHardContainer extends React.Component {
 			<>
 			{this.props.stateHard.isFetching ? <Preloader /> : 
 			<ItemHard {...this.props}
-			getHardPageThunkCreator={this.props.getHardPageThunkCreator}
 			getPageData = {this.getPageData}
 			cabinetAddItem = {this.props.cabinetAddItem}
 			cabinetEraseItem = {this.props.cabinetEraseItem}

@@ -8,10 +8,17 @@ import ItemSsd from '../ComponentHard/ItemSsd'
 import ItemVideo from '../ComponentHard/ItemVideo'
 import MotherItem from '../ComponentHard/MotherItem'
 import {filterFieldSsd} from '../../Redux/hardPageReducer'
+import { apiSsd } from '../../apiDAL/DAL';
+
+
 
 let ItemHard = (props) => {
-	let onClickLinkPage = (page) => {
-		props.getPageData(page)
+
+	let paramString = ''
+
+	let onClickLinkPage = (page, params='') => {
+		params = paramString
+		props.getPageData(page, params)
 	}
 	let count = props.stateHard.countOnPage
 	let perPage = props.stateHard.perPage
@@ -65,7 +72,6 @@ let ItemHard = (props) => {
 			return []
 		}
 	})
-
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
 			switch(props.typeItem) {
@@ -165,7 +171,6 @@ let ItemHard = (props) => {
 	}
 
 	let itemFilter = []
-	let getFetch = ''
 	let filterDict = {form_factor:[], type_mem: [], memory: [], interface: [] }
 
 	
@@ -173,14 +178,10 @@ let ItemHard = (props) => {
 	let addfilterDict = (key, value, dict) => {
 		for (let item in dict) {
 			if (item == key) {
-				console.log(value)
-				console.log(key)
-				console.log(dict[item])
 				dict[item].push(value)
 			}
 		}
 	}
-
 	let getParamsOnGet = (e) => {
 		let value = e.target.attributes.value.value
 		let key = e.target.attributes.name.value
@@ -201,9 +202,6 @@ let ItemHard = (props) => {
 		}
 		return arrayCheck
 	}
-
-
-
 	for (let item in filterFieldSsd){
 		let title = filterFieldSsd[item][0]
 		itemFilter.push(
@@ -215,7 +213,8 @@ let ItemHard = (props) => {
 			</div>
 		)}
 
-	console.log(String(filterDict['form_factor']))
+
+	
 		
 	let arrayToString = (arr) => {
 		let params = ''
@@ -228,17 +227,22 @@ let ItemHard = (props) => {
 		}
 		return params
 	}
-
-	let testQuery = () => {
-		const filter = 'filter'
+	let consctructParams = (filterDict) => {
+		let page = 0
 		let queryString = ''
 		for (let item in filterDict) {
 			if (filterDict[item].length) {
 				queryString += "&" + String(item) + "=" + arrayToString(filterDict[item])
 			}
 		}
-		console.log(queryString)
+		return queryString
 	}	
+	let fetchGetQuery = () => {
+		let queryString = consctructParams(filterDict)
+		let page = 1
+		props.getPageData(page, queryString)
+	}
+
 
 	return (
 		<div className="wrapper__hard">
@@ -256,10 +260,9 @@ let ItemHard = (props) => {
 			</div>
 
 			<div className="filter__list">
-				<button onClick={testQuery}>Click</button>
 				<form action="#" method="GET" id="filter__memory">
 					{itemFilter}
-					<input type="submit" />
+					<input type="submit" onClick={fetchGetQuery} />
 				</form>
 			</div>
 
