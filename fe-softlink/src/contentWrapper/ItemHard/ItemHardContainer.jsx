@@ -1,10 +1,11 @@
 import React from 'react';
 import ItemHard from './ItemHard'
 import {connect} from 'react-redux'
-import {setData, getHardPageThunkCreator} from '../../Redux/hardPageReducer'
+import {setData, getHardPageThunkCreator, setParams, setParamsJson, addDictParams, eraseDictParams} from '../../Redux/hardPageReducer'
 import {updateCabinetAC, cabinetIsUpdateThunkCreator, cabinetAddItem, cabinetEraseItem} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
 import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
+import {filterFieldSsd, filterFieldPower} from '../../Redux/hardPageReducer'
 
 let typeItem = {
     0: "Не определен",
@@ -43,7 +44,7 @@ class ItemHardContainer extends React.Component {
 				this.props.getHardPageThunkCreator(0)
 		}
 	}
-	getPageData = (page, params='') => {
+	getPageData = (page, params=this.props.stateHard.params) => {
 		switch(this.props.itemType) {
 			case (1): {
 				return this.props.getHardPageThunkCreator(page, apiMother, params=params)
@@ -67,14 +68,48 @@ class ItemHardContainer extends React.Component {
 				this.props.getHardPageThunkCreator(page, params=params)
 	}
 	}
+
+	getFilterItem = () => {
+		switch(this.props.itemType) {
+			case (1): {
+				return filterFieldSsd
+			}
+			case (3): {
+				return filterFieldSsd
+			}
+			case (4): {
+				return filterFieldSsd
+			}
+			case (5): {
+				return filterFieldPower
+			}	
+			case (6): {
+				return filterFieldSsd
+			}
+			case (2): {
+				return filterFieldSsd
+			}
+			default:
+				return filterFieldSsd
+	}
+	}
+
+	setParams = (string) => {
+		this.props.setParams(string)
+	}
+
 	render() {
 		return (
 			<>
 			{this.props.stateHard.isFetching ? <Preloader /> : 
 			<ItemHard {...this.props}
 			getPageData = {this.getPageData}
+			setParams = {this.setParams}
+			addDictParams = {this.props.addDictParams}
+			eraseDictParams = {this.props.eraseDictParams}
 			cabinetAddItem = {this.props.cabinetAddItem}
 			cabinetEraseItem = {this.props.cabinetEraseItem}
+			filterField = {this.getFilterItem()}
 			 />
 			}
 			</>
@@ -86,6 +121,7 @@ let mapStateToProps = (state, props) => {
 		stateMotherComputer: state.computer.mother[0],
 		typeItem: props.itemType,
 		stateHard: state.pageHard,
+		stateHardFilterJson: state.pageHard.paramsJson,
 		stateBugHard: state.pageCabinet.bag,
 	}
 }
@@ -96,5 +132,9 @@ export default connect(mapStateToProps, {
 	updateCabinetAC,
 	cabinetIsUpdateThunkCreator,
 	cabinetAddItem,
-	cabinetEraseItem
+	cabinetEraseItem,
+	setParams,
+	setParamsJson,
+	addDictParams,
+	eraseDictParams
 })(ItemHardContainer) 

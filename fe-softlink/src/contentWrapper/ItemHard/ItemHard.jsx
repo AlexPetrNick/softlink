@@ -7,37 +7,36 @@ import ItemRam from '../ComponentHard/ItemRam'
 import ItemSsd from '../ComponentHard/ItemSsd'
 import ItemVideo from '../ComponentHard/ItemVideo'
 import MotherItem from '../ComponentHard/MotherItem'
-import {filterFieldSsd} from '../../Redux/hardPageReducer'
-import { apiSsd } from '../../apiDAL/DAL';
 
 
 
 let ItemHard = (props) => {
 
-	let paramString = ''
+	let filterField = props.filterField
 
-	let onClickLinkPage = (page, params='') => {
-		params = paramString
-		props.getPageData(page, params)
+	let onClickLinkPage = (page) => {
+		props.getPageData(page)
 	}
+
 	let count = props.stateHard.countOnPage
 	let perPage = props.stateHard.perPage
 	let current = props.stateHard.currentPage
 	let cntPage;
 	let pages = []
-
-	if(perPage) {
-		cntPage = Math.ceil(count/perPage)
-		for (let i=1; i <= cntPage; i++) {
-			pages.push(i)
-		}
-	}
 	let hardItem = props.stateHard.data[0]
 	let componentHard;
-
 	let stateMother = props.stateMotherComputer
-
-
+	let itemFilter = []
+	let filterDict = props.stateHard.paramsJson
+	let setPagesOnPage = (perPage, countOnPage, pages) => {
+		if(perPage) {
+				cntPage = Math.ceil(countOnPage/perPage)
+				for (let i=1; i <= cntPage; i++) {
+					pages.push(i)
+				}
+			}
+		}
+	setPagesOnPage(perPage, count, pages)
 	let trueBag = (typeItem) => {
 				switch(typeItem) {
 					case (1): {
@@ -62,11 +61,8 @@ let ItemHard = (props) => {
 						return props.stateBugHard.hdd 
 					}
 			}
-
-	console.log(trueBag(props.typeItem))
 	let idBugHard = trueBag(props.typeItem).map((hard)=>{
 		if(hard) {
-			console.log(hard.type_item)
 			return hard.id
 		} else {
 			return []
@@ -155,67 +151,20 @@ let ItemHard = (props) => {
 				}
 				default:
 					return(
-						<CpuItem
-						key={data.id}
-						data={data}
-						idBugHard = {idBugHard}
-						stateBugIdHard={props.stateBugIdHard}
-						cabinetAddItem = {props.cabinetAddItem}
-						cabinetEraseItem = {props.cabinetEraseItem}
-						stateMother = {stateMother}
-						/>
-						)
+					<CpuItem
+					key={data.id}
+					data={data}
+					idBugHard = {idBugHard}
+					stateBugIdHard={props.stateBugIdHard}
+					cabinetAddItem = {props.cabinetAddItem}
+					cabinetEraseItem = {props.cabinetEraseItem}
+					stateMother = {stateMother}
+					/>
+					)
 				}
 		})
 
 	}
-
-	let itemFilter = []
-	let filterDict = {form_factor:[], type_mem: [], memory: [], interface: [] }
-
-	
-
-	let addfilterDict = (key, value, dict) => {
-		for (let item in dict) {
-			if (item == key) {
-				dict[item].push(value)
-			}
-		}
-	}
-	let getParamsOnGet = (e) => {
-		let value = e.target.attributes.value.value
-		let key = e.target.attributes.name.value
-		addfilterDict(key, value, filterDict)
-	}
-
-
-
-	let drawInput = (array) => {
-		let name = array[1]
-		let arrayCheck = []
-		for (let i=2; i < array.length; i++) {
-			arrayCheck.push(
-				<>
-				<input type="checkbox" name={name} value={array[i]} onChange={getParamsOnGet} />{array[i]}<br />
-				</>
-			)
-		}
-		return arrayCheck
-	}
-	for (let item in filterFieldSsd){
-		let title = filterFieldSsd[item][0]
-		itemFilter.push(
-			<div className="filter__body">
-				<div className="filter__item__title">{title}</div>
-				<div className="filter__item">
-					{drawInput(filterFieldSsd[item])}
-				</div>
-			</div>
-		)}
-
-
-	
-		
 	let arrayToString = (arr) => {
 		let params = ''
 		for (let item in arr) {
@@ -230,17 +179,84 @@ let ItemHard = (props) => {
 	let consctructParams = (filterDict) => {
 		let page = 0
 		let queryString = ''
+		const filter = '&filter'
 		for (let item in filterDict) {
 			if (filterDict[item].length) {
 				queryString += "&" + String(item) + "=" + arrayToString(filterDict[item])
 			}
 		}
-		return queryString
-	}	
+		return filter + queryString
+	}
+	let addFilterDict = (key, value) => {
+		props.addDictParams(key, value)
+	}
+	let eraseFilterDict = (key, value) => {
+		props.eraseDictParams(key, value)
+	}
+	let getParamsOnGet = (e) => {
+		let value = e.target.attributes.value.value
+		let key = e.target.attributes.name.value
+		let check = e.target.checked
+		if (check) {
+			addFilterDict(key, value)
+		} else {
+			eraseFilterDict(key, value)
+		}
+		let paramsString = consctructParams(filterDict)
+		props.setParams(paramsString)
+	}
+	let drawInput = (array) => {
+		let name = array[1]
+		let arrayCheck = []
+		let stringValue = ''
+		for (let tag in filterDict) {
+			let arrTemp = filterDict[tag]
+			if (arrTemp.length != 0) {
+				for (let i=0;i<arrTemp.length;i++) {
+					stringValue += String(tag)+String(arrTemp[i])
+				}
+			}
+		}
+		let checkOrNot = (bool, name, arr) => {
+			if (bool) {
+				return (
+					<>
+					<input id ={name+arr} type="checkbox" name={name} value={arr} onChange={getParamsOnGet} checked />{arr}<br />
+					</>
+				)
+			} else {
+				return (
+					<>
+					<input id ={name+arr} type="checkbox" name={name} value={arr} onChange={getParamsOnGet} />{arr}<br />
+					</>
+				)
+			}
+		}
+		for (let i=2; i < array.length; i++) {
+			let isHave = stringValue.indexOf(name+array[i]) >= 0
+			arrayCheck.push(
+				<>
+				{checkOrNot(isHave, name, array[i])}		
+				</>
+			)
+		}
+		return arrayCheck
+	}
+	for (let item in filterField){
+		console.log(item)
+		let title = filterField[item][0]
+		itemFilter.push(
+			<div className="filter__body">
+				<div className="filter__item__title">{title}</div>
+				<div className="filter__item">
+					{drawInput(filterField[item])}
+				</div>
+			</div>
+		)}	
 	let fetchGetQuery = () => {
-		let queryString = consctructParams(filterDict)
 		let page = 1
-		props.getPageData(page, queryString)
+		props.getPageData(page)
+		setPagesOnPage(props.stateHard.perPage, props.stateHard.countOnPage, pages)
 	}
 
 

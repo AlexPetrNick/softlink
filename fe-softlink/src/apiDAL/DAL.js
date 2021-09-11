@@ -56,9 +56,9 @@ export const apiHdd = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "hdd/?format=json&page=" + String(page))
+            fetch(baseUrl + "hdd/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
@@ -72,9 +72,9 @@ export const apiRam = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "ram/?format=json&page=" + String(page))
+            fetch(baseUrl + "ram/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
@@ -88,9 +88,9 @@ export const apiVideo = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "videocard/?format=json&page=" + String(page))
+            fetch(baseUrl + "videocard/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
@@ -104,9 +104,9 @@ export const apiPower = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "power/?format=json&page=" + String(page))
+            fetch(baseUrl + "power/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
@@ -116,7 +116,7 @@ export const apiPower = {
 export const apiSsd = {
     fetchOnMount: () => {
         return(
-            fetch(baseUrl + "ssd/?format=json")
+            fetch(baseUrl + "ssd?format=json")
 		    .then(responce => responce.json())
         )
     },
@@ -140,9 +140,9 @@ export const apiMother = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "mother/?format=json&page=" + String(page))
+            fetch(baseUrl + "mother/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }
@@ -157,9 +157,9 @@ export const apiCpu = {
 		    .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page) => {
+    fetchOnClick: (page, params='') => {
         return(
-            fetch(baseUrl + "cpu/?format=json&page=" + String(page))
+            fetch(baseUrl + "cpu/?format=json&page=" + String(page) + String(params))
 		    .then(responce => responce.json())
         )
     }

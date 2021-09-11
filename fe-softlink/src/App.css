@@ -298,9 +298,9 @@
 /*Разделитель контента и пагинатора*/
 .content___list{
   display: grid;
-  height: 2000px;
+  height: auto;
 
-  grid-template: 2000px 50px/ 1fr;
+  grid-template: auto 50px/ 1fr;
 }
 
 /*Пагинатор Железа*/
@@ -309,12 +309,13 @@
   grid-column-start: 1;
   grid-column-end: 2;
   background-color: #c2c2c2;
+  height: auto;
 
   display: grid;
   grid-gap: 10px;
   padding: 10px;
 
-  grid-template: 1fr /  repeat(3, minmax(250px, 250px));
+  grid-template: 320px 320px 320px 320px 320px 320px /  250px 250px 250px;
 }
 
 .page__number__list{
