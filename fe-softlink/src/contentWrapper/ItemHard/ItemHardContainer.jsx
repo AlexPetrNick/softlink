@@ -5,7 +5,7 @@ import {setData, getHardPageThunkCreator, setParams, setParamsJson, addDictParam
 import {updateCabinetAC, cabinetIsUpdateThunkCreator, cabinetAddItem, cabinetEraseItem} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
 import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
-import {filterFieldSsd, filterFieldPower} from '../../Redux/hardPageReducer'
+import {filterFieldSsd, filterFieldPower, filterFieldVideo, filterFieldRam, filterFieldHdd, filterFieldMother, filterFieldCpu} from '../../Redux/hardPageReducer'
 
 let typeItem = {
     0: "Не определен",
@@ -72,13 +72,13 @@ class ItemHardContainer extends React.Component {
 	getFilterItem = () => {
 		switch(this.props.itemType) {
 			case (1): {
-				return filterFieldSsd
+				return filterFieldMother
 			}
 			case (3): {
-				return filterFieldSsd
+				return filterFieldRam
 			}
 			case (4): {
-				return filterFieldSsd
+				return filterFieldVideo
 			}
 			case (5): {
 				return filterFieldPower
@@ -87,10 +87,10 @@ class ItemHardContainer extends React.Component {
 				return filterFieldSsd
 			}
 			case (2): {
-				return filterFieldSsd
+				return filterFieldCpu
 			}
 			default:
-				return filterFieldSsd
+				return filterFieldHdd
 	}
 	}
 

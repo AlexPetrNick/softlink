@@ -23,6 +23,46 @@ export const filterFieldPower = {
     PFC: ['Коррекция фактора мощности', 'PFC', 'Активный','Пассивный','н/д','нет']
 }
 
+export const filterFieldVideo = {
+    type_memory: ['Тип памяти','type_memory','GDDR3','GDDR4','GDDR5','GDDR5X','GDDR6','HBM2'],
+    size_shina_video: ['Видео шина','size_shina_video','128 Bit','160 Bit','192 Bit','256 Bit','384 Bit','4096 Bit','64 Bit'],
+    power: ['Потребляемая мощность','power','150','200','230','250']
+}
+
+export const filterFieldRam = {
+    type_memory: ['Тип памяти','type_memory','DDR3','DDR4','DDR3L'],
+    memory: ['Память','memory','4Gb','8Gb'],
+    work_freq: ['Рабочая частота','work_freq','1600','2133','2400','2666'],
+    form_factor: ['Форм-фактор','form_factor','DIMM','SO-DIMM']
+}
+
+export const filterFieldHdd = {
+    memory: ['Память','memory','1 Tb','10 Tb','12 Tb','14 Tb','16 Tb','18 Tb','2 Tb','3 Tb','4 Tb','500 Gb','6 Tb','8 Tb'],
+    buffer: ['Буфер','buffer','128','256','32','512','64'],
+    freq: ['Рабочая частота','freq','5400','5700','5900','7200'],
+    power: ['Мощность','power','20','25','30']
+}
+
+export const filterFieldMother = {
+    ddr4: ['DDR4','ddr4','DDR3','DDR4','DDR3L'],
+    pcie16: ['PCI-E 16','pcie16','1','2','3','4'],
+    chipsetI: ['Чипсет Intel','chipsetI','Z490','B365','H310','B360','B460','H410','Z590','X299','Q370','Z390','H370','915G','J1800','G41'],
+    chipsetA: ['Чипсет AMD','chipsetA','AMD A520','AMD B450','AMD B550','AMD A320','AMD B350','AMD X399','AMD X570'],
+    socket: ['Сокет','socket','FM2+','AM4','LGA 1151 v2','LGA 1151','LGA 1150','LGA 2066','LGA 2011','LGA 1200'],
+    m2_cnt: ['М2','m2_cnt','0','1','2','3'],
+    sata_cnt: ['Количество SATA','sata_cnt','2','3','4','5','6'],
+    msata_cnt: ['Количество mSATA','msata_cnt','0','1']
+}
+
+export const filterFieldCpu = {
+    socket: ['Сокет','socket','FM2+','AM4','LGA 1151 v2','LGA 1151','LGA 1150','LGA 2066','LGA 2011','LGA 1200'],
+    freq: ['Частота','freq','1','2','3','4'],
+    core_int: ['Ядро Intel','core_int','Comet Lake','Coffee Lake','Cascade Lake','Skylake','Coffee Lake Refresh','Haswell','Kaby Lake','Sandy Bridge-EP'],
+    core_amd: ['Ядро AMD','core_amd','Carrizo','Matisse','Godavari','Zen+','Summit Ridge','Vermeer','Zen','Zen 2','Pinnacle Ridge','Picasso'],
+    tech_proc: ['Техпроцесс','tech_proc','12 нм','14 нм','22 нм','28 нм','28 нм','32 нм','7 нм'],
+    num_core: ['Количество ядер','num_core','10','12','14','16','18','2','4','6','8'],
+    has_graph: ['Графическое ядро','has_graph','True','False']
+}
 
 let initState = {
     countOnPage: 1,

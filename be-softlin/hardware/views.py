@@ -587,8 +587,6 @@ class RamListView(generics.ListAPIView):
 
 class VideoListPaginator(PageNumberPagination):
     page_size = 18
-
-
     def get_paginated_response(self, data):
         return Response({
             'links': {
