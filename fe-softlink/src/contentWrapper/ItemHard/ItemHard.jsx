@@ -277,6 +277,12 @@ let ItemHard = (props) => {
 
 			<div className="filter__list">
 				<form action="#" method="GET" id="filter__memory">
+				<div className="filter__body">
+					<div className="filter__item__title">Пользовательский фильтр</div>
+					<div className="filter__item">
+						<input type="checkbox" name='Поль' value='12312' onChange={getParamsOnGet} /><br />
+					</div>
+				</div>
 					{itemFilter}
 					<input type="submit" onClick={fetchGetQuery} />
 				</form>

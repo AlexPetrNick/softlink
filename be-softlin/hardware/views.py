@@ -1,3 +1,4 @@
+from random import choice
 from django.db.models import Q
 from typing import List
 from rest_framework import generics
@@ -11,6 +12,13 @@ from rest_framework.views import APIView
 from .serializers import *
 from rest_framework.pagination import PageNumberPagination
 
+def ret_or_and(query, temp_q):
+    if query == None:
+        query = temp_q
+        return query
+    else:
+        query &= temp_q
+        return query
 
 class AddItemPower(APIView):
     """Добавить в кабинет блок питания"""
@@ -431,6 +439,33 @@ class RamListPaginator(PageNumberPagination):
             'per_page': self.page_size,
             'results': data
         })
+    """type_memory, memory, work_freq, form_factor """
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'type_memory' in keys:
+                temp_q = Q(type_memory__in=dict_query['type_memory'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'memory' in keys:
+                temp_q = Q(memory__in=dict_query['memory'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'work_freq' in keys:
+                temp_q = Q(work_freq__in=dict_query['work_freq'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'form_factor' in keys:
+                print(dict_query['form_factor'])
+                query_ff = FormFactorRam.objects.filter(name__in=dict_query['form_factor'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(form_factor__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            ssd_query = RAM.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
+
 
 class RamListView(generics.ListAPIView):
     """Вывод HDD List"""
@@ -456,6 +491,24 @@ class VideoListPaginator(PageNumberPagination):
             'per_page': self.page_size,
             'results': data
         })
+    """type_memory, size_shina_video, power """
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'type_memory' in keys:
+                temp_q = Q(type_memory__in=dict_query['type_memory'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'size_shina_video' in keys:
+                temp_q = Q(size_shina_video__in=dict_query['size_shina_video'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'power' in keys:
+                temp_q = Q(power__in=dict_query['power'].split(','))
+                query = ret_or_and(query, temp_q)
+            ssd_query = VideoCard.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
 
 class VideoListView(generics.ListAPIView):
     """Вывод видео List"""
@@ -480,6 +533,22 @@ class PowerSupplyListPaginator(PageNumberPagination):
             'per_page': self.page_size,
             'results': data
         })
+    """PFC и Об"""
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'PFC' in keys:
+                temp_q = Q(PFC__in=dict_query['PFC'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'power_all' in keys:
+                temp_q = Q(power_all__in=dict_query['power_all'].split(','))
+                query = ret_or_and(query, temp_q)
+            ssd_query = PowerSupply.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
+
 
 class PowerSupplyListView(generics.ListAPIView):
     """Вывод HDD List"""
@@ -507,24 +576,10 @@ class SsdListPaginator(PageNumberPagination):
         })
 
     def paginate_queryset(self, queryset, request, view=None):
-        #print(dir(request.query_params))
-        #print(len(request.query_params.dict().keys()))
-
-        def ret_or_and(query, temp_q):
-            if query == None:
-                query = temp_q
-                return query
-            else:
-                query &= temp_q
-                return query
-
         keys = request.query_params.dict().keys()
         dict_query = request.query_params
         query = None
-        print(keys)
-
         if 'filter' in keys:
-            print('123123123')
             if 'form_factor' in keys:
                 temp_q = Q(form_factor__in=dict_query['form_factor'].split(','))
                 query = ret_or_and(query, temp_q)
@@ -539,36 +594,13 @@ class SsdListPaginator(PageNumberPagination):
                 query = ret_or_and(query, temp_q)
             ssd_query = SSD.objects.filter(query)
             return super().paginate_queryset(ssd_query, request, view)
-
         return super().paginate_queryset(queryset, request, view)
-
-
-"""if gender_list:
-    gender_q = Q(genre__in=genre_list)
-    query = gender_q
-
-if author_list:
-    author_q = Q(author__in=author_list)
-    if gender_list:
-       query|=author_q
-    else:
-       query = author_q
-
-books = []
-if query:
-   books = Book.objects.filter(query).distinct()"""
-
 
 class SsdListView(generics.ListAPIView):
     """Вывод SSD List"""
     queryset = SSD.objects.all()
     serializer_class = SsdListSerializers
     pagination_class = SsdListPaginator
-
-
-
-
-
 
 class CreateNews(APIView):
     """Создание новости"""
