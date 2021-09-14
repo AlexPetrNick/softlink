@@ -344,6 +344,27 @@ class HddListPaginator(PageNumberPagination):
             'results': data
         })
 
+    """memory, buffer, freq, power"""
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'memory' in keys:
+                temp_q = Q(memory__in=dict_query['memory'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'buffer' in keys:
+                temp_q = Q(buffer__in=dict_query['buffer'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'freq' in keys:
+                temp_q = Q(freq__in=dict_query['freq'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'power' in keys:
+                temp_q = Q(power__in=dict_query['power'].split(','))
+                query = ret_or_and(query, temp_q)
+            ssd_query = HDD.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
 
 class HddListView(generics.ListAPIView):
     """Вывод HDD List"""
@@ -367,6 +388,49 @@ class CpuListPaginator(PageNumberPagination):
             'results': data
         })
 
+    """socket, freq, core_int, core_amd, tech_proc, num_core, has_graph """
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'socket' in keys:
+                query_ff = Socket.objects.filter(name__in=dict_query['socket'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(socket_id__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'freq' in keys:
+                temp_q = Q(freq__in=dict_query['freq'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'core_int' in keys:
+                query_ff = CoreINTEL.objects.filter(name__in=dict_query['core_int'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(core_int__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'core_amd' in keys:
+                query_ff = CoreAMD.objects.filter(name__in=dict_query['core_amd'].split(','))
+                print(query_ff)
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(core_amd__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'tech_proc' in keys:
+                temp_q = Q(tech_proc__in=dict_query['tech_proc'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'num_core' in keys:
+                temp_q = Q(num_core__in=dict_query['num_core'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'has_graph' in keys:
+                temp_q = Q(has_graph__in=dict_query['has_graph'].split(','))
+                query = ret_or_and(query, temp_q)
+            ssd_query = Processor.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
 
 class CpuListView(generics.ListAPIView):
     """Вывод HDD List"""
@@ -416,6 +480,52 @@ class MotherListPaginator(PageNumberPagination):
             'per_page': self.page_size,
             'results': data
         })
+    """ddr4, pcie16, chipsetI, chipsetA, socket, m2_cnt, sata_cnt, msata_cnt """
+    def paginate_queryset(self, queryset, request, view=None):
+        keys = request.query_params.dict().keys()
+        dict_query = request.query_params
+        query = None
+        if 'filter' in keys:
+            if 'ddr4' in keys:
+                temp_q = Q(ddr4__in=dict_query['ddr4'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'pcie16' in keys:
+                temp_q = Q(pcie16__in=dict_query['pcie16'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'm2_cnt' in keys:
+                temp_q = Q(m2_cnt__in=dict_query['m2_cnt'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'chipsetI' in keys:
+                query_ff = ChipsetIntel.objects.filter(name__in=dict_query['chipsetI'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(chipsetI_id__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'chipsetA' in keys:
+                query_ff = ChipsetAmd.objects.filter(name__in=dict_query['chipsetA'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(chipsetA_id__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'socket' in keys:
+                query_ff = SocketMother.objects.filter(name__in=dict_query['socket'].split(','))
+                id_ff = []
+                for i in query_ff.values_list():
+                    id_ff.append(i[0])
+                temp_q = Q(socket_id__in=id_ff)
+                query = ret_or_and(query, temp_q)
+            if 'sata_cnt' in keys:
+                temp_q = Q(sata_cnt__in=dict_query['sata_cnt'].split(','))
+                query = ret_or_and(query, temp_q)
+            if 'msata_cnt' in keys:
+                temp_q = Q(msata_cnt__in=dict_query['msata_cnt'].split(','))
+                query = ret_or_and(query, temp_q)
+
+            ssd_query = Mother.objects.filter(query)
+            return super().paginate_queryset(ssd_query, request, view)
+        return super().paginate_queryset(queryset, request, view)
 
 class MotherListView(generics.ListAPIView):
     """Вывод Mother List"""
@@ -455,7 +565,6 @@ class RamListPaginator(PageNumberPagination):
                 temp_q = Q(work_freq__in=dict_query['work_freq'].split(','))
                 query = ret_or_and(query, temp_q)
             if 'form_factor' in keys:
-                print(dict_query['form_factor'])
                 query_ff = FormFactorRam.objects.filter(name__in=dict_query['form_factor'].split(','))
                 id_ff = []
                 for i in query_ff.values_list():
