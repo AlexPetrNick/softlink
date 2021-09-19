@@ -1,6 +1,8 @@
 import React from 'react';
 
-const AddedMenu = () => {
+
+
+const AddedMenu:React.FC = () => {
 	return (
 	<div id="popup" className="popup">
 		<a href="#" className="popup__area"></a>
