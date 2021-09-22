@@ -2,18 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/cabinetReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/cabinetReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1xeM2zNP5lo0UKKKj21sFM8kLAe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -22,8 +35,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testPull" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Users\alek.petrov\Documents\Worked\softlink\fe-softlink\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -35,7 +49,31 @@
       <option name="presentableId" value="Default" />
       <updated>1630710900218</updated>
       <workItem from="1630710903631" duration="32000" />
+      <workItem from="1632052117504" duration="6209000" />
+      <workItem from="1632060896369" duration="14610000" />
+      <workItem from="1632323900921" duration="11462000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
