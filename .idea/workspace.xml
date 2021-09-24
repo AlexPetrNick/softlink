@@ -3,10 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/cabinetReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/cabinetReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/actionNewDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/actionNewDetail.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/actionUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/actionUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/newDetailReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/newDetailReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/pageNewsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/pageNewsReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/state.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +54,7 @@
       <workItem from="1630710903631" duration="32000" />
       <workItem from="1632052117504" duration="6209000" />
       <workItem from="1632060896369" duration="14610000" />
-      <workItem from="1632323900921" duration="11462000" />
+      <workItem from="1632323900921" duration="17168000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,15 @@
-import {SET_STATE_NEW, TOGGLE_LOAD} from './actionNewDetail'
+import {ActionNewsType, SET_STATE_NEW, TOGGLE_LOAD} from './actionNewDetail'
 
 
 let initState = {
-    title: '',
-    content: '',
-    isLoading: true,
+    title: '' as string,
+    content: '' as string,
+    isLoading: true as boolean,
 }
 
-const newDetailReducer = (state=initState, action) => {
+type InitStateType = typeof initState
+
+const newDetailReducer = (state:InitStateType=initState, action:ActionNewsType):InitStateType => {
     switch(action.type) {
     case SET_STATE_NEW:
         return {

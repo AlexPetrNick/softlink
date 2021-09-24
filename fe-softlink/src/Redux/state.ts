@@ -1,5 +1,5 @@
 import pageNewsReducer from "./pageNewsReducer";
-
+/*@ts-ignore */
 const store = {
     _state: {
         pageNews: {
@@ -18,7 +18,7 @@ const store = {
     getState() {
         return this._state;
     },
-
+    /*@ts-ignore */
     subscribe(observer) {
         this._сallSubscribe = observer;
     },
@@ -29,10 +29,11 @@ const store = {
     _getStateContentNew() {
         return this._state.pageNews.textNewNews.contentNews
     },
-
+    /*@ts-ignore */
     dispatch(action) {
+        /*@ts-ignore */
         this._state.pageNews = pageNewsReducer(this._state.pageNews, action)
-
+        /*@ts-ignore */
         this._сallSubscribe(this)
     },
 
