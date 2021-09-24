@@ -20,6 +20,9 @@ let reducers = combineReducers({
     computer: computerReducer
 });
 
+type RootReducerType = typeof reducers
+export type AppStateType = ReturnType<RootReducerType>
+
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 

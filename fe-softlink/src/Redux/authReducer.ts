@@ -10,9 +10,9 @@ let initState = {
     error: "" as string,
 }
 
-type InisStateType = typeof initState
+export type InisStateAuthType = typeof initState
 
-export const authReducer = (state:InisStateType=initState, action:ActionType):InisStateType => {
+export const authReducer = (state:InisStateAuthType=initState, action:ActionType):InisStateAuthType => {
     switch(action.type) {
         case AUTHORIZATION: 
             return {

@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {HTMLInputTypeAttribute} from 'react';
 import {apiUser} from '../apiDAL/DAL';
 import './User.css';
+import {InisStateAuthType} from "../Redux/authReducer";
+import {initStateTypeUserControl} from "../Redux/userControlReducer";
 
-const UserControl = (props) => {
+type UserControlPropsType = {
+	state: initStateTypeUserControl
+	setCorrLogin: (correctLogin: string | null) => void
+	setCorrPassword: (correctPassword: string | null) => void
+	stateAuth: InisStateAuthType
+	setError: (err: string | null) => void
+	authorization: (toggle: boolean) => void
+	setDataUser: (data: object) => void
+}
+
+const UserControl = (props:UserControlPropsType) => {
 
 	console.log("user control пользователь не залогинен")
 
@@ -25,12 +37,14 @@ const UserControl = (props) => {
 
 	
 	let onChangeLogin = () => {
-		let textLogin = document.getElementById("fieldlogin").value
+		let inputLogin = document.getElementById("fieldlogin") as HTMLInputElement
+		let textLogin = inputLogin.value
 		props.setCorrLogin(textLogin)
 	}
 
 	let onChangePassword = () => {
-		let textPassword = document.getElementById("fieldpass").value
+		let inputPassword = document.getElementById("fieldpass") as HTMLInputElement
+		let textPassword = inputPassword.value as string
 		props.setCorrPassword(textPassword)
 	}
 

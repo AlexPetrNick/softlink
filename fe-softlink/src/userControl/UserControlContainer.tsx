@@ -2,14 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UserControl  from './UserControl'
 import UserControlAuth from './UserControlAuth'
-import {setCorrLogin, setCorrPassword, setDataUser} from '../Redux/userControlReducer'
-import {setError, authorization, logOut} from '../Redux/authReducer'
+import {initStateTypeUserControl, setCorrLogin, setCorrPassword, setDataUser} from '../Redux/userControlReducer'
+import {setError, authorization, logOut, InisStateAuthType} from '../Redux/authReducer'
+import {AppStateType} from "../Redux/reduxStore";
 
 
 
-class AuthentificateUser extends React.Component{
-    
-    
+interface PropsAuthentificateUserType extends IMapStateToProps,IDispatchStateToProps {}
+
+class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
+
+
     render() {
         console.log("AuthentificateUser")
         return(
@@ -36,9 +39,21 @@ class AuthentificateUser extends React.Component{
     }
 }
 
+export interface IMapStateToProps {
+    allState: initStateTypeUserControl
+    stateAuth: InisStateAuthType
+}
 
+export interface IDispatchStateToProps {
+    setCorrLogin: (correctLogin: string | null) => void
+    setCorrPassword: (correctPassword: string | null) => void
+    setError: (err: string | null) => void
+    authorization: (toggle: boolean) => void
+    setDataUser: (data: object) => void
+    logOut: () => void
+}
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state:AppStateType):IMapStateToProps => {
     return {
         allState: state.pageUser,
         stateAuth: state.auth
@@ -53,6 +68,6 @@ export const UserControlContainer = connect(mapStateToProps, {
     authorization,
     setDataUser,
     logOut
-})(AuthentificateUser)
+} as IDispatchStateToProps)(AuthentificateUser)
 
 

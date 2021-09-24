@@ -6,6 +6,8 @@ import CabinetContainer from './Cabinet/CabinetContainer'
 import ItemHardContainer from './ItemHard/ItemHardContainer'
 
 const ContentWrapper = (props) => {
+	let haveAccessToken = String(localStorage.getItem('access')).length > 10
+
 	return (
 	<div className="content__wrapper">
 		<div className="menu__wrapper">
@@ -32,6 +34,7 @@ const ContentWrapper = (props) => {
 		</div>
 		<div></div>
 		<div className="abstraktWrapper">
+			{ haveAccessToken ? <Route path="/cabinet" component={CabinetContainer} /> : null}
 			<Route path="/cabinet" component={CabinetContainer} />	
 			<Route path="/new/:newId" component={NewDetailContainer} />
 			<Route path="/hardware/cpu" render={() => <ItemHardContainer itemType={2}/>}/>

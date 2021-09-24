@@ -7,18 +7,22 @@ export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
 export const SET_DATA_USER = "SET-DATA-USER"
 export const SET_ID_CABINET = "SET-ID-CABINET"
 
-export type initStateType = {
+export let HaveCorrectAccessToken = () => {
+
+}
+
+export type initStateTypeUserControl = {
     id: number,
     username: string,
     password: string,
     firstName: string,
     secondName: string,
-    correctLogin: string | undefined | null,
-    correctPassword: string | undefined | null,
+    correctLogin: string | undefined,
+    correctPassword: string | undefined,
     cabinet_id: number
 }
 
-const initState:initStateType = {
+const initState:initStateTypeUserControl = {
     id: 0,
     username: "",
     password: "",
@@ -37,7 +41,7 @@ export type actionTypesCabId = { type: typeof SET_ID_CABINET, cabId: number }
 
 export type actionType = actionTypesCorrLogin | actionTypesCorrPass | actionTypesData | actionTypesCabId
 
-let userControlReducer = (state=initState, action:actionType ):initStateType => {
+let userControlReducer = (state=initState, action:actionType ):initStateTypeUserControl => {
     switch(action.type) {
         case SET_CORR_LOGIN: {
             return {

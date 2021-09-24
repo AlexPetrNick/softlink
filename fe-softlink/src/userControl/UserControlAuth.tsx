@@ -1,7 +1,15 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
+import {initStateTypeUserControl} from "../Redux/userControlReducer";
 
-const UserControl = (props) => {
+type PropsUserControll = {
+	state: initStateTypeUserControl
+	logOut: () => void
+	setCorrLogin: (correctLogin: string | null) => void
+	setCorrPassword: (correctPassword: string | null) => void
+}
+
+const UserControl = (props:PropsUserControll) => {
 
 	console.log("usercontrol пользователь залогинен")
 
@@ -18,7 +26,7 @@ const UserControl = (props) => {
 			<div className="login__part">
 				<div className="site__name__label">SoftLink</div>
 				<span className="text__green">Пользователь</span>
-				<span className="text__green">{props.state.login}</span>
+				<span className="text__green">{props.state.firstName}</span>
 				<div className="button_login" onClick={ onClickExit }>Выход</div>
 				<div className="registration__menu">
 					<div className="button__registraton_lk">
