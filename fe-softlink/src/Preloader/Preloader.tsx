@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import loadingImahe from '../image/Fidget-spinner.gif'
 
 
-let Preloader = () => {
+let Preloader:FC = () => {
     return (
         <div>
             <h1>LOAD</h1>

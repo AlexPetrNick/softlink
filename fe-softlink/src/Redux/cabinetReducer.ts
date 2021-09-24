@@ -8,11 +8,13 @@ import {
     ItemSsdType,
     ItemVideoType
 } from "./computerReducer";
+import exp from "constants";
+import {lookupService} from "dns";
 
 export const GET_STATE_CABINET = "GET-STATE-CABINET"
 export const UPDATE_CABINET = "UPDATE_CABINET"
 
-type BagType = {
+export type BagType = {
     cpu: Array<ItemCpuType>,
     video: Array<ItemVideoType>,
     mother: Array<ItemMotherType>,
@@ -43,11 +45,11 @@ let initState = {
 
 }
 
-type InitType = typeof initState
+export type InitTypeCabinet = typeof initState
 
 type ActionType = GetStateCabinetACType | UpdateCabinetACType
 
-const CabinetReducer = (state:InitType=initState, action:ActionType):InitType => {
+const CabinetReducer = (state:InitTypeCabinet=initState, action:ActionType):InitTypeCabinet => {
     switch(action.type){
         case GET_STATE_CABINET:
             return {
@@ -74,7 +76,7 @@ const CabinetReducer = (state:InitType=initState, action:ActionType):InitType =>
 
 export default CabinetReducer
 
-type DataFromServerType = {
+export type DataFromServerType = {
     id: number,
     bag_cpu: Array<ItemCpuType>,
     bag_video: Array<ItemVideoType>,
@@ -124,7 +126,7 @@ export const cabinetIsUpdateThunkCreator = (isUpdate:boolean) => {
 }
 
 export const cabinetEraseItem = (idItem:number, itemType:number) => {
-    return (dispatch:any, idItem:number, itemType:number) => {
+    return (dispatch:any):any => {
         let addtem;
         let stateCabinet;
         if (itemType === 1) {
@@ -153,8 +155,9 @@ export const cabinetEraseItem = (idItem:number, itemType:number) => {
     }
 }
 
+export type CabinetEraseItemType = typeof cabinetEraseItem
 export const cabinetAddItem = ( idItem:number, itemType:number) => {
-    return (dispatch:any, idItem:number, itemType:number) => {
+    return (dispatch:any):any => {
         let addtem;
         let stateCabinet;
         if (itemType === 1) {
@@ -182,3 +185,5 @@ export const cabinetAddItem = ( idItem:number, itemType:number) => {
             })
     }
 }
+
+export type CabinetAddItemType = typeof cabinetAddItem

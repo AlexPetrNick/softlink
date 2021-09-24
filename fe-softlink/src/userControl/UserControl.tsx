@@ -1,4 +1,4 @@
-import React, {HTMLInputTypeAttribute} from 'react';
+import React, {FC, HTMLInputTypeAttribute} from 'react';
 import {apiUser} from '../apiDAL/DAL';
 import './User.css';
 import {InisStateAuthType} from "../Redux/authReducer";
@@ -14,7 +14,7 @@ type UserControlPropsType = {
 	setDataUser: (data: object) => void
 }
 
-const UserControl = (props:UserControlPropsType) => {
+const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
 
 	console.log("user control пользователь не залогинен")
 

@@ -1,11 +1,26 @@
 import React from 'react';
 import ItemHard from './ItemHard'
 import {connect} from 'react-redux'
-import {setData, getHardPageThunkCreator, setParams, setParamsJson, addDictParams, eraseDictParams} from '../../Redux/hardPageReducer'
-import {updateCabinetAC, cabinetIsUpdateThunkCreator, cabinetAddItem, cabinetEraseItem} from '../../Redux/cabinetReducer'
+import {
+	setData,
+	getHardPageThunkCreator,
+	setParams,
+	setParamsJson,
+	addDictParams,
+	eraseDictParams,
+	InitStateTypeHard, DataHardType, GetHardPageThunkCreatorType, FilterFieldAllType
+} from '../../Redux/hardPageReducer'
+import {
+	updateCabinetAC,
+	cabinetIsUpdateThunkCreator,
+	cabinetAddItem,
+	cabinetEraseItem,
+	InitTypeCabinet, BagType, CabinetAddItemType, CabinetEraseItemType
+} from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
-import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
+import {apiCpu, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
 import {filterFieldSsd, filterFieldPower, filterFieldVideo, filterFieldRam, filterFieldHdd, filterFieldMother, filterFieldCpu} from '../../Redux/hardPageReducer'
+import {AppStateType} from "../../Redux/reduxStore";
 
 let typeItem = {
     0: "Не определен",
@@ -18,7 +33,9 @@ let typeItem = {
     7: "HDD",
 }
 
-class ItemHardContainer extends React.Component {
+interface IItemHardContainer extends IMapAndPropsToProps, IDispatchProps {}
+
+class ItemHardContainer extends React.Component<IItemHardContainer> {
 	componentDidMount() {
 		console.log('itemhard did mount')
 		switch(this.props.itemType) {
@@ -44,7 +61,7 @@ class ItemHardContainer extends React.Component {
 				this.props.getHardPageThunkCreator(0)
 		}
 	}
-	getPageData = (page, params=this.props.stateHard.params) => {
+	getPageData = (page:number, params=this.props.stateHard.params) => {
 		switch(this.props.itemType) {
 			case (1): {
 				return this.props.getHardPageThunkCreator(page, apiMother, params=params)
@@ -69,8 +86,8 @@ class ItemHardContainer extends React.Component {
 	}
 	}
 
-	getFilterItem = () => {
-		switch(this.props.itemType) {
+	getFilterItem = (itemId:number):FilterFieldAllType => {
+		switch(itemId) {
 			case (1): {
 				return filterFieldMother
 			}
@@ -94,7 +111,7 @@ class ItemHardContainer extends React.Component {
 	}
 	}
 
-	setParams = (string) => {
+	setParams = (string:string):void => {
 		this.props.setParams(string)
 	}
 
@@ -109,20 +126,44 @@ class ItemHardContainer extends React.Component {
 			eraseDictParams = {this.props.eraseDictParams}
 			cabinetAddItem = {this.props.cabinetAddItem}
 			cabinetEraseItem = {this.props.cabinetEraseItem}
-			filterField = {this.getFilterItem()}
+			filterField = {this.getFilterItem(this.props.itemType)}
 			 />
 			}
 			</>
 		);
 	}
 }
-let mapStateToProps = (state, props) => {
+
+
+interface IMapStateToProps {
+	stateHard: InitStateTypeHard
+	stateHardFilterJson: object,
+	stateBugHard: BagType,
+}
+interface IPropsMapToProps {
+	itemType: number
+}
+export interface IMapAndPropsToProps extends IMapStateToProps, IPropsMapToProps {}
+//TODO: Сделать нормальную проверку после уточнения санков
+export interface IDispatchProps {
+	setData: (data:DataHardType) => void
+	getHardPageThunkCreator: any
+	updateCabinetAC: (bol:boolean) => void
+	cabinetIsUpdateThunkCreator: any
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+	setParams: (params:string) => void,
+	setParamsJson: (json:any) => void ,
+	addDictParams: (tag:string, value:string) => void
+	eraseDictParams: (tag:string, value:string) => void
+}
+
+let mapStateToProps = (state:AppStateType, props:IPropsMapToProps):IMapAndPropsToProps => {
 	return {
-		stateMotherComputer: state.computer.mother[0],
-		typeItem: props.itemType,
+		itemType: props.itemType,
 		stateHard: state.pageHard,
 		stateHardFilterJson: state.pageHard.paramsJson,
-		stateBugHard: state.pageCabinet.bag,
+		stateBugHard: state.pageCabinet.bag
 	}
 }
 
@@ -137,4 +178,4 @@ export default connect(mapStateToProps, {
 	setParamsJson,
 	addDictParams,
 	eraseDictParams
-})(ItemHardContainer) 
+} as IDispatchProps)(ItemHardContainer)

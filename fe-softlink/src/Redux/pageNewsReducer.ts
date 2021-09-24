@@ -1,25 +1,45 @@
-import {SET_STATE_TEXT_TITLE_NEWS, SET_STATE_TEXT_CONTENT_NEWS, ADD_POST, SET_NEWS_LIST, SET_CATCH} from './actionsNews'
-import {SET_COUNT_NEWS, SET_PER_PAGE, SET_CURRENT_PAGE, SET_INIT_COMP_REQUEST, TOGGLE_LOAD} from './actionsNews'
+import {
+    SET_STATE_TEXT_TITLE_NEWS,
+    SET_STATE_TEXT_CONTENT_NEWS,
+    ADD_POST,
+    SET_NEWS_LIST,
+    SET_CATCH,
+    taskActionTypes
+} from './actionsNews'
+import {SET_CURRENT_PAGE, SET_INIT_COMP_REQUEST, TOGGLE_LOAD} from './actionsNews'
 import {SET_COMP_REQUEST_CHANGE_PAGE} from './actionsNews'
 
 
 export const TEST = "TEST"
 
+export type TextNewNewsType = {
+    titleNews: string,
+    contentNews: string
+}
+
+export type NewsStructType = {
+    id: number
+    title: string
+    content: string
+}
 
 let initState = {
     textNewNews: {
         titleNews: '',
         contentNews: ''
-    },
-    allNews: [],
-    catchError: '',
-    countNews: 0,
-    currentPage: 1,
-    perPage: 1,
-    isLoading: true,
+    } as TextNewNewsType,
+    allNews: [] as Array<NewsStructType>,
+    catchError: '' as string,
+    countNews: 0 as number,
+    currentPage: 1 as number,
+    perPage: 1 as number,
+    isLoading: true as boolean,
+    idSet: 3 as number
 }
 
-const pageNewsReducer = (state=initState, action) => {
+export type InitStateNews = typeof initState
+
+const pageNewsReducer = (state:InitStateNews=initState, action:taskActionTypes):InitStateNews => {
     switch(action.type) {
         case SET_STATE_TEXT_TITLE_NEWS:
             return {
@@ -45,9 +65,10 @@ const pageNewsReducer = (state=initState, action) => {
                     titleNews: "",
                     contentNews: ""
                 },
-                allNews: [...state.allNews, {
-                    "title": state.textNewNews.titleNews,
-                    "content": state.textNewNews.contentNews
+                allNews: [ ...state.allNews, {
+                    id: state.idSet++,
+                    title: state.textNewNews.titleNews,
+                    content: state.textNewNews.contentNews
                 }],
             }    
         case SET_CATCH:
@@ -66,7 +87,7 @@ const pageNewsReducer = (state=initState, action) => {
                 countNews: action.count,
                 currentPage: action.current,
                 perPage: action.perpage,
-                allNews: [action.allNews]
+                allNews: action.allNews
             }
         case TOGGLE_LOAD:
             return{
@@ -77,10 +98,8 @@ const pageNewsReducer = (state=initState, action) => {
             return{
                 ...state,
                 currentPage: action.current,
-                allNews: [action.allNews]
+                allNews: action.allNews
             }
-        case TEST:
-            return state
         default:
             return state
     }

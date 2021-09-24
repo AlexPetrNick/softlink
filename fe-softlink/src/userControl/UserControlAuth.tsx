@@ -9,7 +9,7 @@ type PropsUserControll = {
 	setCorrPassword: (correctPassword: string | null) => void
 }
 
-const UserControl = (props:PropsUserControll) => {
+const UserControl:React.FC<PropsUserControll> = (props:PropsUserControll) => {
 
 	console.log("usercontrol пользователь залогинен")
 

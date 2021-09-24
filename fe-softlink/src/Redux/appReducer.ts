@@ -2,6 +2,7 @@ import {infoUserThunkCreator} from './userControlReducer'
 import {idCabinetThunkCreator} from './userControlReducer'
 import {getCabinetThunkCreator} from './cabinetReducer'
 import {Dispatch} from "redux";
+import exp from "constants";
 
 export const IS_INIT: string = 'IS-INIT'
 export const NOT_INIT: string = 'NOT-INIT'
@@ -19,7 +20,7 @@ let initState:initStateType = {
     isInit: false
 }
 
-const appReducer = (state=initState, action: actionType):initStateType => {
+const appReducer = (state:initStateType=initState, action: actionType):initStateType => {
     switch (action.type) {
         case IS_INIT:
             return {
@@ -47,7 +48,13 @@ type notInitType = {
 }
 type returnedTypes = notInitType | isInitType
 
-export const isInit = ():returnedTypes => ({ type: IS_INIT })
+export type IsInitType = {
+    type: typeof IS_INIT
+}
+export const isInit = ():IsInitType => ({ type: IS_INIT })
+export type NotInitType = {
+    type: typeof NOT_INIT
+}
 export const notInit = ():returnedTypes => ({ type: NOT_INIT })
 
 let a = typeof isInit
@@ -55,7 +62,7 @@ console.log(a)
 
 
 /* THUNK */
-export const initThunkCreator = () => (dispatch: Dispatch<returnedTypes>):void => {
+export const initThunkCreator = () => (dispatch: any) => {
     let getDataUser = dispatch(infoUserThunkCreator())
     let getCabinetId = dispatch(idCabinetThunkCreator())
     let getCabinetState = dispatch(getCabinetThunkCreator())

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-const FooterWrapper = () => {
+const FooterWrapper:FC = () => {
 	return (
 	<div className="footer__wrapper">6</div>
 	);

@@ -41,7 +41,7 @@ export type actionTypesCabId = { type: typeof SET_ID_CABINET, cabId: number }
 
 export type actionType = actionTypesCorrLogin | actionTypesCorrPass | actionTypesData | actionTypesCabId
 
-let userControlReducer = (state=initState, action:actionType ):initStateTypeUserControl => {
+let userControlReducer = (state:initStateTypeUserControl=initState, action:actionType ):initStateTypeUserControl => {
     switch(action.type) {
         case SET_CORR_LOGIN: {
             return {

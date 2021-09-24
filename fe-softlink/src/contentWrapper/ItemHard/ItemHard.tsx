@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, FC} from 'react';
 import PagingComponent from '../Paging/PagingComponent'
 import CpuItem from '../ComponentHard/CpuItem'
 import ItemHdd from '../ComponentHard/ItemHdd'
@@ -7,14 +7,25 @@ import ItemRam from '../ComponentHard/ItemRam'
 import ItemSsd from '../ComponentHard/ItemSsd'
 import ItemVideo from '../ComponentHard/ItemVideo'
 import MotherItem from '../ComponentHard/MotherItem'
+import {DataHardType, FilterFieldAllType, GetHardPageThunkCreatorType} from "../../Redux/hardPageReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
+import {IDispatchProps, IMapAndPropsToProps} from "./ItemHardContainer";
 
+interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
+	getPageData: any
+	setParams: (string:string) => void
+	addDictParams: (tag:string, value:string) => void
+	eraseDictParams: (tag:string, value:string) => void
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+	filterField: FilterFieldAllType
+}
 
+let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 
-let ItemHard = (props) => {
+	let filterField:FilterFieldAllType = props.filterField
 
-	let filterField = props.filterField
-
-	let onClickLinkPage = (page) => {
+	let onClickLinkPage = (page:number) => {
 		props.getPageData(page)
 	}
 
@@ -22,13 +33,13 @@ let ItemHard = (props) => {
 	let perPage = props.stateHard.perPage
 	let current = props.stateHard.currentPage
 	let cntPage;
-	let pages = []
-	let hardItem = props.stateHard.data[0]
+	let pages = [] as Array<number>
+	let hardItem:Array<DataHardType> = props.stateHard.data
 	let componentHard;
-	let stateMother = props.stateMotherComputer
+	//let stateMother = props.stateMotherComputer
 	let itemFilter = []
 	let filterDict = props.stateHard.paramsJson
-	let setPagesOnPage = (perPage, countOnPage, pages) => {
+	let setPagesOnPage = (perPage:number, countOnPage:number, pages:Array<number>) => {
 		if(perPage) {
 				cntPage = Math.ceil(countOnPage/perPage)
 				for (let i=1; i <= cntPage; i++) {
@@ -37,7 +48,7 @@ let ItemHard = (props) => {
 			}
 		}
 	setPagesOnPage(perPage, count, pages)
-	let trueBag = (typeItem) => {
+	let trueBag = (typeItem:number) => {
 				switch(typeItem) {
 					case (1): {
 						return props.stateBugHard.mother 
@@ -61,7 +72,7 @@ let ItemHard = (props) => {
 						return props.stateBugHard.hdd 
 					}
 			}
-	let idBugHard = trueBag(props.typeItem).map((hard)=>{
+	let idBugHard = trueBag(props.itemType).map((hard)=>{
 		if(hard) {
 			return hard.id
 		} else {
@@ -70,17 +81,16 @@ let ItemHard = (props) => {
 	})
 	if (hardItem) {
 		componentHard = hardItem.map((data) => {
-			switch(props.typeItem) {
+			switch(props.itemType) {
 				case (1): {
 					return (
 					<MotherItem
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}
@@ -90,10 +100,9 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>)					
 				}
 				case (4): {
@@ -102,10 +111,9 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}
@@ -115,10 +123,9 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}	
@@ -128,10 +135,9 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}
@@ -141,11 +147,9 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					updateCabinet = {props.updateCabinet}
-					ucab = {props.stateup}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}
@@ -155,17 +159,17 @@ let ItemHard = (props) => {
 					key={data.id}
 					data={data}
 					idBugHard = {idBugHard}
-					stateBugIdHard={props.stateBugIdHard}
+					//stateBugIdHard={props.stateBugIdHard}
 					cabinetAddItem = {props.cabinetAddItem}
 					cabinetEraseItem = {props.cabinetEraseItem}
-					stateMother = {stateMother}
+					//stateMother = {stateMother}
 					/>
 					)
 				}
 		})
 
 	}
-	let arrayToString = (arr) => {
+	let arrayToString = (arr:any) => {
 		let params = ''
 		for (let item in arr) {
 			if (params) {
@@ -176,7 +180,7 @@ let ItemHard = (props) => {
 		}
 		return params
 	}
-	let consctructParams = (filterDict) => {
+	let consctructParams = (filterDict:any) => {
 		let page = 0
 		let queryString = ''
 		const filter = '&filter'
@@ -187,13 +191,13 @@ let ItemHard = (props) => {
 		}
 		return filter + queryString
 	}
-	let addFilterDict = (key, value) => {
+	let addFilterDict = (key:string, value:string) => {
 		props.addDictParams(key, value)
 	}
-	let eraseFilterDict = (key, value) => {
+	let eraseFilterDict = (key:string, value:string) => {
 		props.eraseDictParams(key, value)
 	}
-	let getParamsOnGet = (e) => {
+	let getParamsOnGet = (e:any) => {
 		let value = e.target.attributes.value.value
 		let key = e.target.attributes.name.value
 		let check = e.target.checked
@@ -205,7 +209,7 @@ let ItemHard = (props) => {
 		let paramsString = consctructParams(filterDict)
 		props.setParams(paramsString)
 	}
-	let drawInput = (array) => {
+	let drawInput = (array:any) => {
 		let name = array[1]
 		let arrayCheck = []
 		let stringValue = ''
@@ -217,7 +221,7 @@ let ItemHard = (props) => {
 				}
 			}
 		}
-		let checkOrNot = (bool, name, arr) => {
+		let checkOrNot = (bool:boolean, name:string, arr:string) => {
 			if (bool) {
 				return (
 					<>
@@ -236,18 +240,19 @@ let ItemHard = (props) => {
 			let isHave = stringValue.indexOf(name+array[i]) >= 0
 			arrayCheck.push(
 				<>
-				{checkOrNot(isHave, name, array[i])}		
+				{checkOrNot(isHave, name, array[i])}
 				</>
 			)
 		}
 		return arrayCheck
 	}
-	for (let item in filterField){
+	for (let item:string in filterField){
 		console.log(item)
-		let title = filterField[item][0]
+		let title = filterField.
+		let titleName = title[0]
 		itemFilter.push(
 			<div className="filter__body">
-				<div className="filter__item__title">{title}</div>
+				<div className="filter__item__title">{titleName}</div>
 				<div className="filter__item">
 					{drawInput(filterField[item])}
 				</div>
@@ -259,14 +264,14 @@ let ItemHard = (props) => {
 		setPagesOnPage(props.stateHard.perPage, props.stateHard.countOnPage, pages)
 	}
 
-	let scrollRigth = (e) => {
+	let scrollRigth = (e:any) => {
 		let test = document.getElementsByClassName('best__for__user')[0]
 		console.log(test)
 		test.scrollLeft += 300
 		console.log(test.scrollLeft)
 	}
 
-	let scrollLeft = (e) => {
+	let scrollLeft = (e:any) => {
 		let test = document.getElementsByClassName('best__for__user')[0]
 		console.log('asdfasdf')
 		test.scrollLeft -= 300

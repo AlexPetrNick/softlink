@@ -25,27 +25,32 @@ export const filterFieldSsd = {
     memory: [ 'Память', 'memory','1 Tb', '120 Gb', '128 Gb', '2 Tb', '240 Gb', '256 Gb', '3.2 Tb', '3.84 Tb', '375 Gb','4 Tb', '480 Gb', '500 Gb', '512 Gb', '6.4 Tb', '7.68 Tb', '960 Gb'] as Array<string>,
     interface: ['Подлюкчение', 'interface','M2','PCI-E 3.0 x4','SATA-III','mSATA'] as Array<string>
 }
+export type FilterFieldSsdType = typeof filterFieldSsd
 export const filterFieldPower = {
     power_all: ['Общее питание', 'power_all', '160','200','250','300','350','400','430','450','500','550','600','650','700','750','800'] as Array<string>,
     PFC: ['Коррекция фактора мощности', 'PFC', 'Активный','Пассивный','н/д','нет'] as Array<string>
 }
+export type FilterFieldPowerType = typeof filterFieldPower
 export const filterFieldVideo = {
     type_memory: ['Тип памяти','type_memory','GDDR3','GDDR4','GDDR5','GDDR5X','GDDR6','HBM2'] as Array<string>,
     size_shina_video: ['Видео шина','size_shina_video','128 Bit','160 Bit','192 Bit','256 Bit','384 Bit','4096 Bit','64 Bit'] as Array<string>,
     power: ['Потребляемая мощность','power','150','200','230','250'] as Array<string>
 }
+export type FilterFieldVideoType = typeof filterFieldVideo
 export const filterFieldRam = {
     type_memory: ['Тип памяти','type_memory','DDR3','DDR4','DDR3L'] as Array<string>,
     memory: ['Память','memory','4Gb','8Gb'] as Array<string>,
     work_freq: ['Рабочая частота','work_freq','1600','2133','2400','2666'] as Array<string>,
     form_factor: ['Форм-фактор','form_factor','DIMM','SO-DIMM'] as Array<string>
 }
+export type FilterFieldRamType = typeof filterFieldRam
 export const filterFieldHdd = {
     memory: ['Память','memory','1 Tb','10 Tb','12 Tb','14 Tb','16 Tb','18 Tb','2 Tb','3 Tb','4 Tb','500 Gb','6 Tb','8 Tb'] as Array<string>,
     buffer: ['Буфер','buffer','128','256','32','512','64'] as Array<string>,
     freq: ['Рабочая частота','freq','5400','5700','5900','7200'] as Array<string>,
     power: ['Мощность','power','20','25','30'] as Array<string>
 }
+export type FilterFieldHddType = typeof filterFieldHdd
 export const filterFieldMother = {
     ddr4: ['DDR4','ddr4','DDR3','DDR4','DDR3L'] as Array<string>,
     pcie16: ['PCI-E 16','pcie16','1','2','3','4'] as Array<string>,
@@ -56,6 +61,7 @@ export const filterFieldMother = {
     sata_cnt: ['Количество SATA','sata_cnt','2','3','4','5','6'] as Array<string>,
     msata_cnt: ['Количество mSATA','msata_cnt','0','1'] as Array<string>
 }
+export type FilterFieldMotherType = typeof filterFieldMother
 export const filterFieldCpu = {
     socket: ['Сокет','socket','FM2+','AM4','LGA 1151 v2','LGA 1151','LGA 1150','LGA 2066','LGA 2011','LGA 1200'] as Array<string>,
     freq: ['Частота','freq','1','2','3','4'] as Array<string>,
@@ -65,7 +71,9 @@ export const filterFieldCpu = {
     num_core: ['Количество ядер','num_core','10','12','14','16','18','2','4','6','8'] as Array<string>,
     has_graph: ['Графическое ядро','has_graph','True','False'] as Array<string>
 }
-
+export type FilterFieldCpuType = typeof filterFieldCpu
+export type FilterFieldAllType = FilterFieldSsdType | FilterFieldPowerType | FilterFieldVideoType |
+FilterFieldRamType | FilterFieldHddType | FilterFieldMotherType | FilterFieldCpuType
 
 
 let initState = {
@@ -74,14 +82,14 @@ let initState = {
     urlNextPage: "" as string,
     urlPrevPage: "" as string,
     currentPage: 1 as number,
-    data: null as DataHardType | null,
+    data: [] as Array<DataHardType>,
     isFetching: false as boolean,
     pageUpdate: false as boolean,
     paramsJson: {} as any,
     params: '' as string
 }
 
-type InitStateType = typeof initState
+export type InitStateTypeHard = typeof initState
 
 let keyInDict = (dict:any) => {
     let listKey = ''
@@ -92,7 +100,7 @@ let keyInDict = (dict:any) => {
 }
 type ActionType = SetMetaRepeatType | SetPageMetaType | SetDataType | ToggleFetchType | PageUpdateType | SetParamsType | SetParamsJsonType | AddDictParamsType | EraseDictParamsType
 
-const hardPageReducer = (state:InitStateType=initState, action:ActionType):InitStateType => {
+const hardPageReducer = (state:InitStateTypeHard=initState, action:ActionType):InitStateTypeHard => {
     switch(action.type){
         case SET_PAGE_META:
             return{
@@ -106,7 +114,7 @@ const hardPageReducer = (state:InitStateType=initState, action:ActionType):InitS
         case SET_DATA: 
             return {
                 ...state,
-                data:  action.data
+                data:  [action.data]
             }
         case SET_META_REPEAT:
             return {
@@ -192,7 +200,7 @@ export const setPageMeta = (count:number,
                             urlNextPage:string,
                             urlPrevPage:string,
                             currentPage:number):SetPageMetaType => ({ type:SET_PAGE_META, count, perPage, urlNextPage, urlPrevPage, currentPage })
-type DataHardType = ItemHddType | ItemPowerType | ItemRamType | ItemSsdType | ItemMotherType | ItemVideoType | ItemCpuType
+export type DataHardType = ItemHddType | ItemPowerType | ItemRamType | ItemSsdType | ItemMotherType | ItemVideoType | ItemCpuType
 type SetDataType = {
     type: typeof SET_DATA,
     data: DataHardType
@@ -255,3 +263,5 @@ export const getHardPageThunkCreator = (page=0, hard=apiHdd, params:string) => {
         }
     }
 }
+
+export type GetHardPageThunkCreatorType = typeof getHardPageThunkCreator

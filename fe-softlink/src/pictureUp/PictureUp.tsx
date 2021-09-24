@@ -1,21 +1,21 @@
-import React from 'react'
+import React, {FC} from 'react'
 import './PictureUp.css'
 import first from '../image/1.jpg'
 import second from '../image/2.jpg'
 import third from '../image/3.jpg'
 
-let PictureUp = () => {
+let PictureUp:FC = () => {
 
-	let onClickFirst = () => {
-		let picture = document.getElementById("picture_top")
+	let onClickFirst = ():void => {
+		let picture = document.getElementById("picture_top") as HTMLImageElement
 		picture.setAttribute("src", first)
 	}
-	let onClickSecond = () => {
-		let picture = document.getElementById("picture_top")
+	let onClickSecond = ():void => {
+		let picture = document.getElementById("picture_top") as HTMLImageElement
 		picture.setAttribute("src", second)
 	}
-	let onClickThird = () => {
-		let picture = document.getElementById("picture_top")
+	let onClickThird = ():void => {
+		let picture = document.getElementById("picture_top") as HTMLImageElement
 		picture.setAttribute("src", third)
 	}
 

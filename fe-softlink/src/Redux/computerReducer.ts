@@ -456,4 +456,4 @@ let initState = {
     remainMSata: 1 as number,
 }
 
-type StateComputer = typeof initState
+export type StateComputer = typeof initState

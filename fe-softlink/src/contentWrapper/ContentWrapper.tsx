@@ -5,7 +5,7 @@ import NewDetailContainer from './News/NewDetailContainer'
 import CabinetContainer from './Cabinet/CabinetContainer'
 import ItemHardContainer from './ItemHard/ItemHardContainer'
 
-const ContentWrapper = (props) => {
+const ContentWrapper = () => {
 	let haveAccessToken = String(localStorage.getItem('access')).length > 10
 
 	return (

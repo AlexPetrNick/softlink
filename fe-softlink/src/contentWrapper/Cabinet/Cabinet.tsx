@@ -1,36 +1,43 @@
 import cpuIm from '../../image/imageComp/cpu.jpg'
 import motherIm from '../../image/imageComp/mother.png'
 import powerIm from '../../image/imageComp/power.jpg'
+// @ts-ignore
 import ramIm from '../../image/imageComp/ram.jfif'
 import hddIm from '../../image/imageComp/hdd.jpg'
+// @ts-ignore
 import ssdIm from '../../image/imageComp/ssd.jfif'
+// @ts-ignore
 import videoIm from '../../image/imageComp/video.jfif'
-import React, { useState } from 'react'
+import React, {FC, useState} from 'react'
 import userPhoto from '../../image/userPhoto.jpg'
-import { apiCabinet } from '../../apiDAL/DAL'
 import ComputerContainer from './Computer/ComputerContainer'
 import up from '../../image/up.png'
 import down from '../../image/down.png'
 import BagItem from './Bag/BagItemTest'
 import TitleBagButton from './Button/TitleBagButton'
+import {IContainerComponent} from "./CabinetContainer";
+import {DataType, ItemHddType, ItemRamType, ItemSsdType} from "../../Redux/computerReducer";
 
-let Cabinet = (props) => {
+
+
+let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     console.log("Draw Cabinet")
     console.log(props)
-    let hoverOnItem = (image) => {
+
+    let hoverOnItem = (image:string):void => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
     }
      
-    let addItem = (data) => {
+    let addItem = (data:DataType) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)
     }
-    let eraseItemFromComp = (data) => {
+    let eraseItemFromComp = (data:DataType) => {
         props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
     }
-    let haveSlotSsd = (data, titleSlot) => {
+    let haveSlotSsd = (data: ItemSsdType, titleSlot:string) => {
         if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
@@ -58,7 +65,7 @@ let Cabinet = (props) => {
         }
     }
 
-    let haveSlotRam = (data, titleSlot) => {
+    let haveSlotRam = (data:ItemRamType, titleSlot:string) => {
         if (data.type_memory == "DDR3") {
             if (ramSlot.ddr3) {
                 return <div className="button__item" onClick={() => addItem(data)}>&laquo;</div>
@@ -80,7 +87,7 @@ let Cabinet = (props) => {
         }
     }
 
-    let openClose = (e) => {
+    let openClose = (e:any) => {
         let button = e.nativeEvent.path[0]
         let bagInner = button.parentNode.parentNode.childNodes[1]
         if (bagInner.classList.length > 1) {
@@ -167,7 +174,7 @@ let Cabinet = (props) => {
                     <img src={userPhoto} />
                 </div>
                 <div className="user__data">
-                    <div className="user__login">{props.stateUser.login}</div>
+                    <div className="user__login">{props.stateUser.username}</div>
                     <div className="user__firstname">{props.stateUser.firstName}</div>
                     <div className="user__second__name">{props.stateUser.secondName}</div>
                 </div>
