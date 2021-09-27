@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, {FC, useState} from 'react'
 
-let SaveButton = (props) => {
+
+type PropsType = {
+    text: string
+    isChange?:boolean
+    cntError: boolean
+}
+
+let SaveButton: FC<PropsType> = (props:PropsType) => {
     let cnts = props.cntError
-    let buttonDis = (cntError) => {
+    let buttonDis = (cntError:boolean) => {
         if (!cntError) {
             return (
             <div className="saveChanges" >{props.text}</div>

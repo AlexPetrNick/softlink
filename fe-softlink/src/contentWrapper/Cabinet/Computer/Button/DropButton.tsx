@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, {FC, useState} from 'react'
+import {StateComputer} from "../../../../Redux/computerReducer";
 
-let DropButton = (props) => {
+type PropsType = {
+    text: string
+    isChange: boolean
+    stateLocal?: StateComputer
+}
+
+
+let DropButton: FC<PropsType>= (props:PropsType) => {
 
 
     let cnts = props.isChange
     
 
-    let buttonDis = (temp) => {
+    let buttonDis = (temp:boolean) => {
         if (temp) {
             return (
             <div className="droppingChanges disabled" >{props.text}</div>

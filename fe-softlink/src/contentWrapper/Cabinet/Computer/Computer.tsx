@@ -52,7 +52,7 @@ let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
     }) : (<div className="computer__data__item"></div>)
 
 
-    let correctGetSumm = (mass:Array<DataTypeWithoutPower>) => {
+    let correctGetSumm = (mass:Array<DataTypeWithoutPower>):number => {
         let a = 0;
         let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
         console.log(res)
@@ -66,7 +66,7 @@ let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
     let allPowerSsd = correctGetSumm(stateComp.ssd)
     let allPowerCpu = correctGetSumm(stateComp.cpu)
     let allPowerMother = correctGetSumm(stateComp.mother)
-    let remainPower = allPower ? allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother) : 0
+    let remainPower:number = allPower ? allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother) : 0
 
 
     return(

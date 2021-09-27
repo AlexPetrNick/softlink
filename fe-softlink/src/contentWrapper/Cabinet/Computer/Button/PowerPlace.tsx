@@ -1,6 +1,11 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-let PowerPlace = (props) => {
+type PropsType = {
+    powerAll: number
+    remainPower: number
+}
+
+let PowerPlace: FC<PropsType> = (props:PropsType) => {
 
     console.log(props)
 
@@ -55,9 +60,9 @@ let PowerPlace = (props) => {
     }
 
     return (
-        <div className="power__place" style={ elemStylePower }>
+        <div className="power__place" style={ elemStylePower  as any}>
             <p className="test__power">{String(String(remaindPower) + "/" + String(allPower))}</p>
-            <div className="remaindPower"  style={ elemStyleRemaind } ></div>
+            <div className="remaindPower"  style={ elemStyleRemaind  as any} ></div>
         </div>
     ) 
 }
