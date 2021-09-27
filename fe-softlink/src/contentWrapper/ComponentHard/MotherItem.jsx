@@ -12,7 +12,7 @@ const ItemMother = (props) => {
 		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
-
+	console.log(props.data)
 	return (
 		<div className="item__content">
 			<img className="picture__hard_item" src={mother}  width="238" height="160"   alt="" />

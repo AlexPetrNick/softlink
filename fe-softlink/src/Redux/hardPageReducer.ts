@@ -142,10 +142,10 @@ const hardPageReducer = (state:InitStateTypeHard=initState, action:ActionType):I
                 urlPrevPage: action.urlPrevPage,
                 currentPage: action.currentPage
             }
-        case SET_DATA: 
+        case SET_DATA:
             return {
                 ...state,
-                data:  [action.data]
+                data: action.data.map(a => a)
             }
         case SET_META_REPEAT:
             return {
@@ -234,9 +234,9 @@ export const setPageMeta = (count:number,
 export type DataHardType = ItemHddType | ItemPowerType | ItemRamType | ItemSsdType | ItemMotherType | ItemVideoType | ItemCpuType
 type SetDataType = {
     type: typeof SET_DATA,
-    data: DataHardType
+    data: Array<DataHardType>
 }
-export const setData = (data:DataHardType) => ({ type: SET_DATA, data })
+export const setData = (data:Array<DataHardType>) => ({ type: SET_DATA, data })
 type ToggleFetchType = {
     type: typeof TOGGLE_FETCH,
     isLoad: boolean

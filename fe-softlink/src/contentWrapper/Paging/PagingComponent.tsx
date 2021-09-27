@@ -1,4 +1,15 @@
-let PagingComponent = (props) => {
+import {FC} from "react";
+
+
+type Props = {
+    pages: Array<number>
+    current: number
+    onClicking: (number:number) => void
+    prev: string
+    next: string
+}
+
+let PagingComponent: FC<Props> = (props:Props) => {
     return (
         <div className="page__number__list">
                 <div className="empty"></div>

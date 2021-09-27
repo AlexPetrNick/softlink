@@ -1,4 +1,4 @@
-import React, {Component, FC} from 'react';
+import React, {FC} from 'react';
 import PagingComponent from '../Paging/PagingComponent'
 import CpuItem from '../ComponentHard/CpuItem'
 import ItemHdd from '../ComponentHard/ItemHdd'
@@ -7,10 +7,9 @@ import ItemRam from '../ComponentHard/ItemRam'
 import ItemSsd from '../ComponentHard/ItemSsd'
 import ItemVideo from '../ComponentHard/ItemVideo'
 import MotherItem from '../ComponentHard/MotherItem'
-import {DataHardType, FilterFieldAllType, GetHardPageThunkCreatorType} from "../../Redux/hardPageReducer";
+import {DataHardType, FilterFieldAllType} from "../../Redux/hardPageReducer";
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 import {IDispatchProps, IMapAndPropsToProps} from "./ItemHardContainer";
-import any = jasmine.any;
 
 interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	getPageData: any
@@ -23,6 +22,7 @@ interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 }
 
 let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
+	let stateMother = props.stateBugHard.mother
 	let filterFieldsProps = props.filterField
 	let typeFilterArray:Array<string> = ['none','mother','cpu','ram','video','power','ssd','hdd']
 	let itemId:number = props.itemType
@@ -39,9 +39,10 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 		let typeFilter = keys.split('_').reverse()[0]
 		if (typeFilter === itemIdName){
 			(filterField as any)[keys] = (filterFieldsProps as any)[keys]
+
 		}
 	})
-
+	console.log(filterField)
 	let onClickLinkPage = (page:number) => {
 		props.getPageData(page)
 	}
@@ -52,6 +53,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 	let cntPage;
 	let pages = [] as Array<number>
 	let hardItem:Array<DataHardType> = props.stateHard.data
+	console.log(hardItem)
 	let componentHard;
 	//let stateMother = props.stateMotherComputer
 	let itemFilter = []
@@ -96,96 +98,97 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 			return []
 		}
 	})
-	if (hardItem) {
-		componentHard = hardItem.map((data) => {
-			switch(props.itemType) {
+
+	let	callComp = (array:Array<DataHardType>) => {
+		return array.map((data) => {
+			switch (props.itemType) {
 				case (1): {
 					return (
-					<MotherItem
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+						<MotherItem
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother = {stateMother}
+						/>
 					)
 				}
 				case (3): {
 					return (
-					<ItemRam
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>)					
+						<ItemRam
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother = {stateMother}
+						/>)
 				}
 				case (4): {
 					return (
-					<ItemVideo
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+						<ItemVideo
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother = {stateMother}
+						/>
 					)
 				}
 				case (5): {
 					return (
-					<ItemPower
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+						<ItemPower
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother = {stateMother}
+						/>
 					)
-				}	
+				}
 				case (6): {
 					return (
-					<ItemSsd 
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+						<ItemSsd
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother = {stateMother}
+						/>
 					)
 				}
 				case (7): {
 					return (
-					<ItemHdd
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+						<ItemHdd
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							//stateMother={stateMother}
+						/>
 					)
 				}
-				default:
-					return(
-					<CpuItem
-					key={data.id}
-					data={data}
-					idBugHard = {idBugHard}
-					//stateBugIdHard={props.stateBugIdHard}
-					cabinetAddItem = {props.cabinetAddItem}
-					cabinetEraseItem = {props.cabinetEraseItem}
-					//stateMother = {stateMother}
-					/>
+				case(2):
+					return (
+						<CpuItem
+							key={data.id}
+							data={data}
+							idBugHard={idBugHard}
+							//stateBugIdHard={props.stateBugIdHard}
+							cabinetAddItem={props.cabinetAddItem}
+							cabinetEraseItem={props.cabinetEraseItem}
+							stateMother = {stateMother}
+						/>
 					)
-				}
+			}
 		})
-
 	}
+
 	let arrayToString = (arr:any) => {
 		let params = ''
 		for (let item in arr) {
@@ -294,7 +297,6 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 		test.scrollLeft -= 300
 	}
 
-
 	return (
 		<div className="wrapper__hard">
 			<div className="wrapper__best">
@@ -319,7 +321,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 			</div>
 			<div className="content___list">
 				<div className="page_content">
-					{componentHard}
+					{ hardItem ? callComp(hardItem) : null}
 				</div>
 				<PagingComponent 
 					pages={pages} 
@@ -338,7 +340,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 						<input type="checkbox" name='Поль' value='12312' onChange={getParamsOnGet} /><br />
 					</div>
 				</div>
-					{itemFilter}
+					{ itemFilter}
 					<input type="submit" onClick={fetchGetQuery} />
 				</form>
 			</div>

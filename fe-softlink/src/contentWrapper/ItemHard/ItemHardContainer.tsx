@@ -148,7 +148,7 @@ interface IPropsMapToProps {
 export interface IMapAndPropsToProps extends IMapStateToProps, IPropsMapToProps {}
 //TODO: Сделать нормальную проверку после уточнения санков
 export interface IDispatchProps {
-	setData: (data:DataHardType) => void
+	setData: (data:Array<DataHardType>) => void
 	getHardPageThunkCreator: any
 	updateCabinetAC: (bol:boolean) => void
 	cabinetIsUpdateThunkCreator: any
