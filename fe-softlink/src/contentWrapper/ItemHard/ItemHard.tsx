@@ -10,6 +10,7 @@ import MotherItem from '../ComponentHard/MotherItem'
 import {DataHardType, FilterFieldAllType, GetHardPageThunkCreatorType} from "../../Redux/hardPageReducer";
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 import {IDispatchProps, IMapAndPropsToProps} from "./ItemHardContainer";
+import any = jasmine.any;
 
 interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	getPageData: any
@@ -22,8 +23,24 @@ interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 }
 
 let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
+	let filterFieldsProps = props.filterField
+	let typeFilterArray:Array<string> = ['none','mother','cpu','ram','video','power','ssd','hdd']
+	let itemId:number = props.itemType
+	let itemIdName:string = ''
+	let filterField:FilterFieldAllType = {}
 
-	let filterField:FilterFieldAllType = props.filterField
+	for (let id in typeFilterArray) {
+		if (Number(id) === itemId) {
+			itemIdName = typeFilterArray[id]
+		}
+	}
+
+	Object.keys(filterFieldsProps).forEach((keys) => {
+		let typeFilter = keys.split('_').reverse()[0]
+		if (typeFilter === itemIdName){
+			(filterField as any)[keys] = (filterFieldsProps as any)[keys]
+		}
+	})
 
 	let onClickLinkPage = (page:number) => {
 		props.getPageData(page)
@@ -246,15 +263,15 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 		}
 		return arrayCheck
 	}
-	for (let item:string in filterField){
-		console.log(item)
-		let title = filterField.
+	for (let item in filterField){
+
+		let title = (filterField as any)[item]
 		let titleName = title[0]
 		itemFilter.push(
 			<div className="filter__body">
 				<div className="filter__item__title">{titleName}</div>
 				<div className="filter__item">
-					{drawInput(filterField[item])}
+					{drawInput((filterField as any)[item])}
 				</div>
 			</div>
 		)}	

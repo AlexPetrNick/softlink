@@ -8,7 +8,7 @@ import {
 	setParamsJson,
 	addDictParams,
 	eraseDictParams,
-	InitStateTypeHard, DataHardType, GetHardPageThunkCreatorType, FilterFieldAllType
+	InitStateTypeHard, DataHardType, GetHardPageThunkCreatorType, FilterFieldAllType, FilterFieldMotherType
 } from '../../Redux/hardPageReducer'
 import {
 	updateCabinetAC,
@@ -86,10 +86,11 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
 	}
 	}
 
-	getFilterItem = (itemId:number):FilterFieldAllType => {
+	/*getFilterItem = (itemId:number):any => {
+
 		switch(itemId) {
 			case (1): {
-				return filterFieldMother
+				return filterFieldMother as FilterFieldMotherType
 			}
 			case (3): {
 				return filterFieldRam
@@ -109,7 +110,7 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
 			default:
 				return filterFieldHdd
 	}
-	}
+	}*/
 
 	setParams = (string:string):void => {
 		this.props.setParams(string)
@@ -126,7 +127,7 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
 			eraseDictParams = {this.props.eraseDictParams}
 			cabinetAddItem = {this.props.cabinetAddItem}
 			cabinetEraseItem = {this.props.cabinetEraseItem}
-			filterField = {this.getFilterItem(this.props.itemType)}
+			filterField = {this.props.filterField}
 			 />
 			}
 			</>
@@ -139,6 +140,7 @@ interface IMapStateToProps {
 	stateHard: InitStateTypeHard
 	stateHardFilterJson: object,
 	stateBugHard: BagType,
+	filterField: FilterFieldAllType
 }
 interface IPropsMapToProps {
 	itemType: number
@@ -160,6 +162,7 @@ export interface IDispatchProps {
 
 let mapStateToProps = (state:AppStateType, props:IPropsMapToProps):IMapAndPropsToProps => {
 	return {
+		filterField: state.pageHard.filterFieldAll,
 		itemType: props.itemType,
 		stateHard: state.pageHard,
 		stateHardFilterJson: state.pageHard.paramsJson,
