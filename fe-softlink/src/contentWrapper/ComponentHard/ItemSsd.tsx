@@ -1,7 +1,19 @@
-import React from 'react'
+import React, {FC} from 'react'
+/*@ts-ignore*/
 import ssd from '../../image/ssd.jfif'
+import {ItemRamType, ItemSsdType} from "../../Redux/computerReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 
-const ItemSsd = (props) => {
+type PropsItem = {
+	key: number
+	data: ItemSsdType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+}
+
+
+const ItemSsd: FC<PropsItem> = (props:PropsItem) => {
 	
 
 	let getItem = () => {

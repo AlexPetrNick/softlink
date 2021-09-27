@@ -1,7 +1,18 @@
-import React from 'react'
+import React, {FC, Props} from 'react'
 import hdd from '../../image/hdd.jpg'
+import {DataHardType} from "../../Redux/hardPageReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
+import {ItemHddType} from "../../Redux/computerReducer";
 
-const ItemHdd = (props) => {
+type PropsItem = {
+	key: number
+	data: ItemHddType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+}
+
+const ItemHdd:FC<PropsItem> = (props:PropsItem) => {
 
 	let getItem = () => {
 		props.cabinetAddItem(props.data.id, props.data.type_item)

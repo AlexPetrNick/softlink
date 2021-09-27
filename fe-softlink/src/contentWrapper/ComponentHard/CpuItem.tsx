@@ -1,26 +1,38 @@
-import React from 'react'
+import React, {FC} from 'react'
 import cpuImage from '../../image/cpuImage.jpg'
 import iconMother from '../../image/icons/inMother.png'
 import iconMotherSlot from '../../image/icons/motherboard.png'
+import {DataHardType} from "../../Redux/hardPageReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
+import {ItemCpuType, ItemMotherType} from "../../Redux/computerReducer";
 
-const CpuItem = (props) => {
+export type PropsItemHard = {
+	key: number
+	data: ItemCpuType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+	stateMother: ItemMotherType
+}
 
-	let getItem = () => {
+const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
+
+	let getItem = ():void => {
 		props.cabinetAddItem(props.data.id, props.data.type_item)
 	}
 
-	let eraseItem = () => {
+	let eraseItem = ():void => {
 		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
 
-	let inMotherComputer = props.data.id === props.stateMother.id
-	let inMother = false
+	let inMotherComputer:boolean = props.data.id === props.stateMother.id
+	let inMother:boolean = false
 	if (inMotherComputer) {
 		inMother = true
 	}
 	
-	let trueSocket = props.data.socket === props.stateMother.socket
-	let Socket = false
+	let trueSocket:boolean = props.data.socket === props.stateMother.socket
+	let Socket:boolean = false
 	if (trueSocket) {
 		Socket = true
 	}

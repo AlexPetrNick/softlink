@@ -1,7 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import pict from '../../image/ram.jpg'
+import {ItemPowerType, ItemRamType} from "../../Redux/computerReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 
-let ItemRam = (props) => {
+type PropsItem = {
+	key: number
+	data: ItemRamType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+}
+
+let ItemRam: FC<PropsItem> = (props:PropsItem) => {
 
 	let getItem = () => {
 		props.cabinetAddItem(props.data.id, props.data.type_item)

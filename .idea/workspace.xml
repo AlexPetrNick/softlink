@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/CpuItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/CpuItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemHdd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemHdd.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemPower.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemPower.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemRam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemRam.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemSsd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemSsd.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemVideo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemVideo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHardContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHardContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Paging/PagingComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Paging/PagingComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
       <workItem from="1632507049841" duration="39000" />
       <workItem from="1632507277498" duration="725000" />
       <workItem from="1632741728102" duration="3294000" />
-      <workItem from="1632747727533" duration="4361000" />
+      <workItem from="1632747727533" duration="7190000" />
     </task>
     <servers />
   </component>

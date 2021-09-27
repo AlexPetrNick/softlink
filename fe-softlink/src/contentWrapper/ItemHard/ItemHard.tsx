@@ -10,6 +10,14 @@ import MotherItem from '../ComponentHard/MotherItem'
 import {DataHardType, FilterFieldAllType} from "../../Redux/hardPageReducer";
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 import {IDispatchProps, IMapAndPropsToProps} from "./ItemHardContainer";
+import {
+	ItemCpuType,
+	ItemHddType, ItemMotherType,
+	ItemPowerType,
+	ItemRamType,
+	ItemSsdType,
+	ItemVideoType
+} from "../../Redux/computerReducer";
 
 interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	getPageData: any
@@ -22,7 +30,7 @@ interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 }
 
 let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
-	let stateMother = props.stateBugHard.mother
+	let stateMother = props.stateBugHard.mother[0]
 	let filterFieldsProps = props.filterField
 	let typeFilterArray:Array<string> = ['none','mother','cpu','ram','video','power','ssd','hdd']
 	let itemId:number = props.itemType
@@ -95,18 +103,18 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 		if(hard) {
 			return hard.id
 		} else {
-			return []
+			return null
 		}
 	})
 
 	let	callComp = (array:Array<DataHardType>) => {
-		return array.map((data) => {
+		return array.map((data:DataHardType) => {
 			switch (props.itemType) {
 				case (1): {
 					return (
 						<MotherItem
 							key={data.id}
-							data={data}
+							data={data as ItemMotherType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -118,7 +126,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<ItemRam
 							key={data.id}
-							data={data}
+							data={data as ItemRamType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -129,7 +137,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<ItemVideo
 							key={data.id}
-							data={data}
+							data={data as ItemVideoType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -141,7 +149,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<ItemPower
 							key={data.id}
-							data={data}
+							data={data as ItemPowerType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -153,7 +161,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<ItemSsd
 							key={data.id}
-							data={data}
+							data={data as ItemSsdType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -165,7 +173,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<ItemHdd
 							key={data.id}
-							data={data}
+							data={data as ItemHddType}
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
@@ -177,7 +185,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 					return (
 						<CpuItem
 							key={data.id}
-							data={data}
+							data={data as ItemCpuType}
 							idBugHard={idBugHard}
 							//stateBugIdHard={props.stateBugIdHard}
 							cabinetAddItem={props.cabinetAddItem}

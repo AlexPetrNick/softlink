@@ -1,8 +1,18 @@
-import React from 'react'
-import {apiCabinet} from '../../apiDAL/DAL'
+import React, {FC} from 'react'
+/*@ts-ignore*/
 import power from '../../image/power.jfif'
+import {ItemHddType, ItemPowerType} from "../../Redux/computerReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 
-const ItemPower = (props) => {
+type PropsItem = {
+	key: number
+	data: ItemPowerType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+}
+
+const ItemPower: FC<PropsItem> = (props:PropsItem) => {
 
 	let getItem = () => {
 		props.cabinetAddItem(props.data.id, props.data.type_item)

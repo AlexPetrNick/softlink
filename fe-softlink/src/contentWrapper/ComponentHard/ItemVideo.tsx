@@ -1,7 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import picture from '../../image/video.jpg'
+import {ItemSsdType, ItemVideoType} from "../../Redux/computerReducer";
+import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 
-const ItemVideo = (props) => {
+type PropsItem = {
+	key: number
+	data: ItemVideoType
+	idBugHard: Array<number | null>
+	cabinetAddItem: CabinetAddItemType
+	cabinetEraseItem: CabinetEraseItemType
+}
+
+const ItemVideo: FC<PropsItem> = (props:PropsItem) => {
 
 	let getItem = () => {
 		props.cabinetAddItem(props.data.id, props.data.type_item)
