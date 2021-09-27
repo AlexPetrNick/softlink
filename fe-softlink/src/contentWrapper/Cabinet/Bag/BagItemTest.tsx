@@ -1,7 +1,21 @@
-import React, { useState } from 'react'
+import React, {FC, useState} from 'react'
 import computer from '../../../image/scheme.jpg'
+import motherIm from "../../../image/imageComp/mother.png";
+import {DataType, ItemSsdType} from "../../../Redux/computerReducer";
 
-let BagItem = (props) => {
+type PropsType = {
+    data:DataType
+    eraseItemFromComp: (data:DataType) => void
+    addItem: (data:DataType) => void
+    eraseItem: (idItem:number, itemType:number) => void
+    arrayItem: Array<number>
+    remain: number
+    hover: (image:string) => void
+    image: any,
+    haveManySlot?: any
+}
+
+let BagItem: FC<PropsType> = (props:PropsType) => {
 
     let titleEraseItem = "Нельзя удалить из кабинета пока итем в компьютере"
     let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"

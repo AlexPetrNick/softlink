@@ -1,4 +1,12 @@
-let TitleBagButton = (props) => {
+import {FC} from "react";
+
+type PropsType = {
+    nameTitle:string
+    up: string
+    openClose: (e:any) => void
+}
+
+let TitleBagButton: FC<PropsType> = (props:PropsType) => {
     
     return (
         <div className="bug_title">

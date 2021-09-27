@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/addedFunction/otherFunc.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/addedFunction/otherFunc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/apiDAL/DAL.js" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/apiDAL/DAL.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/DropButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/DropButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/PowerPlace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/PowerPlace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/SaveButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/SaveButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Bag/BagItemTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Bag/BagItemTest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Button/TitleBagButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Button/TitleBagButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Cabinet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Cabinet.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +65,7 @@
       <workItem from="1632507049841" duration="39000" />
       <workItem from="1632507277498" duration="725000" />
       <workItem from="1632741728102" duration="3294000" />
-      <workItem from="1632747727533" duration="12086000" />
+      <workItem from="1632747727533" duration="13073000" />
     </task>
     <servers />
   </component>

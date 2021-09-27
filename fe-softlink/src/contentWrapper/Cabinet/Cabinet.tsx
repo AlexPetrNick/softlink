@@ -68,6 +68,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
     }
+
     let haveSlotSsd = (data: ItemSsdType, titleSlot:string) => {
         if (data.interface == "SATA-III") {
             if (ssdSlot.sata) {
