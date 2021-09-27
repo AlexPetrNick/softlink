@@ -1,33 +1,20 @@
 import React from 'react';
 import {setStateTextTitleNews, setStateTextContentNews, addNews, setCatch} from '../../Redux/actionsNews'
 import {setCurrentPage, getNewsThunkCreator} from '../../Redux/actionsNews'
-import {testAC} from '../../Redux/pageNewsReducer'
+import {NewsStructType, testAC, TextNewNewsType} from '../../Redux/pageNewsReducer'
 import {connect} from 'react-redux'
 import NewsPage from './NewsPage'
 import Preloader from '../../Preloader/Preloader'
-import {apiNews} from '../../apiDAL/DAL'
+import {AppStateType} from "../../Redux/reduxStore";
 
 
-class NewsPageContainer extends React.Component {
+class NewsPageContainer extends React.Component<AllPropsToState> {
     componentDidMount() {
         this.props.getNewsThunkCreator()
     }
 
-    postNew() {
-        let url = "asd"
-        fetch(url,
-        {
-            method: "POST",
-            body: JSON.stringify({
-                "title": this.titleNew,
-                "content": this.titleNew
-            })
-        })
-        .then(res => console.log(res))
-        .catch(res => console.log(res))
-    }
 
-    onClickLink = (page) => {
+    onClickLink = (page:number) => {
         this.props.getNewsThunkCreator(page)
     }
 
@@ -41,15 +28,11 @@ class NewsPageContainer extends React.Component {
                 textNewNews = {this.props.textNewNews}
                 currentPage = {this.props.currentPage}
                 countNews = {this.props.countNews}
-                addPost = {this.props.addPost}
                 perPage = {this.props.perPage}
                 error = {this.props.error}
                 onChangeTitle={this.props.setStateTextTitleNews}
                 onChangeContent={this.props.setStateTextContentNews}
                 onClickLink = {this.onClickLink}
-                postNew = {this.postNew}
-                uid = {this.uid}
-                test = {this.props.testAC}
             />
             </>
         )
@@ -57,9 +40,28 @@ class NewsPageContainer extends React.Component {
 
 }
 
+interface StateToProps {
+    error: string,
+    allNews:  Array<NewsStructType>,
+    textNewNews: TextNewNewsType,
+    currentPage: number,
+    countNews: number,
+    perPage: number,
+    isLoading: boolean
+}
 
+interface DispatchToProps {
+    setStateTextTitleNews: (word:string) => void
+    setStateTextContentNews: (word:string) => void
+    addNews: () => void
+    setCatch: (error:string) => void
+    setCurrentPage: (current:number) => void
+    getNewsThunkCreator: any
+}
 
-let mapStateToProps = (state) => {
+interface AllPropsToState extends DispatchToProps, StateToProps {}
+
+let mapStateToProps = (state:AppStateType):StateToProps => {
     return {
         error: state.pageNews.catchError,
         allNews: state.pageNews.allNews,
@@ -67,8 +69,7 @@ let mapStateToProps = (state) => {
         currentPage: state.pageNews.currentPage,
         countNews: state.pageNews.countNews,
         perPage: state.pageNews.perPage,
-        isLoading: state.pageNews.isLoading,
-        uid: state.pageNews.uid,
+        isLoading: state.pageNews.isLoading
     }
 }
 
@@ -79,7 +80,6 @@ export default connect(mapStateToProps, {
     setCatch,
     setCurrentPage,
     getNewsThunkCreator,
-    testAC
-})(NewsPageContainer);
+} as DispatchToProps)(NewsPageContainer);
 
 

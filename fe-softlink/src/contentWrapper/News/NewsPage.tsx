@@ -1,30 +1,39 @@
-import React from 'react';
+import React, {FC} from 'react';
 import NewsItem from "./NewsItem/NewsItem";
+import {NewsStructType, TextNewNewsType} from "../../Redux/pageNewsReducer";
 
+type PropsState = {
+    allNews: Array<NewsStructType>
+    textNewNews: TextNewNewsType
+    currentPage: number
+    countNews: number
+    perPage: number
+    error: string
+    onChangeTitle: (word:string) => void
+    onChangeContent: (word:string) => void
+    onClickLink: (page:number) => void
+}
 
-const NewsPage = (props) => {
+const NewsPage: FC<PropsState> = (props:PropsState) => {
 
     let onChangeTitle = () => {
-        let textTitle = document.getElementById('title__news').value
+        let textTitleDoc = document.getElementById('title__news') as HTMLInputElement
+        let textTitle = textTitleDoc.value
         props.onChangeTitle(textTitle)
     }
 
     let onChangeContent = () => {
-        let textContent = document.getElementById('content__news').value
+        let textContentDoc = document.getElementById('content__news') as HTMLInputElement
+        let textContent = textContentDoc.value
         console.log('sadfasdfs')
         props.onChangeContent(textContent)
     }    
-
-    let onClickNewsAddBUtton = () => {
-        props.addPost()
-    }
-
 
 
     let listNews;
     let titleNew = props.textNewNews.titleNews;
     let contentNew = props.textNewNews.contentNews;
-    let allNews = props.allNews[0]
+    let allNews = props.allNews
     if (allNews) {
         listNews = allNews.map((data) => {
             return (<NewsItem id={data.id} key={data.id} title={data.title} content={data.content} />)
@@ -52,7 +61,7 @@ const NewsPage = (props) => {
                             pages.map(p => {
                                 return (
                                     <li className="number__page">
-                                        <span className={props.currentPage === p && styleSelect} 
+                                        <span className={String(props.currentPage === p && styleSelect)}
                                         onClick={() => {props.onClickLink(p)}} >
                                         {p}
                                         </span>
@@ -68,7 +77,7 @@ const NewsPage = (props) => {
                         <input  onChange={ onChangeTitle } id="title__news" type="text" value={ titleNew} />
                         <span>Текст</span>
                         <input onChange={ onChangeContent } type="text" id="content__news" value={ contentNew} />
-                        <button onClick={ onClickNewsAddBUtton } id="submit__news" >Отправить форму</button>
+                        <button onClick={ () => alert("NO FUNC") } id="submit__news" >Отправить форму</button>
                     </div>
             </div>
             <div className="filter__list">12</div>

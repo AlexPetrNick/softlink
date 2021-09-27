@@ -1,7 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, FC} from 'react';
 import {NavLink} from "react-router-dom";
 
-const NewsItem = (props) => {
+type PropsType = {
+    id: number
+    key: number
+    title: string
+    content: string
+}
+
+
+const NewsItem: FC<PropsType> = (props:PropsType) => {
     let url = "/new/" + String(props.id) 
     return (
         <div className="news__template">
