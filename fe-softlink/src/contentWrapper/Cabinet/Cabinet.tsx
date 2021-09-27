@@ -17,8 +17,39 @@ import BagItem from './Bag/BagItemTest'
 import TitleBagButton from './Button/TitleBagButton'
 import {IContainerComponent} from "./CabinetContainer";
 import {DataType, ItemHddType, ItemRamType, ItemSsdType} from "../../Redux/computerReducer";
+import exp from "constants";
+export type GenStatCompArrayType = {
+    generalCntSsd: number
+    generalCntRam: number
+}
 
-
+export type RealStatComp = {
+    realCntM2: number
+    realCntMSata: number
+    realCntSata: number
+    realCntPcie4: number
+    realCntMother: number
+    realCntCpu: number
+    realCntVideo: number
+    realCntPower: number
+    realCntDdr3: number
+    realCntDdr3L: number
+    realCntDdr4: number
+    realCntHdd: number
+}
+export type GenStatCompType = {
+    generalCntPower: number
+    generalCntMother: number
+    generalCntCpu: number
+    generalCntVideo: number
+    generalCntDdr3: number
+    generalCntDdr3L: number
+    generalCntDdr4: number
+    generalCntM2: number
+    generalCntSata: number
+    generalCntPcie: number
+    generalCntMSata: number
+}
 
 let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     console.log("Draw Cabinet")
@@ -116,6 +147,8 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
     let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
 
+
+
     let genStatComp = {
         generalCntPower: 1,
         generalCntMother: 1,
@@ -128,12 +161,16 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         generalCntSata: dataMother ? dataMother.sata_cnt : 0,
         generalCntPcie: dataMother ? dataMother.pcie4 : 0,
         generalCntMSata: dataMother ? dataMother.msata_cnt : 0,
-    }
+    } as GenStatCompType
+
+
 
     let genStatCompArray = {
         generalCntSsd: genStatComp.generalCntM2 + genStatComp.generalCntSata + genStatComp.generalCntPcie + genStatComp.generalCntMSata,
         generalCntRam: genStatComp.generalCntDdr3 + genStatComp.generalCntDdr3L + genStatComp.generalCntDdr4
-    }
+    }  as GenStatCompArrayType
+
+
 
     let realStatComp = {
         realCntM2: dataSsd.length ? dataSsd.filter(a => a.interface == 'M2').length : 0,
@@ -148,24 +185,37 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         realCntDdr3L: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3L').length : 0,
         realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0,
         realCntHdd: CntSataHdd
+    } as RealStatComp
+
+
+    let realCntSsd: number = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
+    let realCntRam: number = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
+
+    type RamSlotType = {
+        ddr3: number
+        ddr3L: number
+        ddr4: number
     }
-
-
-    let realCntSsd = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
-    let realCntRam = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
 
     let ramSlot = {
         ddr3: genStatComp.generalCntDdr3 - realStatComp.realCntDdr3,
         ddr3L: genStatComp.generalCntDdr3L - realStatComp.realCntDdr3L,
         ddr4: genStatComp.generalCntDdr4 - realStatComp.realCntDdr4
+    } as RamSlotType
+
+    type SsdSlotType = {
+        m2: number
+        pcie: number
+        sata: number
+        msata: number
     }
+
     let ssdSlot = {
         m2: genStatComp.generalCntM2 - realStatComp.realCntM2,
         pcie: genStatComp.generalCntPcie - realStatComp.realCntPcie4,
         sata: genStatComp.generalCntSata - realStatComp.realCntSata,
         msata: genStatComp.generalCntMSata - realStatComp.realCntMSata
-    }
-
+    } as SsdSlotType
 
     return (
         <div className="cabinet__wrapper">

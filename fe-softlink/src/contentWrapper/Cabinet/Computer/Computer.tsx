@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, {FC, useState} from "react";
 import schema from '../../../image/scheme.jpg'
 import ComputerNameItem from './ComputerNameItem'
 import SaveButton from './Button/SaveButton'
 import DropButton from './Button/DropButton'
 import PowerPlace from './Button/PowerPlace'
+import {AllStateToProps} from "./ComputerContainer";
+import {DataType, DataTypeWithoutPower} from "../../../Redux/computerReducer";
 
 
-let Computer = (props) => {
 
-    
+let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
 
     let [stateComputer, setStateComputer] = useState(props.state)
 
@@ -51,14 +52,14 @@ let Computer = (props) => {
     }) : (<div className="computer__data__item"></div>)
 
 
-    let correctGetSumm = (mass) => {
+    let correctGetSumm = (mass:Array<DataTypeWithoutPower>) => {
         let a = 0;
         let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
         console.log(res)
         return res
     }
 
-    let allPower = stateComp.power.length ? stateComp.power[0].power_all : 0
+    let allPower:number = stateComp.power.length ? stateComp.power[0].power_all : 0
     let allPowerVideo = correctGetSumm(stateComp.video)
     let allPowerRam = correctGetSumm(stateComp.ram)
     let allPowerHdd = correctGetSumm(stateComp.hdd)
@@ -79,32 +80,32 @@ let Computer = (props) => {
                     powerAll={allPower} 
                     remainPower={remainPower} 
                 />
-            <div className="computer__data">
+            <div className="computer__data">ComputerNameItem
 
-                <ComputerNameItem toggle={props.toggleS} text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />
+                <ComputerNameItem text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />
                 <div className="computer__data__item">{mother}</div>             
-                <ComputerNameItem toggle={props.toggleS} text='Процессор' cntReal={realStatComp.realCntCpu} cntFix ={genStatComp.generalCntCpu} />
+                <ComputerNameItem text='Процессор' cntReal={realStatComp.realCntCpu} cntFix ={genStatComp.generalCntCpu} />
                 <div className="computer__data__item">{cpu} </div>
-                <ComputerNameItem toggle={props.toggleS} text='Видеокарта' cntReal={realStatComp.realCntVideo} cntFix ={genStatComp.generalCntVideo} />
+                <ComputerNameItem text='Видеокарта' cntReal={realStatComp.realCntVideo} cntFix ={genStatComp.generalCntVideo} />
                 <div className="computer__data__item">{video}</div>
                 <div className="computer__data__name">
-                    <ComputerNameItem toggle={props.toggleS} text='Оперативная' cntReal={props.realCntRam} cntFix ={genStatCompArray.generalCntRam} />
-                    <ComputerNameItem toggle={props.toggleS} text='DDR3' cntReal={realStatComp.realCntDdr3} cntFix ={genStatComp.generalCntDdr3} />
-                    <ComputerNameItem toggle={props.toggleS} text='DDR3L' cntReal={realStatComp.realCntDdr3L} cntFix ={genStatComp.generalCntDdr3L} />
-                    <ComputerNameItem toggle={props.toggleS} text='DDR4' cntReal={realStatComp.realCntDdr4} cntFix ={genStatComp.generalCntDdr4} />
+                    <ComputerNameItem text='Оперативная' cntReal={props.realCntRam} cntFix ={genStatCompArray.generalCntRam} />
+                    <ComputerNameItem text='DDR3' cntReal={realStatComp.realCntDdr3} cntFix ={genStatComp.generalCntDdr3} />
+                    <ComputerNameItem text='DDR3L' cntReal={realStatComp.realCntDdr3L} cntFix ={genStatComp.generalCntDdr3L} />
+                    <ComputerNameItem text='DDR4' cntReal={realStatComp.realCntDdr4} cntFix ={genStatComp.generalCntDdr4} />
                 </div>
                 {ram}
                 <div className="computer__data__name">
-                    <ComputerNameItem toggle={props.toggleS} text='SSD' cntReal={props.realCntSsd} cntFix ={genStatCompArray.generalCntSsd} />
-                    <ComputerNameItem toggle={props.toggleS} text='M2' cntReal={realStatComp.realCntM2} cntFix ={genStatComp.generalCntM2} />
-                    <ComputerNameItem toggle={props.toggleS} text='Sata' cntReal={realStatComp.realCntSata} cntFix ={genStatComp.generalCntSata} />
-                    <ComputerNameItem toggle={props.toggleS} text='PCI-E' cntReal={realStatComp.realCntPcie4} cntFix ={genStatComp.generalCntPcie} />
-                    <ComputerNameItem toggle={props.toggleS} text='mSata' cntReal={realStatComp.realCntMSata} cntFix ={genStatComp.generalCntMSata} />
+                    <ComputerNameItem text='SSD' cntReal={props.realCntSsd} cntFix ={genStatCompArray.generalCntSsd} />
+                    <ComputerNameItem text='M2' cntReal={realStatComp.realCntM2} cntFix ={genStatComp.generalCntM2} />
+                    <ComputerNameItem text='Sata' cntReal={realStatComp.realCntSata} cntFix ={genStatComp.generalCntSata} />
+                    <ComputerNameItem text='PCI-E' cntReal={realStatComp.realCntPcie4} cntFix ={genStatComp.generalCntPcie} />
+                    <ComputerNameItem text='mSata' cntReal={realStatComp.realCntMSata} cntFix ={genStatComp.generalCntMSata} />
                 </div>
                 {ssd}
-                <ComputerNameItem toggle={props.toggleS} text='Жесткий диск' cntReal={realStatComp.realCntHdd} cntFix ={genStatComp.generalCntSata} />
+                <ComputerNameItem text='Жесткий диск' cntReal={realStatComp.realCntHdd} cntFix ={genStatComp.generalCntSata} />
                 {hdd}
-                <ComputerNameItem toggle={props.toggleS} text='Блок питания' cntReal={realStatComp.realCntPower} cntFix ={genStatComp.generalCntPower} />
+                <ComputerNameItem text='Блок питания' cntReal={realStatComp.realCntPower} cntFix ={genStatComp.generalCntPower} />
                 <div className="computer__data__item">{power}</div>
                 </div>
         </div>

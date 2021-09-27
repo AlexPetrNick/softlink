@@ -1,6 +1,14 @@
-let ComputerNameItem = (props) => {
+import React, {FC} from "react";
 
-    let correctText = (cntReal, cntFix) => {
+type PropsComputer = {
+    cntReal: number
+    cntFix : number
+    text: string
+}
+
+let ComputerNameItem: FC<PropsComputer> = (props:PropsComputer):any => {
+
+    let correctText = (cntReal:number, cntFix:number) => {
         if ((cntReal == cntFix) && cntFix != 0 ) {
             return 'correct'
         } else if (cntReal > cntFix) {
@@ -11,7 +19,7 @@ let ComputerNameItem = (props) => {
     }
     
 
-    let funcCorrect = (stateText, text, cntReal, cntFix) => {
+    let funcCorrect = (stateText:string, text:string, cntReal:number, cntFix:number) => {
         if (stateText == 'correct') {
             return (
                 <div className="computer__data__name correct">{text} (Слоты {cntReal}/{cntFix})</div>
@@ -28,6 +36,7 @@ let ComputerNameItem = (props) => {
             <></>
         } 
     }
+
     return(
         funcCorrect(correctText(props.cntReal, props.cntFix), props.text, props.cntReal, props.cntFix)
     )

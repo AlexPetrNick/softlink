@@ -153,6 +153,7 @@ const computerReducer = (state:StateComputer=initState, action:ActionType) => {
 export default computerReducer
 
 export type DataType = ItemCpuType | ItemMotherType | ItemHddType | ItemRamType | ItemPowerType | ItemVideoType | ItemSsdType
+export type DataTypeWithoutPower = ItemCpuType | ItemMotherType | ItemHddType | ItemRamType  | ItemVideoType | ItemSsdType
 type AddItemInComputerType = {
     type: typeof ADD_ITEM_IN_COMPUTER,
     data: DataType
@@ -264,7 +265,7 @@ export type ItemPowerType = {
     id: number,
     brand: string,
     model: string,
-    power_all: string,
+    power_all: number,
     PFC: string,
     int_for_mother: string,
     molex: string,
@@ -398,7 +399,7 @@ let initState = {
         id: 2,
         brand: "FSP",
         model: "QD500 85+",
-        power_all: "500",
+        power_all: 500,
         PFC: "Активный",
         int_for_mother: "24+4+4 pin",
         molex: "2 шт",
