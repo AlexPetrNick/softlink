@@ -18,6 +18,7 @@ import {
 	ItemSsdType,
 	ItemVideoType
 } from "../../Redux/computerReducer";
+import SimpleSlider from "../Slider/SimpleSlider";
 
 interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	getPageData: any
@@ -308,24 +309,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 	return (
 		<div className="wrapper__hard">
 			<div className="wrapper__best">
-					<button className='button__rigth_scroll' onClick={scrollRigth}>rigth</button>
-					<button className='button__left_scroll' onClick={scrollLeft}>left</button>
-				<section className="best__for__user">
-					<div className="best__item">1</div>
-					<div className="best__item">2</div>
-					<div className="best__item">3</div>
-					<div className="best__item">4</div>
-					<div className="best__item">5</div>
-					<div className="best__item">6</div>
-					<div className="best__item">7</div>
-					<div className="best__item">8</div>
-					<div className="best__item">9</div>
-					<div className="best__item">9</div>
-					<div className="best__item">9</div>
-					<div className="best__item">9</div>
-					<div className="best__item">9</div>
-					<div className="best__item">9</div>
-				</section>
+				<SimpleSlider />
 			</div>
 			<div className="content___list">
 				<div className="page_content">

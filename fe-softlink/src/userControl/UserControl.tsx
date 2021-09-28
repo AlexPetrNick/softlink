@@ -1,4 +1,4 @@
-import React, {FC, HTMLInputTypeAttribute} from 'react';
+import React, {FC} from 'react';
 import {apiUser} from '../apiDAL/DAL';
 import './User.css';
 import {InisStateAuthType} from "../Redux/authReducer";
@@ -22,7 +22,7 @@ const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
 		let user = props.state.correctLogin
 		let pass = props.state.correctPassword
 
-		apiUser.authorization(user, pass)
+		apiUser.authorization(user as any, pass as any)
 			.then(js => {
 				if(!js.detail){
 					props.authorization(true)

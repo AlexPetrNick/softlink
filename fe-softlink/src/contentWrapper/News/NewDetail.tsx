@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Preloader from '../../Preloader/Preloader'
 
+type PropsState = {
+    isLoad: boolean
+    newTitle: string
+    newContent: string
+}
 
-const NewDetail = (props) => {
+const NewDetail: FC<PropsState> = (props:PropsState) => {
     
     if (props.isLoad) {
         <Preloader />

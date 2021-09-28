@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import NewDetail from './NewDetail'
 import {setStateNew, toggleLoad} from '../../Redux/actionNewDetail'
 import { withRouter } from 'react-router';
+import {AppStateType} from "../../Redux/reduxStore";
 
 
 
-class NewDetailContainer extends React.Component{
+class NewDetailContainer extends React.Component<IAllStateToProps>{
     componentDidMount() {
         this.props.toggleLoad(true)
-        let newId = this.props.match.params.newId
-        let url = 'http://127.0.0.1:8000/api/new/' + String(newId)
+        let url = 'http://127.0.0.1:8000/api/new/' + String(1)
         fetch(url)
             .then(resp => resp.json())
             .then(data => {
@@ -18,7 +18,6 @@ class NewDetailContainer extends React.Component{
                 this.props.setStateNew(data.title, data.content)
                 this.props.toggleLoad(false)
             })
-            .catch(data => this.props.setCatch(String(data)))
     }
 
     render() {
@@ -28,8 +27,20 @@ class NewDetailContainer extends React.Component{
     }
 }
 
+interface IStateToProps {
+    newTitle: string
+    newContent: string,
+    isLoad: boolean
+}
 
-let mapStateToProps = (state) => {
+interface IDispatchProps {
+    setStateNew: (title:string, content:string) => void
+    toggleLoad: (isLoad:boolean) => void
+}
+
+interface IAllStateToProps extends  IStateToProps, IDispatchProps {}
+
+let mapStateToProps = (state:AppStateType) => {
     return {
         newTitle: state.pageNew.title,
         newContent: state.pageNew.content,
@@ -37,7 +48,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let WrapperRouter = withRouter(NewDetailContainer)
+let WrapperRouter = withRouter(NewDetailContainer as any)
 
 export default connect (mapStateToProps, {
     setStateNew,

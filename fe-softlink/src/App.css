@@ -300,6 +300,9 @@
   height: 200px;
   position: relative;
   overflow-x: auto;
+  background-color: #68c251;
+  border: 4px solid black;
+  border-radius: 20px;
 
   grid-row-start: 1;
   grid-row-end: 2;
