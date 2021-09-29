@@ -30,13 +30,13 @@ class SimpleSlider extends Component<any, any> {
                         <ItemSlider />
                     </div>
                     <div className="item__slider">
-                        <h3>4</h3>
+                        <ItemSlider />
                     </div>
                     <div className="item__slider">
-                        <h3>5</h3>
+                        <ItemSlider />
                     </div>
                     <div className="item__slider">
-                        <h3>6</h3>
+                        <ItemSlider />
                     </div>
                 </Slider>
             </div>

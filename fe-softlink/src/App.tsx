@@ -5,7 +5,7 @@ import {UserControlContainer} from './userControl/UserControlContainer';
 import PictureUp from './pictureUp/PictureUp';
 import ContentWrapper from './contentWrapper/ContentWrapper';
 import FooterWrapper from './footerWrapper/footerWrapper';
-import {initThunkCreator, isInit} from './Redux/appReducer'
+import {initNotUserThunkCreator, initThunkCreator, isInit} from './Redux/appReducer'
 import {connect} from 'react-redux'
 import Preloader from './Preloader/Preloader';
 import {AppStateType} from "./Redux/reduxStore";
@@ -15,7 +15,12 @@ interface IApp extends IMapStateToProps, IDispatchToProps {}
 class App extends React.Component<IApp> {
   componentDidMount() {
       console.log("app did mount")
-      this.props.initThunkCreator() 
+      let haveAccessToken = String(localStorage.getItem('access')).length > 10
+      if (haveAccessToken) {
+          this.props.initThunkCreator()
+      } else {
+          this.props.initNotUserThunkCreator()
+      }
   }
 
   render() {
@@ -43,23 +48,25 @@ class App extends React.Component<IApp> {
 
 
 export interface IMapStateToProps {
-  stateAll: AppStateType
-  stateInit: boolean
-  stateUp: boolean
+    stateAll: AppStateType
+    stateInit: boolean
+    stateUp: boolean
 }
 
 export interface IDispatchToProps {
-  initThunkCreator: () => void
-  isInit: () => void
+    initThunkCreator: () => void
+    isInit: () => void,
+    initNotUserThunkCreator: () => void
 }
 
 const mapStateToProps = (state:AppStateType) => ({
-  stateAll: state,
-  stateInit: state.app.isInit,
-  stateUp: state.pageCabinet.updateCabinet
+    stateAll: state,
+    stateInit: state.app.isInit,
+    stateUp: state.pageCabinet.updateCabinet
 })
 
 export default connect (mapStateToProps, {
-  initThunkCreator,
-  isInit
+    initThunkCreator,
+    isInit,
+    initNotUserThunkCreator
 } as IDispatchToProps)(App);

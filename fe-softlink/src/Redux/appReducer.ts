@@ -71,3 +71,7 @@ export const initThunkCreator = () => (dispatch: any) => {
             dispatch(isInit())
         })
 }
+
+export const initNotUserThunkCreator = () => (dispatch: any) => {
+    dispatch(isInit())
+}
