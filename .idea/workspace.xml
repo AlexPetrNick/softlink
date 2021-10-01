@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/appReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/appReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ContentWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ContentWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Slider/SimpleSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Slider/SimpleSlider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JavaScript" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -72,7 +73,12 @@
       <workItem from="1632741728102" duration="3294000" />
       <workItem from="1632747727533" duration="15693000" />
       <workItem from="1632840048834" duration="5457000" />
-      <workItem from="1632894212150" duration="2270000" />
+      <workItem from="1632894212150" duration="3250000" />
+      <workItem from="1632921951986" duration="2000" />
+      <workItem from="1632922978157" duration="4238000" />
+      <workItem from="1633073055131" duration="54000" />
+      <workItem from="1633108213945" duration="10000" />
+      <workItem from="1633108226423" duration="7655000" />
     </task>
     <servers />
   </component>

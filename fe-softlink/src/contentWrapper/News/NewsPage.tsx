@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import NewsItem from "./NewsItem/NewsItem";
 import {NewsStructType, TextNewNewsType} from "../../Redux/pageNewsReducer";
+import AddNews from "./FormAddNews/AddNews";
 
 type PropsState = {
     allNews: Array<NewsStructType>
@@ -72,13 +73,7 @@ const NewsPage: FC<PropsState> = (props:PropsState) => {
                     </ul>
                     <div className="empty"></div>
                 </div>
-                <div  className="form__news__add">
-                        <span>Заголовок</span>
-                        <input  onChange={ onChangeTitle } id="title__news" type="text" value={ titleNew} />
-                        <span>Текст</span>
-                        <input onChange={ onChangeContent } type="text" id="content__news" value={ contentNew} />
-                        <button onClick={ () => alert("NO FUNC") } id="submit__news" >Отправить форму</button>
-                    </div>
+                <AddNews />
             </div>
             <div className="filter__list">12</div>
         </div>

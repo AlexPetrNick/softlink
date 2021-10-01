@@ -636,20 +636,32 @@
 .news__page__content {
   background-color: #c2c2c2;
 
-  display: grid;
-  grid-template: auto 60px/1fr;
+  display: flex;
+
+  flex-direction: column;
+
   justify-items: center;
+  align-items: center;
 }
 
 /*Контентная часть новостей*/
 .news__item__content {
-  justify-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  align-items: center;
+
+
 }
 
 /*Пагинатор новости*/
 .news__pagenumber__list{
   height: 50px;
   width: 760px;
+
+  grid-row-start: 2;
+  grid-row-end: 3;
 
   display: grid;
   grid-template: 1fr/1fr 300px 1fr;
@@ -660,11 +672,10 @@
   box-shadow: 0 0 20px black;
   font-family: Comic Sans MS, Comic Sans, cursive;
   background-color: #e2e2e2;
-  margin-top: 10px;
-  margin-left: 10px;
-  width: 750px;
+  border-radius: 20px;
   height: auto;
-  padding: 10px;
+  width: 95%;
+  margin-top: 10px;
 
   display: grid;
   grid-gap: 10px;
@@ -679,6 +690,7 @@
   border-radius: 10px;
 }
 .news__content {
+  padding: 10px;
   border-top: 1px solid #53bf00;
   border-radius: 10px;
   height: auto;
@@ -689,6 +701,7 @@
   margin-top: 10px;
   background-color: #7e7e7e;
   border-radius: 10px;
+  width: 750px;
 }
 
 .news__tags__list ul li{
@@ -735,12 +748,6 @@
 
 /*Добавление новости*/
 
-.form__news__add {
-  margin: 50px 40px auto 150px;
-  display: grid;
-
-  grid-template: 40px 50px 40px 300px 50px/ 500px;
-}
 
 .form__news__add span{
   text-align: center;
@@ -750,6 +757,48 @@
 #submit__news {
   margin-top: 20px;
 }
+
+.news__template__add{
+  box-shadow: 0 0 20px black;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  background-color: #e2e2e2;
+  opacity: 0.7;
+  width: 95%;
+  height: 350px;
+  margin-top: 10px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+}
+
+.add__news__title__span {
+  width: 200px;
+  text-align: center;
+}
+.add__news__title {
+  width: 500px;
+  height: 20px;
+}
+
+.add__news__content__span {
+  width: 200px;
+  text-align: center;
+}
+.add__news__content {
+  width: 600px;
+  height: 150px;
+}
+.add__news__submit {
+  width: 200px;
+  height: 50px;
+  background-color: #1e8714;
+}
+
+
 /*Комментарии в новости(1)*/
 
 .user__comment__logo {}
@@ -845,11 +894,10 @@
 
 .filter__list{
   min-width: 300px;
-  max-height: auto;
   background-color: #7e7e7e;
   box-shadow: 1px 1px 15px #282828;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
   grid-column-start: 2;
   grid-column-end: 3;
 }
