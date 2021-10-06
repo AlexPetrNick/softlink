@@ -2,7 +2,7 @@ import React from 'react';
 import ItemHard from './ItemHard'
 import {connect} from 'react-redux'
 import {
-	setData,
+	setDataCabinet,
 	getHardPageThunkCreator,
 	setParams,
 	setParamsJson,
@@ -86,32 +86,6 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
 	}
 	}
 
-	/*getFilterItem = (itemId:number):any => {
-
-		switch(itemId) {
-			case (1): {
-				return filterFieldMother as FilterFieldMotherType
-			}
-			case (3): {
-				return filterFieldRam
-			}
-			case (4): {
-				return filterFieldVideo
-			}
-			case (5): {
-				return filterFieldPower
-			}	
-			case (6): {
-				return filterFieldSsd
-			}
-			case (2): {
-				return filterFieldCpu
-			}
-			default:
-				return filterFieldHdd
-	}
-	}*/
-
 	setParams = (string:string):void => {
 		this.props.setParams(string)
 	}
@@ -148,7 +122,7 @@ interface IPropsMapToProps {
 export interface IMapAndPropsToProps extends IMapStateToProps, IPropsMapToProps {}
 //TODO: Сделать нормальную проверку после уточнения санков
 export interface IDispatchProps {
-	setData: (data:Array<DataHardType>) => void
+	setDataCabinet: (data:Array<DataHardType>) => void
 	getHardPageThunkCreator: any
 	updateCabinetAC: (bol:boolean) => void
 	cabinetIsUpdateThunkCreator: any
@@ -171,7 +145,7 @@ let mapStateToProps = (state:AppStateType, props:IPropsMapToProps):IMapAndPropsT
 }
 
 export default connect(mapStateToProps, {
-	setData,
+	setDataCabinet,
 	getHardPageThunkCreator,
 	updateCabinetAC,
 	cabinetIsUpdateThunkCreator,

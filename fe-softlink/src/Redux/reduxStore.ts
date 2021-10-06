@@ -17,7 +17,7 @@ let reducers = combineReducers({
     pageHard: hardPageReducer,
     auth: authReducer,
     app: appReducer,
-    computer: computerReducer
+    computer: computerReducer,
 });
 
 type RootReducerType = typeof reducers

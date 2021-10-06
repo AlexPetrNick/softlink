@@ -1,13 +1,9 @@
 .slider {
-    width: 1000px;
-    margin-left: 50px;
-    margin-top: 20px;
-    border-radius: 20px;
 }
 
 .item__slider {
-    height: 150px;
-    margin-left: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 .inner__slider {
     border: 2px solid white;
@@ -15,13 +11,11 @@
     background-color: #4f4f4f;
     opacity: 0.9;
 
-    height: 145px;
-    width: 315px;
+    height: 260px;
+    width: 245px;
     border-radius: 15px;
 
-    display: grid;
-
-    grid-template: 60px 90px / 1fr;
+    display: flex;
 }
 
 .title__slider {

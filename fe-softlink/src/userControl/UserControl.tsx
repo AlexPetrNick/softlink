@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {apiUser} from '../apiDAL/DAL';
 import './User.css';
 import {InisStateAuthType} from "../Redux/authReducer";
 import {initStateTypeUserControl} from "../Redux/userControlReducer";
+import RegistrationModal from "./Registration/RegistrationModal";
 
 type UserControlPropsType = {
 	state: initStateTypeUserControl
@@ -15,7 +16,7 @@ type UserControlPropsType = {
 }
 
 const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
-
+	let [ activeModal, setActiveModal] = useState(true)
 	console.log("user control пользователь не залогинен")
 
 	let onClicklogIn = () => {
@@ -62,8 +63,9 @@ const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
 				<div className="button_login" onClick={ onClicklogIn }>Вход</div>
 				<div className="registration__menu">
 					<div className="button__registraton_lk">
-						<a className="notst__link__green" href="#">Регистрация</a>
+						<a onClick={() => {setActiveModal(true)}} className="notst__link__green" href="#">Регистрация</a>
 					</div>
+				<RegistrationModal setActiveModal={setActiveModal}  activeModal={activeModal}  />
 				</div>
 			</div>
 			<div className="fill__right"></div>

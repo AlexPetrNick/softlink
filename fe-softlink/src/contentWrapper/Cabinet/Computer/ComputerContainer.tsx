@@ -1,21 +1,42 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Computer from './Computer'
-import {fetchComputerThunkCreator, StateComputer, toggleError} from '../../../Redux/computerReducer'
+import {
+    fetchComputerThunkCreator, isSaveButtonPress,
+    setDataComputer,
+    StateComputer, TAllArrayItems,
+    toggleError, TSetDataComputer
+} from '../../../Redux/computerReducer'
 import {AppStateType} from "../../../Redux/reduxStore";
 import {GenStatCompArrayType, GenStatCompType, RealStatComp} from "../Cabinet";
 
-interface AllState extends AllStateToProps, DispatchProps {}
+export interface AllState extends AllStateToProps, DispatchProps {}
 
 class ComputerContainer extends React.Component<AllState>{
+    componentDidMount() {
+        this.props.isSaveButtonPress(false)
+    }
 
     toggleS = (truth:boolean) => {
         this.props.toggleError(truth)
     }
 
+    saveStateComputer = (currentState:TAllArrayItems):void => {
+        this.props.setDataComputer(currentState)
+    }
+
+    dropStateComputer = (stateRedux:TAllArrayItems):void => {
+        this.props.setDataComputer(stateRedux)
+    }
+
+
     render() {
         return(
-            <Computer {...this.props} />
+            <Computer
+                {...this.props}
+                saveStateComputer ={this.saveStateComputer}
+                dropStateComputer = {this.dropStateComputer}
+            />
         )
     }
 }
@@ -35,6 +56,8 @@ export interface AllStateToProps extends StateProps, PropsToProps {}
 interface DispatchProps {
     fetchComputerThunkCreator: () => any
     toggleError: (truth:boolean) => void
+    setDataComputer: TSetDataComputer,
+    isSaveButtonPress: (press:boolean) => void
 }
 
 let mapStateToProps = (state:AppStateType, props:PropsToProps):AllStateToProps => {
@@ -44,11 +67,13 @@ let mapStateToProps = (state:AppStateType, props:PropsToProps):AllStateToProps =
         genStatCompArray: props.genStatCompArray,
         realCntSsd: props.realCntSsd,
         realCntRam: props.realCntRam,
-        state: state.computer
+        state: state.computer,
     })
 }
 
 export default connect(mapStateToProps, {
     fetchComputerThunkCreator,
-    toggleError
+    toggleError,
+    setDataComputer,
+    isSaveButtonPress
 }as DispatchProps)(ComputerContainer)

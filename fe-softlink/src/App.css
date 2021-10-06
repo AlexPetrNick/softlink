@@ -161,7 +161,7 @@
 .menu__wrapper{
   background-color: #f0f0f0;
   box-shadow: 0 0 20px black;
-  z-index: 10;
+  z-index: 2;
   grid-column-start: 1;
   grid-column-end: 4;
 
@@ -292,14 +292,14 @@
 .wrapper__hard {
   display: grid;
   grid-template-columns: 800px 300px;
-  grid-template-rows: 210px 2000px;
+  grid-template-rows: 300px auto;
 }
 
 .wrapper__best {
-  width: 1100px;
-  height: 200px;
+  width: 780px;
+  height: 300px;
   position: relative;
-  overflow-x: auto;
+  overflow-x: hidden;
   background-color: #68c251;
   border: 4px solid black;
   border-radius: 20px;
@@ -307,7 +307,7 @@
   grid-row-start: 1;
   grid-row-end: 2;
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 2;
 }
 
 .best__for__user {
@@ -324,7 +324,7 @@
 .best__item {
   display: inline-block;
   width: 300px;
-  height: 150px;
+  height: 140px;
   min-height: 150px;
   background-color: yellow;
   margin: 5px;
@@ -896,8 +896,10 @@
   min-width: 300px;
   background-color: #7e7e7e;
   box-shadow: 1px 1px 15px #282828;
+  height: auto;
+
   grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 3;
 }

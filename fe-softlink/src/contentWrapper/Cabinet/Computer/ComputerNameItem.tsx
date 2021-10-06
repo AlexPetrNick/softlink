@@ -1,24 +1,30 @@
 import React, {FC} from "react";
+import {setError} from "../../../Redux/authReducer";
 
 type PropsComputer = {
     cntReal: number
     cntFix : number
     text: string
+    cntError: number
+
+    setCntError: any
 }
 
 let ComputerNameItem: FC<PropsComputer> = (props:PropsComputer):any => {
+
+    let cntError = props.cntError
+
 
     let correctText = (cntReal:number, cntFix:number) => {
         if ((cntReal == cntFix) && cntFix != 0 ) {
             return 'correct'
         } else if (cntReal > cntFix) {
+            props.setCntError(cntError++)
             return 'incorrect'
         } else {
             return 'passive'
         }
     }
-    
-
     let funcCorrect = (stateText:string, text:string, cntReal:number, cntFix:number) => {
         if (stateText == 'correct') {
             return (

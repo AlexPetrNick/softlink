@@ -6,8 +6,20 @@
       <change beforePath="$PROJECT_DIR$/fe-softlink/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/computerReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/hardPageReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/reduxStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/CabinetContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/CabinetContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/DropButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/DropButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/SaveButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Button/SaveButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/Computer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/ComputerContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/ComputerContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/ComputerNameItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Cabinet/Computer/ComputerNameItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHardContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHardContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/FormAddNews/AddNews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/FormAddNews/AddNews.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/News/NewsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Slider/Slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/Slider/Slider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +32,7 @@
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -78,7 +91,16 @@
       <workItem from="1632922978157" duration="4238000" />
       <workItem from="1633073055131" duration="54000" />
       <workItem from="1633108213945" duration="10000" />
-      <workItem from="1633108226423" duration="7655000" />
+      <workItem from="1633108226423" duration="11935000" />
+      <workItem from="1633121779829" duration="8000" />
+      <workItem from="1633179953049" duration="6641000" />
+      <workItem from="1633264717421" duration="20018000" />
+      <workItem from="1633444433384" duration="4242000" />
+      <workItem from="1633499594940" duration="441000" />
+      <workItem from="1633500451704" duration="182000" />
+      <workItem from="1633501876707" duration="409000" />
+      <workItem from="1633502302896" duration="3865000" />
+      <workItem from="1633529068223" duration="6171000" />
     </task>
     <servers />
   </component>

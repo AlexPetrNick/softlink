@@ -7,7 +7,7 @@ import {
     updateCabinetAC,
     cabinetEraseItem,
     InitTypeCabinet,
-    DataFromServerType
+    DataFromServerType, getCabinetThunkCreator
 } from '../../Redux/cabinetReducer'
 import {addItemInComputer, DataType, eraseItemInComputer, StateComputer} from '../../Redux/computerReducer'
 import {AppStateType} from "../../Redux/reduxStore";
@@ -17,6 +17,9 @@ import {initStateTypeUserControl} from "../../Redux/userControlReducer";
 export interface IContainerComponent extends IMapStateToProps, IDispatchStateToProps {}
 
 class ContainerComponent extends React.Component<IContainerComponent>{
+    componentDidMount() {
+        this.props.getCabinetThunkCreator()
+    }
 
     componentDidUpdate(){
         console.log("update")
@@ -25,7 +28,7 @@ class ContainerComponent extends React.Component<IContainerComponent>{
     render() {
         console.log("cabinet container")
         return (
-            <Cabinet {...this.props}     />
+            <Cabinet {...this.props} />
         )
     }
 }
@@ -43,6 +46,7 @@ interface IDispatchStateToProps {
     addItemInComputer: (data:DataType) => void
     cabinetEraseItem: (idItem:number, itemType:number) => void
     eraseItemInComputer: (data:DataType) => void
+    getCabinetThunkCreator: any
 }
 
 let mapStateToProps = (state:AppStateType):IMapStateToProps => {
@@ -58,5 +62,6 @@ export default connect(mapStateToProps, {
     updateCabinetAC,
     addItemInComputer,
     cabinetEraseItem,
-    eraseItemInComputer
+    eraseItemInComputer,
+    getCabinetThunkCreator
 } as IDispatchStateToProps)(ContainerComponent)

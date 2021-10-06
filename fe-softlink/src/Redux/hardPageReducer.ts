@@ -10,7 +10,7 @@ import {
 } from "./computerReducer";
 
 export const SET_PAGE_META = 'SET_PAGE_META'
-export const SET_DATA = 'SET-DATA'
+export const SET_DATA_HARD = 'SET-DATA-HARD'
 export const SET_META_REPEAT = 'SET-META-REPEAT'
 export const TOGGLE_FETCH = 'TOGGLE-FETCH'
 export const PAGE_UPDATE = 'PAGE-UPDATE'
@@ -142,7 +142,8 @@ const hardPageReducer = (state:InitStateTypeHard=initState, action:ActionType):I
                 urlPrevPage: action.urlPrevPage,
                 currentPage: action.currentPage
             }
-        case SET_DATA:
+        case SET_DATA_HARD:
+            console.log('after click hard i do this')
             return {
                 ...state,
                 data: action.data.map(a => a)
@@ -232,11 +233,13 @@ export const setPageMeta = (count:number,
                             urlPrevPage:string,
                             currentPage:number):SetPageMetaType => ({ type:SET_PAGE_META, count, perPage, urlNextPage, urlPrevPage, currentPage })
 export type DataHardType = ItemHddType | ItemPowerType | ItemRamType | ItemSsdType | ItemMotherType | ItemVideoType | ItemCpuType
+
 type SetDataType = {
-    type: typeof SET_DATA,
+    type: typeof SET_DATA_HARD,
     data: Array<DataHardType>
 }
-export const setData = (data:Array<DataHardType>) => ({ type: SET_DATA, data })
+export const setDataCabinet = (data:Array<DataHardType>):SetDataType => ({ type: SET_DATA_HARD, data })
+
 type ToggleFetchType = {
     type: typeof TOGGLE_FETCH,
     isLoad: boolean
@@ -274,21 +277,23 @@ export const eraseDictParams = (tag:string, value:string):EraseDictParamsType =>
 
 export const getHardPageThunkCreator = (page=0, hard=apiHdd, params:string) => {
     return (dispatch:any) => {
-        console.log("fetching hardpage")
+
         dispatch(toggleFetch(true))
         if (page) {
             hard.fetchOnClick(page, params)
             .then(data => {
                 console.log(data)
                 dispatch(setPageMeta(data.count, data.per_page, data.links.next, data.links.previous, data.current_page))
-                dispatch(setData(data.results))
+                dispatch(setDataCabinet(data.results))
+                debugger
                 dispatch(toggleFetch(false))
             })
         } else {
             hard.fetchOnMount()
             .then(data => {
+                console.log(data)
                 dispatch(setPageMeta(data.count, data.per_page, data.links.next, data.links.previous, data.current_page))
-                dispatch(setData(data.results))
+                dispatch(setDataCabinet(data.results))
                 dispatch(toggleFetch(false))
             })
         }

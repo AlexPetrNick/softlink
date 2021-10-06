@@ -1,5 +1,6 @@
 
 import { apiComputer } from "../apiDAL/DAL"
+import exp from "constants";
 
 export const ADD_ITEM_IN_COMPUTER = 'ADD-ITEM-IN-COMPUTER'
 export const ERASE_ITEM_ON_COMPUTER = 'ERASE-ITEM-ON-COMPUTER'
@@ -7,6 +8,10 @@ export const TOGGLE_CORRECT = 'TOGGLE-CORRECT'
 export const TOGGLE_ERROR = 'TOGGLE_ERROR'
 export const CHANGE_NAME = 'CHANGE_NAME'
 export const MOUNT_COMPUTER = 'MOUNT_COMPUTER'
+export const SET_DATA_COMPUTER = 'SET-DATA'
+export const TEST_ALL = 'TEST-ALL'
+export const IS_SAVE_BUTTON_PRESS = 'IS_SAVE-BUTTON-PRESS'
+export const SET_CNT_ERR_COMP = 'SET-CNT-ERR-COMP'
 
 
 let typeItem = {
@@ -47,7 +52,8 @@ let nullMother = {
     msata_cnt: 0 as number,
     m2_cnt: 0 as number
 }
-type ActionType = AddItemInComputerType | EraseItemInComputerType | ToggleErrorType | ChangeNameType | MountComputerType
+type ActionType = AddItemInComputerType | EraseItemInComputerType | ToggleErrorType | ChangeNameType | MountComputerType | SetDataType
+| TIsSaveButtonPress
 
 const computerReducer = (state:StateComputer=initState, action:ActionType) => {
     switch(action.type) {
@@ -146,6 +152,23 @@ const computerReducer = (state:StateComputer=initState, action:ActionType) => {
                 ...state,
                 haveError: action.truth
             }
+        case SET_DATA_COMPUTER:
+            console.log('asdf')
+            return {
+                ...state,
+                mother: action.data.mother,
+                video: action.data.video,
+                ssd: action.data.ssd,
+                cpu: action.data.cpu,
+                ram: action.data.ram,
+                power: action.data.power,
+                hdd: action.data.hdd
+            }
+        case IS_SAVE_BUTTON_PRESS:
+            return {
+                ...state,
+                isSaveButtonPress: action.press
+            }
         default:
             return state
     }
@@ -179,6 +202,21 @@ type MountComputerType = {
     data: DataType
 }
 export const mountComputer = (data:DataType):MountComputerType => ({ type: MOUNT_COMPUTER, data })
+type SetDataType = {
+    type: typeof SET_DATA_COMPUTER
+    data: TAllArrayItems
+}
+export const setDataComputer = (data:TAllArrayItems):SetDataType => ({
+    type: SET_DATA_COMPUTER,
+    data
+})
+export type TSetDataComputer = typeof setDataComputer
+type TIsSaveButtonPress = {
+    type: typeof IS_SAVE_BUTTON_PRESS,
+    press: boolean
+}
+export const isSaveButtonPress = (press:boolean):TIsSaveButtonPress => ({type:IS_SAVE_BUTTON_PRESS, press})
+
 
 /* THUNK */
 export const fetchComputerThunkCreator = () => {
@@ -191,6 +229,15 @@ export const fetchComputerThunkCreator = () => {
     }
 }
 
+export type TAllArrayItems = {
+    mother: Array<ItemMotherType>,
+    video: Array<ItemVideoType>,
+    ssd: Array<ItemSsdType>,
+    cpu: Array<ItemCpuType>,
+    ram: Array<ItemRamType>,
+    power: Array<ItemPowerType>,
+    hdd: Array<ItemHddType>
+}
 
 export type ItemCpuType = {
     id: number,
@@ -312,7 +359,8 @@ export type ItemSsdType = {
 let initState = {
     name: 'ComputerOne' as string,
     isCorrect: true as boolean,
-    haveError: 0 as number,
+    cntError: 0 as number,
+    isSaveButtonPress: false as boolean,
     cpu: [{
         id: 8,
         brand: "AMD",

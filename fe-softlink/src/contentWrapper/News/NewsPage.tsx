@@ -80,6 +80,4 @@ const NewsPage: FC<PropsState> = (props:PropsState) => {
     )
 }
 
-
-
 export default NewsPage

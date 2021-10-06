@@ -4,25 +4,32 @@ import ComputerNameItem from './ComputerNameItem'
 import SaveButton from './Button/SaveButton'
 import DropButton from './Button/DropButton'
 import PowerPlace from './Button/PowerPlace'
-import {AllStateToProps} from "./ComputerContainer";
-import {DataType, DataTypeWithoutPower} from "../../../Redux/computerReducer";
+import {AllState, AllStateToProps} from "./ComputerContainer";
+import {DataType, DataTypeWithoutPower, StateComputer, TAllArrayItems} from "../../../Redux/computerReducer";
 
 
+interface PropsComputer extends AllState {
+    saveStateComputer: (currentState:TAllArrayItems) => void
+    dropStateComputer: (stateRedux:TAllArrayItems) => void
+}
 
-let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
+let Computer: FC<PropsComputer> = (props:PropsComputer) => {
 
     let [stateComputer, setStateComputer] = useState(props.state)
+    let [cntError, setCntError] = useState(props.state.cntError)
+    let differentState = JSON.stringify(stateComputer) != JSON.stringify(props.state)
 
-    let differentState = JSON.stringify(stateComputer) === JSON.stringify(props.state)
+    const IterCntErr = (cntError:number) => {
+        debugger
+        setCntError(cntError++)
+        debugger
+    }
 
-    let elementsLength = Boolean(document.getElementsByClassName('incorrect').length)
     let stateComp = props.state
-
     let mother = stateComp.mother[0] ? "ID" + stateComp.mother[0].id + " " + stateComp.mother[0].model : null
     let cpu =  stateComp.cpu[0] ? "ID" + stateComp.cpu[0].id + " " + stateComp.cpu[0].model + " " + stateComp.cpu[0].brand : null
     let video = stateComp.video[0] ? "ID" + stateComp.video[0].id + " " + stateComp.video[0].graph_proc : null
     let power = stateComp.power[0] ? "ID" + stateComp.power[0].id + " " + stateComp.power[0].model + "" + stateComp.power[0].brand : null
-
     let genStatComp = props.genStatComp
     let realStatComp = props.realStatComp
     let genStatCompArray = props.genStatCompArray
@@ -55,7 +62,6 @@ let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
     let correctGetSumm = (mass:Array<DataTypeWithoutPower>):number => {
         let a = 0;
         let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
-        console.log(res)
         return res
     }
 
@@ -73,8 +79,23 @@ let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
         <div className="user__computer">
             <div className="computer__schema">
                 <img className="computer__image" src={schema}  />
-                <SaveButton text="Сохранить" isChange={differentState} cntError={elementsLength}/>
-                <DropButton text="Сбросить1" isChange={differentState} stateLocal={stateComputer} />
+                <SaveButton
+                    saveState={props.saveStateComputer}
+                    text="Сохранить"
+                    isChange={differentState}
+                    cntError={cntError}
+                    data={props.state}
+                    buttonPress={props.isSaveButtonPress}
+                    setStateLocal = {setStateComputer}
+                />
+                <DropButton
+                    dropState={props.dropStateComputer}
+                    text="Сбросить"
+                    isChange={differentState}
+                    stateLocal={stateComputer}
+                    data = {stateComputer}
+                    isButtonPress = {props.state.isSaveButtonPress}
+                />
             </div>
                 <PowerPlace 
                     powerAll={allPower} 
@@ -82,30 +103,30 @@ let Computer: FC<AllStateToProps> = (props:AllStateToProps) => {
                 />
             <div className="computer__data">ComputerNameItem
 
-                <ComputerNameItem text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />
+                <ComputerNameItem cntError={cntError} setCntError={setCntError} text='Материнка' cntReal={props.realStatComp.realCntMother} cntFix ={genStatComp.generalCntMother} />
                 <div className="computer__data__item">{mother}</div>             
-                <ComputerNameItem text='Процессор' cntReal={realStatComp.realCntCpu} cntFix ={genStatComp.generalCntCpu} />
+                <ComputerNameItem cntError={cntError} setCntError={setCntError} text='Процессор' cntReal={realStatComp.realCntCpu} cntFix ={genStatComp.generalCntCpu} />
                 <div className="computer__data__item">{cpu} </div>
-                <ComputerNameItem text='Видеокарта' cntReal={realStatComp.realCntVideo} cntFix ={genStatComp.generalCntVideo} />
+                <ComputerNameItem cntError={cntError} setCntError={setCntError} text='Видеокарта' cntReal={realStatComp.realCntVideo} cntFix ={genStatComp.generalCntVideo} />
                 <div className="computer__data__item">{video}</div>
                 <div className="computer__data__name">
-                    <ComputerNameItem text='Оперативная' cntReal={props.realCntRam} cntFix ={genStatCompArray.generalCntRam} />
-                    <ComputerNameItem text='DDR3' cntReal={realStatComp.realCntDdr3} cntFix ={genStatComp.generalCntDdr3} />
-                    <ComputerNameItem text='DDR3L' cntReal={realStatComp.realCntDdr3L} cntFix ={genStatComp.generalCntDdr3L} />
-                    <ComputerNameItem text='DDR4' cntReal={realStatComp.realCntDdr4} cntFix ={genStatComp.generalCntDdr4} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='Оперативная' cntReal={props.realCntRam} cntFix ={genStatCompArray.generalCntRam} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='DDR3' cntReal={realStatComp.realCntDdr3} cntFix ={genStatComp.generalCntDdr3} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='DDR3L' cntReal={realStatComp.realCntDdr3L} cntFix ={genStatComp.generalCntDdr3L} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='DDR4' cntReal={realStatComp.realCntDdr4} cntFix ={genStatComp.generalCntDdr4} />
                 </div>
                 {ram}
                 <div className="computer__data__name">
-                    <ComputerNameItem text='SSD' cntReal={props.realCntSsd} cntFix ={genStatCompArray.generalCntSsd} />
-                    <ComputerNameItem text='M2' cntReal={realStatComp.realCntM2} cntFix ={genStatComp.generalCntM2} />
-                    <ComputerNameItem text='Sata' cntReal={realStatComp.realCntSata} cntFix ={genStatComp.generalCntSata} />
-                    <ComputerNameItem text='PCI-E' cntReal={realStatComp.realCntPcie4} cntFix ={genStatComp.generalCntPcie} />
-                    <ComputerNameItem text='mSata' cntReal={realStatComp.realCntMSata} cntFix ={genStatComp.generalCntMSata} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='SSD' cntReal={props.realCntSsd} cntFix ={genStatCompArray.generalCntSsd} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='M2' cntReal={realStatComp.realCntM2} cntFix ={genStatComp.generalCntM2} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='Sata' cntReal={realStatComp.realCntSata} cntFix ={genStatComp.generalCntSata} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='PCI-E' cntReal={realStatComp.realCntPcie4} cntFix ={genStatComp.generalCntPcie} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='mSata' cntReal={realStatComp.realCntMSata} cntFix ={genStatComp.generalCntMSata} />
                 </div>
                 {ssd}
-                <ComputerNameItem text='Жесткий диск' cntReal={realStatComp.realCntHdd} cntFix ={genStatComp.generalCntSata} />
+                <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='Жесткий диск' cntReal={realStatComp.realCntHdd} cntFix ={genStatComp.generalCntSata} />
                 {hdd}
-                <ComputerNameItem text='Блок питания' cntReal={realStatComp.realCntPower} cntFix ={genStatComp.generalCntPower} />
+                <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='Блок питания' cntReal={realStatComp.realCntPower} cntFix ={genStatComp.generalCntPower} />
                 <div className="computer__data__item">{power}</div>
                 </div>
         </div>

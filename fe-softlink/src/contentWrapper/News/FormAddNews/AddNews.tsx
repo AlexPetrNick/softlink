@@ -1,11 +1,16 @@
 import React, {FC} from "react";
+import Field, {reduxForm} from "redux-form";
+
+
 
 let AddNews: FC<any> = () => {
     return (
         <form className="news__template__add">
             <span className={"add__news__title__span"}>Заголовок </span>
             <div>
-                <input className={"add__news__title"} placeholder={"Title"}
+                <input
+                       className={"add__news__title"}
+                       placeholder={"Title"}
                        id="title__news"
                        type="text"
                 />
@@ -23,5 +28,8 @@ let AddNews: FC<any> = () => {
         </form>
     )
 }
+
+
+
 
 export default AddNews
