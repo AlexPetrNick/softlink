@@ -1,56 +1,87 @@
 import React, {FC} from "react";
-import {makeStyles} from "@material-ui/core";
-import Form from "./Form";
+import {makeStyles, TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
-import {Input} from "./Input";
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from "yup"
 
+const useState = makeStyles((theme) => ({
+    textTitle: {
+        color: "black",
+        display: "flex",
 
+    },
+    formRegistration: {
+        display: "flex",
+        flexDirection: "column",
+        margin: "15px",
+        justifyContent: "space-between"
+    },
+    button: {
+        margin: theme.spacing(2, 0, 2),
+        height: "50px"
+    }
+}))
 
-const RegisterForm: FC = () => {
-    const {register,handleSubmit} = useForm({
+const schema = yup.object().shape({
+    loginReg: yup
+        .string()
+        .matches(/^$/, "First name not null")
+        .required("Field required")
+})
+
+const RegisterForm = () => {
+
+    const {textTitle, formRegistration, button} = useState()
+
+    const {register, handleSubmit, formState: {errors}, watch} = useForm({
         mode: "onBlur"
     });
 
+    const onSubmit = (data:any) => console.log(data)
+
+    console.log(errors)
+
     return (
-        <Form>
-            <div>
+        <form onSubmit={handleSubmit(onSubmit)} className={formRegistration}>
+            <div className={textTitle}>
+                <h1>Регистрация</h1>
+                <h3>X</h3>
             </div>
-            <div>
-                <Input
-                    {...register('login', { required: true })}
-                    id="loginReg"
-                    type="text"
-                    label="Логин"
-                    name="loginRef"
-                />
-            </div>
-            <div>
-            </div>
-            <div>
-                <Input
-                    {...register('login', { required: true })}
-                    id="nameReg"
-                    type="text"
-                    label="Имя"
-                    name="nameReg"
-                />
-            </div>
-            <div>
-                <span>Пароль</span>
-            </div>
-            <div>
-                <input type="text"/>
-            </div>
-            <div>
-                <span>Повторите пароль</span>
-            </div>
-            <div>
-                <input type="text"/>
-            </div>
-            <div>
-                <input type="submit" />
-            </div>
-        </Form>
+            <TextField
+                {...register('loginRef', {required:true})}
+                id="loginRef"
+                type="text"
+                label="Логин"
+                variant="filled"
+                margin="normal"
+            ></TextField>
+            <TextField
+                {...register('nameReg', {required: true})}
+                id="nameReg"
+                type="text"
+                label="Имя"
+                variant="filled"
+                margin="normal"
+            ></TextField>
+            <TextField
+                {...register('passReg', {required: true})}
+                id="passReg"
+                type="text"
+                label="Пароль"
+                variant="filled"
+                margin="normal"
+            ></TextField>
+            <TextField
+                {...register('rePassReg', {required: true})}
+                id="rePassReg"
+                type="text"
+                label="Повторите пароль"
+                variant="filled"
+                margin="normal"
+            ></TextField>
+            <input {...register('test')} type="text"/>
+            <input type="submit" />
+        </form>
     )
 }
 

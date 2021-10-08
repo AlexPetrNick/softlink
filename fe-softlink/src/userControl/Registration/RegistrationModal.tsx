@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
     registrationWindow: {
         borderRadius: "20px",
-        backgroundColor: "#a3a3a3",
+        backgroundColor: "#d1d1d1",
         boxShadow: "0 0 20px green"
     }
 }))
