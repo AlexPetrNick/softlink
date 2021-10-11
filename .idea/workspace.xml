@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/registrationReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/registrationReducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/styleState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/styleState.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +20,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -99,7 +103,7 @@
       <workItem from="1633704868325" duration="7103000" />
       <workItem from="1633716218453" duration="1820000" />
       <workItem from="1633767721977" duration="15362000" />
-      <workItem from="1633968601817" duration="10282000" />
+      <workItem from="1633968601817" duration="18469000" />
     </task>
     <servers />
   </component>

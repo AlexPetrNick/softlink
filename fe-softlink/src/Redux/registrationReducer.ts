@@ -4,11 +4,11 @@ export const SET_STEP_ONE = 'SET_STEP_ONE'
 export const SET_STEP_TWO = 'SET_STEP_TWO'
 
 
-type TsetNullStateRegistration = {
+export type TsetNullStateRegistration = {
     type: typeof SET_NULL_STATE_REGISTRATION
 }
 export const setNullStateRegistration = (): TsetNullStateRegistration => ({type: SET_NULL_STATE_REGISTRATION})
-type TsetStepOne = {
+export type TsetStepOne = {
     type: typeof SET_STEP_ONE,
     login: string
     firstName: string
@@ -22,13 +22,13 @@ export const setStepOne = (login: string, firstName: string, password: string, r
     password,
     rePassword
 })
-type TsetStepTwo = {
+export type TsetStepTwo = {
     type: typeof SET_STEP_TWO,
     phone: string
     email: string
     about: string
 }
-export const setStepTwo = (login: string, phone: string, email: string, about: string): TsetStepTwo => ({
+export const setStepTwo = (phone: string, email: string, about: string): TsetStepTwo => ({
     type: SET_STEP_TWO,
     phone,
     email,
@@ -46,11 +46,11 @@ let initState = {
     about: "" as string
 }
 
-export type TinitState = typeof initState
+export type TinitStateReg = typeof initState
 
 type Taction = TsetNullStateRegistration | TsetStepOne | TsetStepTwo
 
-const registraionReducer = (state:TinitState = initState, action: Taction): TinitState => {
+const registraionReducer = (state:TinitStateReg = initState, action: Taction): TinitStateReg => {
     switch (action.type) {
         case SET_NULL_STATE_REGISTRATION:
             let states = initState

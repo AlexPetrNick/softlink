@@ -5,6 +5,9 @@ import {FormRegisterStep1} from "./FormRegisterStep1";
 import {FormRegisterStep2} from "./FormRegisterStep2";
 import ItemHardContainer from "../../../contentWrapper/ItemHard/ItemHardContainer";
 import {NavLink, Route, Switch} from "react-router-dom";
+import {allState} from "./RegistrationContainer";
+import {CompletedFormRegistration} from "./CompletedFormRegistration";
+import {ConfirmFormRegistration} from "./RegisterConfirm";
 
 const useState = makeStyles((theme) => ({
     textTitle: {
@@ -55,27 +58,39 @@ const useState = makeStyles((theme) => ({
     }
 }))
 
-type Props = {
-    setActiveModal: (activeModel: boolean) => void
-}
 
-const RegisterForm: FC<Props> = (props) => {
+const RegisterForm: FC<allState> = (props) => {
     const {
         textTitle,
         buttonClose,
     } = useState()
 
+    const setActives = () => {
+        props.setActiveModal(false)
+    }
+    const setNullRegister = () => {
+        props.setNullStateRegistration()
+    }
+
+    const onClick = () => {
+        setActives()
+        setNullRegister()
+    }
 
     return (
         <>
-            <div onClick={() => props.setActiveModal(false)} className={buttonClose}>X</div>
+            <div onClick={() => onClick()} className={buttonClose}>X</div>
             <h1 className={textTitle}>Регистрация</h1>
             <Switch>
-                <Route path="/register/s1" component={FormRegisterStep1}/>
-                <Route path="/register/s2" component={FormRegisterStep2}/>
+                <Route path="/register/s1" render={() => <FormRegisterStep1 {...props} />}/>
+                <Route path="/register/s2" render={() => <FormRegisterStep2 {...props} />}/>
+                <Route path="/register/s3" render={() => <CompletedFormRegistration {...props} />}/>
+                <Route path="/register/confirm" render={() => <ConfirmFormRegistration {...props} />}/>
             </Switch>
         </>
     )
 }
 
 export default RegisterForm
+
+

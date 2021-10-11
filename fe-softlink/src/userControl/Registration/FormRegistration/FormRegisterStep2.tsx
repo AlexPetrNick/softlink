@@ -5,15 +5,10 @@ import {FC} from "react";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import {useState} from "./styleState";
+import {allState} from "./RegistrationContainer";
 
 
-type Props = {
-    register: any
-    errors: any
-    watch: any
-}
-
-export const FormRegisterStep2: FC<Props> = (props) => {
+export const FormRegisterStep2: FC<allState> = (props) => {
     const {register, handleSubmit, formState: {errors}, watch} = useForm({
         mode: "onChange"
     });
@@ -26,8 +21,18 @@ export const FormRegisterStep2: FC<Props> = (props) => {
     const history = useHistory()
     const prevPage = () => {
         history.push("/register/s1")
+        props.setStepTwo(phoneText, emailText, aboutText)
+    }
+    const nextPage = () => {
+        history.push("/register/confirm")
+        props.setStepTwo(phoneText, emailText, aboutText)
     }
     const height = 50
+
+    let phoneText = watch('phone')
+    let emailText = watch('email')
+    let aboutText = watch('about')
+
     return (
         <form className={formRegistration}>
             <TextField
@@ -38,6 +43,7 @@ export const FormRegisterStep2: FC<Props> = (props) => {
                 id="phone"
                 type="text"
                 label="Телефон"
+                defaultValue={props.state.phone}
                 variant="outlined"
                 margin="normal"
             />
@@ -48,6 +54,7 @@ export const FormRegisterStep2: FC<Props> = (props) => {
                 id="email"
                 type="text"
                 label="E-mail"
+                defaultValue={props.state.email}
                 variant="outlined"
                 margin="normal"
             />
@@ -57,6 +64,7 @@ export const FormRegisterStep2: FC<Props> = (props) => {
                 type="text"
                 label="Расскажите про себя"
                 variant="outlined"
+                defaultValue={props.state.about}
                 margin="normal"
                 style={{ height }}
             />
@@ -68,6 +76,7 @@ export const FormRegisterStep2: FC<Props> = (props) => {
                     className={buttonSubmitTwo}
                 >Предыдущая</Button>
                 <Button
+                    onClick={() => nextPage()}
                     type="button"
                     className={buttonSubmitTwo}
                     variant="contained"

@@ -62,4 +62,13 @@ export const useState = makeStyles((theme) => ({
             backgroundColor: "green"
         },
     },
+    formRegistrationBack: {
+        display: "flex",
+        flexDirection: "column",
+        margin: "15px",
+        justifyContent: "space-around",
+        backgroundColor: "white",
+        padding: "10px",
+        borderRadius: "20px"
+    }
 }))
