@@ -4,6 +4,7 @@ import './User.css';
 import {InisStateAuthType} from "../Redux/authReducer";
 import {initStateTypeUserControl} from "../Redux/userControlReducer";
 import RegistrationModal from "./Registration/RegistrationModal";
+import { useHistory } from 'react-router-dom';
 
 type UserControlPropsType = {
 	state: initStateTypeUserControl
@@ -16,7 +17,7 @@ type UserControlPropsType = {
 }
 
 const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
-	let [ activeModal, setActiveModal] = useState(true)
+	let [ activeModal, setActiveModal] = useState(false)
 	console.log("user control пользователь не залогинен")
 
 	let onClicklogIn = () => {
@@ -49,7 +50,19 @@ const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
 		props.setCorrPassword(textPassword)
 	}
 
+	const history = useHistory()
 
+
+	const getRegister = () => {
+		history.push("/register/s1")
+	}
+	const setAcive = () => {
+		setActiveModal(true)
+	}
+	const onClick = () => {
+		getRegister()
+		setAcive()
+	}
 	return (
 		<div className="session___control">
 			<div className="alert__error__login" hidden>
@@ -63,10 +76,10 @@ const UserControl:FC<UserControlPropsType> = (props:UserControlPropsType) => {
 				<div className="button_login" onClick={ onClicklogIn }>Вход</div>
 				<div className="registration__menu">
 					<div className="button__registraton_lk">
-						<a onClick={() => {setActiveModal(true)}} className="notst__link__green" href="#">Регистрация</a>
+						<a onClick={() => {onClick()}} className="notst__link__green" href="#">Регистрация</a>
 					</div>
-				<RegistrationModal setActiveModal={setActiveModal}  activeModal={activeModal}  />
 				</div>
+				{ activeModal && <RegistrationModal setActiveModal={setActiveModal} activeModal={activeModal}/>}
 			</div>
 			<div className="fill__right"></div>
 		</div>

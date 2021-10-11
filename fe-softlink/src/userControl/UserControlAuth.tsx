@@ -3,40 +3,40 @@ import {NavLink} from "react-router-dom";
 import {initStateTypeUserControl} from "../Redux/userControlReducer";
 
 type PropsUserControll = {
-	state: initStateTypeUserControl
-	logOut: () => void
-	setCorrLogin: (correctLogin: string | null) => void
-	setCorrPassword: (correctPassword: string | null) => void
+    state: initStateTypeUserControl
+    logOut: () => void
+    setCorrLogin: (correctLogin: string | null) => void
+    setCorrPassword: (correctPassword: string | null) => void
 }
 
-const UserControl:React.FC<PropsUserControll> = (props:PropsUserControll) => {
+const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
 
-	console.log("usercontrol пользователь залогинен")
+    console.log("usercontrol пользователь залогинен")
 
 
-	let onClickExit = () => {
-		props.logOut()
-		localStorage.removeItem('access')
-		localStorage.removeItem('refresh')
-	}
+    let onClickExit = () => {
+        props.logOut()
+        localStorage.removeItem('access')
+        localStorage.removeItem('refresh')
+    }
 
-	return (
-		<div className="session___control">
-			<div className="fill__left"></div>
-			<div className="login__part">
-				<div className="site__name__label">SoftLink</div>
-				<span className="text__green">Пользователь</span>
-				<span className="text__green">{props.state.firstName}</span>
-				<div className="button_login" onClick={ onClickExit }>Выход</div>
-				<div className="registration__menu">
-					<div className="button__registraton_lk">
-						<NavLink to="/cabinet">Кабинет</NavLink> 
-					</div>
-				</div>
-			</div>
-			<div className="fill__right"></div>
-		</div>
-	);
+    return (
+        <div className="session___control">
+            <div className="fill__left"></div>
+            <div className="login__part">
+                <div className="site__name__label">SoftLink</div>
+                <span className="text__green">Пользователь</span>
+                <span className="text__green">{props.state.firstName}</span>
+                <div className="button_login" onClick={onClickExit}>Выход</div>
+                <div className="registration__menu">
+                    <div className="button__registraton_lk">
+                        <NavLink to="/cabinet">Кабинет</NavLink>
+                    </div>
+                </div>
+            </div>
+            <div className="fill__right"></div>
+        </div>
+    );
 }
 
 export default UserControl;

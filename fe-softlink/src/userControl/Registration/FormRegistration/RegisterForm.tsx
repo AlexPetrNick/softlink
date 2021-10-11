@@ -1,14 +1,28 @@
 import React, {FC} from "react";
-import {makeStyles, TextField} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
-import * as yup from "yup"
+import {FormRegisterStep1} from "./FormRegisterStep1";
+import {FormRegisterStep2} from "./FormRegisterStep2";
+import ItemHardContainer from "../../../contentWrapper/ItemHard/ItemHardContainer";
+import {NavLink, Route, Switch} from "react-router-dom";
 
 const useState = makeStyles((theme) => ({
     textTitle: {
-        color: "black",
-        display: "flex",
-
+        color: "black"
+    },
+    buttonClose: {
+        alignSelf: "start",
+        width: "25px",
+        height: "21px",
+        borderRadius: "15px",
+        backgroundColor: "#919191",
+        paddingTop: "2px",
+        cursor: "pointer",
+        alignContent: "flex-end",
+        marginLeft: "auto",
+        '&:hover': {
+            backgroundColor: "green"
+        },
     },
     formRegistration: {
         display: "flex",
@@ -19,69 +33,48 @@ const useState = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(2, 0, 2),
         height: "50px"
+    },
+    fieldsName: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start"
+    },
+    errorLogin: {
+        marginTop: "-10px",
+        color: "red"
+    },
+    textField: {
+        width: "500px"
+    },
+    buttonSubmit: {
+        marginTop: "10px",
+        '&:hover': {
+            backgroundColor: "green"
+        },
     }
 }))
 
-const schema = yup.object().shape({
-    loginReg: yup
-        .string()
-        .matches(/^$/, "First name not null")
-        .required("Field required")
-})
+type Props = {
+    setActiveModal: (activeModel: boolean) => void
+}
 
-const RegisterForm = () => {
+const RegisterForm: FC<Props> = (props) => {
+    const {
+        textTitle,
+        buttonClose,
+    } = useState()
 
-    const {textTitle, formRegistration, button} = useState()
-
-    const {register, handleSubmit, formState: {errors}, watch} = useForm({
-        mode: "onBlur"
-    });
-
-    const onSubmit = (data:any) => console.log(data)
-
-    console.log(errors)
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={formRegistration}>
-            <div className={textTitle}>
-                <h1>Регистрация</h1>
-                <h3>X</h3>
-            </div>
-            <TextField
-                {...register('loginRef', {required:true})}
-                id="loginRef"
-                type="text"
-                label="Логин"
-                variant="filled"
-                margin="normal"
-            ></TextField>
-            <TextField
-                {...register('nameReg', {required: true})}
-                id="nameReg"
-                type="text"
-                label="Имя"
-                variant="filled"
-                margin="normal"
-            ></TextField>
-            <TextField
-                {...register('passReg', {required: true})}
-                id="passReg"
-                type="text"
-                label="Пароль"
-                variant="filled"
-                margin="normal"
-            ></TextField>
-            <TextField
-                {...register('rePassReg', {required: true})}
-                id="rePassReg"
-                type="text"
-                label="Повторите пароль"
-                variant="filled"
-                margin="normal"
-            ></TextField>
-            <input {...register('test')} type="text"/>
-            <input type="submit" />
-        </form>
+        <>
+            <div onClick={() => props.setActiveModal(false)} className={buttonClose}>X</div>
+            <h1 className={textTitle}>Регистрация</h1>
+            <Switch>
+                <Route path="/register/s1" component={FormRegisterStep1}/>
+                <Route path="/register/s2" component={FormRegisterStep2}/>
+            </Switch>
+        </>
     )
 }
 

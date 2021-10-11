@@ -20,6 +20,7 @@ def ret_or_and(query, temp_q):
         query &= temp_q
         return query
 
+
 class AddItemPower(APIView):
     """Добавить в кабинет блок питания"""
     def post(self, request, pk):
@@ -286,12 +287,28 @@ class CabinetInfo(APIView):
 
 
 
-
-class UserInfo(generics.RetrieveAPIView):
+class UserInfo(APIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
+    def get(self, request, pk):
+        user = User.objects.get(id=pk)
+        serialize = UserSerializer(user)
+        return Response(serialize.data)
+
+
+class UserCreate(APIView):
+    serializer_class = CreateUserSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        serialize_data = self.serializer_class(data=request.data)
+        serialize_data.is_valid(raise_exception=True)
+        print(serialize_data)
+        serialize_data.save()
+
+        return Response(serialize_data.data)
 
 
 class NewsListPaginator(PageNumberPagination):

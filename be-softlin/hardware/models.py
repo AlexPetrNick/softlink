@@ -3,16 +3,17 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-2
-3
-4
-5
 import random
 
 import uuid
 
 def generate_uuid():
     return uuid.uuid4
+
+
+class UserWrap(User):
+    telephone = models.TextField(blank=True)
+
 
 class TypeItem(models.Model):
     name = models.TextField(max_length=50, blank=True)

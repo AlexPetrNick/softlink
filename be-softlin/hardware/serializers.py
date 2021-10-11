@@ -1,5 +1,8 @@
 from django.db.models import fields
+from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
+
+from softlink import settings
 from .models import *
 from django.contrib.auth.models import User
 import json
@@ -81,13 +84,21 @@ class ComputerSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор ПОльзователя"""
-
-    cabinet = serializers.RelatedField(read_only=True)
-
     class Meta:
-        model = User
+        model = UserWrap
         fields = '__all__'
 
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    """Сериализатор создания пользователей"""
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
+
+    def create(self, validated_data):
+        user = User.objects.create(**validated_data)
+        print(user)
+        return user
 
 class CabinetSerializer(serializers.ModelSerializer):
     """Сериализатор Кабинета"""

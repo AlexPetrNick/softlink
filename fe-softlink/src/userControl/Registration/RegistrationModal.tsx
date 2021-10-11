@@ -1,6 +1,7 @@
 import React, {FC, useState} from "react";
 import {makeStyles} from "@material-ui/core";
 import RegisterForm from "./FormRegistration/RegisterForm";
+import { useHistory } from "react-router-dom";
 
 type Props = {
     activeModal: boolean,
@@ -34,19 +35,16 @@ const RegistrationModal: FC<Props> = ({activeModal, setActiveModal}) => {
     const {registrationWindow, registrationModal, registrationModalClose} = useStyles()
     console.log(activeModal)
 
+
+
+
     return(
         <div className={activeModal ? registrationModal : registrationModalClose}>
             <div className={registrationWindow}>
-                <RegisterForm />
+                <RegisterForm setActiveModal={setActiveModal} />
             </div>
         </div>
     )
 }
-
-
-
-
-
-
 
 export default RegistrationModal
