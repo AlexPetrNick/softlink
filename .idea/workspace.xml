@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/softlink/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/softlink/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControlAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControlAuth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +99,7 @@
       <workItem from="1633704868325" duration="7103000" />
       <workItem from="1633716218453" duration="1820000" />
       <workItem from="1633767721977" duration="15362000" />
-      <workItem from="1633968601817" duration="7225000" />
+      <workItem from="1633968601817" duration="10282000" />
     </task>
     <servers />
   </component>

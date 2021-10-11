@@ -8,6 +8,7 @@ import thunkMiddleware from "redux-thunk"
 import { authReducer } from './authReducer';
 import appReducer from './appReducer'
 import computerReducer from './computerReducer'
+import registraionReducer from "./registrationReducer";
 
 let reducers = combineReducers({
     pageNews: pageNewsReducer,
@@ -18,6 +19,7 @@ let reducers = combineReducers({
     auth: authReducer,
     app: appReducer,
     computer: computerReducer,
+    registration: registraionReducer
 });
 
 type RootReducerType = typeof reducers

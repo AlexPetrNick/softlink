@@ -31,8 +31,9 @@ export const FormRegisterStep2: FC<Props> = (props) => {
     return (
         <form className={formRegistration}>
             <TextField
-                {...register('phone', {required: true, pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/})}
+                {...register('phone', {required: true, pattern: /^((\+7|7|8)+([0-9]){10})$/})}
                 className={textField}
+                helperText={!!errors.phone && "Введите корректный телефон"}
                 error={!!errors.phone}
                 id="phone"
                 type="text"
@@ -41,7 +42,9 @@ export const FormRegisterStep2: FC<Props> = (props) => {
                 margin="normal"
             />
             <TextField
-                {...register('email', {required: true, minLength: 8})}
+                {...register('email', {required: true, pattern: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/})}
+                helperText={!!errors.email && "Введите корректный email"}
+                error={!!errors.email}
                 id="email"
                 type="text"
                 label="E-mail"

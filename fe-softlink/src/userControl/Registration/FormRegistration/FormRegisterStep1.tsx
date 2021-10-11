@@ -63,6 +63,7 @@ export const FormRegisterStep1: FC<Props> = (props) => {
                         </InputAdornment>
                     )
                 }}
+                required
             />
             <div className={fieldsName}></div>
             <TextField
@@ -85,6 +86,7 @@ export const FormRegisterStep1: FC<Props> = (props) => {
                 label="Имя"
                 variant="outlined"
                 margin="normal"
+                required
             />
             <TextField
                 {...register('passReg', {required: true, minLength: 10})}
@@ -95,6 +97,8 @@ export const FormRegisterStep1: FC<Props> = (props) => {
                 label="Пароль"
                 variant="outlined"
                 margin="normal"
+                required
+                defaultValue={null}
             />
             <TextField
                 {...register('rePassReg', {required: true, minLength: 10})}
@@ -105,6 +109,7 @@ export const FormRegisterStep1: FC<Props> = (props) => {
                 label="Повторите пароль"
                 variant="outlined"
                 margin="normal"
+                required
             />
             <Button
                 onClick={() => clickNext()}
