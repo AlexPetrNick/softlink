@@ -3,12 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/Redux/registrationReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/Redux/registrationReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/apiDAL/DAL.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/apiDAL/DAL.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/pictureUp/PictureUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/pictureUp/PictureUp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/CompletedFormRegistration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/CompletedFormRegistration.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep1.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/FormRegisterStep2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterConfirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterConfirm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/RegisterForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/styleState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/FormRegistration/styleState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/Registration/RegistrationModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/userControl/UserControl.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +110,10 @@
       <workItem from="1633704868325" duration="7103000" />
       <workItem from="1633716218453" duration="1820000" />
       <workItem from="1633767721977" duration="15362000" />
-      <workItem from="1633968601817" duration="18469000" />
+      <workItem from="1633968601817" duration="19537000" />
+      <workItem from="1634051862791" duration="4298000" />
+      <workItem from="1634135846316" duration="4425000" />
+      <workItem from="1634141746723" duration="8043000" />
     </task>
     <servers />
   </component>
@@ -127,5 +137,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/fe-softlink/src/pictureUp/PictureUp.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

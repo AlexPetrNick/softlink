@@ -8,6 +8,7 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {allState} from "./RegistrationContainer";
 import {CompletedFormRegistration} from "./CompletedFormRegistration";
 import {ConfirmFormRegistration} from "./RegisterConfirm";
+import {EndRegister} from "./EndRegister";
 
 const useState = makeStyles((theme) => ({
     textTitle: {
@@ -80,12 +81,13 @@ const RegisterForm: FC<allState> = (props) => {
     return (
         <>
             <div onClick={() => onClick()} className={buttonClose}>X</div>
-            <h1 className={textTitle}>Регистрация</h1>
+
             <Switch>
                 <Route path="/register/s1" render={() => <FormRegisterStep1 {...props} />}/>
                 <Route path="/register/s2" render={() => <FormRegisterStep2 {...props} />}/>
                 <Route path="/register/s3" render={() => <CompletedFormRegistration {...props} />}/>
                 <Route path="/register/confirm" render={() => <ConfirmFormRegistration {...props} />}/>
+                <Route path="/register/end" render={() => <EndRegister {...props} />}/>
             </Switch>
         </>
     )

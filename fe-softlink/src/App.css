@@ -50,8 +50,9 @@
 .wrapper {
   display: grid;
 
-  grid-template: 50px 200px minmax(1000px, 2100px) 200px/ 100%;
+  grid-template: 50px 200px auto 200px/ auto;
 }
+
 
 
 .session___control{
@@ -60,10 +61,59 @@
   box-shadow: 0 0 20px black;
   z-index: 10;
 
-  display: grid;
-  grid-template: 50px/1fr 700px 1fr;
+  display: flex;
+  justify-content: space-between;
 }
 
+.login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: auto;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+.test__add__menu{
+  color:white;
+  margin-left: 150px;
+  margin-top: 5px;
+}
+.fill__left__right {
+  width: 150px;
+}
+.menu__for__using{
+  height: 35px;
+  width: 400px;
+  border-radius: 15px;
+  border: 2px solid green;
+
+  align-self: center;
+}
+.menu__for__using:hover{
+  border: 2px solid white;
+}
+
+.top__working_add__area {
+  position: relative;
+  top: 20px;
+  left: -50px;
+  width: 500px;
+  height: 120px;
+  background-color: #454545;
+  border-radius: 15px;
+  border: 2px solid green;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.area__form__working__add {
+
+}
+.area__text__working__add{
+  width: 50%;
+}
 .login__part{
   font-size: 14px;
   height: 100%;
@@ -75,6 +125,7 @@
 
 .text__green {
   color: green;
+
 }
 .temp__input{
   margin-top: 7px;
@@ -91,13 +142,11 @@
   border: 1px solid white;
 }
 .site__name__label {
-  width: 50px;
+  width: auto;
   color: green;
   text-shadow: 0px 2px 2px white;
   font-size: 30px;
   padding-top: 5px;
-  grid-column-start: 1;
-  grid-column-end: 2;
   display: inline-block;
 }
 .status__auth {
@@ -128,13 +177,14 @@
 }
 
 .button__registraton_lk {
-  width: 100%;
+  width: 110px;
   height: 70%;
-  padding-top: 5px;
   border: 3px solid green;
-  margin-top: -10px;
+  margin-top: 5px;
   border-radius: 30px;
   background-color: #1f1f1f;
+  display: flex;
+  align-items: center;
 }
 .button__registraton_lk:hover {
   border: 3px solid white;
@@ -277,15 +327,16 @@
 /*Контентная часть*/
 .content__wrapper{
   background-color: #adacac;
-  height: 2100px;
+  height: auto;
 
   display: grid;
 
-  grid-template: 50px 2050px/1fr 1100px 1fr;
+  grid-template: 50px auto/1fr 1100px 1fr;
 }
 
 .abstraktWrapper {
   width: 100%;
+  height: 1fr;
 }
 
 .wrapper__hard {
@@ -895,10 +946,9 @@
   min-width: 300px;
   background-color: #7e7e7e;
   box-shadow: 1px 1px 15px #282828;
-  height: auto;
 
   grid-row-start: 1;
-  grid-row-end: 4;
+  grid-row-end: 2;
   grid-column-start: 2;
   grid-column-end: 3;
 }
@@ -1031,4 +1081,6 @@
 .notst__link__green {
   text-decoration: none;
   color: green;
+  padding-left: 10px;
+
 }

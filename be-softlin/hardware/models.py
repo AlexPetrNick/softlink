@@ -13,6 +13,7 @@ def generate_uuid():
 
 class UserWrap(User):
     telephone = models.TextField(blank=True)
+    about = models.TextField(blank=True)
 
 
 class TypeItem(models.Model):

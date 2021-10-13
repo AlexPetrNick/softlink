@@ -44,11 +44,13 @@ export const FormRegisterStep1: FC<allState> = (props) => {
         fieldsName,
         textField,
         buttonSubmit,
-        formRegistration
+        formRegistration,
+        textTitle
     } = useState()
 
     return (
         <form className={formRegistration}>
+            <h1 className={textTitle}>Регистрация</h1>
             <TextField
                 {...register('loginRef', {required: true, minLength: 2})}
                 className={textField}

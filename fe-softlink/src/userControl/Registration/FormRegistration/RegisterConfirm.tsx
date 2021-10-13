@@ -1,7 +1,7 @@
 import {Button, TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {useState} from "./styleState";
-import {FC} from "react";
+import React, {FC} from "react";
 import {allState} from "./RegistrationContainer";
 import {useHistory} from "react-router-dom";
 
@@ -12,10 +12,9 @@ export const ConfirmFormRegistration: FC<allState> = (props) => {
     })
     const {
         formRegistration,
-        formRegistrationBack,
-        textField,
         buttonsStepTwo,
-        buttonSubmitTwo
+        buttonSubmitTwo,
+        textTitle
     } = useState()
 
     const history = useHistory()
@@ -29,6 +28,8 @@ export const ConfirmFormRegistration: FC<allState> = (props) => {
     console.log(props.state)
     return (
         <form className={formRegistration}>
+
+            <h1 className={textTitle}>Регистрация</h1>
             <textarea
             > 
             </textarea>

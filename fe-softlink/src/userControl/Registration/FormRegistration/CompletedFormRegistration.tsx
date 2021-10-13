@@ -1,9 +1,10 @@
 import {Button, TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {useState} from "./styleState";
-import {FC} from "react";
+import React, {FC} from "react";
 import {allState} from "./RegistrationContainer";
 import {useHistory} from "react-router-dom";
+import {apiUser} from "../../../apiDAL/DAL";
 
 
 export const CompletedFormRegistration: FC<allState> = (props) => {
@@ -15,18 +16,30 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
         formRegistrationBack,
         textField,
         buttonsStepTwo,
-        buttonSubmitTwo
+        buttonSubmitTwo,
+        textTitle
     } = useState()
-
+    const state = props.state
     const history = useHistory()
     const prevPage = () => {
         history.push("/register/confirm")
     }
     const nextPage = () => {
-        history.push("/register/confirm")
+        history.push("/register/end")
+        /*apiUser.registration(
+            state.login,
+            state.password,
+            state.email,
+            state.firstName,
+            state.phone,
+            state.about
+        )
+            .then(data => {
+
+            })*/
     }
 
-    console.log(props.state)
+    console.log(state)
     return (
         <form className={formRegistration}>
             <div className={formRegistrationBack}>
@@ -35,27 +48,36 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
                     id="loginRef"
                     type="text"
                     label="Логин"
-                    defaultValue={props.state.login}
+                    defaultValue={state.login}
                     variant="outlined"
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
                 <TextField
                     className={textField}
                     id="nameReg"
                     type="text"
                     label="Имя"
-                    defaultValue={props.state.firstName}
+                    defaultValue={state.firstName}
                     variant="outlined"
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
                 <TextField
                     className={textField}
                     id="passReg"
                     type="text"
                     label="Пароль"
-                    defaultValue={props.state.password}
+                    defaultValue={state.password}
                     variant="outlined"
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
                 <TextField
                     className={textField}
@@ -63,26 +85,35 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
                     type="text"
                     label="E-mail"
                     variant="outlined"
-                    defaultValue={props.state.email}
+                    defaultValue={state.email}
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
                 <TextField
                     className={textField}
                     id="phone"
                     type="text"
                     label="Телефон"
-                    defaultValue={props.state.phone}
+                    defaultValue={state.phone}
                     variant="outlined"
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
                 <TextField
                     className={textField}
                     id="about"
                     type="text"
                     label="Расскажите про себя"
-                    defaultValue={props.state.about}
+                    defaultValue={state.about}
                     variant="outlined"
                     margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
                 />
             </div>
             <div className={buttonsStepTwo}>

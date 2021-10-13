@@ -1,4 +1,3 @@
-
 const baseUrl = 'http://127.0.0.1:8000/api/'
 const authUrl = 'http://127.0.0.1:8000/auth/'
 const tokenUrl = 'http://127.0.0.1:8000/token/'
@@ -17,7 +16,7 @@ if (access) {
 
 export const apiComputer = {
     fetchComputer: () => {
-        return(
+        return (
             fetch(baseUrl + 'computer', {
                 headers: requestHeader
             })
@@ -30,30 +29,30 @@ export const apiNews = {
     fetchOnMount: () => {
         return (
             fetch(baseUrl + 'news?format=json')
-            .then(resp => resp.json()
-            )
+                .then(resp => resp.json()
+                )
         )
     },
-    fetchOnClick: (page:number) => {
+    fetchOnClick: (page: number) => {
         return (
-            fetch(baseUrl  + 'news?page=' +String(page))
+            fetch(baseUrl + 'news?page=' + String(page))
                 .then(resp => resp.json())
         )
     }
-} 
+}
 
 
 export const apiHdd = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "hdd/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "hdd/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
@@ -61,15 +60,15 @@ export const apiHdd = {
 
 export const apiRam = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "ram/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "ram/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
@@ -77,15 +76,15 @@ export const apiRam = {
 
 export const apiVideo = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "videocard/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "videocard/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
@@ -93,15 +92,15 @@ export const apiVideo = {
 
 export const apiPower = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "power/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "power/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
@@ -109,19 +108,19 @@ export const apiPower = {
 
 export const apiSsd = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "ssd?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "ssd?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
-            .then(response => {
-                console.log(response)
-                return response
-            })
+                .then(responce => responce.json())
+                .then(response => {
+                    console.log(response)
+                    return response
+                })
         )
     }
 
@@ -129,15 +128,15 @@ export const apiSsd = {
 
 export const apiMother = {
     fetchOnMount: () => {
-        return(
+        return (
             fetch(baseUrl + "mother/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "mother/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
@@ -145,58 +144,85 @@ export const apiMother = {
 
 
 export const apiCpu = {
-    fetchOnMount: () => {  
-        return(
+    fetchOnMount: () => {
+        return (
             fetch(baseUrl + "cpu/?format=json")
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     },
-    fetchOnClick: (page:number, params='') => {
-        return(
+    fetchOnClick: (page: number, params = '') => {
+        return (
             fetch(baseUrl + "cpu/?format=json&page=" + String(page) + String(params))
-		    .then(responce => responce.json())
+                .then(responce => responce.json())
         )
     }
 
 }
 
 export const apiUser = {
-    authorization: (username:string, password:string) => {
-        return(
-        fetch(authUrl + "jwt/create/", {
-            method: "post",
-            credentials: "include",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                "username": username,
-                "password": password
-            })
-        }
-        )
-        .then(resp => resp.json())
-        .then(jsonfile => {
-            console.log(jsonfile)
-            localStorage.setItem('access', jsonfile.access)
-            localStorage.setItem('refresh', jsonfile.refresh)
-            return jsonfile
-        })
-    )    
-    }, 
-    setCookie: (token:string) => {
-        return(
-            fetch(baseUrl + "setcook/",{
-              method: "get",
-              credentials: "include",
-              headers: {
-              "Content-type": "application/json",
-              "Set-Cookie": "Authorization=JWT "+String(token)+";HttpOnly"
-            },
+    registration: (
+        username: string,
+        password: string,
+        email: string,
+        first_name: string,
+        telephone: string,
+        about: string
+    ) => {
+        return (
+            fetch(baseUrl + "user_create/", {
+                method: "post",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "password": password,
+                    "email": email,
+                    "first_name": first_name,
+                    "telephone": telephone,
+                    "about": about
+                })
             })
         )
-      },
-    refreshToken: (refToken:string) => {
+            .then(resp => resp.json())
+    },
+    authorization: (username: string, password: string) => {
+        return (
+            fetch(authUrl + "jwt/create/", {
+                    method: "post",
+                    credentials: "include",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "username": username,
+                        "password": password
+                    })
+                }
+            )
+                .then(resp => resp.json())
+                .then(jsonfile => {
+                    console.log(jsonfile)
+                    localStorage.setItem('access', jsonfile.access)
+                    localStorage.setItem('refresh', jsonfile.refresh)
+                    return jsonfile
+                })
+        )
+    },
+    setCookie: (token: string) => {
+        return (
+            fetch(baseUrl + "setcook/", {
+                method: "get",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json",
+                    "Set-Cookie": "Authorization=JWT " + String(token) + ";HttpOnly"
+                },
+            })
+        )
+    },
+    refreshToken: (refToken: string) => {
         fetch(authUrl + "jwt/refresh", {
             method: "post",
             body: JSON.stringify({
@@ -209,19 +235,19 @@ export const apiUser = {
             fetch(authUrl + "users/me/", {
                 headers: requestHeader
             })
-            .then(resp => resp.json())
+                .then(resp => resp.json())
         )
     },
-    isValidToken: (token:string) => {
+    isValidToken: (token: string) => {
         fetch(authUrl + "jwt/verify/", {
             method: "post",
             credentials: "include",
             body: JSON.stringify({
                 "token": token
             })
-        })    
+        })
     }
-    
+
 }
 
 export const apiCabinet = {
@@ -230,132 +256,132 @@ export const apiCabinet = {
             fetch(baseUrl + "cabinet/", {
                 headers: requestHeader,
             })
-            .then(response => response.json())
-            .catch(err => console.log(err))
+                .then(response => response.json())
+                .catch(err => console.log(err))
         )
     },
-    addItemHdd: (id:number) => {
+    addItemHdd: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/hdd/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemHdd: (id:number) => {
+    eraseItemHdd: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_hdd/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemMother: (id:number) => {
+    addItemMother: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/mother/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemMother: (id:number) => {
+    eraseItemMother: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_mother/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemCpu: (id:number) => {
+    addItemCpu: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/cpu/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemCpu: (id:number) => {
+    eraseItemCpu: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_cpu/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemSsd: (id:number) => {
+    addItemSsd: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/ssd/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemSsd: (id:number) => {
+    eraseItemSsd: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_ssd/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemVideo: (id:number) => {
+    addItemVideo: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/video/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemVideo: (id:number) => {
+    eraseItemVideo: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_video/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemRam: (id:number) => {
+    addItemRam: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/ram/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemRam: (id:number) => {
+    eraseItemRam: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_ram/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    addItemPower: (id:number) => {
+    addItemPower: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/power/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )
     },
-    eraseItemPower: (id:number) => {
+    eraseItemPower: (id: number) => {
         return (
             fetch(baseUrl + 'cabinet/erase_power/' + String(id), {
-                method: "post",
-                headers: requestHeader
+                    method: "post",
+                    headers: requestHeader
                 }
             )
         )

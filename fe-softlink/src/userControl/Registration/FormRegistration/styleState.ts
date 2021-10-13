@@ -70,5 +70,8 @@ export const useState = makeStyles((theme) => ({
         backgroundColor: "white",
         padding: "10px",
         borderRadius: "20px"
+    },
+    endRegister: {
+        margin: "40px"
     }
 }))

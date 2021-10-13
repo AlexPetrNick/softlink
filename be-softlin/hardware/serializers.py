@@ -82,23 +82,25 @@ class ComputerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
-    """Сериализатор ПОльзователя"""
+class CreateUserSerializer(serializers.ModelSerializer):
+    """Сериализатор создания пользователей"""
+    class Meta:
+        model = UserWrap
+        fields = ('id', 'username', 'email', 'password', 'first_name', 'telephone', 'about')
+
+    def create(self, validated_data):
+        user = UserWrap.objects.create(**validated_data)
+
+        print(validated_data)
+        return user
+
+
+class WrapUserSerializer(serializers.ModelSerializer):
+    """Сериализатор добавочны полей для пользователя"""
     class Meta:
         model = UserWrap
         fields = '__all__'
 
-
-class CreateUserSerializer(serializers.ModelSerializer):
-    """Сериализатор создания пользователей"""
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
-
-    def create(self, validated_data):
-        user = User.objects.create(**validated_data)
-        print(user)
-        return user
 
 class CabinetSerializer(serializers.ModelSerializer):
     """Сериализатор Кабинета"""

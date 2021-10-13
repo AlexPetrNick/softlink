@@ -304,8 +304,8 @@ class UserCreate(APIView):
     def post(self, request, *args, **kwargs):
 
         serialize_data = self.serializer_class(data=request.data)
+
         serialize_data.is_valid(raise_exception=True)
-        print(serialize_data)
         serialize_data.save()
 
         return Response(serialize_data.data)
