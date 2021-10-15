@@ -64,7 +64,7 @@
   display: flex;
   justify-content: space-between;
 }
-
+/*Форма логина для дополнительного верхнего меню*/
 .login__form {
   display: flex;
   flex-direction: column;
@@ -74,11 +74,53 @@
   align-items: center;
   justify-content: space-around;
 }
-.test__add__menu{
+/*Содержимое верхнего горизонтального меню*/
+.add__menu__title{
   color:white;
-  margin-left: 150px;
   margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
 }
+
+
+/*Инфа про юзера*/
+.visiter__info{
+  width: 40%;
+  height: 25px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+/*Картинка пользователя*/
+.visiter__picture {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  left: -10px;
+}
+/*Имя фамилия пользователя*/
+.visiter__name {
+  width: 65%;
+}
+
+.text__visiter__name {
+  color: grey;
+}
+
+/*Вспомогательный текст*/
+.helper__text{
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: grey;
+}
+
+
+
 .fill__left__right {
   width: 150px;
 }

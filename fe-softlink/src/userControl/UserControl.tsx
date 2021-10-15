@@ -5,8 +5,9 @@ import {InisStateAuthType} from "../Redux/authReducer";
 import {initStateTypeUserControl} from "../Redux/userControlReducer";
 import RegistrationModal from "./Registration/RegistrationModal";
 import {useHistory} from 'react-router-dom';
-import {TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
+// @ts-ignore
+import pictureUser from '../image/userPictur.png'
 
 type UserControlPropsType = {
     state: initStateTypeUserControl
@@ -68,7 +69,17 @@ const UserControl: FC<UserControlPropsType> = (props: UserControlPropsType) => {
             <div className="fill__left__right"></div>
             <div className="site__name__label">SoftLink</div>
             <div onClick={() => seeAdded(true)} className="menu__for__using">
-                <div className="test__add__menu">sdfasdfasdfsadfasdf</div>
+                <div className="add__menu__title">
+                    <div className="visiter__info">
+                        <img className="visiter__picture" src={pictureUser} />
+                        <div className="visiter__name">
+                            <div className="text__visiter__name">Неизвестный</div>
+                        </div>
+                    </div>
+                    <div className="helper__text">
+                        <div className="">Нажмите для входа</div>
+                    </div>
+                </div>
                 <div hidden={stateAdded}>
                     <div className="top__working_add__area" >
                         <div className="area__form__working__add">
