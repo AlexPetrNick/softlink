@@ -286,7 +286,6 @@ class CabinetInfo(APIView):
         return Response(serializer.data)
 
 
-
 class UserInfo(APIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer

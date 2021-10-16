@@ -55,11 +55,11 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     console.log("Draw Cabinet")
     console.log(props)
 
+
     let hoverOnItem = (image:string):void => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
     }
-     
     let addItem = (data:DataType) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)

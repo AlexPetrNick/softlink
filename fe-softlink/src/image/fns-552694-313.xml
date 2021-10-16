@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<introduce_contract version="4">
+  <producer_inn>7715951350</producer_inn>
+  <owner_inn>7724728510</owner_inn>
+  <production_date>2021-10-15</production_date>
+  <production_order>CONTRACT_PRODUCTION</production_order>
+  <products_list>
+    <product>
+      <ki>0103102658251265215,Jd%P</ki>
+      <production_date>2021-10-15</production_date>
+      <tnved_code>0401201101</tnved_code>
+      <certificate_type>CONFORMITY_DECLARATION</certificate_type>
+      <certificate_number>ЕАС:214238591232141251</certificate_number>
+      <certificate_date>2020-08-12</certificate_date>
+      <vsd_number>9DDA-5D57-FAEA-46DD-B94D-3DCC-AC70-1091</vsd_number>
+    </product>
+    <product>
+      <ki>0103102658251265215Kx27V</ki>
+      <production_date>2021-10-15</production_date>
+      <tnved_code>0401201101</tnved_code>
+      <certificate_type>CONFORMITY_DECLARATION</certificate_type>
+      <certificate_number>ЕАС:214238591232141251</certificate_number>
+      <certificate_date>2020-08-12</certificate_date>
+      <vsd_number>9DDA-5D57-FAEA-46DD-B94D-3DCC-AC70-1091</vsd_number>
+    </product>
+    <product>
+      <ki>0103102658251265215pvODM</ki>
+      <production_date>2021-10-15</production_date>
+      <tnved_code>0401201101</tnved_code>
+      <certificate_type>CONFORMITY_DECLARATION</certificate_type>
+      <certificate_number>ЕАС:214238591232141251</certificate_number>
+      <certificate_date>2020-08-12</certificate_date>
+      <vsd_number>9DDA-5D57-FAEA-46DD-B94D-3DCC-AC70-1091</vsd_number>
+    </product>
+  </products_list>
+</introduce_contract>

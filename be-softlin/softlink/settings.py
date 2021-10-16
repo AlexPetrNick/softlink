@@ -166,7 +166,8 @@ DJOSER = {
     'TOKEN_MODEL': None,
     'SERIALIZERS': {
         'user_registration': 'hardware.serializers.UserSerializer',
-        "user": "hardware.serializers.UserSerializer",
+        "user": "hardware.serializers.UserRegistrationSerializer",
+        'current_user': 'hardware.serializers.UserRegistrationSerializer',
     },
 }
 

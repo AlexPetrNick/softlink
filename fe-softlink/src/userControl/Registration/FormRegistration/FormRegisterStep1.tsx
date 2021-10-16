@@ -4,7 +4,7 @@ import CheckSharpIcon from "@mui/icons-material/CheckSharp";
 import React, {FC} from "react";
 import {useForm} from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import {useState} from "./styleState";
+import {useStyle} from "./styleState";
 import {allState} from "./RegistrationContainer";
 
 
@@ -46,7 +46,7 @@ export const FormRegisterStep1: FC<allState> = (props) => {
         buttonSubmit,
         formRegistration,
         textTitle
-    } = useState()
+    } = useStyle()
 
     return (
         <form className={formRegistration}>

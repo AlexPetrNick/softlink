@@ -8,16 +8,26 @@ import {useHistory} from 'react-router-dom';
 import {useForm} from "react-hook-form";
 // @ts-ignore
 import pictureUser from '../image/userPictur.png'
+import {Button, TextField} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
+import {IDispatchStateToProps, PropsAuthentificateUserType} from "./UserControlContainer";
 
-type UserControlPropsType = {
+interface UserControlPropsType extends IDispatchStateToProps {
     state: initStateTypeUserControl
-    setCorrLogin: (correctLogin: string | null) => void
-    setCorrPassword: (correctPassword: string | null) => void
     stateAuth: InisStateAuthType
-    setError: (err: string | null) => void
-    authorization: (toggle: boolean) => void
-    setDataUser: (data: object) => void
 }
+
+const useStyle = makeStyles((theme) => ({
+    buttonAuth: {
+        marginTop: "10px",
+        backgroundColor: "white",
+        height: "15%",
+        '&:hover': {
+            backgroundColor: "green"
+        },
+    },
+}))
+
 
 const UserControl: FC<UserControlPropsType> = (props: UserControlPropsType) => {
     let [activeModal, setActiveModal] = useState(false)
@@ -25,22 +35,22 @@ const UserControl: FC<UserControlPropsType> = (props: UserControlPropsType) => {
     console.log("user control пользователь не залогинен")
 
     const {register, watch, formState: {errors}} = useForm()
+    const {buttonAuth} = useStyle()
 
-    let onClicklogIn = () => {
-        let user = props.state.correctLogin
-        let pass = props.state.correctPassword
-
-        apiUser.authorization(user as any, pass as any)
+    let onClicklogIn = (login: string, password: string) => {
+        apiUser.authorization(login, password)
             .then(js => {
+                console.log("js")
                 if (!js.detail) {
                     props.authorization(true)
                 }
+                window.location.reload()
+                return js
             })
             .catch(err => {
+                console.log("err")
                 props.setError(err.detail)
             });
-        props.setCorrLogin(null);
-        props.setCorrPassword(null);
     }
 
     const history = useHistory()
@@ -62,35 +72,64 @@ const UserControl: FC<UserControlPropsType> = (props: UserControlPropsType) => {
         } else {
             setAddedMenu(true)
         }
-        console.log(stateAdded)
     }
+
+    let wtLogin = watch('login')
+    let wtPass = watch('password')
+
     return (
         <div className="session___control">
             <div className="fill__left__right"></div>
             <div className="site__name__label">SoftLink</div>
-            <div onClick={() => seeAdded(true)} className="menu__for__using">
-                <div className="add__menu__title">
+            <div className="menu__for__using">
+                <div onClick={() => seeAdded(true)} className="add__menu__title">
                     <div className="visiter__info">
-                        <img className="visiter__picture" src={pictureUser} />
+                        <img className="visiter__picture" src={pictureUser}/>
                         <div className="visiter__name">
                             <div className="text__visiter__name">Неизвестный</div>
                         </div>
                     </div>
                     <div className="helper__text">
-                        <div className="">Нажмите для входа</div>
+                        <div className="">
+                            {stateAdded ?
+                                "Открыть меню" :
+                                "Закрыть меню"
+                            }
+
+                        </div>
                     </div>
                 </div>
                 <div hidden={stateAdded}>
-                    <div className="top__working_add__area" >
+                    <div className="top__working_add__area">
                         <div className="area__form__working__add">
                             <form className="login__form" action="">
-                                <input type="text"/>
-                                <input type="text"/>
-                                <input type="button"/>
+                                <div className="title__auth__visiter">Авторизация</div>
+                                <input
+                                    {...register("login")}
+                                    type="text"
+                                    className="text__visiter__input"
+                                    placeholder="Логин"
+                                />
+                                <input
+                                    {...register("password")}
+                                    className="text__visiter__input"
+                                    placeholder="Пароль"
+                                    type="text"
+                                />
+                                <Button
+                                    onClick={() => onClicklogIn(wtLogin, wtPass)}
+                                    className={buttonAuth}
+                                    type="button">Войти</Button>
+                                <div className=""></div>
                             </form>
                         </div>
                         <div className="area__text__working__add">
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at exercitationem itaque iure laborum nobis perspiciatis porro quas totam veniam! </span>
+                            <span>
+                                После авторизации вам будет доступно: <br/>
+                                * Кабинет и его возможности <br/>
+                                * Добавление железа в кабинет <br/>
+                                * Комментировать новости <br/>
+                            </span>
                         </div>
                     </div>
                 </div>

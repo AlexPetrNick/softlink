@@ -1,6 +1,6 @@
 import {Button, TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
-import {useState} from "./styleState";
+import {useStyle} from "./styleState";
 import React, {FC} from "react";
 import {allState} from "./RegistrationContainer";
 import {useHistory} from "react-router-dom";
@@ -18,7 +18,7 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
         buttonsStepTwo,
         buttonSubmitTwo,
         textTitle
-    } = useState()
+    } = useStyle()
     const state = props.state
     const history = useHistory()
     const prevPage = () => {
@@ -26,7 +26,7 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
     }
     const nextPage = () => {
         history.push("/register/end")
-        /*apiUser.registration(
+        apiUser.registration(
             state.login,
             state.password,
             state.email,
@@ -34,9 +34,6 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
             state.phone,
             state.about
         )
-            .then(data => {
-
-            })*/
     }
 
     console.log(state)

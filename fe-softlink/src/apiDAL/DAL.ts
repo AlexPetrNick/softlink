@@ -206,6 +206,7 @@ export const apiUser = {
                     console.log(jsonfile)
                     localStorage.setItem('access', jsonfile.access)
                     localStorage.setItem('refresh', jsonfile.refresh)
+                    console.log(localStorage.getItem('access'))
                     return jsonfile
                 })
         )

@@ -1,6 +1,6 @@
 import {Button, TextField} from "@material-ui/core";
 import {useForm} from "react-hook-form";
-import {useState} from "./styleState";
+import {useStyle} from "./styleState";
 import React, {FC} from "react";
 import {allState} from "./RegistrationContainer";
 import {useHistory} from "react-router-dom";
@@ -15,7 +15,7 @@ export const ConfirmFormRegistration: FC<allState> = (props) => {
         buttonsStepTwo,
         buttonSubmitTwo,
         textTitle
-    } = useState()
+    } = useStyle()
 
     const history = useHistory()
     const prevPage = () => {

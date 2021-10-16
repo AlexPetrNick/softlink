@@ -1,12 +1,43 @@
+from django.contrib.auth.hashers import make_password
 from django.db.models import fields
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
-
-from softlink import settings
 from .models import *
-from django.contrib.auth.models import User
 import json
 from django.db.models import Model
+from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer
+
+
+class UserRegistrationSerializer(BaseUserRegistrationSerializer):
+    telephone = serializers.SerializerMethodField()
+    about = serializers.SerializerMethodField()
+    cabinet = serializers.SerializerMethodField()
+    computer = serializers.SerializerMethodField()
+
+    def get_telephone(self, obj):
+        user_id = User.objects.get(username = obj).id
+        userwrap = UserWrap.objects.get(id = user_id)
+        return userwrap.telephone
+
+    def get_about(self, obj):
+        user_id = User.objects.get(username = obj).id
+        userwrap = UserWrap.objects.get(id = user_id)
+        return userwrap.about
+
+    def get_cabinet(self, obj):
+        user_id = User.objects.get(username = obj).id
+        cabinet = Cabinet.objects.get(user_id = user_id)
+        return cabinet.id
+
+    def get_computer(self, obj):
+        user_id = User.objects.get(username = obj).id
+        computer = Computer.objects.get(user_id = user_id)
+        return computer.name
+
+    class Meta(BaseUserRegistrationSerializer.Meta):
+        model = User
+        print(model)
+        fields = '__all__'
 
 
 def get_list_item_from_id(json_id, model: Model, serializer: serializers.ModelSerializer):
@@ -89,6 +120,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'first_name', 'telephone', 'about')
 
     def create(self, validated_data):
+        validated_data['password'] = make_password(self.validated_data['password'])
+        print(validated_data['password'])
         user = UserWrap.objects.create(**validated_data)
 
         print(validated_data)

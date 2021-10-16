@@ -2,13 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UserControl  from './UserControl'
 import UserControlAuth from './UserControlAuth'
-import {initStateTypeUserControl, setCorrLogin, setCorrPassword, setDataUser} from '../Redux/userControlReducer'
+import {
+    initStateTypeUserControl,
+    SET_DATA_USER,
+    setCorrLogin,
+    setCorrPassword,
+    setDataUser
+} from '../Redux/userControlReducer'
 import {setError, authorization, logOut, InisStateAuthType} from '../Redux/authReducer'
 import {AppStateType} from "../Redux/reduxStore";
 
 
 
-interface PropsAuthentificateUserType extends IMapStateToProps,IDispatchStateToProps {}
+export interface PropsAuthentificateUserType extends IMapStateToProps,IDispatchStateToProps {}
 
 class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
 
@@ -21,17 +27,14 @@ class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
             <UserControlAuth
                 state = {this.props.allState}
                 logOut = {this.props.logOut}
-                setCorrLogin = {this.props.setCorrLogin}
-                setCorrPassword = {this.props.setCorrPassword}
              /> :
             <UserControl
                 state = {this.props.allState}
-                setCorrLogin = {this.props.setCorrLogin}
-                setCorrPassword = {this.props.setCorrPassword}
                 stateAuth  = {this.props.stateAuth}
                 setError = {this.props.setError}
                 authorization = {this.props.authorization}
                 setDataUser = {this.props.setDataUser}
+                logOut = {this.props.logOut}
             />
         }
         </>
@@ -45,11 +48,15 @@ export interface IMapStateToProps {
 }
 
 export interface IDispatchStateToProps {
-    setCorrLogin: (correctLogin: string | null) => void
-    setCorrPassword: (correctPassword: string | null) => void
     setError: (err: string | null) => void
     authorization: (toggle: boolean) => void
-    setDataUser: (data: object) => void
+    setDataUser: (id: number,
+                  username: string,
+                  last_name: string,
+                  email: string,
+                  about: string,
+                  cabinet: number,
+                  computer: string) => void
     logOut: () => void
 }
 
@@ -62,8 +69,6 @@ let mapStateToProps = (state:AppStateType):IMapStateToProps => {
 
 
 export const UserControlContainer = connect(mapStateToProps, {
-    setCorrLogin,
-    setCorrPassword,
     setError,
     authorization,
     setDataUser,

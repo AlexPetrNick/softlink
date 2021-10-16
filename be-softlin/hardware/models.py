@@ -34,7 +34,7 @@ class Computer(models.Model):
     video_ids = models.TextField(max_length=50, blank=True)
     ram_ids = models.TextField(max_length=50, blank=True)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=UserWrap)
 def create_user_computer(sender, instance, created, **kwargs):
     if created:
         Computer.objects.create(user=instance)
@@ -52,7 +52,7 @@ class Cabinet(models.Model):
     bag_ram= models.TextField(max_length=50, blank=True)
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=UserWrap)
 def create_user_cabinet(sender, instance, created, **kwargs):
     if created:
         Cabinet.objects.create(user=instance)

@@ -5,8 +5,6 @@ import {initStateTypeUserControl} from "../Redux/userControlReducer";
 type PropsUserControll = {
     state: initStateTypeUserControl
     logOut: () => void
-    setCorrLogin: (correctLogin: string | null) => void
-    setCorrPassword: (correctPassword: string | null) => void
 }
 
 const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {

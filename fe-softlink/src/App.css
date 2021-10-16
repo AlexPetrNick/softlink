@@ -141,7 +141,7 @@
   top: 20px;
   left: -50px;
   width: 500px;
-  height: 120px;
+  height: 200px;
   background-color: #454545;
   border-radius: 15px;
   border: 2px solid green;
@@ -154,10 +154,22 @@
 
 }
 .area__text__working__add{
+  background-color: grey;
+  align-self: center;
+  height: 90%;
   width: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  justify-content: space-around;
+  color: white;
+}
+.area__text__working__add span{
+
 }
 .login__part{
-  font-size: 14px;
+  font-size: 16px;
   height: 100%;
   text-align: center;
 
@@ -165,6 +177,9 @@
   grid-template: 1fr/120px 200px 200px 100px 100px;
 }
 
+.button__auth {
+  background-color: #1e8714;
+}
 .text__green {
   color: green;
 
@@ -173,6 +188,22 @@
   margin-top: 7px;
   height: 30px;
 }
+
+.title__auth__visiter {
+  display: flex;
+  height: 20%;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 10px;
+  font-size: 23px;
+  color: green;
+}
+
+.text__visiter__input {
+  height: 15%;
+}
+
+
 .button_login{
   width: 90%;
   height: 30px;
@@ -190,6 +221,7 @@
   font-size: 30px;
   padding-top: 5px;
   display: inline-block;
+  cursor: pointer;
 }
 .status__auth {
   width: 50px;

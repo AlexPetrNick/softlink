@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-export const useState = makeStyles((theme) => ({
+export const useStyle = makeStyles((theme) => ({
     textTitle: {
         color: "black"
     },

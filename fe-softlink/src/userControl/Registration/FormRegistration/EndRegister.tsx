@@ -1,5 +1,5 @@
 import {Button} from "@material-ui/core";
-import {useState} from "./styleState";
+import {useStyle} from "./styleState";
 import {FC} from "react";
 import {allState} from "./RegistrationContainer";
 import {useHistory} from "react-router-dom";
@@ -10,7 +10,7 @@ export const EndRegister: FC<allState> = (props) => {
     const {
         buttonsStepTwo,
         buttonSubmitTwo
-    } = useState()
+    } = useStyle()
 
     const state = props.state
     const history = useHistory()
