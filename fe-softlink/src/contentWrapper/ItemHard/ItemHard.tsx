@@ -312,6 +312,7 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 				<SimpleSlider />
 			</div>
 			<div className="content___list">
+				<h1>asdfasdf</h1>
 				<div className="page_content">
 					{ hardItem ? callComp(hardItem) : null}
 				</div>
