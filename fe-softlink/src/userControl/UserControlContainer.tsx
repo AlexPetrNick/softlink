@@ -11,7 +11,7 @@ import {
 } from '../Redux/userControlReducer'
 import {setError, authorization, logOut, InisStateAuthType} from '../Redux/authReducer'
 import {AppStateType} from "../Redux/reduxStore";
-import {ItemPowerType} from "../Redux/computerReducer";
+import {ItemPowerType, StateComputer} from "../Redux/computerReducer";
 
 
 
@@ -27,8 +27,7 @@ class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
             <UserControlAuth
                 state = {this.props.allState}
                 logOut = {this.props.logOut}
-                remainPower={this.props.remainPower}
-                powerAllEquip={this.props.powerAllEquip}
+                stateComp={this.props.stateComp}
              /> :
             <UserControl
                 state = {this.props.allState}
@@ -47,8 +46,7 @@ class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
 export interface IMapStateToProps {
     allState: initStateTypeUserControl
     stateAuth: InisStateAuthType
-    remainPower: number
-    powerAllEquip: Array<ItemPowerType>
+    stateComp: StateComputer
 }
 
 export interface IDispatchStateToProps {
@@ -69,8 +67,7 @@ let mapStateToProps = (state:AppStateType):IMapStateToProps => {
     return {
         allState: state.pageUser,
         stateAuth: state.auth,
-        remainPower: state.computer.remainPower,
-        powerAllEquip: state.computer.power
+        stateComp: state.computer
     }
 }
 

@@ -156,7 +156,7 @@
   top: 20px;
   left: -50px;
   width: 500px;
-  height: 300px;
+  height: 350px;
   background-color: #454545;
   border-radius: 15px;
   border: 2px solid green;
@@ -169,7 +169,7 @@
   height: 15%;
 }
 .power__computer {
-  height: 30%;
+  height: 25%;
   width: 90%;
   border-radius: 10px;
   align-self: center;
@@ -182,12 +182,22 @@
   height: 30%;
 }
 .power__place__up{
-  height: 50%;
+  height: 40%;
 }
 .info__free__slot {
   height: 55%;
-  border: 2px solid green;}
+  border: 2px solid green;
+  display: flex;
+  font-size: 17px;
+  background-color: grey;
 
+  justify-content: space-around;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+}
+.info__free__slot__inner{
+  background-color: grey;
+}
 .button_unlogin{
   width: 30%;
   height: 30px;

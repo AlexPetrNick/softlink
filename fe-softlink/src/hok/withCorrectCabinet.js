@@ -5,7 +5,6 @@ export const withCorrectCabinet = (Component) => {
     let CheckId = (props) => {
         console.log(props)  
         if (props.stateUser.cabinet_id != 0  && props.stateUser.cabinet_id && props.stateCabinet.updateCabinet) {
-            debugger
             props.updateCabinetAC(false)
             apiCabinet.getStateCabinet()
                 .then(ans => {

@@ -8,7 +8,7 @@ import hddIm from '../../image/imageComp/hdd.jpg'
 import ssdIm from '../../image/imageComp/ssd.jfif'
 // @ts-ignore
 import videoIm from '../../image/imageComp/video.jfif'
-import React, {FC, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import userPhoto from '../../image/userPhoto.jpg'
 import ComputerContainer from './Computer/ComputerContainer'
 import up from '../../image/up.png'
@@ -16,7 +16,7 @@ import down from '../../image/down.png'
 import BagItem from './Bag/BagItemTest'
 import TitleBagButton from './Button/TitleBagButton'
 import {IContainerComponent} from "./CabinetContainer";
-import {DataType, ItemHddType, ItemRamType, ItemSsdType} from "../../Redux/computerReducer";
+import {DataType, ItemHddType, ItemRamType, ItemSsdType, setGeneralAndRealCnt} from "../../Redux/computerReducer";
 import exp from "constants";
 export type GenStatCompArrayType = {
     generalCntSsd: number
@@ -59,15 +59,19 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
     }
-    let addItem = (data:DataType) => {
-        props.addItemInComputer(data)
-		props.updateCabinetAC(true)
+    const addedFunc = () => {
+        props.updateCabinetAC(true)
+        props.setGeneralAndRealCnt()
         props.setRemainPowerComputer()
     }
-    let eraseItemFromComp = (data:DataType) => {
+
+    const addItem = (data:DataType) => {
+        props.addItemInComputer(data)
+        addedFunc()
+    }
+    const eraseItemFromComp = (data:DataType) => {
         props.eraseItemInComputer(data)
-		props.updateCabinetAC(true)
-        props.setRemainPowerComputer()
+        addedFunc()
     }
 
     let haveSlotSsd = (data: ItemSsdType, titleSlot:string) => {
@@ -145,42 +149,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     let arrVideo = stateComp.video.map((data) => data.id)
     let arrSsd = dataSsd.map((data) => data.id)
 
-    let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
-    let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
-
-    let genStatComp = {
-        generalCntPower: 1,
-        generalCntMother: 1,
-        generalCntCpu: dataMother ? dataMother.cpu : 0 ,
-        generalCntVideo: dataMother ? dataMother.pcie16 : 0,
-        generalCntDdr3: dataMother ? dataMother.ddr3 : 0,
-        generalCntDdr3L: dataMother ? dataMother.ddr3L : 0,
-        generalCntDdr4: dataMother ? dataMother.ddr4 : 0,
-        generalCntM2: dataMother ? dataMother.m2_cnt : 0,
-        generalCntSata: dataMother ? dataMother.sata_cnt : 0,
-        generalCntPcie: dataMother ? dataMother.pcie4 : 0,
-        generalCntMSata: dataMother ? dataMother.msata_cnt : 0,
-    } as GenStatCompType
-    let genStatCompArray = {
-        generalCntSsd: genStatComp.generalCntM2 + genStatComp.generalCntSata + genStatComp.generalCntPcie + genStatComp.generalCntMSata,
-        generalCntRam: genStatComp.generalCntDdr3 + genStatComp.generalCntDdr3L + genStatComp.generalCntDdr4
-    }  as GenStatCompArrayType
-    let realStatComp = {
-        realCntM2: dataSsd.length ? dataSsd.filter(a => a.interface == 'M2').length : 0,
-        realCntMSata: dataSsd.length ? dataSsd.filter(a => a.interface == 'mSATA').length : 0,
-        realCntSata: CntSataSsd,
-        realCntPcie4: dataSsd.length ? dataSsd.filter(a => a.interface == 'PCI-E 3.0 x4').length : 0,
-        realCntMother: dataMother ? 1 : 0,
-        realCntCpu: stateComp.cpu.length ? stateComp.cpu.length : 0,
-        realCntVideo: stateComp.video.length ? stateComp.video.length : 0,
-        realCntPower: stateComp.power.length ? stateComp.power.length : 0,
-        realCntDdr3: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3').length : 0,
-        realCntDdr3L: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3L').length : 0,
-        realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0,
-        realCntHdd: CntSataHdd
-    } as RealStatComp
-    let realCntSsd: number = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
-    let realCntRam: number = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
 
     type RamSlotType = {
         ddr3: number
@@ -189,9 +157,9 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     }
 
     let ramSlot = {
-        ddr3: genStatComp.generalCntDdr3 - realStatComp.realCntDdr3,
-        ddr3L: genStatComp.generalCntDdr3L - realStatComp.realCntDdr3L,
-        ddr4: genStatComp.generalCntDdr4 - realStatComp.realCntDdr4
+        ddr3: stateComp.generalCntDdr3 - stateComp.realCntDdr3,
+        ddr3L: stateComp.generalCntDdr3L - stateComp.realCntDdr3L,
+        ddr4: stateComp.generalCntDdr4 - stateComp.realCntDdr4
     } as RamSlotType
 
     type SsdSlotType = {
@@ -202,11 +170,46 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     }
 
     let ssdSlot = {
-        m2: genStatComp.generalCntM2 - realStatComp.realCntM2,
-        pcie: genStatComp.generalCntPcie - realStatComp.realCntPcie4,
-        sata: genStatComp.generalCntSata - realStatComp.realCntSata,
-        msata: genStatComp.generalCntMSata - realStatComp.realCntMSata
+        m2: stateComp.generalCntM2 - stateComp.realCntM2,
+        pcie: stateComp.generalCntPcie - stateComp.realCntPcie4,
+        sata: stateComp.generalCntSata - stateComp.realCntSata,
+        msata: stateComp.generalCntMSata - stateComp.realCntMSata
     } as SsdSlotType
+
+
+    let realStatComp = {
+        realCntM2: stateComp.realCntM2,
+        realCntMSata: stateComp.realCntMSata,
+        realCntSata: stateComp.realCntSata,
+        realCntPcie4: stateComp.realCntPcie4,
+        realCntMother: stateComp.realCntMother,
+        realCntCpu: stateComp.realCntCpu,
+        realCntVideo: stateComp.realCntVideo,
+        realCntPower: stateComp.realCntPower,
+        realCntDdr3: stateComp.realCntDdr3,
+        realCntDdr3L: stateComp.realCntDdr3L,
+        realCntDdr4: stateComp.realCntDdr4,
+        realCntHdd: stateComp.realCntHdd
+    }
+
+    let genStatCompArray = {
+        generalCntSsd: stateComp.generalCntSsd,
+        generalCntRam: stateComp.generalCntRam
+    }
+
+    let genStatComp = {
+        generalCntPower: stateComp.generalCntPower,
+        generalCntMother: stateComp.generalCntMother,
+        generalCntCpu: stateComp.generalCntCpu,
+        generalCntVideo: stateComp.generalCntVideo,
+        generalCntDdr3: stateComp.generalCntDdr3,
+        generalCntDdr3L: stateComp.generalCntDdr3L,
+        generalCntDdr4: stateComp.generalCntDdr4,
+        generalCntM2: stateComp.generalCntM2,
+        generalCntSata: stateComp.generalCntSata,
+        generalCntPcie: stateComp.generalCntPcie,
+        generalCntMSata: stateComp.generalCntMSata
+    }
 
     return (
         <div className="cabinet__wrapper">
@@ -224,8 +227,8 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                 realStatComp = {realStatComp}
                 genStatComp = {genStatComp}
                 genStatCompArray = {genStatCompArray}
-                realCntSsd = {realCntSsd}
-                realCntRam = {realCntRam}
+                realCntSsd = {stateComp.realCntSsd}
+                realCntRam = {stateComp.realCntRam}
             />
             <div className="user__bug">
                     <div className="bug__wrapper">
@@ -315,7 +318,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     addItem={addItem}
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrSsd}
-                                    remain={genStatCompArray.generalCntSsd - realCntSsd}
+                                    remain={genStatCompArray.generalCntSsd - stateComp.realCntSsd}
                                     haveManySlot={haveSlotSsd}
                                     hover={hoverOnItem}
                                     image={ssdIm}
@@ -335,7 +338,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     addItem={addItem}
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrRam}
-                                    remain={genStatCompArray.generalCntRam - realCntRam}
+                                    remain={genStatCompArray.generalCntRam - stateComp.realCntRam}
                                     haveManySlot={haveSlotRam}
                                     hover={hoverOnItem}
                                     image={ramIm}

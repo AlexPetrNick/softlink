@@ -7,7 +7,7 @@ type PropsComputer = {
     text: string
     cntError: number
 
-    setCntError: any
+    setCntError?: any
 }
 
 let ComputerNameItem: FC<PropsComputer> = (props:PropsComputer):any => {

@@ -285,7 +285,6 @@ export const getHardPageThunkCreator = (page=0, hard=apiHdd, params:string) => {
                 console.log(data)
                 dispatch(setPageMeta(data.count, data.per_page, data.links.next, data.links.previous, data.current_page))
                 dispatch(setDataCabinet(data.results))
-                debugger
                 dispatch(toggleFetch(false))
             })
         } else {

@@ -1,6 +1,8 @@
 
 import { apiComputer } from "../apiDAL/DAL"
 import exp from "constants";
+import {GenStatCompArrayType, GenStatCompType, RealStatComp} from "../contentWrapper/Cabinet/Cabinet";
+import {useEffect} from "react";
 
 export const ADD_ITEM_IN_COMPUTER = 'ADD-ITEM-IN-COMPUTER'
 export const ERASE_ITEM_ON_COMPUTER = 'ERASE-ITEM-ON-COMPUTER'
@@ -13,6 +15,7 @@ export const TEST_ALL = 'TEST-ALL'
 export const IS_SAVE_BUTTON_PRESS = 'IS_SAVE-BUTTON-PRESS'
 export const SET_CNT_ERR_COMP = 'SET-CNT-ERR-COMP'
 export const SET_REMAIN_POWER_COMPUTER = 'SET_REMAIN_POWER_COMPUTER'
+export const SET_GENERAL_AND_REAL_CNT = 'SET_GENERAL_AND_REAL_CNT'
 
 let typeItem = {
     0: "Не определен" as string,
@@ -53,9 +56,10 @@ let nullMother = {
     m2_cnt: 0 as number
 }
 type ActionType = AddItemInComputerType | EraseItemInComputerType | ToggleErrorType | ChangeNameType | MountComputerType | SetDataType
-| TIsSaveButtonPress | TsetRemainPowerComputer
+| TIsSaveButtonPress | TsetRemainPowerComputer | TSetGeneralAndRealCnt
 
 let computerReducer = (state:StateComputer=initState, action:ActionType):StateComputer => {
+
     switch(action.type) {
         case ADD_ITEM_IN_COMPUTER:
             if (action.data.type_item == 1) {
@@ -185,18 +189,79 @@ let computerReducer = (state:StateComputer=initState, action:ActionType):StateCo
             let allPowerCpu = correctGetSumm(state.cpu)
             let allPowerMother = correctGetSumm(state.mother)
             let remainPower:number = allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother)
-            console.log(allPower)
+            /*console.log(allPower)
             console.log(allPowerVideo)
             console.log(allPowerRam)
             console.log(allPowerHdd)
             console.log(allPowerSsd)
             console.log(allPowerCpu)
             console.log(allPowerMother)
-            console.log(remainPower)
-
+            console.log(remainPower)*/
             return {
                 ...state,
                 remainPower: remainPower
+            }
+        case SET_GENERAL_AND_REAL_CNT:
+            let CntSataHdd = state.hdd.length ? state.hdd.length : 0
+            let CntSataSsd = state.ssd.length ? state.ssd.filter(a => a.interface = 'SATA-III').length : 0
+            let dataMother = state.mother
+            let generalCntCpu = dataMother.length ? dataMother[0].cpu : 0
+            let generalCntVideo = dataMother.length ? dataMother[0].pcie16 : 0
+            let generalCntDdr3 = dataMother.length ? dataMother[0].ddr3 : 0
+            let generalCntDdr3L = dataMother.length ? dataMother[0].ddr3L : 0
+            let generalCntDdr4 = dataMother.length ? dataMother[0].ddr4 : 0
+            let generalCntSata = dataMother.length ? dataMother[0].sata_cnt : 0
+            let generalCntPcie = dataMother.length ? dataMother[0].pcie4 : 0
+            let generalCntM2 = dataMother.length ? dataMother[0].m2_cnt : 0
+            let generalCntMSata = dataMother.length ? dataMother[0].msata_cnt : 0
+            let generalCntSsd = generalCntM2 + generalCntSata + generalCntPcie
+                    + generalCntMSata
+            let generalCntRam = generalCntDdr3 + generalCntDdr3L + generalCntDdr4
+            let dataSsd = state.ssd
+            let dataRam = state.ram
+            let realCntM2 = dataSsd.length ? dataSsd.filter(a => a.interface == 'M2').length : 0
+            let realCntMSata = dataSsd.length ? dataSsd.filter(a => a.interface == 'mSATA').length : 0
+            let realCntSata = CntSataSsd + CntSataHdd
+            console.log("CntSataHdd")
+            console.log(CntSataHdd)
+            let realCntPcie4 = dataSsd.length ? dataSsd.filter(a => a.interface == 'PCI-E 3.0 x4').length : 0
+            let realCntMother = dataMother.length ? 1 : 0
+            let realCntCpu = state.cpu.length ? state.cpu.length : 0
+            let realCntVideo = state.video.length ? state.video.length : 0
+            let realCntPower = state.power.length ? state.power.length : 0
+            let realCntDdr3 = dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3').length : 0
+            let realCntDdr3L = dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3L').length : 0
+            let realCntDdr4 = dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0
+            let realCntHdd = CntSataHdd
+            let realCntSsd: number = realCntM2 + realCntMSata + realCntSata + realCntPcie4
+            let realCntRam: number = realCntDdr3 + realCntDdr3L + realCntDdr4
+            return {
+                ...state,
+                generalCntCpu: generalCntCpu,
+                generalCntVideo: generalCntVideo,
+                generalCntDdr3: generalCntDdr3,
+                generalCntDdr3L: generalCntDdr3L,
+                generalCntDdr4: generalCntDdr4,
+                generalCntM2: generalCntM2,
+                generalCntSata: generalCntSata,
+                generalCntPcie: generalCntPcie,
+                generalCntMSata: generalCntMSata,
+                generalCntSsd: generalCntSsd,
+                generalCntRam: generalCntRam,
+                realCntM2: realCntM2,
+                realCntMSata: realCntMSata,
+                realCntSata: realCntSata,
+                realCntPcie4: realCntPcie4,
+                realCntMother: realCntMother,
+                realCntCpu: realCntCpu,
+                realCntVideo: realCntVideo,
+                realCntPower: realCntPower,
+                realCntDdr3: realCntDdr3,
+                realCntDdr3L: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR3L').length : 0 as number,
+                realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0 as number,
+                realCntHdd: realCntHdd,
+                realCntSsd: realCntSsd,
+                realCntRam: realCntRam
             }
         default:
             return state
@@ -257,6 +322,11 @@ type TsetRemainPowerComputer = {
     type: typeof SET_REMAIN_POWER_COMPUTER
 }
 export const setRemainPowerComputer = ():TsetRemainPowerComputer => ({type:SET_REMAIN_POWER_COMPUTER})
+type TSetGeneralAndRealCnt = {
+    type: typeof SET_GENERAL_AND_REAL_CNT
+}
+export const setGeneralAndRealCnt = ():TSetGeneralAndRealCnt => ({type:SET_GENERAL_AND_REAL_CNT})
+
 
 /* THUNK */
 export const fetchComputerThunkCreator = () => {
@@ -414,147 +484,40 @@ let initState = {
     cntError: 0 as number,
     remainPower: 0 as number,
     isSaveButtonPress: false as boolean,
-    cpu: [{
-        id: 8,
-        brand: "AMD",
-        socket: "AM4",
-        core_int: "No",
-        core_amd: "Matisse",
-        series: "AMD Ryzen",
-        model: "5 3600X",
-        freq: "3800 Мгц",
-        tech_proc: "7 нм",
-        num_core: "6",
-        cache1: 64,
-        cache2: 1024,
-        tdp: "95 Вт",
-        has_graph: false,
-        image: null,
-        power: 75,
-        type_item: 2
-    }] as Array<ItemCpuType>,
-    mother: [{
-        "id": 7,
-        "brand": "ASUS",
-        "socket": "AM4",
-        "chipsetI": "H310",
-        "chipsetA": "AMD A520",
-        "form_fact": "mATX",
-        "model": "TUF GAMING A520M-PLUS",
-        "work_freq": "2133 - 4800 МГц",
-        "cpu": 1,
-        "ddr3": 0,
-        "ddr3L": 0,
-        "ddr4": 4,
-        "pcie16": 1,
-        "pcie4": 3,
-        "pcie2": 0,
-        "sata_cnt": 6,
-        "msata_cnt": 1,
-        "m2_cnt": 1,
-        "has_NVMe": true,
-        "port": "1x PS/22x USB 2.01x RJ-451x HDMI1x DVI-D1x VGA (D-Sub)3x Audio jack4 x USB 3.2 Gen 11 x USB 3.2 Gen 2",
-        "bios": "UEFI AMI BIOS, 256 Мбит",
-        "power": 25,
-        type_item: 1
-    }] as Array<ItemMotherType>,
-    hdd: [{
-        "id": 1,
-        "brand": "Seagate",
-        "model": "ST1000DM010",
-        "form_factor": "3.5",
-        "memory": "1 Tb",
-        "buffer": "64",
-        "freq": "7200",
-        "propusk_sposob": "6 Гбит/сек",
-        "power": 30,
-        "type_item": 7
-    }] as Array<ItemHddType>,
-    ram: [{
-        id: 3,
-        brand: "Kingston",
-        model: "HX424C15FB3/8",
-        type_memory: "DDR4",
-        memory: "8Gb",
-        work_freq: "2400",
-        timing: "15-15-15",
-        latency: "CL15",
-        form_factor: 115,
-        power: 3,
-        type_item: 3
-    },
-    {
-        "id": 4,
-        "brand": "Crucial",
-        "model": "CT4G4DFS8266",
-        "type_memory": "DDR4",
-        "memory": "4Gb",
-        "work_freq": "2666",
-        "timing": "19",
-        "latency": "CL19",
-        "form_factor": 115,
-        "power": 5,
-        "item_type": 3
-    }] as Array<ItemRamType>,
-    power: [{
-        id: 2,
-        brand: "FSP",
-        model: "QD500 85+",
-        power_all: 500,
-        PFC: "Активный",
-        int_for_mother: "24+4+4 pin",
-        molex: "2 шт",
-        sata: "4 шт",
-        fdd: "2 шт",
-        form_factor: 118,
-        type_item: 5
-    }] as Array<ItemPowerType>,
-    video: [{
-        id: 1,
-        brand: "Palit",
-        model: "StormX",
-        tech_proc: "14 нм",
-        series: "GeForce GTX 1xx0",
-        graph_proc: "GeForce GTX 1050 Ti",
-        freq_proc: "1290",
-        threading: "768",
-        type_memory: "GDDR5",
-        size_shina_video: "128 Bit",
-        freq_videomemory: "7000",
-        api: "DirectX 12, OpenGL 4.5",
-        connector: "PCI-E 16x 3.0",
-        port: "HDMIDisplayPortDVI-D",
-        added_power: "0 (нет)",
-        power: 150,
-        type_item: 4
-    }] as Array<ItemVideoType>,
-    ssd: [{
-        id: 3,
-        brand: "Intel",
-        form_factor: "M.2",
-        model: "SSDSCKKW128G8X1959549",
-        type_mem: "TLC",
-        memory: "128 Gb",
-        speed_read: "550",
-        speed_write: "440",
-        interface: "SATA-III",
-        propusk_sposob: "6 Гбит/с",
-        power_in: "От M.2 PCI-Express Gen3 x4",
-        power: 15,
-        type_item: 6
-    }] as Array<ItemSsdType>,
-    remainMother: 0 as number,
-    remainVideo: 0 as number,
-    remainCpu: 0 as number,
-    remainDdr3: 0 as number,
-    remainDdr3L: 0 as number,
-    remainDdr4: 2 as number,
-    remainPcie2: 0 as number,
-    remainPcie4: 3 as number,
-    remainPcie16: 0 as number,
-    remainM2: 1 as number,
-    remainSata: 4 as number,
-    remainMSata: 1 as number,
+    cpu: [] as Array<ItemCpuType>,
+    mother: [] as Array<ItemMotherType>,
+    hdd: [] as Array<ItemHddType>,
+    ram: [] as Array<ItemRamType>,
+    power: [] as Array<ItemPowerType>,
+    video: [] as Array<ItemVideoType>,
+    ssd: [] as Array<ItemSsdType>,
+    generalCntPower: 1  as number,
+    generalCntMother: 1 as number,
+    generalCntCpu: 0  as number,
+    generalCntVideo: 0 as number,
+    generalCntDdr3: 0 as number,
+    generalCntDdr3L: 0 as number,
+    generalCntDdr4:  0 as number,
+    generalCntM2:  0 as number,
+    generalCntSata:  0 as number,
+    generalCntPcie:  0 as number,
+    generalCntMSata:  0 as number,
+    generalCntSsd: 0 as number,
+    generalCntRam: 0 as number,
+    realCntM2: 0 as number,
+    realCntMSata: 0 as number,
+    realCntSata: 0 as number,
+    realCntPcie4: 0 as number,
+    realCntMother: 0 as number,
+    realCntCpu: 0 as number,
+    realCntVideo: 0 as number,
+    realCntPower: 0 as number,
+    realCntDdr3: 0 as number,
+    realCntDdr3L: 0 as number,
+    realCntDdr4: 0 as number,
+    realCntHdd: 0 as number,
+    realCntSsd: 0 as number,
+    realCntRam: 0 as number
 }
 
 export type StateComputer = typeof initState

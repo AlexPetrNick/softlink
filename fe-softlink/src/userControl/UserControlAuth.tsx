@@ -6,17 +6,18 @@ import {useForm} from "react-hook-form";
 import {Button, Progress} from "semantic-ui-react";
 import {PowerProgressBar} from "./FormField/PowerProgressBar";
 import PowerPlace from "../contentWrapper/Cabinet/Computer/Button/PowerPlace";
-import {ItemPowerType} from "../Redux/computerReducer";
+import {ItemPowerType, StateComputer} from "../Redux/computerReducer";
+import ComputerNameItem from "../contentWrapper/Cabinet/Computer/ComputerNameItem";
 
 type PropsUserControll = {
     state: initStateTypeUserControl
     logOut: () => void
-    remainPower: number
-    powerAllEquip: Array<ItemPowerType>
+    stateComp: StateComputer
 }
 
 const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
     let [stateAdded, setAddedMenu] = useState(true)
+    let [cntError, setCntError] = useState(props.stateComp.cntError)
     console.log("usercontrol пользователь залогинен")
     let onClickExit = () => {
         props.logOut()
@@ -30,9 +31,9 @@ const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
             setAddedMenu(true)
         }
     }
-
-    let remainPower = props.remainPower
-    let allPower = props.powerAllEquip.length ? props.powerAllEquip[0].power_all : 0
+    let stateComp = props.stateComp
+    let remainPower = stateComp.remainPower
+    let allPower = stateComp.power.length ? stateComp.power[0].power_all : 0
 
 
     return (
@@ -70,7 +71,43 @@ const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
                                 />
                             </div>
                         </div>
-                        <div className="info__free__slot"></div>
+                        <div className="info__free__slot">
+                            <div className="info__free__slot__inner">
+                                <ComputerNameItem cntError={cntError} text='Материнка'
+                                                  cntReal={stateComp.realCntMother}
+                                                  cntFix={stateComp.generalCntMother}/>
+                                <ComputerNameItem cntError={cntError} text='Процессор'
+                                                  cntReal={stateComp.realCntCpu} cntFix={stateComp.generalCntCpu}/>
+                                <ComputerNameItem cntError={cntError} text='Видеокарта'
+                                                  cntReal={stateComp.realCntVideo} cntFix={stateComp.generalCntVideo}/>
+                                <ComputerNameItem cntError={cntError} text='Оперативная'
+                                                  cntReal={stateComp.realCntRam} cntFix={stateComp.generalCntRam}/>
+                                <ComputerNameItem cntError={cntError} text='DDR3'
+                                                  cntReal={stateComp.realCntDdr3} cntFix={stateComp.generalCntDdr3}/>
+                                <ComputerNameItem cntError={cntError} text='DDR3L'
+                                                  cntReal={stateComp.realCntDdr3L} cntFix={stateComp.generalCntDdr3L}/>
+                                <ComputerNameItem cntError={cntError} text='DDR4'
+                                                  cntReal={stateComp.realCntDdr4} cntFix={stateComp.generalCntDdr4}/>
+
+                            </div>
+                            <div className="info__free__slot__inner">
+                                <ComputerNameItem cntError={cntError} text='SSD'
+                                                  cntReal={stateComp.realCntSata}
+                                                  cntFix={stateComp.generalCntSsd}/>
+                                <ComputerNameItem cntError={cntError} text='M2'
+                                                  cntReal={stateComp.realCntM2} cntFix={stateComp.generalCntM2}/>
+                                <ComputerNameItem cntError={cntError} text='Sata'
+                                                  cntReal={stateComp.realCntSata} cntFix={stateComp.generalCntSata}/>
+                                <ComputerNameItem cntError={cntError} text='PCI-E'
+                                                  cntReal={stateComp.realCntPcie4} cntFix={stateComp.generalCntPcie}/>
+                                <ComputerNameItem cntError={cntError} text='mSata'
+                                                  cntReal={stateComp.realCntMSata} cntFix={stateComp.generalCntMSata}/>
+                                <ComputerNameItem cntError={cntError} text='Жесткий диск'
+                                                  cntReal={stateComp.realCntHdd} cntFix={stateComp.generalCntSata}/>
+                                <ComputerNameItem cntError={cntError} text='Блок питания'
+                                                  cntReal={stateComp.realCntPower} cntFix={stateComp.generalCntPower}/>
+                            </div>
+                        </div>
                         <div className="button_unlogin" onClick={onClickExit}>Выход</div>
                     </div>
                 </div>

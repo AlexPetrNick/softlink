@@ -103,7 +103,7 @@ let Computer: FC<PropsComputer> = (props:PropsComputer) => {
                 </div>
                 {ram}
                 <div className="computer__data__name">
-                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='SSD' cntReal={props.realCntSsd} cntFix ={genStatCompArray.generalCntSsd} />
+                    <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='SSD' cntReal={realStatComp.realCntSata} cntFix ={genStatCompArray.generalCntSsd} />
                     <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='M2' cntReal={realStatComp.realCntM2} cntFix ={genStatComp.generalCntM2} />
                     <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='Sata' cntReal={realStatComp.realCntSata} cntFix ={genStatComp.generalCntSata} />
                     <ComputerNameItem cntError={cntError} setCntError={IterCntErr} text='PCI-E' cntReal={realStatComp.realCntPcie4} cntFix ={genStatComp.generalCntPcie} />

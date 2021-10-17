@@ -12,7 +12,7 @@ import {
 import {
     addItemInComputer,
     DataType,
-    eraseItemInComputer,
+    eraseItemInComputer, setGeneralAndRealCnt,
     setRemainPowerComputer,
     StateComputer
 } from '../../Redux/computerReducer'
@@ -54,7 +54,8 @@ interface IDispatchStateToProps {
     cabinetEraseItem: (idItem:number, itemType:number) => void
     eraseItemInComputer: (data:DataType) => void
     getCabinetThunkCreator: any,
-    setRemainPowerComputer: () => void
+    setRemainPowerComputer: () => void,
+    setGeneralAndRealCnt: () => void
 }
 
 let mapStateToProps = (state:AppStateType):IMapStateToProps => {
@@ -72,5 +73,6 @@ export default connect(mapStateToProps, {
     cabinetEraseItem,
     eraseItemInComputer,
     getCabinetThunkCreator,
-    setRemainPowerComputer
+    setRemainPowerComputer,
+    setGeneralAndRealCnt
 } as IDispatchStateToProps)(ContainerComponent)
