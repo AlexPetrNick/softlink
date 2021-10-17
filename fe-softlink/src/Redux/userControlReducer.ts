@@ -14,7 +14,7 @@ const initState = {
     id: 0 as number,
     username: "" as string,
     password: "" as string,
-    firstName: "" as string,
+    first_name: "" as string,
     last_name: "" as string,
     email: "" as string,
     secondName: "" as string,
@@ -49,6 +49,7 @@ let userControlReducer = (state:initStateTypeUserControl=initState, action:actio
                 ...state,
                 id: action.id,
                 username: action.username,
+                first_name: action.first_name,
                 last_name: action.last_name,
                 email: action.email,
                 about: action.about,
@@ -76,6 +77,7 @@ export type actionTypesData =
         type: typeof SET_DATA_USER,
         id: number,
         username: string,
+        first_name: string,
         last_name: string,
         email: string,
         about: string,
@@ -88,30 +90,19 @@ export const setCorrPassword = (correctPassword:string):actionTypesCorrPass => (
 export const setDataUser = (
     id: number,
     username: string,
+    first_name: string,
     last_name: string,
     email: string,
     about: string,
     cabinet: number,
     computer: string
-):actionTypesData => ({type: SET_DATA_USER, id, username, last_name, email, about, cabinet, computer})
+):actionTypesData => ({type: SET_DATA_USER, id, username,first_name, last_name, email, about, cabinet, computer})
 export const setCabinetId = (cabId:number):actionTypesCabId => ({ type:SET_ID_CABINET, cabId })
 
 
 export default userControlReducer
 
 /* THUNK */
-
-export const idCabinetThunkCreator = () => (dispatch:any) => {
-    return apiCabinet.getStateCabinet()
-        .then(response => {
-            if (response.id){
-                dispatch(setCabinetId(response.id))   
-            } else {
-                dispatch(setCabinetId(0))
-            }
-        })
-
-}
 
 export const infoUserThunkCreator = () => (dispatch:any) => {
     return apiUser.getDataUser()
@@ -120,6 +111,7 @@ export const infoUserThunkCreator = () => (dispatch:any) => {
             dispatch(setDataUser(
                 resp.id,
                 resp.username,
+                resp.first_name,
                 resp.last_name,
                 resp.email,
                 resp.about,

@@ -6,20 +6,20 @@ type PropsType = {
 }
 
 let PowerPlace: FC<PropsType> = (props:PropsType) => {
-
-    console.log(props)
-
     let allPower = Number(props.powerAll)
     let remaindPower = props.remainPower
-
     let isYellow = remaindPower <= allPower*0.15 && remaindPower > 0
     let colorBorder = "green"
     let colorBack = "green"
     let colorAll = "green"
-
+    console.log(remaindPower)
     let remaindUsed = (remaindPower*100) / allPower
-    console.log(remaindUsed)
     let remaindPercent = String(remaindUsed) + "%"
+    if (remaindPower >= 0) {
+        remaindPercent = String(remaindUsed) + "%"
+    }else {
+        remaindPercent = "0"
+    }
 
 
     if  ((remaindPower <= 0) || (remaindPower == 0)) {
@@ -36,11 +36,9 @@ let PowerPlace: FC<PropsType> = (props:PropsType) => {
         colorAll = "#fff9a8"
     }
 
-
     let elemStylePower = {
         position: "relative",
-        maxHeight: "40px",
-        width: "350px",
+        width: "95%",
         textAlign: "center",
         zIndex: "1",
 
@@ -53,11 +51,11 @@ let PowerPlace: FC<PropsType> = (props:PropsType) => {
         left: "0",
         top: "0",
         width: remaindPercent,
-        height: "40px",
         zIndex: "2",
         backgroundColor: colorBack,
         border: colorBorder
     }
+
 
     return (
         <div className="power__place" style={ elemStylePower  as any}>

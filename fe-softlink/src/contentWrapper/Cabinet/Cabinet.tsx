@@ -55,7 +55,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     console.log("Draw Cabinet")
     console.log(props)
 
-
     let hoverOnItem = (image:string):void => {
         let elem = document.getElementsByClassName('computer__image')[0]
         elem.setAttribute('src', image)
@@ -63,10 +62,12 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     let addItem = (data:DataType) => {
         props.addItemInComputer(data)
 		props.updateCabinetAC(true)
+        props.setRemainPowerComputer()
     }
     let eraseItemFromComp = (data:DataType) => {
         props.eraseItemInComputer(data)
 		props.updateCabinetAC(true)
+        props.setRemainPowerComputer()
     }
 
     let haveSlotSsd = (data: ItemSsdType, titleSlot:string) => {
@@ -136,7 +137,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     let dataMother = stateComp.mother[0]
     let dataSsd = stateComp.ssd
     let dataRam = stateComp.ram
-
     let arrMother = stateComp.mother.map((data) => data.id)   
     let arrCpu = stateComp.cpu.map((data) => data.id)   
     let arrPower = stateComp.power.map((data) => data.id)   
@@ -147,8 +147,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
 
     let CntSataHdd = stateComp.hdd.length ? stateComp.hdd.length : 0
     let CntSataSsd = dataSsd.length ? dataSsd.filter(a => a.interface = 'SATA-III').length : 0
-
-
 
     let genStatComp = {
         generalCntPower: 1,
@@ -163,16 +161,10 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         generalCntPcie: dataMother ? dataMother.pcie4 : 0,
         generalCntMSata: dataMother ? dataMother.msata_cnt : 0,
     } as GenStatCompType
-
-
-
     let genStatCompArray = {
         generalCntSsd: genStatComp.generalCntM2 + genStatComp.generalCntSata + genStatComp.generalCntPcie + genStatComp.generalCntMSata,
         generalCntRam: genStatComp.generalCntDdr3 + genStatComp.generalCntDdr3L + genStatComp.generalCntDdr4
     }  as GenStatCompArrayType
-
-
-
     let realStatComp = {
         realCntM2: dataSsd.length ? dataSsd.filter(a => a.interface == 'M2').length : 0,
         realCntMSata: dataSsd.length ? dataSsd.filter(a => a.interface == 'mSATA').length : 0,
@@ -187,8 +179,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         realCntDdr4: dataRam.length ? dataRam.filter(a => a.type_memory == 'DDR4').length : 0,
         realCntHdd: CntSataHdd
     } as RealStatComp
-
-
     let realCntSsd: number = realStatComp.realCntM2 + realStatComp.realCntMSata + realStatComp.realCntSata + realStatComp.realCntPcie4
     let realCntRam: number = realStatComp.realCntDdr3 + realStatComp.realCntDdr3L + realStatComp.realCntDdr4
 
@@ -226,7 +216,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                 </div>
                 <div className="user__data">
                     <div className="user__login">{props.stateUser.username}</div>
-                    <div className="user__firstname">{props.stateUser.firstName}</div>
+                    <div className="user__firstname">{}</div>
                     <div className="user__second__name">{props.stateUser.secondName}</div>
                 </div>
             </div>

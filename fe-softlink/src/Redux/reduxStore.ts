@@ -7,7 +7,7 @@ import hardPageReducer from "./hardPageReducer"
 import thunkMiddleware from "redux-thunk"
 import { authReducer } from './authReducer';
 import appReducer from './appReducer'
-import computerReducer from './computerReducer'
+import computerReducer, {StateComputer} from './computerReducer'
 import registraionReducer from "./registrationReducer";
 
 let reducers = combineReducers({

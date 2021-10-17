@@ -12,7 +12,7 @@ export const SET_DATA_COMPUTER = 'SET-DATA'
 export const TEST_ALL = 'TEST-ALL'
 export const IS_SAVE_BUTTON_PRESS = 'IS_SAVE-BUTTON-PRESS'
 export const SET_CNT_ERR_COMP = 'SET-CNT-ERR-COMP'
-
+export const SET_REMAIN_POWER_COMPUTER = 'SET_REMAIN_POWER_COMPUTER'
 
 let typeItem = {
     0: "Не определен" as string,
@@ -53,9 +53,9 @@ let nullMother = {
     m2_cnt: 0 as number
 }
 type ActionType = AddItemInComputerType | EraseItemInComputerType | ToggleErrorType | ChangeNameType | MountComputerType | SetDataType
-| TIsSaveButtonPress
+| TIsSaveButtonPress | TsetRemainPowerComputer
 
-const computerReducer = (state:StateComputer=initState, action:ActionType) => {
+let computerReducer = (state:StateComputer=initState, action:ActionType):StateComputer => {
     switch(action.type) {
         case ADD_ITEM_IN_COMPUTER:
             if (action.data.type_item == 1) {
@@ -145,7 +145,15 @@ const computerReducer = (state:StateComputer=initState, action:ActionType) => {
             }
         case MOUNT_COMPUTER:
             return {
-                ...action.data
+                ...state,
+                name: action.data.name,
+                cpu: action.data.cpu,
+                mother: action.data.mother,
+                hdd: action.data.hdd,
+                ssd: action.data.ssd,
+                video: action.data.video,
+                power: action.data.power,
+                ram: action.data.ram
             }
         case TOGGLE_ERROR:
             return {
@@ -153,7 +161,6 @@ const computerReducer = (state:StateComputer=initState, action:ActionType) => {
                 haveError: action.truth
             }
         case SET_DATA_COMPUTER:
-            console.log('asdf')
             return {
                 ...state,
                 mother: action.data.mother,
@@ -169,11 +176,41 @@ const computerReducer = (state:StateComputer=initState, action:ActionType) => {
                 ...state,
                 isSaveButtonPress: action.press
             }
+        case SET_REMAIN_POWER_COMPUTER:
+            let allPower:number = state.power.length ? state.power[0].power_all : 0
+            let allPowerVideo = correctGetSumm(state.video)
+            let allPowerRam = correctGetSumm(state.ram)
+            let allPowerHdd = correctGetSumm(state.hdd)
+            let allPowerSsd = correctGetSumm(state.ssd)
+            let allPowerCpu = correctGetSumm(state.cpu)
+            let allPowerMother = correctGetSumm(state.mother)
+            let remainPower:number = allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother)
+            console.log(allPower)
+            console.log(allPowerVideo)
+            console.log(allPowerRam)
+            console.log(allPowerHdd)
+            console.log(allPowerSsd)
+            console.log(allPowerCpu)
+            console.log(allPowerMother)
+            console.log(remainPower)
+
+            return {
+                ...state,
+                remainPower: remainPower
+            }
         default:
             return state
     }
 }
 export default computerReducer
+
+
+const correctGetSumm = (mass:Array<DataTypeWithoutPower>):number => {
+    let a = 0;
+    let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
+    return res
+}
+
 
 export type DataType = ItemCpuType | ItemMotherType | ItemHddType | ItemRamType | ItemPowerType | ItemVideoType | ItemSsdType
 export type DataTypeWithoutPower = ItemCpuType | ItemMotherType | ItemHddType | ItemRamType  | ItemVideoType | ItemSsdType
@@ -199,9 +236,9 @@ type ChangeNameType = {
 export const changeName = (name:string):ChangeNameType => ({ type: CHANGE_NAME, name})
 type MountComputerType = {
     type: typeof MOUNT_COMPUTER,
-    data: DataType
+    data: TReturnTypeFetch
 }
-export const mountComputer = (data:DataType):MountComputerType => ({ type: MOUNT_COMPUTER, data })
+export const mountComputer = (data:TReturnTypeFetch):MountComputerType => ({ type: MOUNT_COMPUTER, data })
 type SetDataType = {
     type: typeof SET_DATA_COMPUTER
     data: TAllArrayItems
@@ -216,7 +253,10 @@ type TIsSaveButtonPress = {
     press: boolean
 }
 export const isSaveButtonPress = (press:boolean):TIsSaveButtonPress => ({type:IS_SAVE_BUTTON_PRESS, press})
-
+type TsetRemainPowerComputer = {
+    type: typeof SET_REMAIN_POWER_COMPUTER
+}
+export const setRemainPowerComputer = ():TsetRemainPowerComputer => ({type:SET_REMAIN_POWER_COMPUTER})
 
 /* THUNK */
 export const fetchComputerThunkCreator = () => {
@@ -227,6 +267,17 @@ export const fetchComputerThunkCreator = () => {
                 dispatch(mountComputer(data))
             })
     }
+}
+
+export type TReturnTypeFetch = {
+    name: string,
+    cpu: Array<ItemCpuType>,
+    mother: Array<ItemMotherType>,
+    hdd: Array<ItemHddType>,
+    ssd: Array<ItemSsdType>,
+    video: Array<ItemVideoType>,
+    power: Array<ItemPowerType>,
+    ram: Array<ItemRamType>
 }
 
 export type TAllArrayItems = {
@@ -358,8 +409,10 @@ export type ItemSsdType = {
 
 let initState = {
     name: 'ComputerOne' as string,
+    haveError: false as boolean,
     isCorrect: true as boolean,
     cntError: 0 as number,
+    remainPower: 0 as number,
     isSaveButtonPress: false as boolean,
     cpu: [{
         id: 8,
@@ -492,7 +545,6 @@ let initState = {
     }] as Array<ItemSsdType>,
     remainMother: 0 as number,
     remainVideo: 0 as number,
-    remainPower: 0 as number,
     remainCpu: 0 as number,
     remainDdr3: 0 as number,
     remainDdr3L: 0 as number,

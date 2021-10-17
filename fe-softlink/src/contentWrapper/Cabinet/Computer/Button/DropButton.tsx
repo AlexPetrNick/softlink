@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC} from 'react'
 import {StateComputer, TAllArrayItems} from "../../../../Redux/computerReducer";
 
 type PropsType = {

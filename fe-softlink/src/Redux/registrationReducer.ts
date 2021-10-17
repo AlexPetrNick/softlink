@@ -12,13 +12,15 @@ export type TsetStepOne = {
     type: typeof SET_STEP_ONE,
     login: string
     firstName: string
+    lastName: string
     password: string
     rePassword: string
 }
-export const setStepOne = (login: string, firstName: string, password: string, rePassword: string): TsetStepOne => ({
+export const setStepOne = (login: string, firstName: string, lastName: string, password: string, rePassword: string): TsetStepOne => ({
     type: SET_STEP_ONE,
     login,
     firstName,
+    lastName,
     password,
     rePassword
 })
@@ -62,6 +64,7 @@ const registraionReducer = (state:TinitStateReg = initState, action: Taction): T
                 ...state,
                 login: action.login,
                 firstName: action.firstName,
+                lastName: action.lastName,
                 password: action.password,
                 rePassword: action.rePassword,
             }

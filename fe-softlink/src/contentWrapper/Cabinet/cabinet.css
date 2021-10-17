@@ -53,11 +53,15 @@
 
 .power__place {
     position: relative;
-    max-height: 40px;
-    width: 350px;
+    height: 100%;
+    width: 100%;
     text-align: center;
     z-index: 1;
+    border-radius: 15px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #67e329;
     border:2px solid green;
 }
@@ -70,14 +74,10 @@
 }
 
 .remaindPower {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 10%;
-    height: 40px;
-
+    border-radius: 15px;
+    position: relative;
     z-index: 2;
-
+    height: 92%;
     background-color: green;
 }
 

@@ -5,7 +5,10 @@ import SaveButton from './Button/SaveButton'
 import DropButton from './Button/DropButton'
 import PowerPlace from './Button/PowerPlace'
 import {AllState, AllStateToProps} from "./ComputerContainer";
-import {DataType, DataTypeWithoutPower, StateComputer, TAllArrayItems} from "../../../Redux/computerReducer";
+import {
+    DataTypeWithoutPower,
+    TAllArrayItems
+} from "../../../Redux/computerReducer";
 
 
 interface PropsComputer extends AllState {
@@ -20,9 +23,7 @@ let Computer: FC<PropsComputer> = (props:PropsComputer) => {
     let differentState = JSON.stringify(stateComputer) != JSON.stringify(props.state)
 
     const IterCntErr = (cntError:number) => {
-        debugger
         setCntError(cntError++)
-        debugger
     }
 
     let stateComp = props.state
@@ -58,22 +59,7 @@ let Computer: FC<PropsComputer> = (props:PropsComputer) => {
         )
     }) : (<div className="computer__data__item"></div>)
 
-
-    let correctGetSumm = (mass:Array<DataTypeWithoutPower>):number => {
-        let a = 0;
-        let res = mass.length ? mass.map((d)=>a+=Number(d.power), a=0).reverse()[0] : 0
-        return res
-    }
-
     let allPower:number = stateComp.power.length ? stateComp.power[0].power_all : 0
-    let allPowerVideo = correctGetSumm(stateComp.video)
-    let allPowerRam = correctGetSumm(stateComp.ram)
-    let allPowerHdd = correctGetSumm(stateComp.hdd)
-    let allPowerSsd = correctGetSumm(stateComp.ssd)
-    let allPowerCpu = correctGetSumm(stateComp.cpu)
-    let allPowerMother = correctGetSumm(stateComp.mother)
-    let remainPower:number = allPower ? allPower - (allPowerVideo + allPowerRam + allPowerHdd + allPowerSsd + allPowerCpu + allPowerMother) : 0
-
 
     return(
         <div className="user__computer">
@@ -99,7 +85,7 @@ let Computer: FC<PropsComputer> = (props:PropsComputer) => {
             </div>
                 <PowerPlace 
                     powerAll={allPower} 
-                    remainPower={remainPower} 
+                    remainPower={props.state.remainPower}
                 />
             <div className="computer__data">ComputerNameItem
 

@@ -53,6 +53,7 @@ interface ImapDispatchToProps{
     setStepOne: (
         login: string,
         firstName: string,
+        lastName: string,
         password: string,
         rePassword: string
     ) => TsetStepOne

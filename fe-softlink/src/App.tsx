@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
 import {BrowserRouter} from 'react-router-dom';
 import {UserControlContainer} from './userControl/UserControlContainer';
@@ -9,42 +9,43 @@ import {initNotUserThunkCreator, initThunkCreator, isInit} from './Redux/appRedu
 import {connect} from 'react-redux'
 import Preloader from './Preloader/Preloader';
 import {AppStateType} from "./Redux/reduxStore";
+import {Progress} from "semantic-ui-react";
 
-interface IApp extends IMapStateToProps, IDispatchToProps {}
+interface IApp extends IMapStateToProps, IDispatchToProps {
+}
 
 class App extends React.Component<IApp> {
-  componentDidMount() {
-      console.log("app did mount")
-      let haveAccessToken = String(localStorage.getItem('access')).length > 10
-      if (haveAccessToken) {
-          this.props.initThunkCreator()
-      } else {
-          this.props.initNotUserThunkCreator()
-      }
-  }
-
-  render() {
-      /*@ts-ignore*/
-      window.store = this.props.stateAll
-      console.log("RenderApp")
-      return(
-      <>
-          {this.props.stateInit ?
-            <BrowserRouter>
-                <div className="wrapper">
-                  <UserControlContainer />
-                  <PictureUp />
-                  <ContentWrapper />
-                  <FooterWrapper />
-                </div>
-            </BrowserRouter>
-            :
-            <Preloader />
-          }
-      </>
-      )
+    componentDidMount() {
+        console.log("app did mount")
+        let haveAccessToken = String(localStorage.getItem('access')).length > 10
+        if (haveAccessToken) {
+            this.props.initThunkCreator()
+        } else {
+            this.props.initNotUserThunkCreator()
+        }
     }
-  }
+    render() {
+        /*@ts-ignore*/
+        window.store = this.props.stateAll
+        console.log("RenderApp")
+        return (
+            <>
+                {this.props.stateInit ?
+                    <BrowserRouter>
+                        <div className="wrapper">
+                            <UserControlContainer/>
+                            <PictureUp/>
+                            <ContentWrapper/>
+                            <FooterWrapper/>
+                        </div>
+                    </BrowserRouter>
+                    :
+                    <Preloader/>
+                }
+            </>
+        )
+    }
+}
 
 
 export interface IMapStateToProps {
@@ -59,13 +60,13 @@ export interface IDispatchToProps {
     initNotUserThunkCreator: () => void
 }
 
-const mapStateToProps = (state:AppStateType) => ({
+const mapStateToProps = (state: AppStateType) => ({
     stateAll: state,
     stateInit: state.app.isInit,
     stateUp: state.pageCabinet.updateCabinet
 })
 
-export default connect (mapStateToProps, {
+export default connect(mapStateToProps, {
     initThunkCreator,
     isInit,
     initNotUserThunkCreator

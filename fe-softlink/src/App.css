@@ -150,6 +150,61 @@
   justify-content: space-around;
 }
 
+/*Верхнее меню авторизованного пользователя*/
+.top__working_add__area__auth {
+  position: relative;
+  top: 20px;
+  left: -50px;
+  width: 500px;
+  height: 300px;
+  background-color: #454545;
+  border-radius: 15px;
+  border: 2px solid green;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.fio__user {
+  height: 15%;
+}
+.power__computer {
+  height: 30%;
+  width: 90%;
+  border-radius: 10px;
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.power__computer span{
+  height: 30%;
+}
+.power__place__up{
+  height: 50%;
+}
+.info__free__slot {
+  height: 55%;
+  border: 2px solid green;}
+
+.button_unlogin{
+  width: 30%;
+  height: 30px;
+  background-color: green;
+  margin: auto;
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+.button_unlogin:hover {
+  border: 1px solid white;
+}
+
+
+/*END Верхнее меню авторизованного пользователя*/
+
+
 .area__form__working__add {
 
 }
@@ -189,6 +244,13 @@
   height: 30px;
 }
 
+.title__cabinet{
+  padding-left: 25px;
+}
+.title__cabinet a{
+  color: green;
+  text-decoration: none;
+}
 .title__auth__visiter {
   display: flex;
   height: 20%;

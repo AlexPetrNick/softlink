@@ -140,7 +140,7 @@ const UserControl: FC<UserControlPropsType> = (props: UserControlPropsType) => {
                     onClick()
                 }} className="notst__link__green" href="#">Регистрация</a>
             </div>
-            <div className="fill__left__right">1</div>
+            <div className="fill__left__right"></div>
         </div>
     );
 }

@@ -1,8 +1,6 @@
 import {infoUserThunkCreator} from './userControlReducer'
-import {idCabinetThunkCreator} from './userControlReducer'
 import {getCabinetThunkCreator} from './cabinetReducer'
-import {Dispatch} from "redux";
-import exp from "constants";
+import {fetchComputerThunkCreator} from "./computerReducer";
 
 export const IS_INIT: string = 'IS-INIT'
 export const NOT_INIT: string = 'NOT-INIT'
@@ -64,9 +62,9 @@ console.log(a)
 /* THUNK */
 export const initThunkCreator = () => (dispatch: any) => {
     let getDataUser = dispatch(infoUserThunkCreator())
-    let getCabinetId = dispatch(idCabinetThunkCreator())
     let getCabinetState = dispatch(getCabinetThunkCreator())
-    Promise.all([getDataUser, getCabinetId, getCabinetState ])
+    let getComputerState = dispatch(fetchComputerThunkCreator())
+    Promise.all([getDataUser, getCabinetState, getComputerState ])
         .then(() => {
             dispatch(isInit())
         })

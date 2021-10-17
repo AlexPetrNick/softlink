@@ -16,7 +16,7 @@ export const FormRegisterStep1: FC<allState> = (props) => {
     const history = useHistory()
     const clickNext = () => {
         history.push("/register/s2")
-        props.setStepOne(loginText, nameText, pass, rePass)
+        props.setStepOne(loginText, nameText, lastLoginText, pass, rePass)
     }
 
 
@@ -27,6 +27,7 @@ export const FormRegisterStep1: FC<allState> = (props) => {
 
     let loginText = watch('loginRef')
     let nameText = watch('nameReg')
+    let lastLoginText = watch('lastNameReg')
     let pass = watch('passReg')
     let rePass = watch('rePassReg')
     let isPassAndRePassIdentity = pass === rePass
@@ -98,6 +99,29 @@ export const FormRegisterStep1: FC<allState> = (props) => {
                 margin="normal"
                 required
             />
+            <TextField
+            {...register('lastNameReg', {required: true, minLength: 2})}
+            className={textField}
+            error={haveErrorName}
+            defaultValue={props.state.firstName}
+            helperText={haveErrorName && "Имя должно быть больше 2 символов"}
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="start">
+                        {haveErrorName ?
+                            <ClearIcon sx={{color: "red"}}/> :
+                            <CheckSharpIcon sx={{color: nameText && "green"}}/>
+                        }
+                    </InputAdornment>
+                )
+            }}
+            id="lastNameReg"
+            type="text"
+            label="Фамилия"
+            variant="outlined"
+            margin="normal"
+            required
+        />
             <TextField
                 {...register('passReg', {required: true, minLength: 1})}
                 helperText={haveErrorPass && "Пароль должен быть больше 1 символов"}
