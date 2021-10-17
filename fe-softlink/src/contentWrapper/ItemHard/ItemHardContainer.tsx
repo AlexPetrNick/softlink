@@ -18,7 +18,7 @@ import {
 	InitTypeCabinet, BagType, CabinetAddItemType, CabinetEraseItemType
 } from '../../Redux/cabinetReducer'
 import Preloader from '../../Preloader/Preloader'
-import {apiCpu, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
+import {apiCpu, apiHdd, apiMother, apiPower, apiRam, apiSsd, apiVideo} from '../../apiDAL/DAL'
 import {filterFieldSsd, filterFieldPower, filterFieldVideo, filterFieldRam, filterFieldHdd, filterFieldMother, filterFieldCpu} from '../../Redux/hardPageReducer'
 import {AppStateType} from "../../Redux/reduxStore";
 
@@ -82,7 +82,7 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
 				return this.props.getHardPageThunkCreator(page, apiCpu, params=params)
 			}
 			default:
-				this.props.getHardPageThunkCreator(page, params=params)
+				this.props.getHardPageThunkCreator(page, apiHdd, params=params)
 	}
 	}
 

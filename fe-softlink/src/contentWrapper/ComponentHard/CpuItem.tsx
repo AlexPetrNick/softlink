@@ -6,6 +6,7 @@ import {DataHardType} from "../../Redux/hardPageReducer";
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 import {ItemCpuType, ItemMotherType} from "../../Redux/computerReducer";
 
+
 export type PropsItemHard = {
 	key: number
 	data: ItemCpuType
@@ -39,15 +40,10 @@ const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
 
 	return (
 		<div className="item__content">
-			<div className="picture__hard_item">
-				<img className="" src={cpuImage}  width="200" height="160" alt="" />
-			</div>
-			<div className="addedButton">
-				<img src={iconMother} className={inMother ? "added__state__mother in_mother" : "added__state__mother"} width="30" height="30" />
-				<img src={iconMotherSlot} className={ Socket ? "added__state__mother__slot in_mother" : "added__state__mother__slot"} width="30" height="30" />
-			</div>
-			<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
-			<div className="description__hard__item">
+			<img className="picture__hard_item" src={cpuImage} width="238" height="160" alt=""/>
+			<div className="info__items__hard__line">
+				<div className="title__hard__item">{props.data.brand} {props.data.model}</div>
+				<div className="description__hard__item">
 				<div className="description">
 					<strong>Количество ядер: </strong>
 					<span>{props.data.num_core} </span>
@@ -60,6 +56,7 @@ const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
 					<strong>Тех.процесс: </strong>
 					<span>{props.data.tech_proc} </span>
 				</div>
+			</div>
 			</div>
 			<div className="control">
 				{ props.idBugHard.includes(props.data.id) ?

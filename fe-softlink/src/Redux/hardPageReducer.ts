@@ -116,7 +116,7 @@ let initState = {
     isFetching: false as boolean,
     pageUpdate: false as boolean,
     paramsJson: {} as any,
-    params: '' as string
+    params: "" as string
 }
 
 
