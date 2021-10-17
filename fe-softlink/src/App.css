@@ -552,29 +552,21 @@
 
 /*Разделитель контента и пагинатора*/
 .content___list{
-  display: grid;
-  height: auto;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-
-  grid-template: auto 50px/ 1fr;
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  padding-top: 10px;
 }
 
 /*Пагинатор Железа*/
 
 .page_content {
-  grid-column-start: 1;
-  grid-column-end: 2;
   background-color: #c2c2c2;
-  height: auto;
+  height: 2300px;
 
-  display: grid;
-  grid-gap: 10px;
-  padding: 10px;
-
-  grid-template: 320px 320px 320px 320px 320px 320px /  250px 250px 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .page__number__list{
@@ -617,24 +609,21 @@
 /*Содержимое страниц Железо Итемы*/
 
 .item__content{
-  width: 250px;
-  height: 320px;
-  max-height: 320px;
   background-color: #ebebeb;
   box-shadow: 1px 1px 4px #282828;
   position: relative;
+  height: 120px;
+  border-radius: 15px;
 
-  display: grid;
-  grid-gap: 3px;
-  grid-template: 160px 1fr 1.7fr/ 210px 30fr;
-}
+  display: flex;
+  justify-content: space-around;}
 
 .item__content:hover {
   box-shadow: 0 0 10px green;
 }
 .picture__hard_item {
-  width: 200px;
-  height: 160px;
+  width: 120px;
+  height: 90px;
   margin: 3px;
   border: 3px solid #000;
   grid-column-start: 1;
@@ -674,24 +663,24 @@
   border: 2px solid green;
   background-color: green;
 }
+.info__items__hard__line {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 2px solid black;
+}
 
 .title__hard__item {
-  padding-top: 20px;
   text-align: center;
   font-size: 18px;
   font-style: italic;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  height: 20%;
 }
 
 .description__hard__item{
+  height: 60%;
   background-color: #c7c7c7;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
   margin: 0px 5px 5px 5px;
   text-align:left;
   font-size: 15px;
@@ -699,11 +688,6 @@
   padding-top: 10px;
   padding-left: 15px;
 
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
 
   grid-template: 1fr / 1fr 50px;
 }
@@ -847,7 +831,6 @@
   flex-direction: column;
   padding-top: 10px;
   align-items: center;
-
 
 }
 
@@ -1094,7 +1077,7 @@
   box-shadow: 1px 1px 15px #282828;
 
   grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-end: 3;
   grid-column-start: 2;
   grid-column-end: 3;
 }

@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="22608e03-1d10-40fb-b5fd-1cf4f47ab97b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/be-softlin/hardware/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/CpuItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/CpuItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemHdd.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/ItemHdd.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ComponentHard/MotherItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/fe-softlink/src/contentWrapper/ItemHard/ItemHard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

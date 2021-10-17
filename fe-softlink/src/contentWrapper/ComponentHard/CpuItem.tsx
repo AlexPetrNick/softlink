@@ -60,13 +60,13 @@ const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
 					<strong>Тех.процесс: </strong>
 					<span>{props.data.tech_proc} </span>
 				</div>
-				<div className="control">
-					{ props.idBugHard.includes(props.data.id) ? 
+			</div>
+			<div className="control">
+				{ props.idBugHard.includes(props.data.id) ?
 					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
 					<button className="button__add__item" onClick={getItem}>&#10004;</button>
-					}
-					<button className="button__show">&#128270;</button>	
-				</div>
+				}
+				<button className="button__show">&#128270;</button>
 			</div>
 		</div>
 	);
