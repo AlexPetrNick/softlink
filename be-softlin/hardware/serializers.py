@@ -62,50 +62,50 @@ class ComputerSerializer(serializers.ModelSerializer):
     hdd = serializers.SerializerMethodField()
     ssd = serializers.SerializerMethodField()
     video = serializers.SerializerMethodField()
-    power_supply = serializers.SerializerMethodField()
+    power = serializers.SerializerMethodField()
     ram = serializers.SerializerMethodField()
-    
+
 
     def get_cpu(self, obj):
         hard_ids = get_list_item_from_id(obj.cpu_ids, Processor, CpuListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
 
     def get_mother(self, obj):
         hard_ids = get_list_item_from_id(obj.mother_ids, Mother, MotherListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
 
     def get_hdd(self, obj):
         hard_ids = get_list_item_from_id(obj.hdd_ids, HDD, HddListSerializer)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
-        
+
     def get_ssd(self, obj):
         hard_ids = get_list_item_from_id(obj.ssd_ids, SSD, SsdListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
 
     def get_video(self, obj):
         hard_ids = get_list_item_from_id(obj.video_ids, VideoCard, VideoListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
-        
+
     def get_ram(self, obj):
         hard_ids = get_list_item_from_id(obj.ram_ids, RAM, RamListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
-        
-    def get_power_supply(self, obj):
+
+    def get_power(self, obj):
         hard_ids = get_list_item_from_id(obj.power_supply_ids, PowerSupply, PowerSupplyListSerializers)
         if not hard_ids:
-            return [] 
+            return []
         return hard_ids
 
     class Meta:
@@ -211,7 +211,7 @@ class CabinetSerializer(serializers.ModelSerializer):
             temp_list_hard = VideoCard.objects.filter(id__in = temp_list_hard_id)
             return VideoListSerializers(temp_list_hard, many=True).data
         else:
-            return {}
+            return []
             
 
 class NewsListSerializer(serializers.ModelSerializer):

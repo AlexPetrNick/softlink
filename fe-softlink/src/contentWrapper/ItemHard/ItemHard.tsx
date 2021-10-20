@@ -16,7 +16,7 @@ import {
 	ItemPowerType,
 	ItemRamType,
 	ItemSsdType,
-	ItemVideoType
+	ItemVideoType, StateComputer
 } from "../../Redux/computerReducer";
 import SimpleSlider from "../Slider/SimpleSlider";
 
@@ -27,7 +27,9 @@ interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	eraseDictParams: (tag:string, value:string) => void
 	cabinetAddItem: CabinetAddItemType
 	cabinetEraseItem: CabinetEraseItemType
-	filterField: FilterFieldAllType
+	filterField: FilterFieldAllType,
+	stateMotherComputer: Array<ItemMotherType>,
+	stateComp: StateComputer
 }
 
 let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
@@ -192,6 +194,8 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
 							stateMother = {stateMother}
+							stateMotherComputer = {props.stateMotherComputer}
+							stateCompCpu = {props.stateComp.cpu}
 						/>
 					)
 			}
