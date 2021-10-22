@@ -2,17 +2,15 @@ import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {initStateTypeUserControl} from "../Redux/userControlReducer";
 import pictureUser from "../image/userPictur.png";
-import {useForm} from "react-hook-form";
-import {Button, Progress} from "semantic-ui-react";
-import {PowerProgressBar} from "./FormField/PowerProgressBar";
 import PowerPlace from "../contentWrapper/Cabinet/Computer/Button/PowerPlace";
-import {ItemPowerType, StateComputer} from "../Redux/computerReducer";
+import {StateComputer} from "../Redux/computerReducer";
 import ComputerNameItem from "../contentWrapper/Cabinet/Computer/ComputerNameItem";
 
 type PropsUserControll = {
     state: initStateTypeUserControl
     logOut: () => void
     stateComp: StateComputer
+    setNullUser: () => void
 }
 
 const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
@@ -21,6 +19,7 @@ const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
     console.log("usercontrol пользователь залогинен")
     let onClickExit = () => {
         props.logOut()
+        props.setNullUser()
         localStorage.removeItem('access')
         localStorage.removeItem('refresh')
     }
@@ -41,14 +40,14 @@ const UserControl: React.FC<PropsUserControll> = (props: PropsUserControll) => {
             <div className="fill__left__right"></div>
             <div className="site__name__label">SoftLink</div>
             <div className="menu__for__using">
-                <div onClick={() => seeAdded(true)} className="add__menu__title">
+                <div className="add__menu__title">
                     <div className="visiter__info">
                         <img className="visiter__picture" src={pictureUser}/>
                         <div className="visiter__name">
                             <div className="text__visiter__name">{props.state.username}</div>
                         </div>
                     </div>
-                    <div className="helper__text">
+                    <div onClick={() => seeAdded(true)} className="helper__text">
                         <div className="">
                             {stateAdded ?
                                 "Открыть меню" :

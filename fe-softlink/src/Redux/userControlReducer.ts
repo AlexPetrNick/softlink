@@ -6,6 +6,7 @@ export const SET_CORR_LOGIN = "SET-CORR-LOGIN"
 export const SET_CORR_PASSWORD = "SET-CORR-PASSWORD"
 export const SET_DATA_USER = "SET-DATA-USER"
 export const SET_ID_CABINET = "SET-ID-CABINET"
+export const SET_NULL_USER = "SET_NULL_USER"
 
 
 export type initStateTypeUserControl = typeof initState
@@ -28,7 +29,7 @@ const initState = {
 
 
 
-export type actionType = actionTypesCorrLogin | actionTypesCorrPass | actionTypesData | actionTypesCabId
+export type actionType = actionTypesCorrLogin | actionTypesCorrPass | actionTypesData | actionTypesCabId | TSetNullType
 
 let userControlReducer = (state:initStateTypeUserControl=initState, action:actionType ):initStateTypeUserControl => {
     switch(action.type) {
@@ -61,6 +62,11 @@ let userControlReducer = (state:initStateTypeUserControl=initState, action:actio
             return {
                 ...state,
                 cabinet: action.cabId
+            }
+        }
+        case SET_NULL_USER: {
+            return {
+                ...initState
             }
         }
         default:
@@ -98,7 +104,10 @@ export const setDataUser = (
     computer: string
 ):actionTypesData => ({type: SET_DATA_USER, id, username,first_name, last_name, email, about, cabinet, computer})
 export const setCabinetId = (cabId:number):actionTypesCabId => ({ type:SET_ID_CABINET, cabId })
-
+export type TSetNullType = {
+    type: typeof SET_NULL_USER
+}
+export const setNullUser = ():TSetNullType => ({type: SET_NULL_USER})
 
 export default userControlReducer
 

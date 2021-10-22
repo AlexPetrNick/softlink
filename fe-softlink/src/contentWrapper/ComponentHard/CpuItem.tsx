@@ -2,6 +2,8 @@ import React, {FC, useState} from 'react'
 import cpuImage from '../../image/cpuImage.jpg'
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
 import {ItemCpuType, ItemMotherType} from "../../Redux/computerReducer";
+import {array} from "yup";
+import {getButton} from "./extraFunction/extra";
 
 
 export type PropsItemHard = {
@@ -10,9 +12,9 @@ export type PropsItemHard = {
 	idBugHard: Array<number | null>
 	cabinetAddItem: CabinetAddItemType
 	cabinetEraseItem: CabinetEraseItemType
-	stateMother: ItemMotherType,
-	stateMotherComputer: Array<ItemMotherType>,
+	stateMotherComputer: Array<ItemMotherType>
 	stateCompCpu: Array<ItemCpuType>
+	loginUser: string
 }
 
 const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
@@ -22,28 +24,31 @@ const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
 	let eraseItem = (): void => {
 		props.cabinetEraseItem(props.data.id, props.data.type_item)
 	}
-	const getIdItem = () => {
-		let idItem = props.stateCompCpu.map(i => i.id)
-		return idItem
-	}
-
-	console.log()
+	const idItemComputerCpu = props.stateCompCpu.map(i => i.id)
 
 	let getColorItem = () => {
 		let stateColor = ""
-		if (props.stateMotherComputer.length) {
-			if (props.stateMotherComputer[0].socket != props.data.socket) {
-				stateColor = "red"
-			} else if (props.stateMotherComputer[0].socket === props.data.socket) {
-				if (getIdItem().some(i => i === props.data.id)) {
-					stateColor = "yellow"
-				} else {
-					stateColor = "green"
+		if (props.loginUser.length) {
+			if (props.stateMotherComputer.length) {
+				if (props.stateMotherComputer[0].socket != props.data.socket) {
+					stateColor = "red"
+				} else if (props.stateMotherComputer[0].socket === props.data.socket) {
+					if (idItemComputerCpu.some(i => i === props.data.id)) {
+						stateColor = "yellow"
+					} else {
+						stateColor = "green"
+					}
 				}
 			}
+		} else {
+			stateColor = "gray"
 		}
 		return "item__content" + " " + stateColor
 	}
+	const loginUser = props.loginUser
+	const dataId = props.data.id
+	const bagHard = props.idBugHard
+
 
 	return (
 		<div className={getColorItem()}>
@@ -66,10 +71,7 @@ const CpuItem: FC<PropsItemHard> = (props:PropsItemHard) => {
 			</div>
 			</div>
 			<div className="control">
-				{ props.idBugHard.includes(props.data.id) ?
-					<button className="button__remove__item" onClick={eraseItem}>&#10006;</button> :
-					<button className="button__add__item" onClick={getItem}>&#10004;</button>
-				}
+				{ getButton(loginUser, dataId, bagHard, getItem, eraseItem) }
 				<button className="button__show">&#128270;</button>
 			</div>
 		</div>

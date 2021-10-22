@@ -115,6 +115,7 @@ class ItemHardContainer extends React.Component<IItemHardContainer> {
                               filterField={this.props.filterField}
                               stateMotherComputer={this.props.stateMotherComputer}
                               stateComp={this.props.stateComp}
+                              loginUser={this.props.loginUser}
                     />
                 }
             </>
@@ -129,7 +130,8 @@ interface IMapStateToProps {
     stateBugHard: BagType,
     filterField: FilterFieldAllType,
     stateMotherComputer: Array<ItemMotherType>,
-    stateComp: StateComputer
+    stateComp: StateComputer,
+    loginUser: string
 }
 
 interface IPropsMapToProps {
@@ -161,7 +163,8 @@ let mapStateToProps = (state: AppStateType, props: IPropsMapToProps): IMapAndPro
         stateHardFilterJson: state.pageHard.paramsJson,
         stateBugHard: state.pageCabinet.bag,
         stateMotherComputer: state.computer.mother,
-        stateComp: state.computer
+        stateComp: state.computer,
+        loginUser: state.pageUser.username
     }
 }
 

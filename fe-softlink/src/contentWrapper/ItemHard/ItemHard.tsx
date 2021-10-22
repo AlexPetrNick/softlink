@@ -29,7 +29,8 @@ interface ItemHardType extends IMapAndPropsToProps,IDispatchProps  {
 	cabinetEraseItem: CabinetEraseItemType
 	filterField: FilterFieldAllType,
 	stateMotherComputer: Array<ItemMotherType>,
-	stateComp: StateComputer
+	stateComp: StateComputer,
+	loginUser: string
 }
 
 let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
@@ -180,7 +181,9 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 							idBugHard={idBugHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
-							//stateMother={stateMother}
+							stateMotherComputer = {props.stateMotherComputer}
+							stateCompHdd = {props.stateComp.hdd}
+							loginUser={props.loginUser}
 						/>
 					)
 				}
@@ -190,12 +193,11 @@ let ItemHard: FC<ItemHardType> = (props:ItemHardType) => {
 							key={data.id}
 							data={data as ItemCpuType}
 							idBugHard={idBugHard}
-							//stateBugIdHard={props.stateBugIdHard}
 							cabinetAddItem={props.cabinetAddItem}
 							cabinetEraseItem={props.cabinetEraseItem}
-							stateMother = {stateMother}
 							stateMotherComputer = {props.stateMotherComputer}
 							stateCompCpu = {props.stateComp.cpu}
+							loginUser={props.loginUser}
 						/>
 					)
 			}

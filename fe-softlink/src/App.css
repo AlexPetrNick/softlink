@@ -117,8 +117,11 @@
   justify-content: center;
   align-items: flex-start;
   color: grey;
+  cursor: pointer;
 }
-
+.helper__text:hover {
+  border-color: #1e8714;
+}
 
 
 .fill__left__right {
@@ -627,6 +630,9 @@
 .red:hover{
   box-shadow: 1px 1px 10px 5px red;
 }
+.gray:hover{
+  box-shadow: 1px 1px 10px 5px gray;
+}
 
 
 
@@ -735,6 +741,16 @@
   background-color: red;
   border: 1px solid white;
   color:white;
+}
+
+.button__not__login__item {
+  border-radius: 15px;
+  height: 35px;
+  width: 35px;
+  background-color: gray;
+}
+.button__not__login__item:hover {
+  border: 1px solid white;
 }
 
 

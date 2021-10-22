@@ -2,7 +2,7 @@ import React, {FC, Props} from 'react'
 import hdd from '../../image/hdd.jpg'
 import {DataHardType} from "../../Redux/hardPageReducer";
 import {CabinetAddItemType, CabinetEraseItemType} from "../../Redux/cabinetReducer";
-import {ItemHddType} from "../../Redux/computerReducer";
+import {ItemCpuType, ItemHddType, ItemMotherType} from "../../Redux/computerReducer";
 
 type PropsItem = {
     key: number
@@ -10,19 +10,21 @@ type PropsItem = {
     idBugHard: Array<number | null>
     cabinetAddItem: CabinetAddItemType
     cabinetEraseItem: CabinetEraseItemType
+    stateMotherComputer: Array<ItemMotherType>,
+    stateCompHdd: Array<ItemHddType>,
+    loginUser: string
 }
 
 const ItemHdd: FC<PropsItem> = (props: PropsItem) => {
-
     let getItem = () => {
         props.cabinetAddItem(props.data.id, props.data.type_item)
     }
-
     let eraseItem = () => {
         props.cabinetEraseItem(props.data.id, props.data.type_item)
     }
+    const idItemsComputerHdd = props.stateCompHdd.map(i => i.id)[0]
 
-    //&#10006;	убрать итем
+
 
 
     return (

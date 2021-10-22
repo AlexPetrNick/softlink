@@ -143,6 +143,7 @@
     display: grid;
     text-align: center;
     font-size: 20px;
+    background-color: #4f4f4f;
 
     grid-template: auto /1fr;
 

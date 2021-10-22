@@ -7,7 +7,7 @@ import {
     SET_DATA_USER,
     setCorrLogin,
     setCorrPassword,
-    setDataUser
+    setDataUser, setNullUser
 } from '../Redux/userControlReducer'
 import {setError, authorization, logOut, InisStateAuthType} from '../Redux/authReducer'
 import {AppStateType} from "../Redux/reduxStore";
@@ -28,6 +28,7 @@ class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
                 state = {this.props.allState}
                 logOut = {this.props.logOut}
                 stateComp={this.props.stateComp}
+                setNullUser={this.props.setNullUser}
              /> :
             <UserControl
                 state = {this.props.allState}
@@ -36,6 +37,7 @@ class AuthentificateUser extends React.Component<PropsAuthentificateUserType>{
                 authorization = {this.props.authorization}
                 setDataUser = {this.props.setDataUser}
                 logOut = {this.props.logOut}
+                setNullUser={this.props.setNullUser}
             />
         }
         </>
@@ -61,6 +63,7 @@ export interface IDispatchStateToProps {
                   cabinet: number,
                   computer: string) => void
     logOut: () => void,
+    setNullUser: () => void
 }
 
 let mapStateToProps = (state:AppStateType):IMapStateToProps => {
@@ -76,7 +79,8 @@ export const UserControlContainer = connect(mapStateToProps, {
     setError,
     authorization,
     setDataUser,
-    logOut
+    logOut,
+    setNullUser
 } as IDispatchStateToProps)(AuthentificateUser)
 
 
