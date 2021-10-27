@@ -18,7 +18,7 @@ let ComputerNameItem: FC<PropsComputer> = (props:PropsComputer):any => {
     let correctText = (cntReal:number, cntFix:number) => {
         if ((cntReal == cntFix) && cntFix != 0 ) {
             return 'correct'
-        } else if (cntReal > cntFix) {
+        } else if (cntReal > cntFix && props.setCntError) {
             props.setCntError(cntError++)
             return 'incorrect'
         } else {

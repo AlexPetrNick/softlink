@@ -18,6 +18,7 @@ import TitleBagButton from './Button/TitleBagButton'
 import {IContainerComponent} from "./CabinetContainer";
 import {DataType, ItemHddType, ItemRamType, ItemSsdType, setGeneralAndRealCnt} from "../../Redux/computerReducer";
 import exp from "constants";
+import PowerPlace from "./Computer/Button/PowerPlace";
 export type GenStatCompArrayType = {
     generalCntSsd: number
     generalCntRam: number
@@ -55,10 +56,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     console.log("Draw Cabinet")
     console.log(props)
 
-    let hoverOnItem = (image:string):void => {
-        let elem = document.getElementsByClassName('computer__image')[0]
-        elem.setAttribute('src', image)
-    }
+
     const addedFunc = () => {
         props.updateCabinetAC(true)
         props.setGeneralAndRealCnt()
@@ -210,26 +208,33 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         generalCntPcie: stateComp.generalCntPcie,
         generalCntMSata: stateComp.generalCntMSata
     }
-
+    let allPower:number = stateComp.power.length ? stateComp.power[0].power_all : 0
     return (
         <div className="cabinet__wrapper">
-            <div className="info__user">
-                <div className="user__logo">
-                    <img src={userPhoto} />
+            <div className="wrapper__user__computer__power">
+                <div className="wrapper__user__computer">
+                    <div className="info__user">
+                        <div className="user__data">
+                            <div >{props.stateUser.last_name}</div>
+                            <div className="user__firstname">{}</div>
+                            <div className="user__second__name">{props.stateUser.secondName}</div>
+                        </div>
+                    </div>
+                    <ComputerContainer
+                        realStatComp = {realStatComp}
+                        genStatComp = {genStatComp}
+                        genStatCompArray = {genStatCompArray}
+                        realCntSsd = {stateComp.realCntSsd}
+                        realCntRam = {stateComp.realCntRam}
+                    />
                 </div>
-                <div className="user__data">
-                    <div className="user__login">{props.stateUser.username}</div>
-                    <div className="user__firstname">{}</div>
-                    <div className="user__second__name">{props.stateUser.secondName}</div>
+                <div className="power__cabinet">
+                    <PowerPlace
+                        powerAll={allPower}
+                        remainPower={props.stateComp.remainPower}
+                    />
                 </div>
             </div>
-            <ComputerContainer 
-                realStatComp = {realStatComp}
-                genStatComp = {genStatComp}
-                genStatCompArray = {genStatCompArray}
-                realCntSsd = {stateComp.realCntSsd}
-                realCntRam = {stateComp.realCntRam}
-            />
             <div className="user__bug">
                     <div className="bug__wrapper">
                         <TitleBagButton nameTitle="Материнка" up={up} openClose={openClose} />
@@ -243,7 +248,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrMother}
                                     remain={genStatComp.generalCntMother - realStatComp.realCntMother}
-                                    hover={hoverOnItem}
                                     image={motherIm}
                                 />
                             )
@@ -262,7 +266,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrCpu}
                                     remain={genStatComp.generalCntCpu - realStatComp.realCntCpu}
-                                    hover={hoverOnItem}
                                     image={cpuIm}
                                 />
                             )
@@ -281,7 +284,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrPower}
                                     remain={genStatComp.generalCntPower - realStatComp.realCntPower}
-                                    hover={hoverOnItem}
                                     image={powerIm}
                                 />
                             )
@@ -300,7 +302,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrVideo}
                                     remain={genStatComp.generalCntVideo - realStatComp.realCntVideo}
-                                    hover={hoverOnItem}
                                     image={videoIm}
                                 />
                             )
@@ -320,7 +321,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     arrayItem={arrSsd}
                                     remain={genStatCompArray.generalCntSsd - stateComp.realCntSsd}
                                     haveManySlot={haveSlotSsd}
-                                    hover={hoverOnItem}
                                     image={ssdIm}
                                 />
                             )
@@ -340,7 +340,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     arrayItem={arrRam}
                                     remain={genStatCompArray.generalCntRam - stateComp.realCntRam}
                                     haveManySlot={haveSlotRam}
-                                    hover={hoverOnItem}
                                     image={ramIm}
                                 />
                             )
@@ -359,7 +358,6 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                                     eraseItem={props.cabinetEraseItem}
                                     arrayItem={arrHdd}
                                     remain={genStatComp.generalCntSata - realStatComp.realCntSata}
-                                    hover={hoverOnItem}
                                     image={hddIm}
                                 />
                             )

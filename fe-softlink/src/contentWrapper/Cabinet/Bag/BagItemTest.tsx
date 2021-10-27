@@ -10,7 +10,6 @@ type PropsType = {
     eraseItem: (idItem:number, itemType:number) => void
     arrayItem: Array<number>
     remain: number
-    hover: (image:string) => void
     image: any,
     haveManySlot?: any
 }
@@ -21,14 +20,9 @@ let BagItem: FC<PropsType> = (props:PropsType) => {
     let titleDontSlot = "Нету свободных слотов. Очистите слот в компьютере"
     let haveItemOnComputer = props.arrayItem.some((item) => item == props.data.id)
 
-    let hoverOutItem = () => {
-        let elem = document.getElementsByClassName('computer__image')[0]
-        elem.setAttribute('src', computer)
-    }
-
 
     return (
-        <div className="bug__item" onMouseOut={hoverOutItem} onMouseOver={() => { props.hover(props.image) }}>
+        <div className="bug__item" >
             { haveItemOnComputer ?
                     <div className="button__item enable" onClick={() => {props.eraseItemFromComp(props.data)}}>&raquo;</div> :
                     !props.haveManySlot ?
