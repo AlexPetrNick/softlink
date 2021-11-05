@@ -165,6 +165,7 @@ export const apiUser = {
         password: string,
         email: string,
         first_name: string,
+        last_name: string,
         telephone: string,
         about: string
     ) => {
@@ -176,12 +177,7 @@ export const apiUser = {
                     "Content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    "username": username,
-                    "password": password,
-                    "email": email,
-                    "first_name": first_name,
-                    "telephone": telephone,
-                    "about": about
+                    username, password, email, first_name, last_name, telephone, about
                 })
             })
         )

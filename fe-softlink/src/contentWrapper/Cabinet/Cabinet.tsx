@@ -19,6 +19,7 @@ import {IContainerComponent} from "./CabinetContainer";
 import {DataType, ItemHddType, ItemRamType, ItemSsdType, setGeneralAndRealCnt} from "../../Redux/computerReducer";
 import exp from "constants";
 import PowerPlace from "./Computer/Button/PowerPlace";
+import {ItemUser} from "./Computer/Button/ItemUser";
 export type GenStatCompArrayType = {
     generalCntSsd: number
     generalCntRam: number
@@ -146,6 +147,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
     let arrHdd = stateComp.hdd.map((data) => data.id)
     let arrVideo = stateComp.video.map((data) => data.id)
     let arrSsd = dataSsd.map((data) => data.id)
+    const user = props.stateUser
 
 
     type RamSlotType = {
@@ -209,15 +211,29 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
         generalCntMSata: stateComp.generalCntMSata
     }
     let allPower:number = stateComp.power.length ? stateComp.power[0].power_all : 0
+
+    const infoUser = [
+        ['Логин', user.username],
+        ['Имя', user.first_name],
+        ['Фамилия', user.last_name],
+        ['Телефон', '89508194459'],
+        ['E-mail', user.email],
+        ['О себе', user.about]
+    ]
+
+    //
     return (
         <div className="cabinet__wrapper">
             <div className="wrapper__user__computer__power">
                 <div className="wrapper__user__computer">
-                    <div className="info__user">
-                        <div className="user__data">
-                            <div >{props.stateUser.last_name}</div>
-                            <div className="user__firstname">{}</div>
-                            <div className="user__second__name">{props.stateUser.secondName}</div>
+                    <div className="wrapper__user">
+                        <h3>Информация</h3>
+                        <div className="info__user">
+                            <div className="user__data">
+                                {infoUser.map(d => (
+                                    <ItemUser title={d[0]} items={d[1]} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                     <ComputerContainer
@@ -228,6 +244,7 @@ let Cabinet:FC<IContainerComponent> = (props:IContainerComponent) => {
                         realCntRam = {stateComp.realCntRam}
                     />
                 </div>
+                <div className="name__battery">Индикатор потребляемой мощности</div>
                 <div className="power__cabinet">
                     <PowerPlace
                         powerAll={allPower}

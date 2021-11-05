@@ -31,6 +31,7 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
             state.password,
             state.email,
             state.firstName,
+            state.lastName,
             state.phone,
             state.about
         )
@@ -58,6 +59,18 @@ export const CompletedFormRegistration: FC<allState> = (props) => {
                     type="text"
                     label="Имя"
                     defaultValue={state.firstName}
+                    variant="outlined"
+                    margin="normal"
+                    inputProps={
+                        { readOnly: true, }
+                    }
+                />
+                <TextField
+                    className={textField}
+                    id="lastNameReg"
+                    type="text"
+                    label="Фамилия"
+                    defaultValue={state.lastName}
                     variant="outlined"
                     margin="normal"
                     inputProps={

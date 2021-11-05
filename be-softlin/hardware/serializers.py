@@ -38,15 +38,16 @@ class UserRegistrationSerializer(BaseUserRegistrationSerializer):
         model = User
         print(model)
         fields = '__all__'
+        print(fields)
 
 
 def get_list_item_from_id(json_id, model: Model, serializer: serializers.ModelSerializer):
-    
+
     try:
-        hard_row = json.loads(json_id) 
+        hard_row = json.loads(json_id)
     except:
         hard_row = []
-    
+
     print(hard_row)
 
     if not hard_row:
@@ -64,7 +65,6 @@ class ComputerSerializer(serializers.ModelSerializer):
     video = serializers.SerializerMethodField()
     power = serializers.SerializerMethodField()
     ram = serializers.SerializerMethodField()
-
 
     def get_cpu(self, obj):
         hard_ids = get_list_item_from_id(obj.cpu_ids, Processor, CpuListSerializers)
@@ -117,7 +117,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
     """Сериализатор создания пользователей"""
     class Meta:
         model = UserWrap
-        fields = ('id', 'username', 'email', 'password', 'first_name', 'telephone', 'about')
+        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name', 'telephone', 'about')
 
     def create(self, validated_data):
         validated_data['password'] = make_password(self.validated_data['password'])
@@ -212,7 +212,7 @@ class CabinetSerializer(serializers.ModelSerializer):
             return VideoListSerializers(temp_list_hard, many=True).data
         else:
             return []
-            
+
 
 class NewsListSerializer(serializers.ModelSerializer):
     """Сериализатор Новостей"""
@@ -220,14 +220,14 @@ class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
-        
+
 class NewSerializer(serializers.ModelSerializer):
     """Сериализатор Новостей"""
 
     class Meta:
         model = News
         fields = '__all__'
-            
+
 
 class HddListSerializer(serializers.ModelSerializer):
     """Сериализация HDD"""
@@ -251,7 +251,7 @@ class CpuListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Processor
         fields = ('__all__')
-        
+
 """Начало основных"""
 
 class MotherListSerializers(serializers.ModelSerializer):
@@ -315,11 +315,11 @@ class SsdListSerializers(serializers.ModelSerializer):
 
 """Дополнительные сериализаторы"""
 class BrandListSerializers(serializers.ModelSerializer):
-    """Сериализация бренда""" 
+    """Сериализация бренда"""
     class Meta:
         model = Brand
         fields = '__all__'
-        
+
 
 class SocketListSerializers(serializers.ModelSerializer):
     """Сериализация сокета"""

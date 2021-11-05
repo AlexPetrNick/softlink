@@ -303,16 +303,16 @@ class UserCreate(APIView):
     def post(self, request, *args, **kwargs):
 
         serialize_data = self.serializer_class(data=request.data)
-
+        print(request.data)
         serialize_data.is_valid(raise_exception=True)
         serialize_data.save()
+        print(serialize_data.data)
 
         return Response(serialize_data.data)
 
 
 class NewsListPaginator(PageNumberPagination):
     page_size = 3
-    
 
     def get_paginated_response(self, data):
         return Response({

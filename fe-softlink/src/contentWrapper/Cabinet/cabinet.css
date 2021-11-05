@@ -21,11 +21,12 @@
 }
 .power__cabinet {
     height: 50px;
+    width: 1150px;
 }
 .saveChanges {
     display: inline-block;
     border: 1px solid rgb(1, 119, 182);
-    width: 100px;
+    width: 150px;
     padding-left: 24px;
     height: 30px;
     background-color: rgb(88, 88, 199);
@@ -58,7 +59,6 @@
     width: 100%;
     text-align: center;
     z-index: 1;
-    border-radius: 15px;
 
     display: flex;
     justify-content: center;
@@ -75,7 +75,6 @@
 }
 
 .remaindPower {
-    border-radius: 15px;
     position: relative;
     z-index: 2;
     height: 92%;
@@ -92,21 +91,42 @@
 }
 .wrapper__user__computer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 85%;
 }
+.wrapper__user {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.name__battery {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: green;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #4f4f4f;
+}
 .info__user {
-    background-color:#808080;
+    background-color: #e2e2e2;
+    border-radius: 20px;
+    border: 5px solid green;
     align-self: center;
-    width: 28%;
     height: 420px;
+    width: 250px;
+    font-size: 14px;
+    display: flex;
 }
 .user__computer {
-    height: 95%;
+    height: 100%;
     width: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 }
 .user__bug {
     margin-top: 20px;
@@ -120,12 +140,20 @@
     width: 120px;
     height: 120px;
 }
-
+.wrapper__user__info {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+.user__items {
+}
 .user__data{
-    display: grid;
-    font-size: 25px;
-
-    grid-template: 70px 1fr/ 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .user__login{
     background-color: #3e5243;
@@ -147,8 +175,11 @@
     text-align: center;
 }
 .computer__schema {
-    width: 50px;
-    height: 150px;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .computer__schema img{
     width: 350px;
@@ -160,14 +191,28 @@
     justify-content: space-around;
     font-size: 16px;
     width: 750px;
-    height: 500px;
+    height: 380px;
     background-color: #4f4f4f;
     border: 3px solid black;
-    border-radius: 20px;
+    border-radius: 10px;
+    overflow-y: scroll;
 
 }
+.computer__data::-webkit-scrollbar{
+    width: 10px;
+    background-color: #4f4f4f;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    max-height: 100px;
+}
+.computer__data::-webkit-scrollbar-thumb{
+     background-color: green;
+    border-radius: 50px;
+ }
+
 .computer__slot__wrapper {
     display: flex;
+    position: static;
     flex-direction: column;
     justify-content: center;
     align-self: center;
@@ -184,8 +229,6 @@
     max-height: 500px;
     height: 430px;
     width: 65%;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 .computer__data__name{
     height: auto;

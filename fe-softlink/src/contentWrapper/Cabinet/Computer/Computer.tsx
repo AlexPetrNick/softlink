@@ -63,7 +63,7 @@ let Computer: FC<PropsComputer> = (props: PropsComputer) => {
 
     return (
         <div className="user__computer">
-            ComputerNameItem
+            <h3>ID: {props.state.name}</h3>
             <div className="computer__data">
                 <div className="computer__slot__wrapper">
                     <div className="computer__slot">
