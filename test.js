@@ -1,12 +1,10 @@
-function rentalCarCost(d) {
-    let pay = 40 * d
-    if (d >= 7) {
-        return pay - 50
-    } else if (d >=3) {
-        return pay - 20
-    } else {
-        return pay
+function doubleChar(str) {
+    let strReady = ''
+    for (let i of str) {
+        strReady += i+i
     }
+    return strReady
 }
 
-console.log(rentalCarCost(3))
+
+console.log(doubleChar("abcd"))
