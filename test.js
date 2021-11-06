@@ -2,10 +2,8 @@
 const myArray = [];
 
 // Only change code below this line
-var i = 0
-while (i <= 5) {
+for (let i = 1; i <= 5; i++) {
     myArray.push(i)
-    i++
 }
 
 
