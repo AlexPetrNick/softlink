@@ -1,5 +1,10 @@
-function checkSign(num) {
-    return (num > 0) ? "positive" : (num < 0) ? "negative" : "zero"
+function array(arr){
+    arr = arr.split(',')
+    if (arr.length > 2) {
+        arr.splice(0, 1)
+        arr.splice(arr.length - 1, 1)
+        return arr.join(' ')
+    } else {
+        return null
+    }
 }
-
-console.log(checkSign(0))
