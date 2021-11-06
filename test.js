@@ -1,10 +1,6 @@
-function doubleChar(str) {
-    let strReady = ''
-    for (let i of str) {
-        strReady += i+i
-    }
-    return strReady
+function greet(name){
+    return `Hello, ${name} how are you doing today?`
 }
 
 
-console.log(doubleChar("abcd"))
+console.log(greet("abcd"))
