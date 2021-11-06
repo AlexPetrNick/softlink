@@ -1,6 +1,6 @@
-function greet(name){
-    return `Hello, ${name} how are you doing today?`
-}
+var greet = function(name) {
+    let str = name.toLowerCase()
+    return "Hello " + str.replace(str[0], str[0].toUpperCase()) + "!"
+};
 
-
-console.log(greet("abcd"))
+console.log(greet('riley'))
