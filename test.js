@@ -1,10 +1,19 @@
-function array(arr){
-    arr = arr.split(',')
-    if (arr.length > 2) {
-        arr.splice(0, 1)
-        arr.splice(arr.length - 1, 1)
-        return arr.join(' ')
-    } else {
-        return null
+function correct(string)
+{
+    let str = ''
+    for (let i of string) {
+        if (i === "5") {
+            str += "S"
+        } else if (i === "1") {
+            str += "I"
+        } else if (i === "0") {
+            str += "O"
+        } else {
+            str += i
+        }
+
     }
+    return str
 }
+
+console.log(correct("51NGAP0RE"))
