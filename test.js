@@ -1,8 +1,6 @@
-function randomFraction() {
+function randomWholeNum() {
 
     // Only change code below this line
 
-    return Math.random();
-
-    // Only change code above this line
+    return Math.floor(Math.random() * 10);
 }
